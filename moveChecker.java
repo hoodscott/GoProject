@@ -34,14 +34,15 @@ public class check {
 		PrevBoards.add(board);
 		print();
 		
-		// vyvedi proverka dali e vyvedeno 1 ili 2
+		// we may put a correct input check ..
+		// choose black or white to play
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Player (1 - black, 2 - white)");
 		int player = sc.nextInt();
 		boolean switchP = false;
 		boolean flag = true;
 		
-		// vyvedi proverka za verni koordinati
+		// we may put a correct coordinates input check
 		while (flag){
 			if(switchP) player = switchPlayer(player);
 			System.out.println("Choose position to play (x coordinate)");
@@ -63,6 +64,7 @@ public class check {
 		sc.close();
 	}
 	
+	// check if a move is legal
 	public static boolean checkMove(int x, int y, int p){
 		//1. if there is a stone already - illegal
 		if (board[x][y] != 0) return false;
@@ -73,12 +75,11 @@ public class check {
 		
 		//3. check if any enemy stones have no liberty; if so remove them
 		// 3.1. check if there are any adjacent enemy stones to the current one
-		//p = switchPlayer(p);
-		
+				
+		//if yes store them in a hash map
 		Map<Integer, Coordinates> enemyCoordinates = new HashMap<Integer, Coordinates>();
 		int coordFound = 0;
 		
-		//System.out.println("Enemy " + switchPlayer(p));
 		if (x>=1){
 			if (board[x-1][y] == switchPlayer(p)) { 
 				enemyCoordinates.put(++coordFound, new Coordinates(x-1,y));
@@ -99,12 +100,12 @@ public class check {
 				enemyCoordinates.put(++coordFound, new Coordinates(x,y+1));
 			}
 		}
+		
 		// if yes check if there are enemy stones without liberty and remove them if
-		//System.out.println("Enemy coordinates found:" + coordFound);
 		if(coordFound != 0){
 			for(int i=1; i<=coordFound; i++){
 				Coordinates c = enemyCoordinates.get(i);
-				//System.out.println(c.getX() +" "+ c.getY());
+				// call the recursive function (it uses floodfill alg.)
 				checkLiberty(c.getX(),c.getY(), switchPlayer(p), 3);
 				for(int o = 0; o< 9; o++){
 					for(int q=0; q<9; q++){
@@ -116,16 +117,12 @@ public class check {
 						}	
 					}
 				}
-				//System.out.println("mejdinka 3: ");
-				//print();
 				libCounter = 0;
 			}	
 		}
 	
 		//4. does the new stone group has liberty; if no - illegal return false
 		checkLiberty(x,y,p,3);
-		//System.out.println("mejdinka 4 s liberty: ");
-		//print();
 		for(int o = 0; o< 9; o++){
 			for(int q=0; q<9; q++){
 				if (board[o][q] == 3) board[o][q] = p;	
@@ -133,16 +130,14 @@ public class check {
 		}
 		if(libCounter == 0) {
 			board[x][y] = 0; // remove the stone
-			//System.out.println("mejdinka 4 bez liberty: ");
-			//print();
 			return false; //illegal
 			}
 		libCounter = 0;
 		
 		//5. has the board position appeared before; if yes - illegal
-		//for (int a[][] : PrevBoards){
-			//if (Arrays.equals(a, board)) return false;
-		//}
+		for (int a[][] : PrevBoards){
+			if (Arrays.equals(a, board)) return false;
+		}
 		
 		//6. legal
 		return true;
@@ -184,7 +179,6 @@ public class check {
 				if (board[i][j] == 0) System.out.print(".");
 				else if (board[i][j] == 1) System.out.print("X");
 				else if (board[i][j] == 2) System.out.print("O");
-				//else if (board[i][j] == 3) System.out.print("C");
 			}
 			System.out.println();
 		}
