@@ -3,9 +3,9 @@ import java.util.ArrayList;
         
 public class FileIO 
 {   
-	private static final DEFINPUT = "";
-	private static final DEFOUTPUT = "";
-	private static final DEFLOGOUTPUT = "";
+	private static final String DEFINPUT = "";
+	private static final String DEFOUTPUT = "";
+	private static final String DEFLOGOUTPUT = "";
 
 	public static void writeBoard(Board board)
 	{
@@ -37,10 +37,10 @@ public class FileIO
 
 	}
 
-    public ArrayList<ArrayList<String>> readFile(String path)
+    public ArrayList<String> readFile(String path)
     {
         BufferedReader reader = null;
-        ArrayList<String> rawInput = new ArrayList<ArrayList<String>>();
+        ArrayList<String> rawInput = new ArrayList<>();
         
         try
         {
@@ -101,8 +101,6 @@ public class FileIO
         {
             try{writer.close();}
             catch(IOException ex){ex.printStackTrace();}
-            System.out.println("--Writing Complete--");  
-            System.out.println("Execution time: "+(System.currentTimeMillis()-startTimeMs)+" ms");
         }
     }
 }
