@@ -10,7 +10,6 @@ public class GameEngine{
   // Operations
   /** Default Constructor */
   public void GameEngine(){
-    // same as newGame?
     newGame();
   }
   
