@@ -45,12 +45,10 @@ public class GameEngine{
   Checks whether the move is legal and if so, place the piece and return true
   if the move is illegal, return false */
   public Boolean makeMove(int x, int y, String colour){
-    if (getLegalMoves(colour)[x][y]){
+    if (checkMove(currentBoard, x, y, colour){
       currentBoard.set(x, y, colour);
       return true;
     }
     else
       return false;
   }
-
-  
