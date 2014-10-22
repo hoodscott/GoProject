@@ -20,8 +20,7 @@ public class LegalMoveChecker {
 		this.libCounter = libCounter;
 	}
 	
-	//public static boolean checkMove(Board board, int x, int y, int colour){
-	public boolean checkMove(int board[][], int x, int y, int colour){
+	public boolean checkMove(Board board, int x, int y, int colour){
 		//1. if there is a stone already - illegal
 		if (board[x][y] != 0) return false;
 		
@@ -95,8 +94,7 @@ public class LegalMoveChecker {
 		return true;	
 	}
 	
-	//public static void addBoard(Board board){
-	public void addBoard(int board[][]){
+	public void addBoard(Board board){
 		moveHistory.add(board);
 	}
 	
@@ -116,7 +114,7 @@ public class LegalMoveChecker {
 		}
 	}
 	
-	public static int switchPlayer(int pl){
+	public int switchPlayer(int pl){
 		if(pl == 1) return 2;
 		else return 1;
 	}
