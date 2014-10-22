@@ -5,13 +5,7 @@ public class Main
 	//Use this class to test your stuff. Just comment out or delete your code before you commit it.
 	public static void main(String[] args)
 	{
-
-	}
-}
-
-
-
-		/* Test of Board.clone() method
+		/* Test of Board.clone()
 
 		import java.util.Arrays;
 
@@ -39,3 +33,5 @@ public class Main
 		System.out.println(b.get(1,0));
 		System.out.println(b.get(1,1));
 		*/
+	}
+}

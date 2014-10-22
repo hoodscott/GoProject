@@ -64,14 +64,14 @@ public class FileIO
 
             catch(IOException ex)
             {
-                System.err.println("")
+                System.err.println("There was an error closing the reading stream.")
             }
             System.out.println("--Reading Complete--");      
         }
         return rawInput;
     }
     
-    public void writeFileText(String path, String[] output)
+    public void writeFile(String path, ArrayList <String> output)
     {
         BufferedWriter writer = null;
         
@@ -80,8 +80,10 @@ public class FileIO
             File file = new File(path);
             
             if(!file.exists())
-            {
                 file.createNewFile();
+            else
+            {
+                System.err.println("WARNING: file already exists.");
             }
             
             System.out.println("--Writing file to "+file+" --");
