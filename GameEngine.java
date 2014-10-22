@@ -27,8 +27,8 @@ public class GameEngine{
 
   /** Checks entire board for legal moves and returns them as a 2D boolean array */
   public Boolean[][] getLegalMoves(String colour){
-	int xDim = currentBoard.getxDimension();
-	int yDim = currentBoard.getyDimension();
+	int xDim = currentBoard.getWidth();
+	int yDim = currentBoard.getHeight();
     Boolean[][] legalMoves = new Boolean[xDim][yDim];
     for (int i; i<xDim; i++){
       for (int j; j<yDim; j++){
