@@ -4,28 +4,28 @@ import java.util.Arrays;
 public class Board {
 	
 	private int[][] boardRep;
-	private int dimension;
+	private static final int DIMENSION = 9; //Default dimension for empty boards
 	
-	// Create empty board (9x9)
+	// Create empty board
 	public Board() {
-		this.dimension = 9;
-		boardRep = new int[this.dimension][this.dimension];
-		for (int row = 0; row < boardRep.length; row++) {
-			for (int column = 0; column < boardRep.length; column++)
-				boardRep[row][column] = 0;
-		}
+		boardRep = new int[DIMENSION][DIMENSION];
 	}
 	
 	// Create new board from given character array
 	public Board(char[][] board) {
-		this.dimension = board.length;
-		boardRep = new int[this.dimension][this.dimension];
-		for (int row = 0; row < boardRep.length; row++) {
-			for (int column = 0; column < boardRep.length; column++) {
-				int boardPos = translate(board[row][column]);
-				boardRep[row][column] = boardPos;
-			}
-		}
+
+		int width = board.length;
+		int height = board[0].length;
+		boardRep = new int[width][height];
+
+		for (int row = 0; row < boardRep.length; row++) 
+			for (int column = 0; column < boardRep[0].length; column++)
+				boardRep[row][column] = translate(board[row][column]);
+	}
+
+	//Create an empty board that takes in a pair of dimensions
+	public Board(int width, int height){
+		boardRep = new int[width][height];
 	}
 	
 	// Get int representation of board position
@@ -41,20 +41,18 @@ public class Board {
 	
 	// Make deep copy of original Board
 	public Board clone() {
-		Board clone = new Board();
-		int dimension = this.dimension;
-		clone.boardRep = new int[dimension][dimension];
-		for (int i = 0; i < this.boardRep.length; i++) {
-			clone.boardRep[i] = Arrays.copyOf(this.boardRep[i],this.boardRep[i].length);
-		}
+		Board clone = new Board(boardRep.length, boardRep[0].length);
+		for (int i = 0; i < boardRep.length; i++)
+			for(int j = 0; j < boardRep[0].length; j++) 
+				clone.set(i,j,boardRep[i][j]);
+
 		return clone;
 	}
 	
 	// Method for translation of char positions to int values
 	public int translate(char value) {
-		String s = "" + value;
-		if (s == ".") return 0;
-		else if (s == "b") return 1;
+		if (value == '.') return 0;
+		else if (value == 'b') return 1;
 		else return 2;
 	}
 	
