@@ -28,6 +28,10 @@ public class Board {
 		boardRep = new int[width][height];
 	}
 	
+	// Get x and y dimensions of board
+	public int getxDimension(){return boardRep.length;}
+	public int getyDimension(){return boardRep[0].length;}
+	
 	// Get int representation of board position
 	public int get(int x, int y) {
 		return boardRep[x][y];
