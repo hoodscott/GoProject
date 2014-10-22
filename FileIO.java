@@ -47,8 +47,7 @@ public class FileIO
             reader = new BufferedReader(new FileReader(path));
             String currentLine;
             
-            //System.out.println("--Reading in file from "+path+" --");
-            //System.out.println("--Reading in lines--");
+            System.out.println("--Reading in file from "+path+" --");
                           
             while((currentLine = reader.readLine()) != null)
                     rawInput.add(currentLine);
@@ -56,13 +55,17 @@ public class FileIO
         
         catch(IOException ex)
         {
-            ex.printStackTrace();                    
+            System.err.println("The program could not read the file at "+path);                   
         }
         
         finally
         {
             try{reader.close();}
-            catch(IOException ex){ex.printStackTrace();}
+
+            catch(IOException ex)
+            {
+                System.err.println("")
+            }
             System.out.println("--Reading Complete--");      
         }
         return rawInput;
