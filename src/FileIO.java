@@ -3,15 +3,15 @@ import java.util.ArrayList;
         
 public class FileIO 
 {   
-	private static final String DEFINPUT = "";
-	private static final String DEFOUTPUT = "";
-	private static final String DEFLOGOUTPUT = "";
+    //Default paths
+	private static final String DEFINPUT = "\\saveData\\boards\\board";
+	private static final String DEFOUTPUT = "\\saveData\\boards\\board";
+	private static final String DEFLOGOUTPUT = "\\saveData\\logs\\log";
 
-	public static void writeBoard(Board board)
-	{
+    //Default Board writing method
+	public static void writeBoard(Board board){writeBoard(board,DEFOUTPUT);}
 
-	}
-
+    //Board writing method with given path
 	public static void writeBoard(Board board, String path)
 	{
 
@@ -133,5 +133,13 @@ public class FileIO
             String sub = original.substring(0,sub.length() - numbers.length() + 1);
             return sub + Integer.toString(count);
         }
+    }
+
+    public char translate(int i)
+    {
+        switch(i)
+        {
+            case:0
+        };
     }
 }
