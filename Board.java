@@ -71,7 +71,6 @@ public class Board {
 			x++;
 			y = 0;
 		}
-		Board copy = b.clone();
 	}**/
 	
 }
