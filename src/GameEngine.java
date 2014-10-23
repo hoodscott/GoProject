@@ -32,7 +32,7 @@ public class GameEngine{
     Boolean[][] legalMoves = new Boolean[xDim][yDim];
     for (int i; i<xDim; i++){
       for (int j; j<yDim; j++){
-        legalMoves[i][j] = checkMove(currentBoard, i, j, colour);
+        legalMoves[i][j] = LegalMoveChecker.checkMove(currentBoard, i, j, colour);
       }
     }
     return legalMoves;
@@ -47,10 +47,11 @@ public class GameEngine{
   Checks whether the move is legal and if so, place the piece and return true
   if the move is illegal, return false */
   public Boolean makeMove(int x, int y, String colour){
-    if (checkMove(currentBoard, x, y, colour){
+    if (checkMove(currentBoard, x, y, colour)){
       currentBoard.set(x, y, colour);
       return true;
     }
     else
       return false;
   }
+}
