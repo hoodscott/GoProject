@@ -13,18 +13,23 @@ public class FileIO
 
     //Board writing method with given path
 	public static void writeBoard(Board board, String path)
-	{
-
+	{ 
+        try
+        {
+            this.translate(1);
+        }
+        catch(BoardFormatException badBoard)
+        {}
 	}
 
 	public static Board readBoard(Board board)
 	{
-
+        return null;
 	}
 
 	public static Board readBoard(Board board, String path)
 	{
-
+        return null;
 	}
 
 	public static void writeToLog(String text)
@@ -65,7 +70,7 @@ public class FileIO
 
             catch(IOException ex)
             {
-                System.err.println("There was an error closing the reading stream.")
+                System.err.println("There was an error closing the reading stream.");
             }
             System.out.println("--Reading Complete--");      
         }
@@ -73,7 +78,7 @@ public class FileIO
     }
     
     //General write method
-    public void writeFile(String path, String output)
+    public static void writeFile(String path, String output)
     {
         BufferedWriter writer = null;
         String p = path;
@@ -100,20 +105,20 @@ public class FileIO
         }
         catch(IOException ex)
         {
-            System.err.println("The program could not write the file to "+p)
+            System.err.println("The program could not write the file to "+p);
         }
         finally
         {
             try{writer.close();}
             catch(IOException ex)
             {
-                System.err.println("There was an error closing the writing stream.")
+                System.err.println("There was an error closing the writing stream.");
             }
         }
     }
 
     //Fancy method that adds a number to a path.
-    public String adjustPath(String original)
+    public static String adjustPath(String original)
     {
         String numbers = "";
         boolean isDigit = true;
@@ -130,16 +135,20 @@ public class FileIO
         else
         {
             int count = Integer.parseInt(numbers) + 1;
-            String sub = original.substring(0,sub.length() - numbers.length() + 1);
+            String sub = original.substring(0,original.length() - numbers.length() + 1);
             return sub + Integer.toString(count);
         }
     }
 
-    public char translate(int i)
+    //Translates Board int elements into text
+    public static char translate(int i)
     {
         switch(i)
         {
-            case:0
-        };
+            case 0: return '.';
+            case 1: return 'b';
+            case 2: return 'c';
+            default: throw new BoardFormatException();
+        }
     }
 }
