@@ -52,9 +52,7 @@ public class FileIO {
         }
 	}
 
-	public static void writeToLog(String text){
-
-	}
+	public static void writeToLog(String text){writeToLog(text,relativePath+defLogOutput+defLogName);}
 
 	public static void writeToLog(String text, String path){
 
