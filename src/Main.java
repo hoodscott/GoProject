@@ -5,6 +5,11 @@ public class Main
 	//Use this class to test your stuff. Just comment out or delete your code before you commit it.
 	public static void main(String[] args)
 	{
+
+	}
+}
+
+
 		/* Test of Board.clone()
 
 		import java.util.Arrays;
@@ -33,5 +38,22 @@ public class Main
 		System.out.println(b.get(1,0));
 		System.out.println(b.get(1,1));
 		*/
-	}
-}
+
+		/* Test of FileIO boardWrite()
+
+		Board a = new Board(2,2);
+		a.set(0,0,0);
+		a.set(0,1,1);
+		a.set(1,0,2);
+		a.set(1,1,1);
+
+		Board b = new Board(2,2);
+		b.set(0,0,1);
+		b.set(0,1,2);
+		b.set(1,0,1);
+		b.set(1,1,0);
+
+		FileIO.writeBoard(a);
+		FileIO.writeBoard(b, "specialBoard"); 
+
+		*/ 
