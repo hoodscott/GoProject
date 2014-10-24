@@ -9,7 +9,7 @@ public class GameEngine{
   
   // Operations
   /** Default Constructor */
-  public void GameEngine(){
+  public GameEngine(){
     newGame();
   }
   
