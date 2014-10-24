@@ -4,9 +4,10 @@ import java.util.ArrayList;
 public class FileIO 
 {   
     //Default paths
-	private static final String DEFINPUT = "saveData\\boards\\board";
-	private static final String DEFOUTPUT = "saveData\\boards\\board";
-	private static final String DEFLOGOUTPUT = "saveData\\logs\\log";
+    private static String relativePath = System.getProperty("user.dir");
+	private static final String DEFINPUT = relativePath+"\\saveData\\boards\\board";
+	private static final String DEFOUTPUT = relativePath+"\\saveData\\boards\\board";
+	private static final String DEFLOGOUTPUT = relativePath+"\\saveData\\logs\\log";
 
     //Default Board writing method
 	public static void writeBoard(Board board){writeBoard(board,DEFOUTPUT);}
@@ -59,7 +60,6 @@ public class FileIO
         BufferedReader reader = null;
         ArrayList<String> rawInput = new ArrayList<>();
         String currentLine;
-        String relativePath = System.getProperty("user.dir");
         
         try
         {
@@ -86,7 +86,7 @@ public class FileIO
     private static void writeFile(String output, String path)
     {
         BufferedWriter writer = null;
-        String p = System.getProperty("user.dir")+"\\"+path; //This adds the relative path of where Main is located.
+        String p = path; //This adds the relative path of where Main is located.
         
         try
         {
@@ -139,7 +139,7 @@ public class FileIO
         else
         {   
             int count = Integer.parseInt(numbers) + 1;
-            System.out.println(count);
+            //System.out.println(count);
             String sub = original.substring(0,original.length() - numbers.length());
             return sub + Integer.toString(count);
         }
