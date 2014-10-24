@@ -52,11 +52,11 @@ public class FileIO {
         }
 	}
 
+    //Default Log writing method
 	public static void writeToLog(String text){writeToLog(text,relativePath+defLogOutput+defLogName);}
 
-	public static void writeToLog(String text, String path){
-
-	}
+    //Log writing method that takes in a custom path
+	public static void writeToLog(String text, String path){writeFile(text, path);}
 
     //General read method - returns ArrayList of lines
     private static ArrayList<String> readFile(String path){
@@ -67,7 +67,6 @@ public class FileIO {
         
         try{
             reader = new BufferedReader(new FileReader(path));
-            //System.out.println("--Reading in file from "+path+" --");
                           
             while((currentLine = reader.readLine()) != null)
                     rawInput.add(currentLine);
@@ -79,7 +78,6 @@ public class FileIO {
             try{if(reader != null)reader.close();}
 
             catch(IOException ex){System.err.println("ERROR: There was an error closing the reading stream.");}
-            //System.out.println("--Reading Complete--");      
         }
         return rawInput;
     }
@@ -119,30 +117,7 @@ public class FileIO {
         }
     }
 
-    //Fancy method that adds a number to a path.
-    private static String adjustPath(String original){
 
-        String numbers = "";
-        boolean isDigit = true;
-
-        for(int i = original.length() - 1; i >= 0 && isDigit; i--){
-
-            if(Character.isDigit(original.charAt(i)))
-                numbers = original.charAt(i) + numbers;
-            else
-                isDigit = false;
-        }
-
-        if(numbers.length() == 0)
-            return original + "1";
-        else{   
-
-            int count = Integer.parseInt(numbers) + 1;
-            //System.out.println(count);
-            String sub = original.substring(0,original.length() - numbers.length());
-            return sub + Integer.toString(count);
-        }
-    }   
 
     //Checks the integrity of an inputted board data and translates it to an int[][]. If a condition fails, returns null.
     private static int[][] translateBoard(ArrayList<String> raw){
@@ -188,6 +163,30 @@ public class FileIO {
 
         return null;
     }
+
+    //Fancy method that adds a number to a path.
+    private static String adjustPath(String original){
+
+        String numbers = "";
+        boolean isDigit = true;
+
+        for(int i = original.length() - 1; i >= 0 && isDigit; i--){
+
+            if(Character.isDigit(original.charAt(i)))
+                numbers = original.charAt(i) + numbers;
+            else
+                isDigit = false;
+        }
+
+        if(numbers.length() == 0)
+            return original + "1";
+        else{   
+
+            int count = Integer.parseInt(numbers) + 1;
+            String sub = original.substring(0,original.length() - numbers.length());
+            return sub + Integer.toString(count);
+        }
+    }   
     
     //Translates Board int elements into text
     private static char translateToChar(int i) throws BoardFormatException{
