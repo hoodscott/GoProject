@@ -4,15 +4,15 @@ import java.util.ArrayList;
 public class FileIO {   
 
     //Default paths
-    public static final String relativePath = System.getProperty("user.dir");
-    private static final String defLogOutput = "\\saveData\\logs\\";
-    private static final String defOutput = "\\saveData\\boards\\";
-    private static final String defInput = "\\saveData\\boards\\";
-    private static final String defLogName = "log";
-    private static final String defBoardName = "board";
+    public static final String RELATIVEPATH = System.getProperty("user.dir");
+    public static final String DEFLOGOUTPUT = "\\saveData\\logs\\";
+    public static final String DEFOUTPUT = "\\saveData\\boards\\";
+    public static final String DEFINPUT = "\\saveData\\boards\\";
+    private static final String DEFLOGNAME = "log";
+    private static final String DEFBOARDNAME = "board";
 
     //Default Board writing method
-	public static void writeBoard(Board board){writeBoard(board,(relativePath+defOutput+defBoardName));}
+	public static void writeBoard(Board board){writeBoard(board,(RELATIVEPATH+DEFOUTPUT+DEFBOARDNAME));}
 
     //Board writing method with given path
 	public static void writeBoard(Board board, String path){
@@ -36,7 +36,7 @@ public class FileIO {
 	}
 
     //Default Board reading method
-	public static Board readBoard(){return readBoard(relativePath+defInput+defBoardName);}
+	public static Board readBoard(){return readBoard(RELATIVEPATH+DEFINPUT+DEFBOARDNAME);}
 
     //Board reading method for a given path
 	public static Board readBoard(String path){
@@ -53,7 +53,7 @@ public class FileIO {
 	}
 
     //Default Log writing method
-	public static void writeToLog(String text){writeToLog(text,relativePath+defLogOutput+defLogName);}
+	public static void writeToLog(String text){writeToLog(text,RELATIVEPATH+DEFLOGOUTPUT+DEFLOGNAME);}
 
     //Log writing method that takes in a custom path
 	public static void writeToLog(String text, String path){writeFile(text, path);}
