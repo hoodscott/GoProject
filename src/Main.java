@@ -19,7 +19,14 @@ public class Main{
 		b.set(1,1,0);
 
 		FileIO.writeBoard(a);
-		FileIO.writeBoard(b, "specialBoard"); 
+		FileIO.writeBoard(b, "saveData/boards/specialBoard"); 
+
+		Board c = FileIO.readBoard();
+		FileIO.readBoard("saveData/boards/BoardExampleFormat");
+
+		System.out.println("Board top left "+c.get(0,0));
+
+		//System.out.println(System.getProperty("os.name"));
 
 		
 

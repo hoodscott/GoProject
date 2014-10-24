@@ -5,13 +5,14 @@ public class FileIO {
 
     //Default paths
     public static final String relativePath = System.getProperty("user.dir");
-    public static final String DEFLOGOUTPUT = relativePath+"\\saveData\\boards\\board";
-    public static final String DEFOUTPUT = relativePath+"\\saveData\\boards\\board";
-    public static final String DEFINPUT = relativePath+"\\saveData\\logs\\log";
-
+    private static final String defLogOutput = "\\saveData\\logs\\";
+    private static final String defOutput = "\\saveData\\boards\\";
+    private static final String defInput = "\\saveData\\boards\\";
+    private static final String defLogName = "log";
+    private static final String defBoardName = "board";
 
     //Default Board writing method
-	public static void writeBoard(Board board){writeBoard(board,DEFOUTPUT);}
+	public static void writeBoard(Board board){writeBoard(board,(relativePath+defOutput+defBoardName));}
 
     //Board writing method with given path
 	public static void writeBoard(Board board, String path){
@@ -35,17 +36,20 @@ public class FileIO {
 	}
 
     //Default Board reading method
-	public static Board readBoard(){return readBoard(DEFINPUT);}
+	public static Board readBoard(){return readBoard(relativePath+defInput+defBoardName);}
 
     //Board reading method for a given path
 	public static Board readBoard(String path){
 
         ArrayList<String> lines = readFile(path);
+        int[][] contents;
 
-        //catch(BoardFormatException badBoard){System.err.println("ERROR: The given file does not adhere to the Board format");}
-
-        return null;
-
+        if((contents = translateBoard(lines)) != null)
+            return new Board(contents);
+        else{
+            System.err.println("ERROR: Inputted board cannot be processed. Returning default board.");
+            return new Board();
+        }
 	}
 
 	public static void writeToLog(String text){
@@ -87,6 +91,7 @@ public class FileIO {
 
         BufferedWriter writer = null;
         String p = path; //This adds the relative path of where Main is located.
+        p = pathOS(p);
         
         try{
             File file = new File(p);
@@ -141,7 +146,7 @@ public class FileIO {
         }
     }   
 
-    //Checks the integrity of an inputted board data and translates it to an int[][]
+    //Checks the integrity of an inputted board data and translates it to an int[][]. If a condition fails, returns null.
     private static int[][] translateBoard(ArrayList<String> raw){
 
         int w, h;
@@ -151,7 +156,7 @@ public class FileIO {
 
             //Checks for existence of dimensions line and at least 1 board line
             if(raw.size() < 2)
-                throw new BoardFormatException();
+                throw new BoardFormatException("ERROR: The given input does not contain enough lines for a Board.");
 
             String[] rawInts = raw.get(0).split(" ");
 
@@ -162,21 +167,28 @@ public class FileIO {
                 h = Integer.parseInt(rawInts[1]);
             }
             else
-                throw new BoardFormatException();
+                throw new BoardFormatException("ERROR: The initial line does not contain two valid integers.");
 
             //Checks if file has specified number of rows.
             if(h != raw.size() - 1)
-                throw new BoardFormatException();
+                throw new BoardFormatException("ERROR: There is a mismatch in the given number of rows.");
 
             for(int i = 0; i < h; i++)
                 if(raw.get(i+1).length() != w) //Checks if each row has the specified number of columns.
-                    throw new BoardFormatException();
+                    throw new BoardFormatException("ERROR: There is a mismatch in the given number of columns.");
+
+            //Translates chars into board
+            transBoard = new int[w][h];
+            for(int i = 0; i < h; i++)
+                for(int j = 0; j < w; j++)
+                    transBoard[j][i] = translateToInt(raw.get(i+1).charAt(j));
+
+            return transBoard;
 
         }
-        catch(BoardFormatException badBoard){
-        }
+        catch(BoardFormatException badBoard) {System.err.println(badBoard.getMsg());}
 
-        return new int[1][1];
+        return null;
     }
     
     //Translates Board int elements into text
@@ -211,21 +223,19 @@ public class FileIO {
         return true;
     }
 
-    private static String[] checkOS(){
-        String[] pathVars
-        if(System.getProperty("os.name") == "win"){
-            DEFOUTPUT 
-            DEFINPUT = 
-            DEFLOGOUTPUT = 
-        }
-        else if(System.getProperty("os.name") == "Linux")
-        {
+    //Adjusts Paths for Unix/Linux or Windows
+    private static String pathOS(String path){
 
-        }
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if(os.contains("win"))
+            return path.replace('/','\\');
+
+        else if(os.contains("linux") || os.contains("unix"))
+            return path.replace('\\','/');
         else
-        {
+            System.out.println("WARNING: Detected OS is neither Windows nor Unix/Linux. Path handling for read/write operations may fail.");
 
-        }
-
+        return path;
     }
 }
