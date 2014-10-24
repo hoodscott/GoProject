@@ -5,9 +5,10 @@ public class FileIO {
 
     //Default paths
     public static final String relativePath = System.getProperty("user.dir");
-	public static final String DEFINPUT = relativePath+"\\saveData\\boards\\board";
-	public static final String DEFOUTPUT = relativePath+"\\saveData\\boards\\board";
-	public static final String DEFLOGOUTPUT = relativePath+"\\saveData\\logs\\log";
+    public static final String DEFLOGOUTPUT = relativePath+"\\saveData\\boards\\board";
+    public static final String DEFOUTPUT = relativePath+"\\saveData\\boards\\board";
+    public static final String DEFINPUT = relativePath+"\\saveData\\logs\\log";
+
 
     //Default Board writing method
 	public static void writeBoard(Board board){writeBoard(board,DEFOUTPUT);}
@@ -30,7 +31,7 @@ public class FileIO {
 
             writeFile(content, path);
         }
-        catch(BoardFormatException badBoard){System.err.println("ERROR: The board to save contains illegal data. Board not saved");}
+        catch(BoardFormatException badBoard){System.err.println(badBoard.getMsg());}
 	}
 
     //Default Board reading method
@@ -138,7 +139,7 @@ public class FileIO {
             String sub = original.substring(0,original.length() - numbers.length());
             return sub + Integer.toString(count);
         }
-    }
+    }   
 
     //Checks the integrity of an inputted board data and translates it to an int[][]
     private static int[][] translateBoard(ArrayList<String> raw){
@@ -146,34 +147,36 @@ public class FileIO {
         int w, h;
         int[][] transBoard;
 
-        //Checks for existence of dimensions line and at least 1 board line
         try{
 
-        
-        if(raw.size() < 2)
-            throw new BoardFormatException();
+            //Checks for existence of dimensions line and at least 1 board line
+            if(raw.size() < 2)
+                throw new BoardFormatException();
 
-        int w, h;
-        String[] rawInts = raw.get(0).split(" ");
+            String[] rawInts = raw.get(0).split(" ");
 
-        //Checks whether first line contains 2 integers
-        if(rawInts.length() == 2 && isNumber(rawInts[0]) && isNumber(rawInts[1]) &&)
-        {
-            w = Integer.parseInt(rawInts[0]);
-            h = Integer.parseInt(rawInts[1]);
+            //Checks whether first line contains 2 integers
+            if(rawInts.length == 2 && isNumber(rawInts[0]) && isNumber(rawInts[1]))
+            {
+                w = Integer.parseInt(rawInts[0]);
+                h = Integer.parseInt(rawInts[1]);
+            }
+            else
+                throw new BoardFormatException();
+
+            //Checks if file has specified number of rows.
+            if(h != raw.size() - 1)
+                throw new BoardFormatException();
+
+            for(int i = 0; i < h; i++)
+                if(raw.get(i+1).length() != w) //Checks if each row has the specified number of columns.
+                    throw new BoardFormatException();
+
         }
-        else
-            throw new BoardFormatException();
-
-        //Checks if file has specified number of rows.
-        if(h != raw.size() - 1)
-            throw new BoardFormatException();
-
-        for(int i = 0; i < h; i++)
-            if(raw.get(i+1).length() == w) //Checks if each row has the specified number of columns.
-
+        catch(BoardFormatException badBoard){
         }
 
+        return new int[1][1];
     }
     
     //Translates Board int elements into text
@@ -184,7 +187,7 @@ public class FileIO {
             case 0: return '.';
             case 1: return 'b';
             case 2: return 'w';
-            default: throw new BoardFormatException();
+            default: throw new BoardFormatException("ERROR: The board to save contains an illegal integer "+i+". Board not saved.");
         }
     }
 
@@ -206,5 +209,23 @@ public class FileIO {
         try{Integer.parseInt(s);}
         catch(NumberFormatException e){return false;}
         return true;
+    }
+
+    private static String[] checkOS(){
+        String[] pathVars
+        if(System.getProperty("os.name") == "win"){
+            DEFOUTPUT 
+            DEFINPUT = 
+            DEFLOGOUTPUT = 
+        }
+        else if(System.getProperty("os.name") == "Linux")
+        {
+
+        }
+        else
+        {
+
+        }
+
     }
 }
