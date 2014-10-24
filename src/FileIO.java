@@ -34,14 +34,19 @@ public class FileIO
         catch(BoardFormatException badBoard){System.err.println("The board to save contains illegal data. Board not saved");}
 	}
 
-	public static Board readBoard(Board board)
-	{
-        return null;
-	}
+    //Default Board reading method
+	public static Board readBoard(){return readBoard(DEFINPUT);}
 
-	public static Board readBoard(Board board, String path)
+    //Board reading method for a given path
+	public static Board readBoard(String path)
 	{
-        return null;
+        ArrayList<String> lines = readFile(path);
+        try{
+            if(lines.size() < 1)
+                throw new BoardFormatException();
+        }
+        catch(BoardFormatException badBoard){System.err.println("The given file does not adhere to the Board format");}
+
 	}
 
 	public static void writeToLog(String text)
@@ -92,18 +97,15 @@ public class FileIO
         {
             File file = new File(p);
             
-            if(!file.exists())
-                System.out.println("--Writing file to "+p+" --");
-            else
+            if(file.exists())
             {
+                System.err.println("WARNING: file already exists.");
                 while(file.exists())
                 {
-                    //System.err.println("WARNING: file already exists.");
                     p = adjustPath(p);
                     file = new File(p);
                 }
-                System.out.println("Writing to "+p+" instead."); 
-
+                System.err.println("Writing to "+p+" instead."); 
             }
 
             file.createNewFile();
