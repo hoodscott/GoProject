@@ -11,16 +11,9 @@ public class Board {
 		boardRep = new int[DIMENSION][DIMENSION];
 	}
 	
-	// Create new board from given character array
-	public Board(char[][] board) {
-
-		int width = board.length;
-		int height = board[0].length;
-		boardRep = new int[width][height];
-
-		for (int row = 0; row < boardRep.length; row++) 
-			for (int column = 0; column < boardRep[0].length; column++)
-				boardRep[row][column] = translate(board[row][column]);
+	// Create new board from given int array
+	public Board(int[][] board) {
+		boardRep = board;
 	}
 
 	//Create an empty board that takes in a pair of dimensions
@@ -53,12 +46,7 @@ public class Board {
 		return clone;
 	}
 	
-	// Method for translation of char positions to int values
-	public int translate(char value) {
-		if (value == '.') return 0;
-		else if (value == 'b') return 1;
-		else return 2;
-	}
+
 	
 	/** Code to test board is working 
 	public static void main(String [] args) {
