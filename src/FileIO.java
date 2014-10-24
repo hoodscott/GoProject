@@ -141,9 +141,15 @@ public class FileIO {
     }
 
     //Checks the integrity of an inputted board data and translates it to an int[][]
-    /*private static int[][] translateBoard(ArrayList<String> raw)
-    {
+    private static int[][] translateBoard(ArrayList<String> raw){
+
+        int w, h;
+        int[][] transBoard;
+
         //Checks for existence of dimensions line and at least 1 board line
+        try{
+
+        
         if(raw.size() < 2)
             throw new BoardFormatException();
 
@@ -159,11 +165,17 @@ public class FileIO {
         else
             throw new BoardFormatException();
 
-        if()
+        //Checks if file has specified number of rows.
+        if(h != raw.size() - 1)
+            throw new BoardFormatException();
 
+        for(int i = 0; i < h; i++)
+            if(raw.get(i+1).length() == w) //Checks if each row has the specified number of columns.
+
+        }
 
     }
-    */
+    
     //Translates Board int elements into text
     private static char translateToChar(int i) throws BoardFormatException{
         
