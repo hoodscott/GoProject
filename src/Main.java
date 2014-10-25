@@ -1,8 +1,29 @@
-
+import java.util.Arrays;
 
 public class Main{
 	//Use this class to test your stuff. Just comment out or delete your code before you commit it.
-	public static void main(String[] args){
+	public static void main(String[] args)
+	{
+		//Test of GameEngine + LegalMoveChecker
+		GameEngine gE = new GameEngine();
+		int[][] b1 = {{0,0,0},{1,0,1},{1,1,1}};
+		int[][] b2 = {{0,1,0},{1,0,1},{1,1,1}};
+		int[][] b3 = {{1,1,1},{1,1,1},{1,1,1}};
+
+		gE.newGame(new Board(b1));
+		System.out.println(Arrays.deepToString(b1));
+		System.out.println("Black: "+Arrays.deepToString(gE.getLegalMoves(1)));
+		System.out.println("White: "+Arrays.deepToString(gE.getLegalMoves(2)));
+
+		gE.newGame(new Board(b2));
+		System.out.println(Arrays.deepToString(b2));
+		System.out.println("Black: "+Arrays.deepToString(gE.getLegalMoves(1)));
+		System.out.println("White: "+Arrays.deepToString(gE.getLegalMoves(2)));
+
+		gE.newGame(new Board(b3));
+		System.out.println(Arrays.deepToString(b3));
+		System.out.println("Black: "+Arrays.deepToString(gE.getLegalMoves(1)));
+		System.out.println("White: "+Arrays.deepToString(gE.getLegalMoves(2)));
 
 	}
 }

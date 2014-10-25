@@ -1,95 +1,116 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LegalMoveChecker {
-	private ArrayList<int[][]> moveHistory; //= new ArrayList<int[][]>();
-	private int libCounter;
+	private ArrayList<Board> moveHistory; //= new ArrayList<int[][]>();
+	private static final int EMPTY = 0;
+	private static final int BLACK = 1;
+	private static final int WHITE = 2;
+	private static final int CHECKED = 3;
+	private int liberties;
 	
 	public LegalMoveChecker(){
-		moveHistory = new ArrayList<int[][]>();
-		libCounter = 0;
+		moveHistory = new ArrayList<Board>();
 	}
-	
-	public int getLibCounter(){
-		return this.libCounter;
-	}
-	
-	public void setLibCounter(int libCounter){
-		this.libCounter = libCounter;
-	}
+
 	
 	public boolean checkMove(Board board, int x, int y, int colour){
+
+		Board bCopy = board.clone();
+		int aggressor;
+		int defender;
+		boolean match;
+
 		//1. if there is a stone already - illegal
-		if (board[x][y] != 0) return false;
+		if (bCopy.get(x,y) != EMPTY){
+			//System.out.println("There is already a piece at ("+x+","+y+")");
+			return false;
+		} 
 		
 		//2. put a stone down
-		if (colour == 1) board[x][y] = 1;
-		else board[x][y] = 2;
+		if (colour == (BLACK)){
+			bCopy.set(x,y,BLACK);
+			aggressor = BLACK;
+			defender = WHITE;
+		} 
+		else{ 
+			bCopy.set(x,y,WHITE);
+			aggressor = WHITE;
+			defender = BLACK;
+		}
 		
 		//3. check if any enemy stones have no liberty; if so remove them
 		// 3.1. check if there are any adjacent enemy stones to the current one
+		LinkedList<Coordinate> enemyCoordinates = new LinkedList<>();
+
+		if (x > 0 && bCopy.get(x-1,y) == defender)
+			enemyCoordinates.add(new Coordinate(x-1,y));
+
+		if (x < bCopy.getWidth() - 1 && bCopy.get(x+1,y) == defender) 
+			enemyCoordinates.add(new Coordinate(x+1,y));
 		
-		Map<Integer, Coordinates> enemyCoordinates = new HashMap<Integer, Coordinates>();
-		int coordFound = 0;
-		// use board size to determine boundaries
-		// make Coordinates inner private class		
-		if (x > 0 && board[x-1][y] == switchPlayer(colour)) { 
-			enemyCoordinates.put(++coordFound, new Coordinates(x-1,y));
-		}
+		if (y > 0 && bCopy.get(x,y-1) == defender)
+			enemyCoordinates.add(new Coordinate(x,y-1));
 		//?
-		if (x < board[0].length - 1 && board[x+1][y] == switchPlayer(colour)) {
-			enemyCoordinates.put(++coordFound, new Coordinates(x+1,y));
-		}
-		
-		if (y > 0 && board[x][y-1] == switchPlayer(colour)) {
-				enemyCoordinates.put(++coordFound, new Coordinates(x, y-1));
-		}
-		//?
-		if (y < board.length - 1 && board[x][y+1] == switchPlayer(colour)) {
-			enemyCoordinates.put(++coordFound, new Coordinates(x,y+1));
-		}
+		if (y < bCopy.getHeight() - 1 && bCopy.get(x,y+1) == defender)
+			enemyCoordinates.add(new Coordinate(x,y+1));
 		
 		// if yes check if there are enemy stones without liberty and remove them if
-		if(coordFound != 0){
-			for(int i=1; i<=coordFound; i++){
-				Coordinates c = enemyCoordinates.get(i);
-				checkLiberty(board, c.getX(),c.getY(), switchPlayer(colour), 3);
-				
-				// restore checked stones to either black/white or remove if no liberty found
-				for(int row = 0; row < board[0].length ; row++){
-					for(int column = 0; column < board.length; column++){
-						if (getLibCounter() == 0){
-							if (board[row][column] == 3) board[row][column] = 0;	
-						}
-						else {
-							if (board[row][column] == 3) board[row][column] = switchPlayer(colour);
-						}	
-					}
+
+		while(!enemyCoordinates.isEmpty()){
+			Coordinate c = enemyCoordinates.remove();
+			liberties = 0;
+			checkLiberty(bCopy, c, aggressor);
+			
+			// restore defending checked stones to either black/white or remove if no liberty found
+			for(int column = 0; column < bCopy.getWidth(); column++){
+				for(int row = 0; row < bCopy.getHeight(); row++){
+					if (liberties == 0 && bCopy.get(column,row) == CHECKED)
+						bCopy.set(column,row,EMPTY);	
+					else if (bCopy.get(column,row) == CHECKED) 
+						bCopy.set(column,row,defender);
+		
 				}
-				setLibCounter(0);
-			}	
-		}
-	
-		//4. does the new stone group has liberty; if no - illegal return false
-		checkLiberty(board, x,y,colour,3);
-		for(int row = 0; row < 9; row++){
-			for(int column = 0; column < 9; column++){
-				if (board[row][column] == 3) board[row][column] = colour;	
+			}
+		}	
+		
+		
+		//4. does the new stone group have a liberty; if no - illegal return false
+		liberties = 0;
+		
+		checkLiberty(bCopy, new Coordinate(x,y),defender);
+		/*
+		for(int column = 0; column < bCopy.getWidth(); column++){
+			for(int row = 0; row < bCopy.height(); row++){
+				if (bCopy[row][column] == ) bCopy[row][column] = colour;	
 			}
 		}
-		if(getLibCounter() == 0) {
-			board[x][y] = 0; // remove the stone
+		*/
+		if(liberties == 0) {
+			//bCopy.get(x,y) = EMPTY; // remove the stone
+			//System.out.println("Stone placed at ("+x+","+y+") has no liberties.");
 			return false; //illegal
 			}
-		setLibCounter(0);
 		
-		//5. has the board position appeared before; if yes - illegal
-		for (int prevBoard[][] : moveHistory){
-			if (Arrays.equals(prevBoard, board)) return false;
+		//5. Tests for SuperKo; if yes - illegal
+		for (Board b : moveHistory){
+		/*			
+		match = true;
+			for(int column = 0; column < b.getWidth(); column++)
+				for(int row = 0; row < b.getHeight(); row++)
+					if(b.get(x,y) != board.get(x,y))
+						match = false;
+			
+			if(match)
+				return false; 
+				*/
+			if(!Arrays.deepEquals(b.getRaw(),bCopy.getRaw())){
+				//System.out.println("This move has already been made.");
+				return false;
+			}
+				
 		}
-		
 		//6. legal
 		return true;	
 	}
@@ -99,51 +120,30 @@ public class LegalMoveChecker {
 	}
 	
 	//recursive function to update the global liberty counter 
-	public void checkLiberty(int board[][], int x, int y, int pl, int checked){
-		if (board[x][y] == checked || board[x][y] == switchPlayer(pl)) return;
-		if (board[x][y] == 0) { 
-			setLibCounter(getLibCounter()+1); return;
-			}
-		if (board[x][y] == pl) {
-			board[x][y] = checked;
-			//out of boundary check + recursion // 
-			if (x>=1) checkLiberty(board, x-1, y, pl, checked);
-			if (x<=7) checkLiberty(board, x+1, y, pl, checked);	
-			if (y>=1) checkLiberty(board, x, y-1, pl, checked);
-			if (y<=7) checkLiberty(board, x, y+1, pl, checked);	
-		}
+	private void checkLiberty(Board board, Coordinate c, int otherPlayer){
+		if (board.get(c.x,c.y) == CHECKED || board.get(c.x,c.y) == otherPlayer || liberties > 0) return;
+		if (board.get(c.x,c.y) == EMPTY){liberties++; return;}
+		
+		board.set(c.x,c.y,CHECKED);
+		//out of boundary check + recursion // 
+		if (c.x>0) 
+			checkLiberty(board, new Coordinate(c.x - 1, c.y), otherPlayer);
+		if (c.x<board.getWidth() - 1)
+			checkLiberty(board, new Coordinate(c.x+1, c.y), otherPlayer);	
+		if (c.y>0) 
+			checkLiberty(board, new Coordinate(c.x, c.y-1), otherPlayer);
+		if (c.y<board.getHeight() - 1) 
+			checkLiberty(board, new Coordinate(c.x, c.y+1), otherPlayer);	
 	}
 	
-	public int switchPlayer(int pl){
-		if(pl == 1) return 2;
-		else return 1;
-	}
-
-	// inner class (used for the hash-map that stores the enemy coordinates)
-	public class Coordinates {
-		int x;
-		int y;
+	// inner class
+	private class Coordinate{
+		public int x;
+		public int y;
 		
-		public Coordinates(int x, int y){
+		public Coordinate(int x, int y){
 			this.x = x;
 			this.y = y;
 		}
-
-		public void setX(int x){
-			this.x = x;
-		}
-		
-		public int getX(){
-			return x;	
-		}
-		
-		public int getY(){
-			return y;
-		}
-		
-		public void setY(int y){
-			this.y = y;
-		}
-
 	}// end of inner class
 }

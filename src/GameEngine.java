@@ -26,13 +26,13 @@ public class GameEngine{
   }
 
   /** Checks entire board for legal moves and returns them as a 2D boolean array */
-  public Boolean[][] getLegalMoves(String colour){
+  public boolean[][] getLegalMoves(int colour){
 	int xDim = currentBoard.getWidth();
 	int yDim = currentBoard.getHeight();
-    Boolean[][] legalMoves = new Boolean[xDim][yDim];
-    for (int i; i<xDim; i++){
-      for (int j; j<yDim; j++){
-        legalMoves[i][j] = LegalMoveChecker.checkMove(currentBoard, i, j, colour);
+    boolean[][] legalMoves = new boolean[xDim][yDim];
+    for (int i = 0; i<xDim; i++){
+      for (int j = 0; j<yDim; j++){
+        legalMoves[i][j] =  moveChecker.checkMove(currentBoard, i, j, colour);
       }
     }
     return legalMoves;
@@ -46,8 +46,8 @@ public class GameEngine{
   /**Places a piece at the co-ordinates (x,y) given a respective colour (black or white
   Checks whether the move is legal and if so, place the piece and return true
   if the move is illegal, return false */
-  public Boolean makeMove(int x, int y, String colour){
-    if (checkMove(currentBoard, x, y, colour)){
+  public boolean makeMove(int x, int y, int colour){
+    if (moveChecker.checkMove(currentBoard, x, y, colour)){
       currentBoard.set(x, y, colour);
       return true;
     }
