@@ -113,7 +113,7 @@ public class FileIO {
         finally{
 
             try{if(writer != null)writer.close();}
-            catch(IOException ex){System.err.println("ERROR: here was an error closing the writing stream.");}
+            catch(IOException ex){System.err.println("ERROR: There was an error closing the writing stream.");}
         }
     }
 

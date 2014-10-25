@@ -24,6 +24,9 @@ public class Board {
 	// Get x and y dimensions of board
 	public int getWidth(){return boardRep.length;}
 	public int getHeight(){return boardRep[0].length;}
+
+	//Get raw reprenstation of the board
+	public int[][] getRaw(){return boardRep;}
 	
 	// Get int representation of board position
 	public int get(int x, int y) {
