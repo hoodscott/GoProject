@@ -24,7 +24,6 @@ public class LegalMoveChecker {
 
 		//1. if there is a stone already - illegal
 		if (bCopy.get(x,y) != EMPTY){
-			//System.out.println("There is already a piece at ("+x+","+y+")");
 			return false;
 		} 
 		
@@ -80,16 +79,8 @@ public class LegalMoveChecker {
 		liberties = 0;
 		
 		checkLiberty(bCopy, new Coordinate(x,y),defender);
-		/*
-		for(int column = 0; column < bCopy.getWidth(); column++){
-			for(int row = 0; row < bCopy.height(); row++){
-				if (bCopy[row][column] == ) bCopy[row][column] = colour;	
-			}
-		}
-		*/
+
 		if(liberties == 0) {
-			//bCopy.get(x,y) = EMPTY; // remove the stone
-			//System.out.println("Stone placed at ("+x+","+y+") has no liberties.");
 			return false; //illegal
 			}
 		
