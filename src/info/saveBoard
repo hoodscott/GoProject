@@ -1,0 +1,7 @@
+Usage: saveBoard (sb) [flags] [arg path]
+Arguments: arg path - some directory to write to.
+Flags: -n
+Description:
+This command will by default write a Go Board file to /src/saveData/boards/board (Linux) or \src\saveData\boards\board (Windows). If provided with a path argument it will write to that path instead. Notably, if the file already exists the file name will be changed to "Filename" => "FilenameX", where X is some number.
+Flag Descriptions:
+-n  Stands for "name" and will save a given file name to the default directory (see Description). Useful if one doesn't want to type lots of directories.

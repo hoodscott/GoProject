@@ -1,0 +1,4 @@
+Usage: new (n) [[arg width] [arg height]]
+Arguments: arg width, arg height - These will specify a size for the board. Note: both args need to be provided.
+Description:
+This command will by default create a new 9x9 Go Board to play on. If the optional arguments are used, the size is width x height.

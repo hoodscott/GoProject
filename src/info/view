@@ -1,0 +1,6 @@
+Usage: view (v)  [flags]
+Flags: -d
+Description:
+This command will display the current Go Board. The symbol "b" stands for the black pieces, whereas "w" denotes white pieces. "." Denotes empty fields.
+Flag Descriptions:
+-d   Stands for "detailed" and will render the board with more details such as position indices.

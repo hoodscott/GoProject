@@ -107,7 +107,7 @@ public class LegalMoveChecker {
 	}
 	
 	public void addBoard(Board board){
-		moveHistory.add(board);
+		moveHistory.add(board.clone());
 	}
 	
 	//recursive function to update the global liberty counter 

@@ -58,6 +58,20 @@ public class FileIO {
     //Log writing method that takes in a custom path
 	public static void writeToLog(String text, String path){writeFile(text, path);}
 
+    //Reads in help information on request
+    public static String readHelp(String path){
+
+        if(!(new File(path).exists()))
+            return " does not exist";
+
+        ArrayList<String> lines = readFile(path);
+        String info = "\n";
+        for(String s : lines)
+            info += s+"\n";
+
+        return info;
+    }
+
     //General read method - returns ArrayList of lines
     private static ArrayList<String> readFile(String path){
 

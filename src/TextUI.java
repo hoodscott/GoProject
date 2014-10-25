@@ -22,9 +22,14 @@ public class TextUI{
 	public void init(){
 		
 		exit = false;
+		boardSaved = true;
+		logSaved = true;
+
 		String command;
 		Arrays.sort(commands); //Lazily arranges commands
 		Scanner sc = new Scanner(System.in);
+		System.out.println("--Go Game TextUI - v0.99999999999--");
+		System.out.println("> Type \"help\" for commands.");
 
 		//Main while-loop
 		while(!exit){
@@ -39,23 +44,25 @@ public class TextUI{
 				switch(primaryCommand){
 					case "help": {help(splitC); break;}
 					case "exit": {exit(); break;}
-					case "saveBoard":
-					case "sb": {}
+					case "new": 
+					case "n": {newGame(splitC)break;}
 					default: break;
 				}
 		}	}
 	}
 
-	private void help(String[]){
-		if(splitC == 1){
+	//Returns help info
+	private void help(String[] cmd){
+		if(cmd.length == 1){
 			System.out.println("> Available commands are: ");
 			for(String c : commands)
 				System.out.println(c);
-			System.out.println("> To find out more about a command, type \"help <command>\"");
+			System.out.println("> To find out more about a command, type: \"help <full command>\"");
 		}
-		else if(splitC == 2){
-			
-		}
+		else if(cmd.length == 2)
+			System.out.println("> Help file: "+FileIO.readHelp(FileIO.RELATIVEPATH+"\\info\\"+cmd[1]));
+		else
+			System.out.println("> Inappropriate number of args. Usage: \"help <full command>\" ");
 	}
 
 	private void exit(){
@@ -63,7 +70,15 @@ public class TextUI{
 		System.out.println("> Exiting UI...");
 	}
 
-	private void saveBoard(){
+	private void newGame(String[] cmd){
+		if(cmd.length == 1){
+			String text = "> Creating new 9x9 Board...";
+			printBoard()
 
+		}
 	}
+
+	private void addToLog(){}
+
+	private void printBoard(boolean ){}
 }

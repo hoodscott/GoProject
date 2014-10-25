@@ -3,7 +3,7 @@ public class GameEngine{
   
   // Attributes
   /** Instance of LegalMoveChecker, used in functions to check the legality of moves */
-  LegalMoveChecker moveChecker;
+  private LegalMoveChecker moveChecker;
   /** The object representing the current Go board */
   Board currentBoard;
   
@@ -47,6 +47,7 @@ public class GameEngine{
   if the move is illegal, return false */
   public boolean makeMove(int x, int y, int colour){
     if (moveChecker.checkMove(currentBoard, x, y, colour)){
+      moveChecker.addBoard(currentBoard);
       currentBoard.set(x, y, colour);
       return true;
     }

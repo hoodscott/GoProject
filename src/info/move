@@ -1,0 +1,7 @@
+Usage: move (m) <arg x> <arg y> <arg colour>
+Arguments: 
+arg x - x position of point on board. N
+arg y - y position of point on board.
+arg colour - the colour of the piece. Valid args: "black", "b", "white", "w" 
+Description:
+This command will attempt to place a piece of a given colour at a given position on the Go Board. If this move is illegal this will be stated and the move will be nullified.
