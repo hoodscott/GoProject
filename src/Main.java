@@ -1,14 +1,21 @@
-import java.util.Arrays;
+
 
 public class Main{
 	//Use this class to test your stuff. Just comment out or delete your code before you commit it.
 	public static void main(String[] args)
 	{
-		//Test of GameEngine + LegalMoveChecker
+		GameEngine gE = new GameEngine();
+		TextUI tUI = new TextUI(gE);
+		tUI.init();
+	}
+}
+		/*Test of GameEngine + LegalMoveChecker
 		GameEngine gE = new GameEngine();
 		int[][] b1 = {{0,0,0},{1,0,1},{1,1,1}};
 		int[][] b2 = {{0,1,0},{1,0,1},{1,1,1}};
 		int[][] b3 = {{1,1,1},{1,1,1},{1,1,1}};
+		int[][] b4 = {{0,0,0,0},{1,1,0,0},{0,1,0,0},{1,0,2,0},{2,2,0,2},{2,0,2,0},{2,1,2,0},{0,1,2,0},{1,1,2,0},{2,2,0,0}};
+		int[][] b5 = {{0,2,1},{2,2,1},{0,2,1},{2,2,1},{1,1,0}};
 
 		gE.newGame(new Board(b1));
 		System.out.println(Arrays.deepToString(b1));
@@ -25,8 +32,16 @@ public class Main{
 		System.out.println("Black: "+Arrays.deepToString(gE.getLegalMoves(1)));
 		System.out.println("White: "+Arrays.deepToString(gE.getLegalMoves(2)));
 
-	}
-}
+		gE.newGame(new Board(b4));
+		System.out.println(Arrays.deepToString(b4));
+		System.out.println("Black: "+Arrays.deepToString(gE.getLegalMoves(1)));
+		System.out.println("White: "+Arrays.deepToString(gE.getLegalMoves(2)));
+
+		gE.newGame(new Board(b5));
+		System.out.println(Arrays.deepToString(b5));
+		System.out.println("Black: "+Arrays.deepToString(gE.getLegalMoves(1)));
+		System.out.println("White: "+Arrays.deepToString(gE.getLegalMoves(2)));
+		*/
 
 
 		/* Test of Board.clone()
