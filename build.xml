@@ -1,0 +1,137 @@
+<project name="GoProblemSolver" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" default="jar">
+
+    <property name="src.dir"     		value="src"/>
+    <property name="bin.dir"   			value="bin"/>
+	<property name="lib.dir"			value="lib"/>
+    <property name="classes.dir" 		value="${bin.dir}/classes"/>
+    <property name="jar.dir"     		value="${bin.dir}/jar"/>
+    <property name="main-class"  		value="Main"/>
+	<property name="ant.project.name"	value="GoProblemSolver"/>
+	<property name="report.dir"			value="${bin.dir}/junitreport"/>
+	
+	<path
+		id="classpath">
+        <fileset
+			dir="${lib.dir}"
+			includes="**/*.jar"
+		/>
+    </path>
+	<path 
+		id="application"
+		location="${jar.dir}/${ant.project.name}.jar"
+	/>
+		
+	<target
+		name="clean"
+		description="Deletes all intermediate files."
+	>
+        <delete dir="${bin.dir}"/>
+    </target>
+	
+	<target
+		name="clean-all"
+		description="Deletes all files not included in the distribution."
+		depends="clean"	
+	>
+		<delete dir="${lib.dir}"/>
+		<ivy:cleancache/>
+    </target>
+	
+	<target
+		name="resolve"
+		description="Retrieves necessary dependencies for this project."
+	>
+		<mkdir dir="${lib.dir}"/>
+		<ivy:retrieve/>
+	</target>
+	
+    <target
+		name="compile"
+		depends="resolve"
+		description="Compiles all java class files."
+	>
+        <mkdir dir="${classes.dir}"/>
+        <javac
+			srcdir="${src.dir}"
+			destdir="${classes.dir}"
+			includeantruntime="false"
+			debuglevel="lines,vars,source"
+			classpathref="classpath"
+		/>
+    </target>
+
+    <target
+		name="jar"
+		depends="compile"
+		description="Creates a jar from the java class files."
+	>
+        <mkdir dir="${jar.dir}"/>
+        <jar
+			destfile="${jar.dir}/${ant.project.name}.jar"
+			basedir="${classes.dir}"
+		>
+            <manifest>
+                <attribute
+					name="Main-Class"
+					value="${main-class}"
+				/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target
+		name="run"
+		depends="jar"
+		description="Invokes the application from the jar."
+	>
+        <java
+			jar="${jar.dir}/${ant.project.name}.jar"
+			fork="true"
+		/>
+    </target>
+
+    <target
+		name="clean-build"
+		depends="clean,jar"
+		description="Deletes the bin directory, then recompiles the jar."
+	/>
+
+    <target
+		name="clean-run"
+		depends="clean,run"
+		description="Deletes the bin directory, recompiles the jar, then runs the application."
+	/>
+	
+	<target
+		name="junit"
+		depends="jar"
+		description="Runs the JUnit test cases,"
+	>
+        <mkdir dir="${report.dir}"/>
+        <junit printsummary="yes">
+            <classpath>
+                <path refid="classpath"/>
+                <path refid="application"/>
+            </classpath>
+            <formatter type="xml"/>
+            <batchtest fork="yes" todir="${report.dir}">
+                <fileset dir="${src.dir}" includes="*Test.java"/>
+            </batchtest>
+        </junit>
+    </target>
+    
+    <target
+		name="junitreport"
+		depends="junit"
+		description="Compiles the JUnit test reports into a readable index.html file."
+	>
+        <junitreport todir="${report.dir}">
+            <fileset
+				dir="${report.dir}"
+				includes="TEST-*.xml"
+			/>
+            <report todir="${report.dir}"/>
+        </junitreport>
+    </target>
+
+</project>
