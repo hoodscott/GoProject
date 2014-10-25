@@ -1,4 +1,9 @@
-<project name="GoProblemSolver" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" default="jar">
+<project
+	name="GoProblemSolver"
+	basedir="."
+	xmlns:ivy="antlib:org.apache.ivy.ant"
+	default="jar"
+>
 
     <property name="src.dir"     		value="src"/>
     <property name="bin.dir"   			value="bin"/>
