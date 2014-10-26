@@ -27,7 +27,7 @@ public class FileIO {
                 for(int j = 0; j < h;j++)
                     cBoard[j][i] = translateToChar(board.get(i,j));
 
-            for(int i = 0; i < w; i++)
+            for(int i = 0; i < h; i++)
                 content += new String(cBoard[i]) + '\n';
 
             writeFile(content, path);
@@ -86,7 +86,7 @@ public class FileIO {
                     rawInput.add(currentLine);
         }
         
-        catch(IOException ex){System.err.println("ERROR: The program could not read the file at "+path);}
+        catch(IOException ex){System.err.println("ERROR: The program could not read the file at: "+path);}
         
         finally{
             try{if(reader != null)reader.close();}
@@ -122,7 +122,7 @@ public class FileIO {
             writer.write(output);
             writer.close();                        
         }
-        catch(IOException ex){System.err.println("ERROR: The program could not write the file to "+p);}
+        catch(IOException ex){System.err.println("ERROR: The program could not write the file to: "+p);}
         finally{
 
             try{if(writer != null)writer.close();}

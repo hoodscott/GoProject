@@ -54,4 +54,6 @@ public class GameEngine{
     else
       return false;
   }
+
+  public boolean undoMove(){return false;}
 }
