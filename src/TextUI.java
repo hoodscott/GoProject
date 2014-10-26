@@ -343,7 +343,7 @@ public class TextUI{
 			System.out.println(s);
 			}
 
-		//System.out.println();
+		System.out.println();
 
 		if(saveToLog)
 			addToLog(tempLog);
