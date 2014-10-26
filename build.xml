@@ -13,6 +13,7 @@
     <property name="main-class"  		value="Main"/>
 	<property name="ant.project.name"	value="GoProblemSolver"/>
 	<property name="report.dir"			value="${bin.dir}/junitreport"/>
+	<property name="test.dir"			value="${src.dir}/junit"/>
 	
 	<path
 		id="classpath">
@@ -34,7 +35,7 @@
     </target>
 	
 	<target
-		name="clean-all"
+		name="cleanall"
 		description="Deletes all files not included in the distribution."
 		depends="clean"	
 	>
@@ -83,28 +84,11 @@
             </manifest>
         </jar>
     </target>
-
-    <target
-		name="run"
-		depends="jar"
-		description="Invokes the application from the jar."
-	>
-        <java
-			jar="${jar.dir}/${ant.project.name}.jar"
-			fork="true"
-		/>
-    </target>
-
-    <target
-		name="clean-build"
+	
+	<target
+		name="cleanbuild"
 		depends="clean,jar"
 		description="Deletes the bin directory, then recompiles the jar."
-	/>
-
-    <target
-		name="clean-run"
-		depends="clean,run"
-		description="Deletes the bin directory, recompiles the jar, then runs the application."
 	/>
 	
 	<target
@@ -120,7 +104,7 @@
             </classpath>
             <formatter type="xml"/>
             <batchtest fork="yes" todir="${report.dir}">
-                <fileset dir="${src.dir}" includes="*Test.java"/>
+                <fileset dir="${test.dir}" includes="*Test.java"/>
             </batchtest>
         </junit>
     </target>
