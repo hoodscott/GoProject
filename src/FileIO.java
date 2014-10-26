@@ -53,10 +53,10 @@ public class FileIO {
 	}
 
     //Default Log writing method
-	public static void writeToLog(String text){writeToLog(text,RELATIVEPATH+DEFLOGOUTPUT+DEFLOGNAME);}
+	public static void writeLog(String text){writeLog(text,RELATIVEPATH+DEFLOGOUTPUT+DEFLOGNAME);}
 
     //Log writing method that takes in a custom path
-	public static void writeToLog(String text, String path){writeFile(text, path);}
+	public static void writeLog(String text, String path){writeFile(text, path);}
 
     //Reads in help information on request
     public static String readHelp(String path){
@@ -114,11 +114,10 @@ public class FileIO {
                     p = adjustPath(p);
                     file = new File(p);
                 }
-                System.err.println("NOTE: Writing to "+p+" instead."); 
             }
 
             file.createNewFile();
-                      
+            System.out.println("NOTE: Writing file to "+p); 
             writer = new BufferedWriter(new FileWriter(file));
             writer.write(output);
             writer.close();                        
@@ -203,14 +202,14 @@ public class FileIO {
     }   
     
     //Translates Board int elements into text
-    private static char translateToChar(int i) throws BoardFormatException{
+    public static char translateToChar(int i) throws BoardFormatException{
         
         switch(i){
 
             case 0: return '.';
             case 1: return 'b';
             case 2: return 'w';
-            default: throw new BoardFormatException("ERROR: The board to save contains an illegal integer "+i+". Board not saved.");
+            default: throw new BoardFormatException("ERROR: The board to translate contains an illegal integer "+i+". Board not translated.");
         }
     }
 
@@ -222,12 +221,12 @@ public class FileIO {
             case '.': return 0;
             case 'b': return 1;
             case 'w': return 2;
-            default: throw new BoardFormatException();
+            default: throw new BoardFormatException("ERROR: The board to translate contains an illegal character "+value+". Board not translated.");
         }
     }
 
     //Checks if a string is an int
-    private static boolean isNumber(String s){
+    public static boolean isNumber(String s){
 
         try{Integer.parseInt(s);}
         catch(NumberFormatException e){return false;}

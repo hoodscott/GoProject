@@ -1,6 +1,6 @@
 Usage: move (m) <arg x> <arg y> <arg colour>
 Arguments: 
-arg x - x position of point on board. N
+arg x - x position of point on board.
 arg y - y position of point on board.
 arg colour - the colour of the piece. Valid args: "black", "b", "white", "w" 
 Description:
