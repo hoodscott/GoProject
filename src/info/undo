@@ -1,0 +1,3 @@
+Usage: undo (u)
+Description:
+This command will undo the last move made on the Go Board. To make moves, use the "move" command.

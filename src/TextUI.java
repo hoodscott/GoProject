@@ -9,7 +9,7 @@ public class TextUI{
 	//Instance variables
 	private String log = "";
 	private GameEngine gameE;
-	private String[] commands = {"help","exit","saveBoard (sb)","saveLog (sl)","view (v)","move (m)","checkLegal (c)","new (n)",
+	private String[] commands = {"help","exit","saveBoard (sb)","saveLog (sl)","view (v)","move (m)","checkLegal (cl)","new (n)",
 								"loadBoard (lb)","undo (u)"};
 	private boolean exit;
 	private boolean boardSaved;
@@ -30,7 +30,7 @@ public class TextUI{
 		String command;
 		Arrays.sort(commands); //Lazily arranges commands
 		Scanner sc = new Scanner(System.in);
-		System.out.println("--Go Game TextUI - v0.99999999999--");
+		System.out.println("--Go Game TextUI - v0.987654321--");
 		System.out.println("> Type \"help\" for commands.");
 
 		//Main while-loop
@@ -54,9 +54,18 @@ public class TextUI{
 					case "sb":{saveBoard(splitC); break;}
 					case "loadBoard":
 					case "lb":{loadBoard(splitC);break;}
+					case "move":
+					case "m":{move(splitC);break;}
+					case "checkLegal":
+					case "cl":{break;}
+					case "view":
+					case "v":{break;}
+					case "undo":
+					case "u":{break;}
 					default: {System.out.println("> Command not found. Type \"help\" for commands");break;}
 				}
-		}	}
+			}
+		}	
 	}
 
 	//Prints help info
@@ -103,7 +112,12 @@ public class TextUI{
 		}
 		addToLog(text);
 		System.out.println(text);
-		printBoard(true,false);
+		printGameBoard(true,false);
+	}
+
+	//Makes a new move
+	private void move(String[] cmd){
+
 	}
 
 	//Saves current board to a file
@@ -135,7 +149,7 @@ public class TextUI{
 		String text = "> Loaded "+b.getWidth()+"x"+b.getHeight();
 		addToLog(text);
 		System.out.println(text);
-		printBoard(true,false);
+		printGameBoard(true,false);
 	}
 
 	//Saves log to a file.
@@ -160,8 +174,8 @@ public class TextUI{
 		logSaved = false;
 	}
 
-	//Prints board.
-	private void printBoard(boolean saveToLog, boolean detailed){
+	//Prints game board.
+	private void printGameBoard(boolean saveToLog, boolean detailed){
 
 		int[][] board = gameE.getCurrentBoard().getRaw();
 		ArrayList<String> lines = new ArrayList<>();
@@ -173,17 +187,19 @@ public class TextUI{
 				for(int j = 0; j < board.length; j++)
 					lines.set(p, lines.get(p)+FileIO.translateToChar(board[j][i]));
 			}
+			printBoard(lines, saveToLog, detailed);
 		}
 		catch(BoardFormatException b){System.err.println(b.getMsg()+"\n> The board could not be printed");}
 
-		/*if(detailed)
-		{
-			String sideBuffer
-		}
-		*/
-		System.out.println();
+	}
 
+	//Prints general boards.
+	private void printBoard(ArrayList<String> lines, boolean saveToLog, boolean detailed){
+
+		System.out.println();
 		String tempLog = "";
+		if(detailed)
+			lines = addBoardDetails(lines);
 		for(String s : lines){
 			if(saveToLog)
 				tempLog += s+'\n';
@@ -194,5 +210,51 @@ public class TextUI{
 
 		if(saveToLog)
 			addToLog(tempLog);
+
 	}
+	//Adds details to a board view. Currently just board indexing.
+	private ArrayList <String> addBoardDetails(ArrayList <String> board){
+
+		//indices
+		int width = board.get(0).length();
+		int height = board.size();
+		int wLength = String.valueOf(width).length(); //Digit length for buffering.
+		int hLength = String.valueOf(height).length();
+
+		ArrayList <String> detailedBoard = new ArrayList<>();
+		
+		//Row indices
+		for(int i = 0; i < height; i++){
+
+			String spacing = "";
+			int buffer = String.valueOf(i).length();
+
+			while(buffer++ < hLength)
+				spacing += ' ';
+
+			spacing += Integer.toString(i) + ' ';
+			detailedBoard.add(spacing + board.get(i));
+		}
+
+		detailedBoard.add("");
+
+		//Column indices
+		for(int i = 0; i < wLength; i++){
+
+			String line = "";
+			for(int j = 0; j < width; j++){
+				if(String.valueOf(j).length() > i)
+					line += Integer.toString(j).charAt(i);
+				else
+					line += ' ';
+			}
+			for(int j = 0; j < hLength; j++)
+				line = ' '+line;
+			detailedBoard.add(' '+line);
+		}
+
+
+		return detailedBoard;
+	}
+
 }
