@@ -10,7 +10,7 @@ public class TextUI{
 	private String log = "";
 	private GameEngine gameE;
 	private String[] commands = {"help","exit","saveBoard (sb)","saveLog (sl)","view (v)","move (m)","checkLegal (c)","new (n)",
-								"loadBoard (l)"};
+								"loadBoard (lb)","undo (u)"};
 	private boolean exit;
 	private boolean boardSaved;
 	private boolean logSaved;
@@ -52,6 +52,8 @@ public class TextUI{
 					case "sl":{saveLog(splitC); break;}
 					case "saveBoard":
 					case "sb":{saveBoard(splitC); break;}
+					case "loadBoard":
+					case "lb":{loadBoard(splitC);break;}
 					default: {System.out.println("> Command not found. Type \"help\" for commands");break;}
 				}
 		}	}
@@ -91,7 +93,7 @@ public class TextUI{
 				gameE.newGame(new Board(w,h));
 			}
 			else{
-				System.out.println(" > Inappropriate dimensions in args. Dimensions need to be positive numbers.");
+				System.out.println("> Inappropriate dimensions in args. Dimensions need to be positive numbers.");
 				return;
 			}	
 		}
@@ -120,6 +122,22 @@ public class TextUI{
 		}
 	}
 
+	//Loads a given board file
+	private void loadBoard(String[] cmd){
+		Board b;
+		switch(cmd.length){
+			case 1:{b = FileIO.readBoard(); break;}
+			case 2:{b = FileIO.readBoard(FileIO.RELATIVEPATH+FileIO.DEFINPUT+cmd[1]); break;}
+			default:{System.out.println("> Inappropriate number of args. Usage: loadBoard (lb) [arg name]");return;}
+		}
+		gameE.newGame(b);
+
+		String text = "> Loaded "+b.getWidth()+"x"+b.getHeight();
+		addToLog(text);
+		System.out.println(text);
+		printBoard(true,false);
+	}
+
 	//Saves log to a file.
 	private void saveLog(String[] cmd){
 		if(log.equals("")){
@@ -138,7 +156,7 @@ public class TextUI{
 	//Updates log
 	private void addToLog(String data){
 		log += ('\n'+(new Timestamp((new GregorianCalendar()).getTimeInMillis())).toString()+'\n');
-		log += data;
+		log += data+'\n';
 		logSaved = false;
 	}
 
@@ -168,7 +186,7 @@ public class TextUI{
 		String tempLog = "";
 		for(String s : lines){
 			if(saveToLog)
-				tempLog += "\n"+s;
+				tempLog += s+'\n';
 			System.out.println(s);
 			}
 
