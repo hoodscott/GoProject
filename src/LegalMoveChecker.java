@@ -106,9 +106,12 @@ public class LegalMoveChecker {
 		return true;	
 	}
 	
-	public void addBoard(Board board){
-		moveHistory.add(board.clone());
-	}
+	//Adds board to moveHistory
+	public void addBoard(Board board){moveHistory.add(board.clone());}
+	//Removes the last board from the moveHistory
+	public Board removeLast(){return moveHistory.remove(moveHistory.size()-1);}
+	//Checks whether the moveHistory contains anything.
+	public boolean isEmpty(){return moveHistory.isEmpty();}
 	
 	//recursive function to update the global liberty counter 
 	private void checkLiberty(Board board, Coordinate c, int otherPlayer){

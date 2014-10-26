@@ -55,5 +55,10 @@ public class GameEngine{
       return false;
   }
 
-  public boolean undoMove(){return false;}
+  public boolean undoMove(){
+    if(moveChecker.isEmpty())
+      return false;
+    currentBoard = moveChecker.removeLast();
+    return true;
+  }
 }
