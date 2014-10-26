@@ -5,7 +5,7 @@ public class GameEngine{
   /** Instance of LegalMoveChecker, used in functions to check the legality of moves */
   private LegalMoveChecker moveChecker;
   /** The object representing the current Go board */
-  Board currentBoard;
+  private Board currentBoard;
   
   // Operations
   /** Default Constructor */
