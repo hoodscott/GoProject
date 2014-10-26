@@ -214,7 +214,7 @@ public class FileIO {
     }
 
     // Method for translation of char positions to int values
-    private static int translateToInt(char value) throws BoardFormatException{
+    public static int translateToInt(char value) throws BoardFormatException{
 
         switch(value){
 
