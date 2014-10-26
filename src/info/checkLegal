@@ -1,4 +1,4 @@
 Usage: checkLegal (cl) <arg colour>
 Arguments: arg colour - the colour in question. Valid args: "black", "b", "white", "w"
 Description:
-This command will display the allowed moves for the current Go Board given a colour white or black. The symbol "+" means a stone can be placed there, whereas the symbol "-" signifies that this is not the case.
+This command will display the allowed moves on the free spaces, for the current Go Board given a colour white or black. The symbol "+" means a stone can be placed there, whereas the symbol "-" signifies that this is not the case.

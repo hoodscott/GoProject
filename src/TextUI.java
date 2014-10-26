@@ -28,7 +28,7 @@ public class TextUI{
 		logSaved = true;
 
 		String command;
-		Arrays.sort(commands); //Lazily arranges commands
+		Arrays.sort(commands); //Lazily sorts commands
 		Scanner sc = new Scanner(System.in);
 		System.out.println("--Go Game TextUI - v0.987654321--");
 		System.out.println("> Type \"help\" for commands.");
@@ -57,11 +57,11 @@ public class TextUI{
 					case "move":
 					case "m":{move(splitC);break;}
 					case "checkLegal":
-					case "cl":{break;}
+					case "cl":{checkLegal(splitC);break;}
 					case "view":
-					case "v":{break;}
+					case "v":{view();break;}
 					case "undo":
-					case "u":{break;}
+					case "u":{undo();break;}
 					default: {System.out.println("> Command not found. Type \"help\" for commands");break;}
 				}
 			}
@@ -131,7 +131,7 @@ public class TextUI{
 			
 			addToLog(text);
 			System.out.println(text);
-			printGameBoard(true,true);
+			printGameBoard(true);
 
 			}
 		catch(BadInputException bad){System.out.println(bad.getMsg());}		
@@ -156,7 +156,7 @@ public class TextUI{
 								String message = "> Placed "+cmd[3]+" at ("+cmd[1]+","+cmd[2]+")";
 								addToLog(message);
 								System.out.println(message);
-								printGameBoard(true,true);
+								printGameBoard(true);
 								boardSaved = false;
 							}
 							else
@@ -176,6 +176,53 @@ public class TextUI{
 		}
 		catch(BadInputException bad){System.out.println(bad.getMsg());}
 		catch(BoardFormatException bad){};		
+	}
+
+	//Undoes the last move made.
+	private void undo(){
+		try{
+			if(!gameE.undoLastMove())
+				throw new BadInputException("> There are no moves to undo.");
+			
+			String message = " > Undoing last move...";
+			addToLog(message);
+			System.out.println(message);
+			printGameBoard(true);
+			boardSaved = false;
+		}
+		catch(BadInputException bad){System.out.println(bad.getMsg());}
+	}
+
+	//Prints the current board
+	private void view(){
+		try{
+			Board b = gameE.getCurrentBoard();
+			if(b == null)
+				throw new BadInputException("> There currently is no board to view.");
+						
+			printGameBoard(false);
+		}
+		catch(BadInputException bad){System.out.println(bad.getMsg());}
+	}
+
+	private void checkLegal(String[] cmd){
+		try{
+			Board b = gameE.getCurrentBoard();
+			if(b == null)
+				throw new BadInputException("> There currently is no board to check.");
+			if(cmd.length != 2)
+				throw new BadInputException("> Inappropriate number of args. Usage: checkLegal (cl) <arg colour>");
+
+			if(cmd[1].equals("b") || cmd[1].equals("black") || cmd[1].equals("w") || cmd[1].equals("white")){
+				System.out.println("> Legal moves for "+cmd[1]);
+				printLegalBoard(FileIO.translateToInt(cmd[1].charAt(0)));
+			}
+			else
+				throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");
+		}
+		catch(BadInputException bad){System.out.println(bad.getMsg());}
+		catch(BoardFormatException bad){}
+
 	}
 
 	//Saves current board to a file
@@ -210,7 +257,7 @@ public class TextUI{
 			String text = "> Loaded "+b.getWidth()+"x"+b.getHeight();
 			addToLog(text);
 			System.out.println(text);
-			printGameBoard(true,true);
+			printGameBoard(true);
 		}
 		catch(BadInputException bad){System.out.println(bad.getMsg());}
 	}
@@ -224,7 +271,7 @@ public class TextUI{
 			else{
 				switch(cmd.length){
 				case 1: {FileIO.writeLog(log); break;}
-				case 2: {FileIO.writeLog(log, FileIO.RELATIVEPATH+FileIO.DEFOUTPUT+cmd[1]);break;}
+				case 2: {FileIO.writeLog(log, FileIO.RELATIVEPATH+FileIO.DEFLOGOUTPUT+cmd[1]);break;}
 				default:{throw new BadInputException("> Inappropriate number of args. Usage: saveLog (sl) [arg name]");}
 				}	
 			logSaved = true;
@@ -241,7 +288,7 @@ public class TextUI{
 	}
 
 	//Prints game board.
-	private void printGameBoard(boolean saveToLog, boolean detailed){
+	private void printGameBoard(boolean saveToLog){
 
 		int[][] board = gameE.getCurrentBoard().getRaw();
 		ArrayList<String> lines = new ArrayList<>();
@@ -253,19 +300,43 @@ public class TextUI{
 				for(int j = 0; j < board.length; j++)
 					lines.set(p, lines.get(p)+FileIO.translateToChar(board[j][i]));
 			}
-			printBoard(lines, saveToLog, detailed);
+			printBoard(lines, saveToLog);
 		}
 		catch(BoardFormatException b){System.err.println(b.getMsg()+"\n> The board could not be printed");}
+	}
 
+	//Prints legal board
+	private void printLegalBoard(int colour){
+
+		try{
+			ArrayList <String> lines = new ArrayList <>();
+			boolean[][] legalMoves = gameE.getLegalMoves(colour);
+			int[][] board = gameE.getCurrentBoard().getRaw();
+			char[][] combinedBoard = new char[legalMoves.length][legalMoves[0].length];
+			//System.out.println(board[0].length+" "+board.length+" "+legalMoves[0].length+" "+legalMoves.length);
+
+			for(int i = 0; i < legalMoves[0].length; i++){
+				String line = "";
+				for(int j = 0; j < legalMoves.length; j++){
+					if(board[j][i] != 0)
+						line += FileIO.translateToChar(board[j][i]);
+					else
+						line += (legalMoves[j][i] ? '+' : '-');
+				}
+				lines.add(line);
+			}
+			printBoard(lines, false);
+		}
+		catch(BoardFormatException b){System.err.println(b.getMsg()+"\n> The board could not be printed");}
 	}
 
 	//Prints general boards.
-	private void printBoard(ArrayList<String> lines, boolean saveToLog, boolean detailed){
+	private void printBoard(ArrayList<String> lines, boolean saveToLog){
 
 		System.out.println();
 		String tempLog = "";
-		if(detailed)
-			lines = addBoardDetails(lines);
+		lines = addBoardDetails(lines);
+
 		for(String s : lines){
 			if(saveToLog)
 				tempLog += s+'\n';
@@ -320,5 +391,4 @@ public class TextUI{
 		}
 		return detailedBoard;
 	}
-
 }
