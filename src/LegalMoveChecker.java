@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class LegalMoveChecker {
 	private ArrayList<Board> moveHistory; //= new ArrayList<int[][]>();
+	private Board lastChecked;
 	private static final int EMPTY = 0;
 	private static final int BLACK = 1;
 	private static final int WHITE = 2;
@@ -21,6 +22,7 @@ public class LegalMoveChecker {
 		int aggressor;
 		int defender;
 		boolean match;
+		lastChecked = null;
 
 		//1. if there is a stone already - illegal
 		if (bCopy.get(x,y) != EMPTY){
@@ -81,9 +83,15 @@ public class LegalMoveChecker {
 		checkLiberty(bCopy, new Coordinate(x,y),defender);
 
 		if(liberties == 0) {
+			bCopy.set(x,y,EMPTY);
 			return false; //illegal
-			}
-		
+		}
+		//4.1 Turns checked stones back into normal ones
+		for(int column = 0; column < bCopy.getWidth(); column++)
+			for(int row = 0; row < bCopy.getHeight(); row++)
+				if (bCopy.get(column,row) == CHECKED) 
+						bCopy.set(column,row,aggressor);
+
 		//5. Tests for SuperKo; if yes - illegal
 		for (Board b : moveHistory){
 		/*			
@@ -96,13 +104,14 @@ public class LegalMoveChecker {
 			if(match)
 				return false; 
 				*/
-			if(!Arrays.deepEquals(b.getRaw(),bCopy.getRaw())){
+			if(Arrays.deepEquals(b.getRaw(),bCopy.getRaw())){
 				//System.out.println("This move has already been made.");
 				return false;
 			}
 				
 		}
 		//6. legal
+		lastChecked = bCopy;
 		return true;	
 	}
 	
@@ -110,6 +119,8 @@ public class LegalMoveChecker {
 	public void addBoard(Board board){moveHistory.add(board.clone());}
 	//Removes the last board from the moveHistory
 	public Board removeLast(){return moveHistory.remove(moveHistory.size()-1);}
+	//Gets last Board that was legal.
+	public Board getLastLegal(){return lastChecked;}
 	//Checks whether the moveHistory contains anything.
 	public boolean isEmpty(){return moveHistory.isEmpty();}
 	

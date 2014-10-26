@@ -48,7 +48,7 @@ public class GameEngine{
   public boolean makeMove(int x, int y, int colour){
     if (moveChecker.checkMove(currentBoard, x, y, colour)){
       moveChecker.addBoard(currentBoard);
-      currentBoard.set(x, y, colour);
+      currentBoard = moveChecker.getLastLegal();
       return true;
     }
     else
