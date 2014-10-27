@@ -9,8 +9,7 @@ public class GameEngine{
   
   // Operations
   /** Default Constructor */
-  public GameEngine(){
-  }
+  public GameEngine(){}
   
   /** Initialises a new game with a blank board */
   public void newGame(){

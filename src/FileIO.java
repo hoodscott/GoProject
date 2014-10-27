@@ -65,9 +65,13 @@ public class FileIO {
             return " does not exist";
 
         ArrayList<String> lines = readFile(path);
-        String info = "\n";
-        for(String s : lines)
+        String info = "";
+
+        if(lines != null){
+            info = "\n";
+            for(String s : lines)
             info += s+"\n";
+        }  
 
         return info;
     }
