@@ -69,7 +69,7 @@ public class TextUI{
 	}
 
 	//Prints help info
-	private void help(String[] cmd){
+	public void help(String[] cmd){
 		try{
 			if(cmd.length == 1){
 				System.out.println("> Available commands are: ");
@@ -86,7 +86,7 @@ public class TextUI{
 	}
 
 	//Exits UI
-	private void exit(){	
+	public void exit(){	
 		Scanner temp = new Scanner(System.in);
 
 		if(!boardSaved || !logSaved){
@@ -109,7 +109,7 @@ public class TextUI{
 	}
 
 	//Creates new game
-	private void newGame(String[] cmd){
+	public void newGame(String[] cmd){
 		try{
 
 			String text;
@@ -138,7 +138,7 @@ public class TextUI{
 	}
 
 	//Makes a new move
-	private void move(String[] cmd){
+	public void move(String[] cmd){
 		try{
 			Board b = gameE.getCurrentBoard();
 			if(b == null){
@@ -179,7 +179,7 @@ public class TextUI{
 	}
 
 	//Undoes the last move made.
-	private void undo(){
+	public void undo(){
 		try{
 			if(!gameE.undoLastMove())
 				throw new BadInputException("> There are no moves to undo.");
@@ -194,7 +194,7 @@ public class TextUI{
 	}
 
 	//Prints the current board
-	private void view(){
+	public void view(){
 		try{
 			Board b = gameE.getCurrentBoard();
 			if(b == null)
@@ -205,7 +205,7 @@ public class TextUI{
 		catch(BadInputException bad){System.out.println(bad.getMsg());}
 	}
 
-	private void checkLegal(String[] cmd){
+	public void checkLegal(String[] cmd){
 		try{
 			Board b = gameE.getCurrentBoard();
 			if(b == null)
@@ -226,7 +226,7 @@ public class TextUI{
 	}
 
 	//Saves current board to a file
-	private void saveBoard(String[] cmd){
+	public void saveBoard(String[] cmd){
 		try{
 			Board b = gameE.getCurrentBoard();
 			if(b == null)
@@ -244,7 +244,7 @@ public class TextUI{
 	}
 
 	//Loads a given board file
-	private void loadBoard(String[] cmd){
+	public void loadBoard(String[] cmd){
 		try{
 			Board b;
 			switch(cmd.length){
@@ -263,7 +263,7 @@ public class TextUI{
 	}
 
 	//Saves log to a file.
-	private void saveLog(String[] cmd){
+	public void saveLog(String[] cmd){
 		try{
 			if(log.equals(""))
 				throw new BadInputException("> The log is empty. Stop wasting files.");
@@ -281,14 +281,14 @@ public class TextUI{
 	}
 
 	//Updates log
-	private void addToLog(String data){
+	public void addToLog(String data){
 		log += ('\n'+(new Timestamp((new GregorianCalendar()).getTimeInMillis())).toString()+'\n');
 		log += data+'\n';
 		logSaved = false;
 	}
 
 	//Prints game board.
-	private void printGameBoard(boolean saveToLog){
+	public void printGameBoard(boolean saveToLog){
 
 		int[][] board = gameE.getCurrentBoard().getRaw();
 		ArrayList<String> lines = new ArrayList<>();
@@ -306,7 +306,7 @@ public class TextUI{
 	}
 
 	//Prints legal board
-	private void printLegalBoard(int colour){
+	public void printLegalBoard(int colour){
 
 		try{
 			ArrayList <String> lines = new ArrayList <>();
@@ -331,7 +331,7 @@ public class TextUI{
 	}
 
 	//Prints general boards.
-	private void printBoard(ArrayList<String> lines, boolean saveToLog){
+	public void printBoard(ArrayList<String> lines, boolean saveToLog){
 
 		System.out.println();
 		String tempLog = "";
@@ -350,7 +350,7 @@ public class TextUI{
 
 	}
 	//Adds details to a board view. Currently just board indexing.
-	private ArrayList <String> addBoardDetails(ArrayList <String> board){
+	public ArrayList <String> addBoardDetails(ArrayList <String> board){
 
 		//indices
 		int width = board.get(0).length();

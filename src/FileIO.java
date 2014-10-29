@@ -77,7 +77,7 @@ public class FileIO {
     }
 
     //General read method - returns ArrayList of lines
-    private static ArrayList<String> readFile(String path){
+    public static ArrayList<String> readFile(String path){
 
         BufferedReader reader = null;
         ArrayList<String> rawInput = new ArrayList<>();
@@ -101,7 +101,7 @@ public class FileIO {
     }
     
     //General write method
-    private static void writeFile(String output, String path){
+    public static void writeFile(String output, String path){
 
         BufferedWriter writer = null;
         String p = path; //This adds the relative path of where Main is located.
@@ -137,7 +137,7 @@ public class FileIO {
 
 
     //Checks the integrity of an inputted board data and translates it to an int[][]. If a condition fails, returns null.
-    private static int[][] translateBoard(ArrayList<String> raw){
+    public static int[][] translateBoard(ArrayList<String> raw){
 
         int w, h;
         int[][] transBoard;
@@ -182,7 +182,7 @@ public class FileIO {
     }
 
     //Fancy method that adds a number to a path.
-    private static String adjustPath(String original){
+    public static String adjustPath(String original){
 
         String numbers = "";
         boolean isDigit = true;
@@ -238,7 +238,7 @@ public class FileIO {
     }
 
     //Adjusts Paths for Unix/Linux or Windows
-    private static String pathOS(String path){
+    public static String pathOS(String path){
 
         String os = System.getProperty("os.name").toLowerCase();
 
