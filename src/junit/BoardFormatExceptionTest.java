@@ -1,4 +1,8 @@
+package junit;
+
 import static org.junit.Assert.*;
+
+import main.BoardFormatException;
 
 import org.junit.After;
 import org.junit.Before;
