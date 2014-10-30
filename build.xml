@@ -16,14 +16,25 @@
 	<property name="test.dir"			value="${src.dir}/junit"/>
 	<property name="depr.dir" 			value="deprecated"/>
 	<property name="notintr.dir" 		value="notIntegrated"/>
+	<property name="info.dir" 			value="info"/>
+	<property name="saves.dir" 			value="saveData"/>	
 	
 	<path
-		id="classpath">
-        <fileset
+		id="ant.classpath">
+		<fileset
 			dir="${lib.dir}"
 			includes="**/*.jar"
 		/>
+		<pathelement location="${lib}/**"/>
     </path>
+	<path
+		id="junit.classpath">
+		<fileset
+			dir="${lib.dir}"
+			includes="**/*.jar"
+		/>
+		<pathelement location="${src.dir}"/>
+	</path>
 	<path 
 		id="application"
 		location="${jar.dir}/${ant.project.name}.jar"
@@ -46,10 +57,26 @@
     </target>
 	
 	<target
-		name="resolve"
-		description="Retrieves necessary dependencies for this project."
+		name="init"
+		description="Initialises directories"
 	>
 		<mkdir dir="${lib.dir}"/>
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${jar.dir}"/>
+		<mkdir dir="${report.dir}"/>
+		<copy todir="${jar.dir}">
+			<fileset dir="${src.dir}">
+				<include name="${info.dir}/**"/>
+				<include name="${saves.dir}/**"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target
+		name="resolve"
+		depends="init"
+		description="Retrieves necessary dependencies for this project."
+	>
 		<ivy:retrieve/>
 	</target>
 	
@@ -58,16 +85,27 @@
 		depends="resolve"
 		description="Compiles all java class files."
 	>
-        <mkdir dir="${classes.dir}"/>
         <javac
 			srcdir="${src.dir}"
 			destdir="${classes.dir}"
 			includeantruntime="false"
 			debuglevel="lines,vars,source"
-			classpathref="classpath"
+			classpathref="junit.classpath"
 		>
-			<exclude name="**/${depr.dir}/**"/>
-			<exclude name="**/${notintr.dir}/**"/> 
+		</javac>
+    </target>
+	
+	<target
+		name="compileWithoutIvy"
+		depends="resolve"
+		description="Used by eclipse to compile all java class files."
+	>
+        <javac
+			srcdir="${src.dir}"
+			destdir="${classes.dir}"
+			includeantruntime="false"
+			debuglevel="lines,vars,source"
+		>
 		</javac>
     </target>
 
@@ -76,7 +114,6 @@
 		depends="compile"
 		description="Creates a jar from the java class files."
 	>
-        <mkdir dir="${jar.dir}"/>
         <jar
 			destfile="${jar.dir}/${ant.project.name}.jar"
 			basedir="${classes.dir}"
@@ -84,7 +121,7 @@
             <manifest>
                 <attribute
 					name="Main-Class"
-					value="${main-class}"
+					value="main.${main-class}"
 				/>
             </manifest>
         </jar>
@@ -101,15 +138,15 @@
 		depends="jar"
 		description="Runs the JUnit test cases,"
 	>
-        <mkdir dir="${report.dir}"/>
         <junit printsummary="yes">
             <classpath>
-                <path refid="classpath"/>
-                <path refid="application"/>
+                <path refid="junit.classpath"/>
+				<path refid="application"/>
+				<path refid="ant.classpath"/>
             </classpath>
             <formatter type="xml"/>
             <batchtest fork="yes" todir="${report.dir}">
-                <fileset dir="${test.dir}" includes="*Test.java"/>
+                <fileset dir="${classes.dir}" includes="**/*Test.class"/>
             </batchtest>
         </junit>
     </target>
