@@ -6,30 +6,31 @@ import org.junit.Test;
 
 public class TextUITest {
 
-	//private variable;
+	//private variables;
 	
 	@Before
 	public void setUp() throws Exception {
-		//instantiate object
+		//instantiate objects
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		//object=null;
+		//dereference objects;
 	}
-
+	
 	@Test
-	public void testPathOS() {
+	//input interpreted correctly
+	//exceptions thrown when input is incorrect
+	// '' 				when there is nothing to log
+	public void testSaveLog() {
 		assertTrue(false);
 	}
 	
 	@Test
-	public void testReadFile() {
-		assertTrue(false);
-	}
-	
-	@Test
-	public void testReadBoard() {
+	//input interpreted correctly
+	//exceptions are thrown when input is incorrect
+	// '' 					when nothing to save
+	public void testSaveBoard() {
 		assertTrue(false);
 	}
 

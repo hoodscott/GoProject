@@ -10,7 +10,7 @@ public class FileIOTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		//instantiate object
+		//instantiate objects
 	}
 
 	@After
@@ -19,12 +19,24 @@ public class FileIOTest {
 	}
 
 	@Test
-	public void testSaveLog() {
+	// test converting windows path to unix
+	// 	''			   unix path to windows
+	public void testPathOS() {
 		assertTrue(false);
 	}
 	
 	@Test
-	public void testSaveBoard() {
+	// verify if whole file is read from right path
+	// ascertain IOException are thrown and caught as required
+	public void testReadFile() {
+		assertTrue(false);
+	}
+	
+	@Test
+	// test both methods to see whether the correct paths are used
+	// verify whether the board data read in is what is returned.
+	// verify that if a BoardFormatException is thrown, a default board is returned.
+	public void testReadBoard() {
 		assertTrue(false);
 	}
 
