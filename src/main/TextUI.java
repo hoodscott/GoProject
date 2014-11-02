@@ -177,7 +177,7 @@ public class TextUI{
 				throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y> <arg colour>");
 		}
 		catch(BadInputException bad){System.out.println(bad.getMsg());}
-		catch(BoardFormatException bad){};		
+		catch(BoardFormatException bad){}		
 	}
 
 	//Undoes the last move made.

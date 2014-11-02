@@ -13,11 +13,12 @@ public class LegalMoveChecker {
 	private static final int CHECKED = 3;
 	private int liberties;
 	
+        //Constructor
 	public LegalMoveChecker(){
-		moveHistory = new ArrayList<Board>();
+		moveHistory = new ArrayList<>();
 	}
 
-	
+	//Main MoveChecking method.
 	public boolean checkMove(Board board, int x, int y, int colour){
 
 		Board bCopy = board.clone();
@@ -121,7 +122,7 @@ public class LegalMoveChecker {
 	public void addBoard(Board board){moveHistory.add(board.clone());}
 	//Removes the last board from the moveHistory
 	public Board removeLast(){return moveHistory.remove(moveHistory.size()-1);}
-	//Gets last Board that was legal.
+	//Gets last Board if it was legal. If not, returns null.
 	public Board getLastLegal(){return lastChecked;}
 	//Checks whether the moveHistory contains anything.
 	public boolean isEmpty(){return moveHistory.isEmpty();}
