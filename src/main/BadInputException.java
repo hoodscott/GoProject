@@ -1,3 +1,5 @@
+package main;
+
 //This exception is to be thrown by TextUI.java when incorrect inputs are made.
 public class BadInputException extends Exception{
 

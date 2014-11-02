@@ -1,4 +1,8 @@
+package junit;
+
 import static org.junit.Assert.*;
+
+import main.BadInputException;
 
 import org.junit.After;
 import org.junit.Before;

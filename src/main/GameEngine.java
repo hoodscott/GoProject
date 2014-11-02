@@ -1,3 +1,5 @@
+package main;
+
 public class GameEngine{
   /** Class to keep track of the current game of Go and make moves on the board */
   
