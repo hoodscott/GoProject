@@ -1,10 +1,5 @@
-<<<<<<< HEAD:src/main/Board.java
+
 package main;
-
-import java.util.Arrays;
-
-=======
->>>>>>> 1f3580e9eb257d9525ac9dec59795b66cb39cdf6:src/Board.java
 
 public class Board {
 	

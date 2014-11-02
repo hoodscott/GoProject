@@ -1,6 +1,9 @@
+package junit;
+
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import main.*;
 
 import org.junit.After;
 import org.junit.Before;
