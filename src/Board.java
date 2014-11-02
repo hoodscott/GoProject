@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 
 public class Board {
 	
@@ -25,7 +23,7 @@ public class Board {
 	public int getWidth(){return boardRep.length;}
 	public int getHeight(){return boardRep[0].length;}
 
-	//Get raw reprenstation of the board
+	//Get raw representation of the board
 	public int[][] getRaw(){return boardRep;}
 	
 	// Get int representation of board position
@@ -48,22 +46,5 @@ public class Board {
 
 		return clone;
 	}
-	
-
-	
-	/** Code to test board is working 
-	public static void main(String [] args) {
-		Board b = new Board();
-		int x = 0; int y = 0;
-		while (x<9) {
-			while (y<9) {
-				//System.out.print(b.get(x,y));
-				y++;
-			}
-			//System.out.print("\n");
-			x++;
-			y = 0;
-		}
-	}**/
 	
 }
