@@ -1,3 +1,8 @@
+package junit;
+import main.GameEngine;
+import main.TextUI;
+import main.BadInputException;
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
