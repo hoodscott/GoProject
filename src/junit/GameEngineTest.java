@@ -49,5 +49,38 @@ public class GameEngineTest {
             //Verify the board has not changed.
             assertTrue(Arrays.deepEquals(previous.getRaw(), gameEngine.getCurrentBoard().getRaw()));
 	}
-
+            
+        //Checks whether undoing moves on a non-changed board is rejected.
+        @Test
+            public void undoLastMoveEmptyBoard() {
+            gameEngine.newGame(new Board(new int[][] {{1,0},{0,1}}));
+                       
+            //Checks whether an undo was made unsuccessfully
+            assertFalse(gameEngine.undoLastMove());
+	}
+            
+        //Checks undoing a move on a board with moves
+        @Test
+            public void undoLastMovePopulatedBoard() {
+            gameEngine.newGame(new Board(new int[][] {{0,0},{0,0}}));
+            Board stateA = gameEngine.getCurrentBoard().clone();
+            gameEngine.makeMove(0, 0, 1);
+            Board stateB = gameEngine.getCurrentBoard().clone();
+            gameEngine.makeMove(0, 1, 1);
+            Board stateC = gameEngine.getCurrentBoard().clone();
+            gameEngine.makeMove(1, 1, 2);
+                       
+            //Checks whether an undo was made successfully
+            assertTrue(gameEngine.undoLastMove());
+            assertTrue(Arrays.deepEquals(gameEngine.getCurrentBoard().getRaw(),stateC.getRaw()));
+            
+            assertTrue(gameEngine.undoLastMove());
+            assertTrue(Arrays.deepEquals(gameEngine.getCurrentBoard().getRaw(),stateB.getRaw()));
+            
+            assertTrue(gameEngine.undoLastMove());
+            assertTrue(Arrays.deepEquals(gameEngine.getCurrentBoard().getRaw(),stateA.getRaw()));
+            
+            //Checks whether an undo was made unsuccessfully
+            assertFalse(gameEngine.undoLastMove());
+	}
 }

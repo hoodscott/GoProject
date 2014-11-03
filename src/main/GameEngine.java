@@ -61,7 +61,7 @@ public class GameEngine{
   }
 
   public boolean undoLastMove(){
-    if(moveChecker == null || moveChecker.isEmpty())
+    if(moveChecker.isEmpty())
       return false;
     currentBoard = moveChecker.removeLast();
     return true;
