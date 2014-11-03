@@ -10,16 +10,16 @@ import org.junit.Test;
 
 public class GameEngineTest {
 
-	private GameEngine gameengine;
+	private GameEngine gameEngine;
 	
 	@Before
 	public void setUp() throws Exception {
-		gameengine = new GameEngine();
+		gameEngine = new GameEngine();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		gameengine = null;
+		gameEngine = null;
 	}
 
 	@Test
