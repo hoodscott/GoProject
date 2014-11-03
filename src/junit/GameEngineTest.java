@@ -2,7 +2,10 @@ package junit;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import main.GameEngine;
+import main.Board;
 
 import org.junit.After;
 import org.junit.Before;
@@ -21,10 +24,30 @@ public class GameEngineTest {
 	public void tearDown() throws Exception {
 		gameEngine = null;
 	}
-
+        
+        //Checks whether legal move is successfully made on board.
 	@Test
-	public void testDummyMethod() {
-		assertTrue(true);
+	public void makeMoveSuccess() {
+            gameEngine.newGame(new Board(2,2));
+            Board moved = new Board(new int[][] {{0,0},{0,1}});
+            
+            //Checks whether move was made successfully
+            assertTrue(gameEngine.makeMove(1, 1, 1));
+            //Checks if the resulting boards are equal.
+            assertTrue(Arrays.deepEquals(moved.getRaw(), gameEngine.getCurrentBoard().getRaw()));
+	}
+        
+        //Checks whether an illegal move is rejected.
+        @Test
+            public void makeMoveFailure() {
+            gameEngine.newGame(new Board(new int[][] {{1,0},{0,1}}));
+            
+            Board previous = gameEngine.getCurrentBoard().clone();
+            
+            //Checks whether move was made unsuccessfully
+            assertFalse(gameEngine.makeMove(1, 1, 2));
+            //Verify the board has not changed.
+            assertTrue(Arrays.deepEquals(previous.getRaw(), gameEngine.getCurrentBoard().getRaw()));
 	}
 
 }
