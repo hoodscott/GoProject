@@ -8,6 +8,7 @@ public class GameEngine{
   private LegalMoveChecker moveChecker;
   /** The object representing the current Go board */
   private Board currentBoard;
+  private boolean boardInstantiated;
   
   // Operations
   /** Default Constructor */
@@ -17,24 +18,26 @@ public class GameEngine{
   public void newGame(){
     currentBoard = new Board();
     moveChecker = new LegalMoveChecker();
+    boardInstantiated = true;
   }
 
   /** Initialises a new game with a scenario on the board */
   public void newGame(Board board){
     currentBoard = board;
     moveChecker = new LegalMoveChecker();
+    boardInstantiated = true;
   }
 
   /** Checks entire board for legal moves and returns them as a 2D boolean array */
   public boolean[][] getLegalMoves(int colour){
-	int xDim = currentBoard.getWidth();
-	int yDim = currentBoard.getHeight();
+    int xDim = currentBoard.getWidth();
+    int yDim = currentBoard.getHeight();
     boolean[][] legalMoves = new boolean[xDim][yDim];
-    for (int i = 0; i<xDim; i++){
-      for (int j = 0; j<yDim; j++){
+    
+    for (int i = 0; i<xDim; i++)
+      for (int j = 0; j<yDim; j++)
         legalMoves[i][j] =  moveChecker.checkMove(currentBoard, i, j, colour);
-      }
-    }
+      
     return legalMoves;
   }
 
@@ -44,7 +47,7 @@ public class GameEngine{
   }
   
   public boolean boardExists(){
-    return currentBoard != null;
+    return boardInstantiated;
   }
 
   /**Places a piece at the co-ordinates (x,y) given a respective colour (black or white

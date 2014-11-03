@@ -4,11 +4,11 @@ package main;
 public class Board {
 	
 	private int[][] boardRep;
-	private static final int DIMENSION = 9; //Default dimension for empty boards
+	private static final int DEF_DIMENSION = 9; //Default dimension for empty boards
 	
 	// Create empty board
 	public Board() {
-		boardRep = new int[DIMENSION][DIMENSION];
+		boardRep = new int[DEF_DIMENSION][DEF_DIMENSION];
 	}
 	
 	// Create new board from given int array
