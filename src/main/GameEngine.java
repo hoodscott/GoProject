@@ -42,6 +42,10 @@ public class GameEngine{
   public Board getCurrentBoard(){
     return currentBoard;
   }
+  
+  public boolean boardExists(){
+    return currentBoard != null;
+  }
 
   /**Places a piece at the co-ordinates (x,y) given a respective colour (black or white
   Checks whether the move is legal and if so, place the piece and return true

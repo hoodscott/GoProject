@@ -143,7 +143,7 @@ public class TextUI{
 	public void move(String[] cmd){
 		try{
 			Board b = gameE.getCurrentBoard();
-			if(b == null){
+			if(gameE.boardExists()){
 				throw new BadInputException("> There currently is no board to make a move on.");
 			}
 
@@ -183,8 +183,10 @@ public class TextUI{
 	//Undoes the last move made.
 	public void undo(){
 		try{
-			if(!gameE.undoLastMove())
-				throw new BadInputException("> There are no moves to undo.");
+			if(gameE.boardExists())
+				throw new BadInputException("> There is no board with moves to undo.");
+                        if(gameE.undoLastMove())
+                                throw new BadInputException("> There are no moves to undo on this board.");
 			
 			String message = " > Undoing last move...";
 			addToLog(message);
@@ -199,7 +201,7 @@ public class TextUI{
 	public void view(){
 		try{
 			Board b = gameE.getCurrentBoard();
-			if(b == null)
+			if(gameE.boardExists())
 				throw new BadInputException("> There currently is no board to view.");
 						
 			printGameBoard(false);
@@ -210,7 +212,7 @@ public class TextUI{
 	public void checkLegal(String[] cmd){
 		try{
 			Board b = gameE.getCurrentBoard();
-			if(b == null)
+			if(gameE.boardExists())
 				throw new BadInputException("> There currently is no board to check.");
 			if(cmd.length != 2)
 				throw new BadInputException("> Inappropriate number of args. Usage: checkLegal (cl) <arg colour>");
@@ -231,7 +233,7 @@ public class TextUI{
 	public void saveBoard(String[] cmd){
 		try{
 			Board b = gameE.getCurrentBoard();
-			if(b == null)
+			if(gameE.boardExists())
 				throw new BadInputException("> Board has not been created or loaded yet.");
 			else{
 				switch(cmd.length){
