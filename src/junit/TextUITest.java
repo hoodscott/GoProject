@@ -193,7 +193,7 @@ public class TextUITest {
 
     //Testing trying move on non-instantiated Board.
     @Test
-    public void testMoveAbsentBoard() {
+    public void moveAbsentBoard() {
         try{
            ti.move(new String[] {"m","0","0","b"});
         }
@@ -204,7 +204,7 @@ public class TextUITest {
 
     //Testing for to few arguments in command.
     @Test
-    public void testMoveTooFewArgs() {
+    public void moveTooFewArgs() {
         try{g.newGame();
             ti.move(new String[] {"m","0","0"});}
         catch(Exception e){
@@ -214,7 +214,7 @@ public class TextUITest {
 
     //Testing for to few arguments in command.
     @Test
-    public void testMoveTooManyArgs() {
+    public void moveTooManyArgs() {
         try{g.newGame();
             ti.move(new String[] {"m","0","0","b","bananas"});}
         catch(Exception e){
@@ -224,7 +224,7 @@ public class TextUITest {
 
     //Testing for bad numbers in command.
     @Test
-    public void testMoveBadNumbers() {
+    public void moveBadNumbers() {
         try{g.newGame();
             ti.move(new String[] {"m","a","0","w"});}
         catch(Exception e){
@@ -246,7 +246,7 @@ public class TextUITest {
 
     //Testing for negative numbers in command.
     @Test
-    public void testMoveNegativeNumbers() {
+    public void moveNegativeNumbers() {
         try{g.newGame();
             ti.move(new String[] {"m","-1","0","w"});}
         catch(Exception e){
@@ -268,7 +268,7 @@ public class TextUITest {
 
     //Testing for numbers outside of board command.
     @Test
-    public void testMoveOutofBounds() {
+    public void moveOutofBounds() {
         try{g.newGame(new Board(20, 20));
             ti.move(new String[] {"m","20","0","w"});}
         catch(Exception e){
@@ -290,7 +290,7 @@ public class TextUITest {
 
     //Testing for bad colours in board command.
     @Test
-    public void testMoveColour() {
+    public void moveColour() {
         try{g.newGame(new Board(20, 20));
             ti.move(new String[] {"m","10","0","blaaaaack"});}
         catch(Exception e){
@@ -312,7 +312,7 @@ public class TextUITest {
 
     //Tests for a response to a very basic illegal move.
     @Test
-    public void testMoveIllegal() {
+    public void moveIllegal() {
         try{g.newGame(new Board(new int[][] {{1,1},{2,0}}));
             ti.move(new String[] {"m","0","0","b"});}
         catch(Exception e){
