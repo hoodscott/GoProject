@@ -7,11 +7,11 @@ import java.util.Arrays;
 public class LegalMoveChecker {
 	private ArrayList<Board> moveHistory; //= new ArrayList<int[][]>();
 	private Board lastChecked;
+        private int liberties;
 	private static final int EMPTY = 0;
 	private static final int BLACK = 1;
 	private static final int WHITE = 2;
 	private static final int CHECKED = 3;
-	private int liberties;
 	
         //Constructor
 	public LegalMoveChecker(){
