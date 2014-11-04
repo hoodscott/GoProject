@@ -83,4 +83,27 @@ public class GameEngineTest {
             //Checks whether an undo was made unsuccessfully
             assertFalse(gameEngine.undoLastMove());
 	}
+    
+    @Test    
+    public void GEgetLegalMovesb(){
+    	int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
+    	boolean b1[][] = {{true,true,true,true,},{true,false,false,true},{false,false,true,false},{true,false,false,true}};
+    	Board board = new Board(b);
+    	gameEngine.newGame(board);
+    	boolean b2[][] = gameEngine.getLegalMoves(1);
+    	boolean result = Arrays.deepEquals(b1, b2);
+    	assertEquals(result, true);
+    }    
+
+    @Test    
+    public void GEgetLegalMovesw(){
+    	int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
+    	boolean b1[][] = {{true,true,true,true,},{true,false,false,true},{false,false,false,false},{false,false,false,false}};
+    	Board board = new Board(b);
+    	gameEngine.newGame(board);
+    	boolean b2[][] = gameEngine.getLegalMoves(2);
+    	boolean result = Arrays.deepEquals(b1, b2);
+    	assertEquals(result, true);
+    }    
+
 }
