@@ -107,7 +107,7 @@ public class LegalMoveChecker {
 			if(match)
 				return false; 
 				*/
-			if(Arrays.deepEquals(b.getRaw(),bCopy.getRaw())){
+			if  (b.equals(bCopy)){ 
 				//System.out.println("This move has already been made.");
 				return false;
 			}

@@ -72,14 +72,11 @@ public class GameEngineTest {
                        
             //Checks whether an undo was made successfully
             assertTrue(gameEngine.undoLastMove());
-            assertTrue(Arrays.deepEquals(gameEngine.getCurrentBoard().getRaw(),stateC.getRaw()));
-            
+            assertTrue(gameEngine.getCurrentBoard().equals(stateC));
             assertTrue(gameEngine.undoLastMove());
-            assertTrue(Arrays.deepEquals(gameEngine.getCurrentBoard().getRaw(),stateB.getRaw()));
-            
+            assertTrue(gameEngine.getCurrentBoard().equals(stateB));
             assertTrue(gameEngine.undoLastMove());
-            assertTrue(Arrays.deepEquals(gameEngine.getCurrentBoard().getRaw(),stateA.getRaw()));
-            
+            assertTrue(gameEngine.getCurrentBoard().equals(stateA));
             //Checks whether an undo was made unsuccessfully
             assertFalse(gameEngine.undoLastMove());
 	}

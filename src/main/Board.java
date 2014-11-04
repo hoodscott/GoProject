@@ -1,6 +1,8 @@
 
 package main;
 
+import java.util.Arrays;
+
 public class Board {
 	
 	private int[][] boardRep;
@@ -38,6 +40,9 @@ public class Board {
 		boardRep[x][y] = value;
 	}
 	
+	public boolean equals(Board b){
+		return Arrays.deepEquals(boardRep, b.getRaw());
+	}
 	
 	// Make deep copy of original Board
 	public Board clone() {
