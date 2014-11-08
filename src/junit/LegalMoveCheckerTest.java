@@ -100,7 +100,7 @@ public class LegalMoveCheckerTest {
 		Board board = new Board(b);
 		Board board1 = new Board(b1);
 		moveChecker.checkMove(board, 2, 2, 1);
-		boolean result = (Arrays.deepEquals(moveChecker.getLastLegal().getRaw(),board1.getRaw()));
+		boolean result = (moveChecker.getLastLegal().equals(board1));
 		assertEquals(true,result);
 	}
 	
