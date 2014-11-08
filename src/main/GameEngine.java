@@ -4,31 +4,31 @@ public class GameEngine{
   /** Class to keep track of the current game of Go and make moves on the board */
   
   // Attributes
-  /** Instance of LegalMoveChecker, used in functions to check the legality of moves */
+  /* Instance of LegalMoveChecker, used in functions to check the legality of moves */
   private LegalMoveChecker moveChecker;
-  /** The object representing the current Go board */
+  /* The object representing the current Go board */
   private Board currentBoard;
   private boolean boardInstantiated;
   
   // Operations
-  /** Default Constructor */
+  /* Default Constructor */
   public GameEngine(){}
   
-  /** Initialises a new game with a blank board */
+  /* Initialises a new game with a blank board */
   public void newGame(){
     currentBoard = new Board();
     moveChecker = new LegalMoveChecker();
     boardInstantiated = true;
   }
 
-  /** Initialises a new game with a scenario on the board */
+  /* Initialises a new game with a scenario on the board */
   public void newGame(Board board){
     currentBoard = board;
     moveChecker = new LegalMoveChecker();
     boardInstantiated = true;
   }
 
-  /** Checks entire board for legal moves and returns them as a 2D boolean array */
+  /* Checks entire board for legal moves and returns them as a 2D boolean array */
   public boolean[][] getLegalMoves(int colour){
     int xDim = currentBoard.getWidth();
     int yDim = currentBoard.getHeight();
@@ -41,16 +41,17 @@ public class GameEngine{
     return legalMoves;
   }
 
-  /** Returns the current board to the caller */
+  /* Returns the current board to the caller */
   public Board getCurrentBoard(){
     return currentBoard;
   }
   
+  /* Checks if a board has already been instantiatey by newGame() or not.*/
   public boolean boardExists(){
     return boardInstantiated;
   }
 
-  /**Places a piece at the co-ordinates (x,y) given a respective colour (black or white
+  /*Places a piece at the co-ordinates (x,y) given a respective colour (black or white
   Checks whether the move is legal and if so, place the piece and return true
   if the move is illegal, return false */
   public boolean makeMove(int x, int y, int colour){
