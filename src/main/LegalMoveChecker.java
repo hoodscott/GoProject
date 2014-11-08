@@ -64,8 +64,8 @@ public class LegalMoveChecker {
 
 		while(!enemyCoordinates.isEmpty()){
 			Coordinate c = enemyCoordinates.remove();
-			liberties = 0;
-			checkLiberty(bCopy, c, aggressor);
+			/*Integer*/ liberties = 0;
+			checkLiberty(bCopy, c, aggressor/*, liberties */);
 			
 			// restore defending checked stones to either black/white or remove if no liberty found
 			for(int column = 0; column < bCopy.getWidth(); column++){
@@ -81,9 +81,9 @@ public class LegalMoveChecker {
 		
 		
 		//4. does the new stone group have a liberty; if no - illegal return false
-		liberties = 0;
+		/*Integer*/ liberties = 0;
 		
-		checkLiberty(bCopy, new Coordinate(x,y),defender);
+		checkLiberty(bCopy, new Coordinate(x,y),defender/*, liberties */);
 
 		if(liberties == 0) {
 			bCopy.set(x,y,EMPTY);
@@ -128,20 +128,20 @@ public class LegalMoveChecker {
 	public boolean isEmpty(){return moveHistory.isEmpty();}
 	
 	//recursive function to update the global liberty counter 
-	private void checkLiberty(Board board, Coordinate c, int otherPlayer){
+	private void checkLiberty(Board board, Coordinate c, int otherPlayer/*, Integer liberties */){
 		if (board.get(c.x,c.y) == CHECKED || board.get(c.x,c.y) == otherPlayer || liberties > 0) return;
 		if (board.get(c.x,c.y) == EMPTY){liberties++; return;}
 		
 		board.set(c.x,c.y,CHECKED);
 		//out of boundary check + recursion // 
 		if (c.x>0) 
-			checkLiberty(board, new Coordinate(c.x - 1, c.y), otherPlayer);
+			checkLiberty(board, new Coordinate(c.x - 1, c.y), otherPlayer/*, liberties */);
 		if (c.x<board.getWidth() - 1)
-			checkLiberty(board, new Coordinate(c.x+1, c.y), otherPlayer);	
+			checkLiberty(board, new Coordinate(c.x+1, c.y), otherPlayer/*, liberties */);	
 		if (c.y>0) 
-			checkLiberty(board, new Coordinate(c.x, c.y-1), otherPlayer);
+			checkLiberty(board, new Coordinate(c.x, c.y-1), otherPlayer/*, liberties */);
 		if (c.y<board.getHeight() - 1) 
-			checkLiberty(board, new Coordinate(c.x, c.y+1), otherPlayer);	
+			checkLiberty(board, new Coordinate(c.x, c.y+1), otherPlayer/*, liberties */);	
 	}
 	
 	// inner class
