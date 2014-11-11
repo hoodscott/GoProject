@@ -56,4 +56,19 @@ public class BoardTest {
 		boolean result = (Arrays.deepEquals(board.getRaw(),boardC.getRaw()));
 		assertEquals(result,true);
 	}
+        
+        @Test
+        public void boardEquals(){
+            Board a = new Board(2,2);
+            Board b = new Board(2,2); 
+            Board c = null;
+            int[][] raw = {{1,0},{0,0}};
+            Board d = new Board(raw);
+            
+            assertTrue(a.equals(b));
+            a.set(0, 0, 1);
+            assertFalse(a.equals(b));
+            assertTrue(a.equals(d));
+            assertFalse(b.equals(c));
+        }
 }
