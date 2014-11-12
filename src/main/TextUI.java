@@ -12,7 +12,7 @@ public class TextUI{
 	private String log = "";
 	private GameEngine gameE;
 	private String[] commands = {"help","exit","saveBoard (sb)","saveLog (sl)","view (v)","move (m)","checkLegal (cl)","new (n)",
-								"loadBoard (lb)","undo (u)"};
+                                    "loadBoard (lb)","undo (u)"};
 	private boolean exit;
 	private boolean boardSaved;
 	private boolean logSaved;

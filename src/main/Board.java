@@ -3,7 +3,7 @@ package main;
 
 import java.util.Arrays;
 
-public class Board {
+public class Board{
 	
 	private int[][] boardRep;
 	private static final int DEF_DIMENSION = 9; //Default dimension for empty boards
@@ -46,6 +46,7 @@ public class Board {
 	}
 	
 	// Make deep copy of original Board
+        @Override
 	public Board clone() {
             Board clone = new Board(boardRep.length, boardRep[0].length);
             for (int i = 0; i < boardRep.length; i++)
