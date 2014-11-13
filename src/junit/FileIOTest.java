@@ -29,7 +29,7 @@ public class FileIOTest {
 	/* WRITE BOARD TEST METHODS */
 	
 	@Test
-	public void testWriteBoard() {
+	public void WriteBoard() {
 		Board b1 = new Board();
 		FileIO.writeBoard(b1);
 		Board b2 = new Board(9,9);
@@ -40,7 +40,7 @@ public class FileIOTest {
 	}
 
 	@Test
-	public void testWriteBoardString() {
+	public void WriteBoardString() {
 		Board b1 = new Board();
 		FileIO.writeBoard(b1,"path");
 		Board b2 = new Board(9,9);
@@ -51,7 +51,7 @@ public class FileIOTest {
 	}
 	
 	@Test
-	public void testWriteBadBoard() {
+	public void WriteBadBoard() {
 		Board b = new Board();
 		// set illegal character
 		b.set(1,1,'i');
@@ -65,12 +65,12 @@ public class FileIOTest {
 	/* WRITE FILE TEST METHODS */
 
 	@Test
-	public void testWriteFile() {
+	public void WriteFile() {
 		//FileIO.writeFile("Board output","Board path");
 	}
 	
 	@Test
-	public void testIOExceptionWriteFile() {
+	public void IOExceptionWriteFile() {
 		try {
 			FileIO.writeFile("Board","Not available path");
 		} catch (Exception e) {
@@ -82,14 +82,14 @@ public class FileIOTest {
 	/* ADJUST PATH TEST METHODS */
 	
 	@Test
-	public void testAdjustPathNoInts() {
+	public void AdjustPathNoInts() {
 		String s = "path";
 		String adjusted = FileIO.adjustPath(s);
 		assertEquals(adjusted,"path1");
 	}
 	
 	@Test
-	public void testAdjustPathWithInts() {
+	public void AdjustPathWithInts() {
 		String s = "path1";
 		String adjusted = FileIO.adjustPath(s);
 		assertEquals(adjusted,"path2");

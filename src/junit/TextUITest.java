@@ -30,13 +30,13 @@ public class TextUITest {
     /* NEW GAME METHOD TESTS */
 
     @Test
-    public void testNew9x9() {
+    public void New9x9() {
         String cmd[] = {"n"};
         ti.newGame(cmd);
     }
 
     @Test
-    public void testNewCustomBoard() {
+    public void NewCustomBoard() {
         String cmd1[] = {"n", "19", "19"};
         ti.newGame(cmd1);
         String cmd2[] = {"n","11","11"};
@@ -44,7 +44,7 @@ public class TextUITest {
     }
 
     @Test
-    public void testNewGameTooManyArgs() {
+    public void NewGameTooManyArgs() {
         try {
                 String cmd[] = {"One","Two"};
                 ti.newGame(cmd);
@@ -54,7 +54,7 @@ public class TextUITest {
     }
 
     @Test
-    public void testNewGameWrongDimensions() {
+    public void NewGameWrongDimensions() {
         try {
                 String cmd[] = {"n","a","b"};
                 ti.newGame(cmd);
@@ -66,7 +66,7 @@ public class TextUITest {
     /* LOAD BOARD METHOD TESTS */
 
     @Test
-    public void testLoadBoard() {
+    public void LoadBoard() {
         String cmd1[] = {"Filepath"};
         ti.loadBoard(cmd1);
         String cmd2[] = {"lb","filepath"};
@@ -74,7 +74,7 @@ public class TextUITest {
     }
 
     @Test
-    public void testWrongArgsNum() {
+    public void WrongArgsNum() {
         try {
                 String cmd[] = {"1","2","3"};
                 ti.loadBoard(cmd);
@@ -87,7 +87,7 @@ public class TextUITest {
 
     @Test
     //input interpreted correctly
-    public void testSaveLogInterpreted() {
+    public void SaveLogInterpreted() {
         String cmd[] = {"sl", "testLog"};
         String log = "logged history";
         ti.addToLog(log);
@@ -98,7 +98,7 @@ public class TextUITest {
 
     //exceptions thrown when input is incorrect
     @Test
-    public void testSaveLogBadPath() {
+    public void SaveLogBadPath() {
         try {
                 String cmd[] = {"sl","/badpath/testboard"};
                 String log = "logged history";
@@ -109,7 +109,7 @@ public class TextUITest {
         }
     }
     @Test
-    public void testSaveLogTooManyArgs() {
+    public void SaveLogTooManyArgs() {
         try {
                 String cmd[] = {"sl","/badpath/testboard", "extraArg"};
                 String log = "logged history";
@@ -122,7 +122,7 @@ public class TextUITest {
 
     //exception thrown when log is empty
     @Test
-    public void testSaveLogEmpty() {
+    public void SaveLogEmpty() {
         try {
                 String cmd[] = {"sl"};
                 ti.saveLog(cmd);
@@ -135,7 +135,7 @@ public class TextUITest {
 
     @Test
     //input interpreted correctly
-    public void testSaveBoardInterpreted() {
+    public void SaveBoardInterpreted() {
         String cmd[] = {"sb", "testBoard"};
         g.newGame();
         ti.saveBoard(cmd);
@@ -145,7 +145,7 @@ public class TextUITest {
 
     //exceptions thrown when input is incorrect
     @Test
-    public void testSaveBoardBadPath() {
+    public void SaveBoardBadPath() {
         try {
                 String cmd[] = {"sb","/badpath/testboard"};
                 g.newGame();
@@ -155,7 +155,7 @@ public class TextUITest {
         }
     }
     @Test
-    public void testSaveBoardTooManyArgs() {
+    public void SaveBoardTooManyArgs() {
         try {
                 String cmd[] = {"sb","/badpath/testboard", "extraArg"};
                 g.newGame();
@@ -167,7 +167,7 @@ public class TextUITest {
 
     //exception thrown when there is no board to save
     @Test
-    public void testSaveBoardEmpty() {
+    public void SaveBoardEmpty() {
         try {
                 String cmd[] = {"sb"};
                 ti.saveBoard(cmd);
@@ -180,7 +180,7 @@ public class TextUITest {
 
     //Testing view on non-instantiated Board.
     @Test
-    public void testView() {
+    public void View() {
         try{
             ti.view();
         }
@@ -193,7 +193,7 @@ public class TextUITest {
 
     //Testing trying move on non-instantiated Board.
     @Test
-    public void moveAbsentBoard() {
+    public void AbsentBoard() {
         try{
            ti.move(new String[] {"m","0","0","b"});
         }
@@ -204,7 +204,7 @@ public class TextUITest {
 
     //Testing for to few arguments in command.
     @Test
-    public void moveTooFewArgs() {
+    public void TooFewArgs() {
         try{g.newGame();
             ti.move(new String[] {"m","0","0"});}
         catch(Exception e){

@@ -26,7 +26,7 @@ public class LegalMoveCheckerTest {
 	}
 	
 	@Test
-	public void testOccupiedB() {
+	public void OccupiedB() {
 		int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
 		Board board = new Board(b);
 		boolean result;
@@ -41,7 +41,7 @@ public class LegalMoveCheckerTest {
 	}
 	
 	@Test
-	public void testOccupiedW() {
+	public void OccupiedW() {
 		int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
 		Board board = new Board(b);
 		boolean result;
@@ -56,7 +56,7 @@ public class LegalMoveCheckerTest {
 	}
 	
 	@Test
-	public void testFreeB() {
+	public void FreeB() {
 		int b[][] = {{0,0,0,0},{0,1,0,0},{1,2,0,1},{0,1,1,0}};
 		Board board = new Board(b);
 		boolean result;
@@ -71,7 +71,7 @@ public class LegalMoveCheckerTest {
 	}
 	
 	@Test
-	public void testFreeW() {
+	public void FreeW() {
 		int b[][] = {{0,0,0,0},{1,1,0,0},{0,2,0,0},{0,1,1,0}};
 		Board board = new Board(b);
 		boolean result;
@@ -86,7 +86,7 @@ public class LegalMoveCheckerTest {
 	}
 	
 	@Test
-	public void testIllegalFree() {
+	public void IllegalFree() {
 		int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
 		Board board = new Board(b);
 		boolean result = moveChecker.checkMove(board, 2, 2, 2);
@@ -94,7 +94,7 @@ public class LegalMoveCheckerTest {
 	}
 	
 	@Test
-	public void testcapture() {
+	public void Capture() {
 		int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
 		int b1[][] = {{0,0,0,0},{0,1,1,0},{1,0,1,1},{0,1,1,0}};
 		Board board = new Board(b);
@@ -105,7 +105,7 @@ public class LegalMoveCheckerTest {
 	}
 	
 	@Test
-	public void testSuperKo() {
+	public void SuperKo() {
 		int b[][] = {{0,0,0,0},{1,1,2,2},{1,0,1,2},{1,1,2,2}};
 		Board board = new Board(b);
 		moveChecker.checkMove(board, 2, 1, 2);

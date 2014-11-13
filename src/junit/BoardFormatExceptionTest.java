@@ -24,13 +24,13 @@ public class BoardFormatExceptionTest {
 	}
 
 	@Test
-	public void testBoardFormatException() {
+	public void BoardFormatException() {
 		BoardFormatException outTest = new BoardFormatException();
 		assertEquals(outTest.getMsg(),null);
 	}
 
 	@Test
-	public void testBoardFormatExceptionString() {
+	public void BoardFormatExceptionString() {
 		String message = "Test error output.";
 		BoardFormatException outTest = new BoardFormatException(message);
 		assertEquals(outTest.getMsg(),message);

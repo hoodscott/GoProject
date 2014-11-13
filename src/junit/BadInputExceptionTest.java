@@ -24,13 +24,13 @@ public class BadInputExceptionTest {
 	}
 	
 	@Test
-	public void testBadInputException() {
+	public void BadInputException() {
 		BadInputException outTest = new BadInputException();
 		assertEquals(outTest.getMsg(),null);
 	}
 
 	@Test
-	public void testBadInputExceptionString() {
+	public void BadInputExceptionString() {
 		String message = "Test error output.";
 		BadInputException outTest = new BadInputException(message);
 		assertEquals(outTest.getMsg(),message);
