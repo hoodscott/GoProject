@@ -3,18 +3,22 @@ package main;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.border.EtchedBorder;
 
 public class GraphicalUI {
 	
@@ -28,11 +32,6 @@ public class GraphicalUI {
 	private JMenuItem menuItem;
 	private Container pane;
 	private JPanel boardPanel, chooserPanel, buttonPanel;
-	
-	// static variables for gridbad layout manager
-	final static boolean shouldFill = true;
-    final static boolean shouldWeightX = true;
-    final static boolean RIGHT_TO_LEFT = false;
 	
 	/**
 	 * Start the gui.
@@ -64,14 +63,25 @@ public class GraphicalUI {
 	 */
 	private void initialise() {
 		
-		int xInit, xBound, yInit, yBound;
-		xInit = 100; xBound = 1100;
-		yInit = 100; yBound = 700;
+		//define size of window in 16:9 ratio
+		int xInit, yInit, width, height;
+		width = 1200;
+		height = (width/16)*9;
+		xInit = 100;
+		yInit = 100;
+		
+		// START OF FRAME //
 		
 		//frame to hold all elements
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1100, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Insets ins = frame.getInsets();
+		Dimension frameSize = new Dimension(width + ins.left + ins.right, height + ins.left + ins.right);
+		frame.setBounds(xInit, yInit, width, height);
+		frame.setSize(frameSize);
+		frame.setPreferredSize(frameSize);
+		frame.setMinimumSize(frameSize);		
+		
+		// START OF MENUBAR //
 		
 		//Create the menu bar.
 		menuBar = new JMenuBar();
@@ -182,6 +192,9 @@ public class GraphicalUI {
 		// add entire menu bar to frame
 		frame.setJMenuBar(menuBar);
 		
+		// END OF MENUBAR //
+		// START OF GRIDBAG LAYOUT //
+		
 		// border layout for frame
 		pane = frame.getContentPane();
 		pane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -191,30 +204,48 @@ public class GraphicalUI {
 	    gbCons.weighty = 0.5;
 	    gbCons.fill = GridBagConstraints.BOTH;
 		
-		// panel for choosing player and move
+	    // START OF CHOOSER PANEL //
+	    
+		// top right panel for choosing player and move
 		chooserPanel = new JPanel();
-		chooserPanel.setBackground(Color.yellow);;
+		chooserPanel.setBackground(Color.lightGray);
+		chooserPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 // TODO put swing elements here to control players of the game
 		gbCons.gridx = 0;
 		gbCons.gridy = 0;
 		pane.add(chooserPanel, gbCons);
 		
-		// panel for choosing player and move
+		// END OF CHOOSER PANEL //
+		// START OF BUTTON PANEL //
+		
+		// bottom right panel for buttons
 		buttonPanel = new JPanel();
-		buttonPanel.setBackground(Color.red);;
-// TODO put swing elements here to control players of the game
+		buttonPanel.setBackground(Color.lightGray);
+		buttonPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+// TODO put buttons here to control the game
 		gbCons.gridx = 0;
 		gbCons.gridy = 1;
 		pane.add(buttonPanel, gbCons);
 		
-		// panel for the board
+		// END OF BUTTON PANEL //
+		// START OF BOARD PANEL //
+		
+		// left panel for the board
 		boardPanel = new JPanel();
-		boardPanel.setBackground(Color.blue);
+		boardPanel.setBackground(Color.gray);
+		boardPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 // TODO put actual board here
+		// passing the board panel with a tenth of the height of the window to make it approximate square
+		// should divide by 16 but the bars at the top use some of the height
+		gbCons.ipadx = width/20;
 		gbCons.gridx = 1;
 		gbCons.gridy = 0;
 		gbCons.gridheight = 2;
 		pane.add(boardPanel, gbCons);
+		
+		// END OF BOARD PANEL
+		// END OF GRIDBAD LAYOUT //
+		// END OF FRAME //
 	
 	}
 
