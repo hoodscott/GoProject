@@ -24,7 +24,23 @@ public class GameEngineTest {
 	public void tearDown() throws Exception {
 		gameEngine = null;
 	}
-        
+    
+	@Test
+	public void newGame(){
+		gameEngine.newGame();
+		Board b = new Board();
+		assertTrue(b.equals(gameEngine.getCurrentBoard()));
+		assertTrue(gameEngine.boardExists());
+	}
+	
+	@Test
+	public void newGameGivenBoard(){
+		gameEngine.newGame(new Board(2,2));
+		Board b = new Board(2,2);
+		assertTrue(b.equals(gameEngine.getCurrentBoard()));
+		assertTrue(gameEngine.boardExists());
+	}
+	
         //Checks whether legal move is successfully made on board.
 	@Test
 	public void makeMoveSuccess() {
