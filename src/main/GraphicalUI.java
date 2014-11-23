@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
@@ -246,7 +247,9 @@ public class GraphicalUI {
 		whiteGroup.add(whiteHumanRadio);
 		whiteGroup.add(whiteAIRadio);
 
-		// TODO add action listener to radio items in white group
+		// add action listener to radio items in white group
+		whiteHumanRadio.addActionListener(new WhiteRadioListener());
+		whiteAIRadio.addActionListener(new WhiteRadioListener());
 
 		// add label and radio items to chooser panel
 		chooserPanel.add(whiteLabel);
@@ -264,7 +267,9 @@ public class GraphicalUI {
 		blackGroup.add(blackHumanRadio);
 		blackGroup.add(blackAIRadio);
 
-		// TODO add action listener to radio items in black group
+		// add action listener to radio items in black group
+		blackHumanRadio.addActionListener(new BlackRadioListener());
+		blackAIRadio.addActionListener(new BlackRadioListener());
 
 		// add label and radio items to chooser panel
 		chooserPanel.add(blackLabel);
@@ -281,13 +286,17 @@ public class GraphicalUI {
 
 		// button to undo last move
 		undoButton = new JButton("Undo");
-		// TODO add action listener for this button
 		gridPanel.add(undoButton);
+		
+		// add action listener for this button
+		undoButton.addActionListener(new GridListener());
 
 		// button to reset problem
 		resetButton = new JButton("Reset");
-		// TODO add action listener for this button
 		gridPanel.add(resetButton);
+		
+		// add action listener for this button
+		resetButton.addActionListener(new GridListener());
 
 		// add grid panel to button panel
 		buttonPanel.add(gridPanel, BorderLayout.SOUTH);
@@ -317,6 +326,57 @@ public class GraphicalUI {
 		// END OF GRIDBAD LAYOUT //
 		// END OF FRAME //
 
+	}
+	
+	/**
+	 * Listener classes for buttons.
+	 */
+	private class WhiteRadioListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JRadioButton button = (JRadioButton) e.getSource();
+			
+			// TODO implement actions
+			
+			if (button.getText().equals("Human")) {
+				// set human as white player
+			} else {
+				// set AI as white player
+			}
+		}
+	}
+	
+	private class BlackRadioListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JRadioButton button = (JRadioButton) e.getSource();
+			
+			// TODO implement actions
+			
+			if (button.getText().equals("Human")) {
+				// set human as black player
+			} else {
+				// set AI as black player
+			}
+		}
+	}
+	
+	private class GridListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton button = (JButton) e.getSource();
+			
+			// TODO implements actions 
+			
+			if (button.getText().equals("Undo")) {
+				// undo last move
+			} else {
+				// reset all moves
+			}
+		}
 	}
 
 }
