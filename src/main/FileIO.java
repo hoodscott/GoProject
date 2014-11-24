@@ -17,7 +17,7 @@ public class FileIO {
 	public static void writeBoard(Board board){writeBoard(board,(RELATIVEPATH+DEFOUTPUT+DEFBOARDNAME));}
 
     //Board writing method with given path
-	public static void writeBoard(Board board, String path){
+    public static void writeBoard(Board board, String path){
 
         String content = "";
         try{
@@ -35,13 +35,13 @@ public class FileIO {
             writeFile(content, path);
         }
         catch(BoardFormatException badBoard){System.err.println(badBoard.getMsg());}
-	}
+    }
 
     //Default Board reading method
 	public static Board readBoard(){return readBoard(RELATIVEPATH+DEFINPUT+DEFBOARDNAME);}
 
     //Board reading method for a given path
-	public static Board readBoard(String path){
+    public static Board readBoard(String path){
 
         ArrayList<String> lines = readFile(path);
         int[][] contents;
@@ -52,7 +52,7 @@ public class FileIO {
             System.err.println("ERROR: Inputted board cannot be processed. Returning default board.");
             return new Board();
         }
-	}
+    }
 
     //Default Log writing method
 	public static void writeLog(String text){writeLog(text,RELATIVEPATH+DEFLOGOUTPUT+DEFLOGNAME);}

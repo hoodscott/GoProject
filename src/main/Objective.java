@@ -26,12 +26,4 @@ public class Objective {
     //Returns whether the player plays first or not.
     public boolean isStarting(){return false;}
     
-    private Action getAction(String action){
-        if(action.equalsIgnoreCase("kill"))
-            return Action.KILL;
-        else if(action.equalsIgnoreCase("defend"))
-            return Action.DEFEND;
-        
-        return null;
-    }
 }
