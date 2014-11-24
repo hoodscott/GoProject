@@ -143,15 +143,4 @@ public class LegalMoveChecker {
 		if (c.y<board.getHeight() - 1) 
 			checkLiberty(board, new Coordinate(c.x, c.y+1), otherPlayer/*, liberties */);	
 	}
-	
-	// inner class
-	private class Coordinate{
-		public int x;
-		public int y;
-		
-		public Coordinate(int x, int y){
-			this.x = x;
-			this.y = y;
-		}
-	}// end of inner class
 }
