@@ -4,15 +4,18 @@ package main;
 public class Objective {
     
     enum Action{
-        KILL;
-        DEFEND;
+        KILL,
+        DEFEND
     }
     
     Action black;
     Action white;
+    Coordinate position;
     
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
-    public Objective(String text){}
+    public Objective(String action, int colour, Coordinate position){
+            
+    }
     
     //Checks if the objective failed for the given player.
     public boolean checkFailed(){return false;}
@@ -22,4 +25,13 @@ public class Objective {
     
     //Returns whether the player plays first or not.
     public boolean isStarting(){return false;}
+    
+    private Action getAction(String action){
+        if(action.equalsIgnoreCase("kill"))
+            return Action.KILL;
+        else if(action.equalsIgnoreCase("defend"))
+            return Action.DEFEND;
+        
+        return null;
+    }
 }
