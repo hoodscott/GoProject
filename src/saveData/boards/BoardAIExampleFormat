@@ -10,18 +10,17 @@
 <Objective>
 <AI Search space, 4 coordinates to define inclusive boundary>
 
-EXAMPLE:
-
+//EXAMPLE:
 5 5
 bbbbb
 bbb.b
 bb.b.
 b.bww
 b.www
-
 black kill 4 4
 1 2
 4 2
 4 4
 1 4
+//END OF EXAMPLE:
 
