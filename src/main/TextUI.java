@@ -232,17 +232,17 @@ public class TextUI{
 	//Saves current board to a file
 	public void saveBoard(String[] cmd){
 		try{
-			Board b = gameE.getCurrentBoard();
-			if(!gameE.boardExists())
-				throw new BadInputException("> Board has not been created or loaded yet.");
-			else{
-				switch(cmd.length){
-				case 1: {FileIO.writeBoard(b); break;}
-				case 2: {FileIO.writeBoard(b, FileIO.RELATIVEPATH+FileIO.DEFOUTPUT+cmd[1]);break;}
-				default:{throw new BadInputException("> Inappropriate number of args. Usage: saveBoard (sb) [arg name]");}
-			}
-			boardSaved = true;
-			}
+                    Board b = gameE.getCurrentBoard();
+                    if(!gameE.boardExists())
+                            throw new BadInputException("> Board has not been created or loaded yet.");
+                    else{
+                        switch(cmd.length){
+                        case 1: {FileIO.writeBoard(gameE); break;}
+                        case 2: {FileIO.writeBoard(gameE, FileIO.RELATIVEPATH+FileIO.DEFOUTPUT+cmd[1]);break;}
+                        default:{throw new BadInputException("> Inappropriate number of args. Usage: saveBoard (sb) [arg name]");}
+                        }
+                    boardSaved = true;
+                    }
 		}
 		catch(BadInputException bad){System.out.println(bad.getMsg());}		
 	}
@@ -252,13 +252,13 @@ public class TextUI{
 		try{
 			Board b;
 			switch(cmd.length){
-				case 1:{b = FileIO.readBoard(); break;}
-				case 2:{b = FileIO.readBoard(FileIO.RELATIVEPATH+FileIO.DEFINPUT+cmd[1]); break;}
+				case 1:{gameE = FileIO.readBoard(); break;}
+				case 2:{gameE = FileIO.readBoard(FileIO.RELATIVEPATH+FileIO.DEFINPUT+cmd[1]); break;}
 				default:{throw new BadInputException("> Inappropriate number of args. Usage: loadBoard (lb) [arg name]");}
 			}
-			gameE.newGame(b);
+			//gameE.newGame(b);
 
-			String text = "> Loaded "+b.getWidth()+"x"+b.getHeight();
+			String text = "> Loaded "+gameE.getCurrentBoard().getWidth()+"x"+gameE.getCurrentBoard().getHeight();
 			addToLog(text);
 			System.out.println(text);
 			printGameBoard(true);

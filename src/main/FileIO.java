@@ -14,11 +14,12 @@ public class FileIO {
     private static final String DEFBOARDNAME = "board";
 
     //Default Board writing method
-	public static void writeBoard(Board board){writeBoard(board,(RELATIVEPATH+DEFOUTPUT+DEFBOARDNAME));}
+    public static void writeBoard(GameEngine gE){writeBoard(gE,(RELATIVEPATH+DEFOUTPUT+DEFBOARDNAME));}
 
     //Board writing method with given path
-    public static void writeBoard(Board board, String path){
-
+    public static void writeBoard(GameEngine gE, String path){
+        
+        Board board = gE.getCurrentBoard();
         String content = "";
         try{
             int w = board.getWidth(); int h = board.getHeight();
@@ -38,27 +39,32 @@ public class FileIO {
     }
 
     //Default Board reading method
-	public static Board readBoard(){return readBoard(RELATIVEPATH+DEFINPUT+DEFBOARDNAME);}
+    public static GameEngine readBoard(){return readBoard(RELATIVEPATH+DEFINPUT+DEFBOARDNAME);}
 
     //Board reading method for a given path
-    public static Board readBoard(String path){
-
+    public static GameEngine readBoard(String path){
+        
         ArrayList<String> lines = readFile(path);
         int[][] contents;
+        GameEngine gE = new GameEngine();
 
-        if((contents = translateBoard(lines)) != null)
-            return new Board(contents);
+        if((contents = translateBoard(lines)) != null){
+            gE.newGame(new Board(contents));
+            return gE;
+        }
+
         else{
             System.err.println("ERROR: Inputted board cannot be processed. Returning default board.");
-            return new Board();
+            gE.newGame(new Board());
+            return gE;
         }
     }
 
     //Default Log writing method
-	public static void writeLog(String text){writeLog(text,RELATIVEPATH+DEFLOGOUTPUT+DEFLOGNAME);}
+    public static void writeLog(String text){writeLog(text,RELATIVEPATH+DEFLOGOUTPUT+DEFLOGNAME);}
 
     //Log writing method that takes in a custom path
-	public static void writeLog(String text, String path){writeFile(text, path);}
+    public static void writeLog(String text, String path){writeFile(text, path);}
 
     //Reads in help information on request
     public static String readHelp(String path){
