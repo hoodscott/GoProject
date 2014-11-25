@@ -112,6 +112,7 @@ public class GraphicalUI {
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Creates a New board");
+		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
 
 		// Menu items for saving the board
@@ -120,6 +121,7 @@ public class GraphicalUI {
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Loads a Go problem board");
+		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
 
 		// Menu items for saving the board
@@ -128,6 +130,7 @@ public class GraphicalUI {
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Saves current board");
+		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
 
 		fileMenu.addSeparator();
@@ -144,12 +147,14 @@ public class GraphicalUI {
 		menuItem = new JMenuItem("Save Log");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5,
 				ActionEvent.ALT_MASK));
+		menuItem.addActionListener(new LogMenuListener());
 		logSubmenu.add(menuItem);
 
 		// menu item for loading the log
 		menuItem = new JMenuItem("Load Log");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6,
 				ActionEvent.ALT_MASK));
+		menuItem.addActionListener(new LogMenuListener());
 		logSubmenu.add(menuItem);
 
 		// adds log sub menu to log menu
@@ -164,6 +169,7 @@ public class GraphicalUI {
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Exits the program");
+		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
 
 		// Build help menu for debugging commands
@@ -180,6 +186,7 @@ public class GraphicalUI {
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"A magic trick; Debugs the entire program!");
+		menuItem.addActionListener(new DebugMenuListener());
 		fileMenu.add(menuItem);
 
 		// Build help menu in the menu bar.
@@ -195,6 +202,7 @@ public class GraphicalUI {
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Shouts for help");
+		menuItem.addActionListener(new HelpMenuListener());
 		fileMenu.add(menuItem);
 
 		// add entire menu bar to frame
@@ -326,6 +334,66 @@ public class GraphicalUI {
 		// END OF GRIDBAD LAYOUT //
 		// END OF FRAME //
 
+	}
+	
+	/**
+	 * Listener classes for menus.
+	 */
+	private class FileMenuListener implements ActionListener {
+
+		// TODO implement actions 
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand() == "New Problem") {
+				// load new board
+			} else if (e.getActionCommand() == "Load Problem") {
+				// load given board
+			} else if (e.getActionCommand() == "Save Problem") {
+				// save board
+			} else {
+				// exit game
+			}
+		}
+	}
+	
+	private class LogMenuListener implements ActionListener {
+
+		// TODO implement actions 
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand() == "Save Log") {
+				// save log
+			} else {
+				// load log
+			}
+		}
+	}
+	
+	private class DebugMenuListener implements ActionListener {
+
+		// TODO implement actions 
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand() == "Do A Debug") {
+				// debug game
+			}
+		}
+	}
+	
+	private class HelpMenuListener implements ActionListener {
+		
+		
+		// TODO implement actions 
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand() == "Shout for Help") {
+				// show user help
+			}
+		}
 	}
 	
 	/**
