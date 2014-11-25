@@ -18,7 +18,7 @@ public class Objective {
     
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
     public Objective(String action, int colour, Coordinate position){
-    	this.action = getAction(action);
+    	this.action = Action.KILL;//getAction(action);
         this.colour = colour;
         this.position = position;
     }
