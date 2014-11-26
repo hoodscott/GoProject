@@ -154,7 +154,7 @@ public class TextUI{
 					int h = b.getHeight();
 					if((x = Integer.parseInt(cmd[1])) >= 0 && x < w && (y = Integer.parseInt(cmd[2])) >= 0 && y < h){
 						if(cmd[3].equals("b") || cmd[3].equals("black") || cmd[3].equals("w") || cmd[3].equals("white")){
-							if(gameE.makeMove(x,y,Utilities.translateToInt(cmd[3].charAt(0)))){
+							if(gameE.makeMove(x,y,Translator.translateToInt(cmd[3].charAt(0)))){
 								String message = "> Placed "+cmd[3]+" at ("+cmd[1]+","+cmd[2]+")";
 								addToLog(message);
 								System.out.println(message);
@@ -219,7 +219,7 @@ public class TextUI{
 
 			if(cmd[1].equals("b") || cmd[1].equals("black") || cmd[1].equals("w") || cmd[1].equals("white")){
 				System.out.println("> Legal moves for "+cmd[1]);
-				printLegalBoard(Utilities.translateToInt(cmd[1].charAt(0)));
+				printLegalBoard(Translator.translateToInt(cmd[1].charAt(0)));
 			}
 			else
 				throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");
@@ -302,7 +302,7 @@ public class TextUI{
 				lines.add("");
 				int p = lines.size()-1;
 				for(int j = 0; j < board.length; j++)
-					lines.set(p, lines.get(p)+Utilities.translateToChar(board[j][i]));
+					lines.set(p, lines.get(p)+Translator.translateToChar(board[j][i]));
 			}
 			printBoard(lines, saveToLog);
 		}
@@ -323,7 +323,7 @@ public class TextUI{
 				String line = "";
 				for(int j = 0; j < legalMoves.length; j++){
 					if(board[j][i] != 0)
-						line += Utilities.translateToChar(board[j][i]);
+						line += Translator.translateToChar(board[j][i]);
 					else
 						line += (legalMoves[j][i] ? '+' : '-');
 				}

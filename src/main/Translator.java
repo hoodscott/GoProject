@@ -1,8 +1,11 @@
 package main;
 
-//Static class that contains utility methods used by multiple classes.
-public class Utilities {
-    
+/**
+ *
+ * @author niklasz
+ */
+public class Translator {
+
     // Method for translation of char positions to int values
     public static int translateToInt(char value) throws BoardFormatException {
         switch (value) {

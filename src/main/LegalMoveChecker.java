@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Arrays;
 
 public class LegalMoveChecker {
-	private ArrayList<Board> moveHistory; //= new ArrayList<int[][]>();
+	private final ArrayList<Board> moveHistory; //= new ArrayList<int[][]>();
 	private Board lastChecked;
         private int liberties;
 	private static final int EMPTY = 0;

@@ -28,7 +28,7 @@ public final class FileIO {
 
             for(int i = 0; i < w; i++)
                 for(int j = 0; j < h;j++)
-                    cBoard[j][i] = Utilities.translateToChar(board.get(i,j));
+                    cBoard[j][i] = Translator.translateToChar(board.get(i,j));
 
             for(int i = 0; i < h; i++)
                 content += new String(cBoard[i]) + '\n';
@@ -179,7 +179,7 @@ public final class FileIO {
             transBoard = new int[w][h];
             for(int i = 0; i < h; i++)
                 for(int j = 0; j < w; j++)
-                    transBoard[j][i] = Utilities.translateToInt(raw.get(i+1).charAt(j));
+                    transBoard[j][i] = Translator.translateToInt(raw.get(i+1).charAt(j));
 
             return transBoard;
 
