@@ -3,7 +3,7 @@ package main;
 import java.io.*;
 import java.util.ArrayList;
         
-public class FileIO {   
+public final class FileIO {   
 
     //Default paths
     public static final String RELATIVEPATH = System.getProperty("user.dir");
@@ -28,7 +28,7 @@ public class FileIO {
 
             for(int i = 0; i < w; i++)
                 for(int j = 0; j < h;j++)
-                    cBoard[j][i] = translateToChar(board.get(i,j));
+                    cBoard[j][i] = Utilities.translateToChar(board.get(i,j));
 
             for(int i = 0; i < h; i++)
                 content += new String(cBoard[i]) + '\n';
@@ -179,7 +179,7 @@ public class FileIO {
             transBoard = new int[w][h];
             for(int i = 0; i < h; i++)
                 for(int j = 0; j < w; j++)
-                    transBoard[j][i] = translateToInt(raw.get(i+1).charAt(j));
+                    transBoard[j][i] = Utilities.translateToInt(raw.get(i+1).charAt(j));
 
             return transBoard;
 
@@ -213,29 +213,6 @@ public class FileIO {
         }
     }   
     
-    //Translates Board int elements into text
-    public static char translateToChar(int i) throws BoardFormatException{
-        
-        switch(i){
-
-            case 0: return '.';
-            case 1: return 'b';
-            case 2: return 'w';
-            default: throw new BoardFormatException("ERROR: The board to translate contains an illegal integer "+i+". Board not translated.");
-        }
-    }
-
-    // Method for translation of char positions to int values
-    public static int translateToInt(char value) throws BoardFormatException{
-
-        switch(value){
-
-            case '.': return 0;
-            case 'b': return 1;
-            case 'w': return 2;
-            default: throw new BoardFormatException("ERROR: The board to translate contains an illegal character "+value+". Board not translated.");
-        }
-    }
 
     //Checks if a string is an int
     public static boolean isNumber(String s){
