@@ -11,7 +11,7 @@ public class DrawBoard extends Frame {
 
 		// Create frame
 		super("Frame Title");
-		setSize(400,300);
+		setSize(600,600);
 		setVisible(true);
 
 		addWindowListener(new WindowAdapter() {
@@ -21,13 +21,17 @@ public class DrawBoard extends Frame {
 		);
    }
   
-	// Draw 2 rectangles
+	// Draw board
 	public void paint(Graphics g) {
-		g.setColor(Color.red);
-		g.drawRect(50,50,200,200);
-		Graphics2D g2d = (Graphics2D)g;
-		g2d.setColor(Color.blue);
-		g2d.drawRect(75,75,300,200);
+		// draw board of 9 lines 50 pixels in from sides
+		int lines = 9;
+		int squareSize = 550/9;
+			
+		for ( int i = 0; i < lines; i++) {
+			g.drawLine(i*squareSize+squareSize,squareSize,i*squareSize+squareSize,squareSize*lines);
+			g.drawLine(squareSize,i*squareSize+squareSize,squareSize*lines,i*squareSize+squareSize);
+		}
+	}
+	
    }
   
- }
