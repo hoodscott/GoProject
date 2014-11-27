@@ -3,29 +3,32 @@ package main;
 public class GameEngine{
   /** Class to keep track of the current game of Go and make moves on the board */
   
-  // Attributes
   /* Instance of LegalMoveChecker, used in functions to check the legality of moves */
   private LegalMoveChecker moveChecker;
   /* The object representing the current Go board */
   private Board currentBoard;
+  private AI ai;
+  private Objective objective;
   private boolean boardInstantiated;
-  
-  // Operations
-  /* Default Constructor */
-  public GameEngine(){}
-  
-  /* Initialises a new game with a blank board */
-  public void newGame(){
-    currentBoard = new Board();
-    moveChecker = new LegalMoveChecker();
-    boardInstantiated = true;
-  }
+  private boolean inGame;
 
-  /* Initialises a new game with a scenario on the board */
-  public void newGame(Board board){
+  // Default Constructor
+  public GameEngine(){this(new Board());}
+  
+  //Initialises GameEngine with existing board.
+  public GameEngine(Board board){
     currentBoard = board;
     moveChecker = new LegalMoveChecker();
     boardInstantiated = true;
+  }
+  
+  //Initialises GameEngine with Board, Objective and InitialAI data.
+  public GameEngine(Board board, Objective objective, AI ai){
+      currentBoard = board;
+      this.objective = objective;
+      this.ai = ai;
+      boardInstantiated = true;
+      moveChecker = new LegalMoveChecker();
   }
 
   /* Checks entire board for legal moves and returns them as a 2D boolean array */

@@ -4,25 +4,27 @@ import java.util.ArrayList;
 //A class containing translation operations for the FileIO and TextUI.
 public class Translator {
     
-    public static GameEngine translateGameInstructions(ArrayList<String> contents){
+    //Translates raw lines into GameEngine Object components.
+    //It is required to have enough data for a board. It is optional to have any data for the Objective or AI.
+    public static GameEngine translateGameInstructions(ArrayList<String> contents) throws BoardFormatException{
         
-        GameEngine gameEngine = new GameEngine();
         Objective objective;
         Board board;
         AI ai;
-        try{
             board = translateToBoard(contents);
             if(contents.size() > 0)
                 objective = translateToObjective(contents.remove(0), board);
-            else
+            else{
                 System.out.println("NOTE: No objective has been specified. Competitive play disabled.");
+                return new GameEngine(board);
+            }
             if(contents.size() > 0)
                 ai = translateToAI(contents.remove(0), board);
-            else
-                System.out.println("NOTE: No AI search space is given. This can lead to performance issues with large boards.");
-        }
-        catch(BoardFormatException b){System.out.println(b.getMessage());}
-        return null;
+            else{
+                System.out.println("NOTE: No AI search space has been specified. This can lead to performance issues with large boards.");
+                return new GameEngine(board);
+            }
+        return new GameEngine(board, objective, ai);
     }
     
     //Checks the integrity of an inputted board data and translates it to a Board object. Throws an exception when encountering an error. 
@@ -36,8 +38,8 @@ public class Translator {
             throw new BoardFormatException("ERROR: The given objective is not formatted correctly.");
         
         switch(parts[0]){
-            case "black": colour = 1; break;
-            case "white": colour = 2; break;
+            case "black": colour = Board.BLACK; break;
+            case "white": colour = Board.WHITE; break;
             default: throw new BoardFormatException("ERROR: The given objective colour \'"+parts[0]+"\' is not white or black.");
         }
         switch(parts[1]){
@@ -54,9 +56,12 @@ public class Translator {
         else
             throw new BoardFormatException("ERROR: The given objective coordinates are not numbers.");
         
-        if(x >= 0 && x < board.getWidth())
-            return null;
-        return null;
+        if(x >= 0 && x < board.getWidth() && y >= 0 && y < board.getHeight())
+            coord = new Coordinate(x,y);
+        else
+            throw new BoardFormatException("ERROR:  The given objective coordinates are not within the board's dimensions.");
+        
+        return new Objective(action, colour, coord);
     }
     
     public static AI translateToAI(String raw, Board board){
