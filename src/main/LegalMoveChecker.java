@@ -2,16 +2,14 @@ package main;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Arrays;
 
 public class LegalMoveChecker {
 	private final ArrayList<Board> moveHistory; //= new ArrayList<int[][]>();
 	private Board lastChecked;
         private int liberties;
-	private static final int EMPTY = 0;
-	private static final int BLACK = 1;
-	private static final int WHITE = 2;
-	private static final int CHECKED = 3;
+	private static final int EMPTY = Board.EMPTY;
+	private static final int BLACK = Board.BLACK;
+	private static final int WHITE = Board.WHITE;
 	
         //Constructor
 	public LegalMoveChecker(){
@@ -24,7 +22,7 @@ public class LegalMoveChecker {
 		Board bCopy = board.clone();
 		int aggressor;
 		int defender;
-		boolean match;
+                boolean[][] visited;
 		lastChecked = null;
 
 		//1. if there is a stone already - illegal
@@ -43,7 +41,7 @@ public class LegalMoveChecker {
 			aggressor = WHITE;
 			defender = BLACK;
 		}
-		
+                 
 		//3. check if any enemy stones have no liberty; if so remove them
 		// 3.1. check if there are any adjacent enemy stones to the current one
 		LinkedList<Coordinate> enemyCoordinates = new LinkedList<>();
@@ -56,63 +54,42 @@ public class LegalMoveChecker {
 		
 		if (y > 0 && bCopy.get(x,y-1) == defender)
 			enemyCoordinates.add(new Coordinate(x,y-1));
-		//?
+                
 		if (y < bCopy.getHeight() - 1 && bCopy.get(x,y+1) == defender)
 			enemyCoordinates.add(new Coordinate(x,y+1));
 		
 		// if yes check if there are enemy stones without liberty and remove them if
 
 		while(!enemyCoordinates.isEmpty()){
-			Coordinate c = enemyCoordinates.remove();
-			/*Integer*/ liberties = 0;
-			checkLiberty(bCopy, c, aggressor/*, liberties */);
-			
-			// restore defending checked stones to either black/white or remove if no liberty found
-			for(int column = 0; column < bCopy.getWidth(); column++){
-				for(int row = 0; row < bCopy.getHeight(); row++){
-					if (liberties == 0 && bCopy.get(column,row) == CHECKED)
-						bCopy.set(column,row,EMPTY);	
-					else if (bCopy.get(column,row) == CHECKED) 
-						bCopy.set(column,row,defender);
-		
-				}
-			}
+                    Coordinate c = enemyCoordinates.remove();
+                    liberties = 0;
+                    visited = new boolean[bCopy.getWidth()][bCopy.getHeight()];
+                    checkLiberty(bCopy, c, aggressor, visited);
+
+                    // restore defending checked stones to either black/white or remove if no liberty found
+                    if(liberties == 0)
+                        for(int column = 0; column < bCopy.getWidth(); column++)
+                            for(int row = 0; row < bCopy.getHeight(); row++)
+                                if (visited[column][row])
+                                    bCopy.set(column,row,EMPTY);	
 		}	
 		
 		
 		//4. does the new stone group have a liberty; if no - illegal return false
-		/*Integer*/ liberties = 0;
+		liberties = 0;
+                visited = new boolean[bCopy.getWidth()][bCopy.getHeight()];
 		
-		checkLiberty(bCopy, new Coordinate(x,y),defender/*, liberties */);
+		checkLiberty(bCopy, new Coordinate(x,y),defender, visited);
 
-		if(liberties == 0) {
-			bCopy.set(x,y,EMPTY);
-			return false; //illegal
-		}
-		//4.1 Turns checked stones back into normal ones
-		for(int column = 0; column < bCopy.getWidth(); column++)
-			for(int row = 0; row < bCopy.getHeight(); row++)
-				if (bCopy.get(column,row) == CHECKED) 
-						bCopy.set(column,row,aggressor);
+		if(liberties == 0)
+                    return false;
+		
 
 		//5. Tests for SuperKo; if yes - illegal
-		for (Board b : moveHistory){
-		/*			
-		match = true;
-			for(int column = 0; column < b.getWidth(); column++)
-				for(int row = 0; row < b.getHeight(); row++)
-					if(b.get(x,y) != board.get(x,y))
-						match = false;
-			
-			if(match)
-				return false; 
-				*/
-			if  (b.equals(bCopy)){ 
-				//System.out.println("This move has already been made.");
-				return false;
-			}
-				
-		}
+		for (Board b : moveHistory)
+                    if  (b.equals(bCopy))
+                        return false;
+                
 		//6. legal
 		lastChecked = bCopy;
 		return true;	
@@ -128,19 +105,19 @@ public class LegalMoveChecker {
 	public boolean isEmpty(){return moveHistory.isEmpty();}
 	
 	//recursive function to update the global liberty counter 
-	private void checkLiberty(Board board, Coordinate c, int otherPlayer/*, Integer liberties */){
-		if (board.get(c.x,c.y) == CHECKED || board.get(c.x,c.y) == otherPlayer || liberties > 0) return;
+	private void checkLiberty(Board board, Coordinate c, int otherPlayer, boolean[][] visited){
+		if (visited[c.x][c.y] || board.get(c.x,c.y) == otherPlayer || liberties > 0) return;
 		if (board.get(c.x,c.y) == EMPTY){liberties++; return;}
 		
-		board.set(c.x,c.y,CHECKED);
-		//out of boundary check + recursion // 
+		visited[c.x][c.y] = true;
+		//out of boundary check + recursion 
 		if (c.x>0) 
-			checkLiberty(board, new Coordinate(c.x - 1, c.y), otherPlayer/*, liberties */);
+			checkLiberty(board, new Coordinate(c.x - 1, c.y), otherPlayer, visited);
 		if (c.x<board.getWidth() - 1)
-			checkLiberty(board, new Coordinate(c.x+1, c.y), otherPlayer/*, liberties */);	
+			checkLiberty(board, new Coordinate(c.x+1, c.y), otherPlayer, visited);	
 		if (c.y>0) 
-			checkLiberty(board, new Coordinate(c.x, c.y-1), otherPlayer/*, liberties */);
+			checkLiberty(board, new Coordinate(c.x, c.y-1), otherPlayer, visited);
 		if (c.y<board.getHeight() - 1) 
-			checkLiberty(board, new Coordinate(c.x, c.y+1), otherPlayer/*, liberties */);	
+			checkLiberty(board, new Coordinate(c.x, c.y+1), otherPlayer, visited);	
 	}
 }
