@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TextUITest {
-
+    /*
     private GameEngine g;
     private TextUI ti;
 
@@ -26,8 +26,6 @@ public class TextUITest {
         g = null;
         ti = null;
     }
-
-    /* NEW GAME METHOD TESTS */
 
     @Test
     public void New9x9() {
@@ -63,8 +61,6 @@ public class TextUITest {
         }
     }
 
-    /* LOAD BOARD METHOD TESTS */
-
     @Test
     public void LoadBoard() {
         String cmd1[] = {"Filepath"};
@@ -82,8 +78,6 @@ public class TextUITest {
                 assertTrue(e instanceof BadInputException);
         }
     }
-
-    /* SAVE LOG METHOD TESTS */
 
     @Test
     //input interpreted correctly
@@ -131,8 +125,6 @@ public class TextUITest {
         }
     }
 
-    /* SAVE BOARD METHOD TESTS */
-
     @Test
     //input interpreted correctly
     public void SaveBoardInterpreted() {
@@ -176,8 +168,6 @@ public class TextUITest {
         }
     }
 
-    /* VIEW BOARD METHOD TESTS */
-
     //Testing view on non-instantiated Board.
     @Test
     public void View() {
@@ -189,7 +179,6 @@ public class TextUITest {
         }
     }
 
-    /* MOVE BOARD METHOD TESTS */
 
     //Testing trying move on non-instantiated Board.
     @Test
@@ -319,4 +308,5 @@ public class TextUITest {
             assertTrue(e instanceof BadInputException);
         }  
     }
+    */
 }
