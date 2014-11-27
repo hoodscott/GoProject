@@ -1,37 +1,37 @@
 package main;
 
 public class GameEngine{
-  /** Class to keep track of the current game of Go and make moves on the board */
+  //* Class to keep track of the current game of Go and make moves on the board 
   
-  /* Instance of LegalMoveChecker, used in functions to check the legality of moves */
+  // Instance of LegalMoveChecker, used in functions to check the legality of moves 
   private LegalMoveChecker moveChecker;
-  /* The object representing the current Go board */
+  // The object representing the current Go board 
   private Board currentBoard;
   private AI ai;
   private Objective objective;
   private boolean boardInstantiated;
   private boolean inGame;
+  private int[] aiSearchValues;
 
   // Default Constructor
   public GameEngine(){this(new Board());}
   
   //Initialises GameEngine with existing board.
-  public GameEngine(Board board){
-    currentBoard = board;
-    moveChecker = new LegalMoveChecker();
-    boardInstantiated = true;
-  }
+  public GameEngine(Board board){this(board, null);}
   
-  //Initialises GameEngine with Board, Objective and InitialAI data.
-  public GameEngine(Board board, Objective objective, AI ai){
+  //Initialises GameEngine with Board and Objective .
+  public GameEngine(Board board, Objective objective){this(board,objective,null);}
+  
+  //Initialises GameEngine with Board, Objective and searchValues to be used by the AI.
+  public GameEngine(Board board, Objective objective, int[] searchValues){
       currentBoard = board;
       this.objective = objective;
-      this.ai = ai;
       boardInstantiated = true;
       moveChecker = new LegalMoveChecker();
+      aiSearchValues = searchValues;
   }
 
-  /* Checks entire board for legal moves and returns them as a 2D boolean array */
+  // Checks entire board for legal moves and returns them as a 2D boolean array
   public boolean[][] getLegalMoves(int colour){
     int xDim = currentBoard.getWidth();
     int yDim = currentBoard.getHeight();
@@ -44,19 +44,19 @@ public class GameEngine{
     return legalMoves;
   }
 
-  /* Returns the current board to the caller */
+  // Returns the current board to the caller 
   public Board getCurrentBoard(){
     return currentBoard;
   }
   
-  /* Checks if a board has already been instantiatey by newGame() or not.*/
+  // Checks if a board has already been instantiatey by newGame() or not.
   public boolean boardExists(){
     return boardInstantiated;
   }
 
-  /*Places a piece at the co-ordinates (x,y) given a respective colour (black or white
-  Checks whether the move is legal and if so, place the piece and return true
-  if the move is illegal, return false */
+  //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
+  //Checks whether the move is legal and if so, place the piece and return true
+  //if the move is illegal, return false 
   public boolean makeMove(int x, int y, int colour){
     if (moveChecker.checkMove(currentBoard, x, y, colour)){
       moveChecker.addBoard(currentBoard);
