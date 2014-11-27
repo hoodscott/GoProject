@@ -3,8 +3,10 @@ package main;
 
 //Holds objective for a player and assesses whether it is met or not.
 public class Objective {
-    
-    enum Action{
+   
+	private int eyes;
+	
+	enum Action{
         KILL,
         DEFEND
     }
@@ -15,6 +17,7 @@ public class Objective {
     int colour;
     int otherColour;
     Coordinate position;
+   
     
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
     public Objective(String action, int colour, Coordinate position){
@@ -23,61 +26,155 @@ public class Objective {
         this.position = position;
     }
     
-    //Checks if the objective failed for the given player.
-    public boolean checkFailed(Board board){
-    	if (action.equals(Action.DEFEND)){
-    		if(board.get(position.getX(), position.getY()) == 0) 
+    //Checks if the objective succeeded for the given player.
+    public boolean checkSucceeded(Board board){
+    	if (action.equals(Action.KILL)){
+    		if(board.get(position.x, position.y) != getOtherColour()) 
     			return true;
     	}
     	
-    	if (action.equals(Action.KILL)){
-    		if(board.get(position.getX(), position.getY()) == getOtherColour()) 
-    			return true;
-    	} 
-    	
-    	/*
-    	// check if there are 2 eyes
-    	if (action.equals(Action.KILL)){
-    		// TODO
+    	// check if the group has more than one eye
+    	if(action.equals(Action.DEFEND)){
+    		eyes = 0;
+    		boolean b[][] = new boolean[board.getWidth()][board.getHeight()];
+    		Coordinate p = new Coordinate(position.x,position.y);
+    		countEyes(board, b, p);
+    		if (eyes > 1) return true;
     	}
     	
-    	// also if both players pass and KILL objective is not accomplished => failed?
-    	// or just if both players pass => false (defend) and true (kill)
-    	*/
     	return false;
     }
     
-    //Checks if the objective succeeded for the given player.
-    public boolean checkSucceeded(Board board){
-    	if (action.equals(Action.DEFEND)){
-    		if(board.get(position.getX(), position.getY()) == colour) 
-    			return true;
-    	}
-    	
-    	if (action.equals(Action.KILL)){
-    		if(board.get(position.getX(), position.getY()) != getOtherColour()) 
-    			return true;
-    	}
-    	
-    	/*
-    	// check if there are 2 eyes
-    	if (action.equals(Action.DEFEND)){
-    		// TODO
-    		// if( 2 eyes) return false;
-    	}
-    	// also if both players pass and KILL objective is not accomplished => failed?
-    	// or just if both players pass => false (defend) and true (kill)
-    	*/
-    	
-    	return false;
-    }
+  //Returns whether the player plays first or not.
+    public boolean isStarting(){return false;}
     
     public int getOtherColour(){
     	if(colour == 1) return 2;
     	return 1;
     }
     
-    //Returns whether the player plays first or not.
-    public boolean isStarting(){return false;}
+    // functions to count the eyes of the defending group
     
+    public void countEyes(Board board, boolean b[][], Coordinate p){
+		// if checked already or black
+    	if (b[p.x][p.y] == true || board.get(p.x, p.y) == 1) return;
+		// mark as checked
+		b[p.x][p.y]=true;
+		// if liberty found -> check if eye
+		if (board.get(p.x, p.y) == 0) {
+			if (checkIfEye(board,p) == true) {
+				eyes++;
+			}
+			return;
+		}
+		
+		//out of boundary check + recursion //
+		if (p.x>0) {
+			Coordinate np = new Coordinate(p.x-1,p.y);
+			countEyes(board, b, np);
+		}
+		if (p.x<board.getWidth() - 1) {
+			Coordinate np = new Coordinate(p.x+1,p.y);
+			countEyes(board, b, np);
+		}
+		if (p.y>0) {
+			Coordinate np = new Coordinate(p.x,p.y-1);
+			countEyes(board, b, np);
+		}
+		if (p.y<board.getHeight() - 1){
+			Coordinate np = new Coordinate(p.x,p.y+1);
+			countEyes(board, b, np);
+		}
+	}
+
+	public boolean checkIfEye(Board board, Coordinate p){
+		// check all eight positions around if empty and not edge
+		if (board.get(p.x, p.y) == 0 && p.x > 0 && p.y > 0 && p.x<board.getWidth() - 1 && p.y<board.getHeight() - 1) {
+			if 	(	board.get(p.x-1, p.y-1) == colour && 
+					board.get(p.x-1, p.y) == colour &&	
+					board.get(p.x-1, p.y+1) == colour &&	
+					board.get(p.x, p.y-1) == colour &&
+					board.get(p.x, p.y+1) == colour &&
+					board.get(p.x+1,p.y-1) == colour &&
+					board.get(p.x+1,p.y) == colour &&
+					board.get(p.x+1,p.y+1) == colour) 
+				return true;
+		}
+		
+		// check top left corner
+		if(board.get(p.x, p.y) == 0 && p.x == 0 && p.y == 0){
+			if 	(	board.get(p.x, p.y+1) == colour &&
+					board.get(p.x+1,p.y) == colour &&
+					board.get(p.x+1,p.y+1) == colour)
+				return true;
+				
+		}
+		
+		// check bottom left corner
+		if(board.get(p.x, p.y) == 0 && p.x == board.getWidth() - 1 && p.y == 0){
+			if 	(	board.get(p.x-1, p.y) == colour &&
+					board.get(p.x-1, p.y+1) == colour &&
+					board.get(p.x, p.y+1) == colour) 
+				return true;		
+		}
+		
+		// check bottom right corner
+		if(board.get(p.x, p.y) == 0 && p.x == board.getWidth() - 1 && p.y == board.getHeight() - 1){
+			if 	(	board.get(p.x-1, p.y) == colour &&
+					board.get(p.x-1, p.y-1) == colour &&
+					board.get(p.x, p.y-1) == colour ) 
+				return true;			
+		}
+		
+		// check top right corner
+		if(board.get(p.x, p.y) == 0 && p.x == 0 && p.y == board.getHeight() - 1){
+			if 	(	board.get(p.x, p.y-1) == colour &&
+					board.get(p.x+1,p.y) == colour &&
+					board.get(p.x+1,p.y-1) == colour) 
+				return true;				
+		}
+
+		// check 0 column
+		if(board.get(p.x, p.y) == 0 && p.x > 0 && p.x < board.getWidth() - 1 && p.y == 0){
+			if 	(	board.get(p.x-1, p.y) == colour &&	
+					board.get(p.x-1, p.y+1) == colour &&	
+					board.get(p.x, p.y+1) == colour &&
+					board.get(p.x+1,p.y) == colour &&
+					board.get(p.x+1,p.y+1) == colour) 
+				return true;	
+		}
+		
+		// check 0 row
+		if(board.get(p.x, p.y) == 0 && p.x == 0 && p.y > 0 && p.y < board.getHeight() - 1){
+			if 	(	board.get(p.x, p.y-1) == colour &&
+					board.get(p.x, p.y+1) == colour &&
+					board.get(p.x+1,p.y-1) == colour &&
+					board.get(p.x+1,p.y) == colour &&
+					board.get(p.x+1,p.y+1) == colour) 
+				return true;	
+		}
+		
+
+		// check last column
+		if(board.get(p.x, p.y) == 0 && p.x<board.getWidth() - 1 && p.x > 0 && p.y==board.getHeight() - 1){
+			if 	(	board.get(p.x-1, p.y) == colour &&
+					board.get(p.x-1, p.y-1) == colour &&
+					board.get(p.x, p.y-1) == colour && 
+					board.get(p.x+1,p.y-1) == colour &&
+					board.get(p.x+1,p.y) == colour)
+				return true;
+		}
+		
+		// check last row
+		if(board.get(p.x, p.y) == 0 && p.x==board.getWidth() - 1 && p.y > 0 && p.y<board.getHeight() - 1){
+			if 	(	board.get(p.x-1,p.y-1) == colour &&
+					board.get(p.x-1,p.y) == colour &&
+					board.get(p.x-1,p.y+1) == colour &&
+					board.get(p.x, p.y-1) == colour &&
+					board.get(p.x, p.y+1) == colour)
+				return true;	
+		}
+		// not an eye
+		return false;
+	}     
 }
