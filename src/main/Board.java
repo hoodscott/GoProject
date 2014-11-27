@@ -5,8 +5,11 @@ import java.util.Arrays;
 
 public class Board{
 	
-	private int[][] boardRep;
+	private final int[][] boardRep;
 	private static final int DEF_DIMENSION = 9; //Default dimension for empty boards
+        public static final int EMPTY = 0;
+        public static final int BLACK = 1;
+        public static final int WHITE = 2;
 	
 	// Create empty board
 	public Board() {
