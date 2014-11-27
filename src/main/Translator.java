@@ -11,14 +11,19 @@ public class Translator {
         GameEngine gameEngine = new GameEngine();
         try{
             Board b = translateToBoard(contents);
-            AI ai = null;
+            Objective o = translateToObjective(contents);
             
         }
         catch(BoardFormatException b){System.out.println(b.getMessage());}
         return null;
     }
+    
+    //Checks the integrity of an inputted board data and translates it to a Board object. Throws an exception when encountering an error. 
+    public static Objective translateToObjective(ArrayList <String> raw){
+        return null;
+    }
 
-    //Checks the integrity of an inputted board data and translates it to an int[][]. If a condition fails, returns null.
+    //Checks the integrity of an inputted board data and translates it to a Board object. Throws an exception when encountering an error.
     public static Board translateToBoard(ArrayList<String> raw) throws BoardFormatException{
         int w;
         int h;
@@ -26,26 +31,26 @@ public class Translator {
         if (raw.size() < 2) {
             throw new BoardFormatException("ERROR: The given input does not contain enough lines for a Board.");
         }
-        String[] rawInts = raw.get(0).split(" ");
+        String[] rawInts = raw.remove(0).split(" ");
         if (rawInts.length == 2 && FileIO.isNumber(rawInts[0]) && FileIO.isNumber(rawInts[1])) {
             w = Integer.parseInt(rawInts[0]);
             h = Integer.parseInt(rawInts[1]);
-        } else {
+        } 
+        else 
             throw new BoardFormatException("ERROR: The initial line does not contain two valid integers.");
-        }
-        if (h != raw.size() - 1) {
-            throw new BoardFormatException("ERROR: There is a mismatch in the given number of rows.");
-        }
-        for (int i = 0; i < h; i++) {
-            if (raw.get(i + 1).length() != w) {
+        
+        if (h > raw.size() - 1)
+            throw new BoardFormatException("ERROR: There are not enough rows in the specification.");
+        
+        for (int i = 0; i < h; i++)
+            if (raw.get(i).length() != w)
                 throw new BoardFormatException("ERROR: There is a mismatch in the given number of columns.");
-            }
-        }
+        
         rawBoard = new int[w][h];
         for (int i = 0; i < h; i++) {
-            for (int j = 0; j < w; j++) {
-                rawBoard[j][i] = Translator.translateToInt(raw.get(i + 1).charAt(j));
-            }
+            String row = raw.remove(i);
+            for (int j = 0; j < w; j++)
+                rawBoard[j][i] = Translator.translateToInt(row.charAt(j));
         }
         return new Board(rawBoard);
     }
