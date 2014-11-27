@@ -48,8 +48,8 @@ public class Translator {
         
         int x,y;
         if(isNumber(parts[2]) && isNumber(parts[3])){
-        x = Integer.parseInt(parts[2]);
-        y = Integer.parseInt(parts[3]);
+            x = Integer.parseInt(parts[2]);
+            y = Integer.parseInt(parts[3]);
         }
         else
             throw new BoardFormatException("ERROR: The given objective coordinates are not numbers.");
@@ -99,12 +99,12 @@ public class Translator {
     // Method for translation of char positions to int values
     public static int translateToInt(char value) throws BoardFormatException {
         switch (value) {
-            case '.':
-                return 0;
-            case 'b':
-                return 1;
-            case 'w':
-                return 2;
+            case Board.C_EMPTY:
+                return Board.EMPTY;
+            case Board.C_BLACK:
+                return Board.BLACK;
+            case Board.C_WHITE:
+                return Board.WHITE;
             default:
                 throw new BoardFormatException("ERROR: The board to translate contains an illegal character " + value + ". Board not translated.");
         }
@@ -113,12 +113,12 @@ public class Translator {
     //Translates Board int elements into text
     public static char translateToChar(int i) throws BoardFormatException {
         switch (i) {
-            case 0:
-                return '.';
-            case 1:
-                return 'b';
-            case 2:
-                return 'w';
+            case Board.EMPTY:
+                return Board.C_EMPTY;
+            case Board.BLACK:
+                return Board.C_BLACK;
+            case Board.WHITE:
+                return Board.C_WHITE;
             default:
                 throw new BoardFormatException("ERROR: The board to translate contains an illegal integer " + i + ". Board not translated.");
         }

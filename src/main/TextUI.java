@@ -200,7 +200,6 @@ public class TextUI{
 	//Prints the current board
 	public void view(){
 		try{
-			Board b = gameE.getCurrentBoard();
 			if(!gameE.boardExists())
 				throw new BadInputException("> There currently is no board to view.");
 						
@@ -211,7 +210,6 @@ public class TextUI{
 
 	public void checkLegal(String[] cmd){
 		try{
-			Board b = gameE.getCurrentBoard();
 			if(!gameE.boardExists())
 				throw new BadInputException("> There currently is no board to check.");
 			if(cmd.length != 2)
@@ -225,8 +223,7 @@ public class TextUI{
 				throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");
 		}
 		catch(BadInputException bad){System.out.println(bad.getMsg());}
-		catch(BoardFormatException bad){}
-
+		catch(BoardFormatException bad){System.out.println(bad.getMsg());}
 	}
 
 	//Saves current board to a file
@@ -317,8 +314,6 @@ public class TextUI{
 			ArrayList <String> lines = new ArrayList <>();
 			boolean[][] legalMoves = gameE.getLegalMoves(colour);
 			int[][] board = gameE.getCurrentBoard().getRaw();
-			char[][] combinedBoard = new char[legalMoves.length][legalMoves[0].length];
-			//System.out.println(board[0].length+" "+board.length+" "+legalMoves[0].length+" "+legalMoves.length);
 
 			for(int i = 0; i < legalMoves[0].length; i++){
 				String line = "";
