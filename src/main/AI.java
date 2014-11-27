@@ -1,8 +1,13 @@
 package main;
 
 public abstract class AI {
-    protected static Coordinate[] searchSpace; //A 4 element array that should define the corners of the array. It is static as it is assumed,
-    //that AIs will search the same areas.
+    
+    //These bounds define the space that should be searched by the AI on the board. It is ensured beforehand, that they are within the board.
+    protected int lowerBoundX;
+    protected int upperBoundX;
+    protected int lowerBoundY;
+    protected int upperBoundY;
+    
     protected int colour;
     
     public abstract Coordinate nextMove(Board b, boolean[][] legalMoves);

@@ -65,7 +65,7 @@ public class Translator {
     }
     
     public static AI translateToAI(String raw, Board board){
-        return null;
+        
     }
 
     //Checks the integrity of an inputted board data and translates it to a Board object. Throws an exception when encountering an error.
