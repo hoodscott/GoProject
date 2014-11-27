@@ -121,7 +121,7 @@ public class TextUI{
 			}
 			else if(cmd.length == 3){
 				int w; int h;
-				if(FileIO.isNumber(cmd[1]) && FileIO.isNumber(cmd[2]) && (w = Integer.parseInt(cmd[1])) > 0 && (h = Integer.parseInt(cmd[2])) > 0){
+				if(Translator.isNumber(cmd[1]) && Translator.isNumber(cmd[2]) && (w = Integer.parseInt(cmd[1])) > 0 && (h = Integer.parseInt(cmd[2])) > 0){
 					text = "> Creating new "+w+"x"+h+" Board...";
 					gameE.newGame(new Board(w,h));
 				}
@@ -149,7 +149,7 @@ public class TextUI{
 
 			if(cmd.length == 4){
 				int x, y;
-				if(FileIO.isNumber(cmd[1]) && FileIO.isNumber(cmd[2])){
+				if(Translator.isNumber(cmd[1]) && Translator.isNumber(cmd[2])){
 					int w = b.getWidth();
 					int h = b.getHeight();
 					if((x = Integer.parseInt(cmd[1])) >= 0 && x < w && (y = Integer.parseInt(cmd[2])) >= 0 && y < h){
@@ -264,6 +264,7 @@ public class TextUI{
 			printGameBoard(true);
 		}
 		catch(BadInputException bad){System.out.println(bad.getMsg());}
+                catch(BoardFormatException board){System.out.println(board.getMsg());}
 	}
 
 	//Saves log to a file.

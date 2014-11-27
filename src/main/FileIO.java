@@ -39,10 +39,10 @@ public final class FileIO {
     }
 
     //Default Board reading method
-    public static GameEngine readBoard(){return readBoard(RELATIVEPATH+DEFINPUT+DEFBOARDNAME);}
+    public static GameEngine readBoard() throws BoardFormatException {return readBoard(RELATIVEPATH+DEFINPUT+DEFBOARDNAME);}
 
     //Board reading method for a given path
-    public static GameEngine readBoard(String path){
+    public static GameEngine readBoard(String path) throws BoardFormatException{
         
         ArrayList<String> lines = readFile(path);
         Board gameBoard;
@@ -142,9 +142,6 @@ public final class FileIO {
         }
     }
 
-
-
-
     //Fancy method that adds a number to a path.
     public static String adjustPath(String original){
 
@@ -170,13 +167,6 @@ public final class FileIO {
     }   
     
 
-    //Checks if a string is an int
-    public static boolean isNumber(String s){
-
-        try{Integer.parseInt(s);}
-        catch(NumberFormatException e){return false;}
-        return true;
-    }
 
     //Adjusts Paths for Unix/Linux or Windows
     public static String pathOS(String path){

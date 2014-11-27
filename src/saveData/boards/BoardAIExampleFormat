@@ -8,7 +8,8 @@
 <h lines>
 
 <Objective>
-<AI Search space, 4 coordinates to define inclusive boundary>
+<AI Search space, 2 coordinates to define the inclusive boundary. The inclusive boundary is
+composed of the top left and bottom right coordinate, forming a rectangular search space. As such, the format is: x1 y1 x2 y2>
 
 //EXAMPLE:
 5 5
@@ -18,9 +19,6 @@ bb.b.
 b.bww
 b.www
 black kill 4 4
-1 2
-4 2
-4 4
-1 4
+1 2 4 4
 //END OF EXAMPLE:
 
