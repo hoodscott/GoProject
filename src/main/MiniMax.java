@@ -84,8 +84,10 @@ public class MiniMax extends AI{
 		 ArrayList<Coordinate> al = new ArrayList<Coordinate>();
 		 for(int i = 0; i < b.getWidth(); i++){
 				for(int j=0;j<b.getHeight();j++){
-					if (lm[i][j]){
-						al.add(new Coordinate(i,j));
+					if (i>lowerBoundX && i<upperBoundX && j>lowerBoundY && j<upperBoundY){
+						if (lm[i][j]){
+							al.add(new Coordinate(i,j));
+						}
 					}
 				}
 			}
