@@ -16,14 +16,25 @@ public class Objective {
     Action action;
     int colour;
     int otherColour;
-    Coordinate position;
-   
+    Coordinate position; 
     
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
     public Objective(String action, int colour, Coordinate position){
     	this.action = translateToAction(action);
         this.colour = colour;
         this.position = position;
+    }
+    
+    public String getAction(){return translateToString(action);}
+    public int getColour(){return colour;}
+    public Coordinate getPosition(){return position;}
+    
+    private String translateToString(Action action){
+        switch(action){
+            case KILL: return "kill";
+            case DEFEND: return "defend";
+        }
+        return null;
     }
     
     private Action translateToAction(String action) {

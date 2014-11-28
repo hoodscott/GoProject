@@ -141,7 +141,7 @@ public class TextUI{
 
     //Makes a new move
     public void move(String[] cmd){
-        try{
+        /*try{
             if(gameEngine == null){
                     throw new BadInputException("> There currently is no board to make a move on.");
             }
@@ -175,7 +175,7 @@ public class TextUI{
                         throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y> <arg colour>");
         }
         catch(BadInputException bad){System.out.println(bad.getMsg());}
-        catch(BoardFormatException bad){}		
+        catch(BoardFormatException bad){}*/		
     }
 
     //Undoes the last move made.
@@ -252,8 +252,8 @@ public class TextUI{
             }
             
             String text = "> Loaded "+gameEngine.getCurrentBoard().getWidth()+"x"+gameEngine.getCurrentBoard().getHeight();
-            if(gameEngine.getObjective() != null)
-                text += "\n> Loaded Objective: "+gameEngine.getObjective().getOriginal();
+            //if(gameEngine.getObjective() != null)
+                //text += "\n> Loaded Objective: "+gameEngine.getObjective().getOriginal();
             addToLog(text);
             System.out.println(text);
             printGameBoard(true);

@@ -7,26 +7,29 @@ public class Board{
 	
 	private final int[][] boardRep;
 	private static final int DEF_DIMENSION = 9; //Default dimension for empty boards
-        public static final int EMPTY = 0;
-        public static final int BLACK = 1;
-        public static final int WHITE = 2;
-        public static final char C_EMPTY = '.';
-        public static final char C_BLACK = 'b';
-        public static final char C_WHITE = 'w';
+    public static final int EMPTY = 0;
+    public static final int BLACK = 1;
+    public static final int WHITE = 2;
+    public static final char C_EMPTY = '.';
+    public static final char C_BLACK = 'b';
+    public static final char C_WHITE = 'w';
+    public static final String S_EMPTY = "empty";
+    public static final String S_BLACK = "black";
+    public static final String S_WHITE = "white";
 	
 	// Create empty board
 	public Board() {
-            boardRep = new int[DEF_DIMENSION][DEF_DIMENSION];
+        boardRep = new int[DEF_DIMENSION][DEF_DIMENSION];
 	}
 	
 	// Create new board from given int array
 	public Board(int[][] board) {
-            boardRep = board;   
+        boardRep = board;   
 	}
 
 	//Create an empty board that takes in a pair of dimensions
 	public Board(int width, int height){
-            boardRep = new int[width][height];
+        boardRep = new int[width][height];
 	}
 	
 	// Get x and y dimensions of board
@@ -38,28 +41,28 @@ public class Board{
 	
 	// Get int representation of board position
 	public int get(int x, int y) {
-            return boardRep[x][y];
+        return boardRep[x][y];
 	}
 	
 	// Set int representation of board position
 	public void set(int x, int y, int value) {
-            boardRep[x][y] = value;
+        boardRep[x][y] = value;
 	}
 	
         //Tests for equality among Boards. Use with care.
 	public boolean equals(Board b){
-            return (b != null) && Arrays.deepEquals(boardRep, b.getRaw());
+        return (b != null) && Arrays.deepEquals(boardRep, b.getRaw());
 	}
 	
 	// Make deep copy of original Board
-        @Override
+    @Override
 	public Board clone() {
-            Board clone = new Board(boardRep.length, boardRep[0].length);
-            for (int i = 0; i < boardRep.length; i++)
-                for(int j = 0; j < boardRep[0].length; j++) 
-                    clone.set(i,j,boardRep[i][j]);
+        Board clone = new Board(boardRep.length, boardRep[0].length);
+        for (int i = 0; i < boardRep.length; i++)
+            for(int j = 0; j < boardRep[0].length; j++) 
+                clone.set(i,j,boardRep[i][j]);
 
-            return clone;
+        return clone;
 	}
 	
 }

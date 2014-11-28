@@ -38,8 +38,8 @@ public class Translator {
             throw new BoardFormatException("ERROR: The given objective is not formatted correctly.");
         
         switch(parts[0]){
-            case "black": colour = Board.BLACK; break;
-            case "white": colour = Board.WHITE; break;
+            case Board.S_BLACK: colour = Board.BLACK; break;
+            case Board.S_WHITE: colour = Board.WHITE; break;
             default: throw new BoardFormatException("ERROR: The given objective colour \'"+parts[0]+"\' is not white or black.");
         }
         switch(parts[1]){
@@ -139,7 +139,8 @@ public class Translator {
         }
 
         if(objective != null && searchValues != null){
-            content.append(objective.getOriginal() + '\n');
+            content.append(translateToString(objective.getColour())+' '+objective.getAction()+' '+
+            objective.getPosition().x +' '+objective.getPosition().y+'\n');
             
             for(int i = 0; i < searchValues.length - 1; i++)
                 content.append(searchValues[i]+' ');
@@ -160,11 +161,11 @@ public class Translator {
             case Board.C_WHITE:
                 return Board.WHITE;
             default:
-                throw new BoardFormatException("ERROR: The board to translate contains an illegal character " + value + ". Board not translated.");
+                throw new BoardFormatException("ERROR: ERROR: The board value to translate contains illegal character " + value + ".");
         }
     }
 
-    //Translates Board int elements into text
+    //Translates Board int elements into chars
     public static char translateToChar(int i) throws BoardFormatException {
         switch (i) {
             case Board.EMPTY:
@@ -174,7 +175,21 @@ public class Translator {
             case Board.WHITE:
                 return Board.C_WHITE;
             default:
-                throw new BoardFormatException("ERROR: The board to translate contains an illegal integer " + i + ". Board not translated.");
+                throw new BoardFormatException("ERROR: The board value to translate contains illegal integer " + i + ".");
         }
-    }    
+    }
+    
+    //Translates Board int elements into text
+    public static String translateToString(int i) throws BoardFormatException {
+        switch (i) {
+            case Board.EMPTY:
+                return Board.S_EMPTY;
+            case Board.BLACK:
+                return Board.S_BLACK;
+            case Board.WHITE:
+                return Board.S_WHITE;
+            default:
+                throw new BoardFormatException("ERROR: The given ");
+        }
+    }
 }
