@@ -25,49 +25,49 @@ public class TextUI{
     //Main method for running the UI.
     public void init(){
 
-            exit = false;
-            boardSaved = true;
-            logSaved = true;
+        exit = false;
+        boardSaved = true;
+        logSaved = true;
 
-            String command;
-            Arrays.sort(commands); //Lazily sorts commands
-            Scanner sc = new Scanner(System.in);
-            System.out.println("--Go Game TextUI - v0.987654321--");
-            System.out.println("> Type \"help\" for commands.");
+        String command;
+        Arrays.sort(commands); //Lazily sorts commands
+        Scanner sc = new Scanner(System.in);
+        System.out.println("--Go Game TextUI - v0.987654321--");
+        System.out.println("> Type \"help\" for commands.");
 
-            //Main while-loop
-            while(!exit){
-                    System.out.print("<< ");
-                    command = sc.nextLine();
-                    String[] splitC = command.split(" ");
-                    String primaryCommand;
+        //Main while-loop
+        while(!exit){
+            System.out.print("<< ");
+            command = sc.nextLine();
+            String[] splitC = command.split(" ");
+            String primaryCommand;
 
-                    //Verifies that there is an input.
-                    if(splitC.length > 0){
-                            primaryCommand = splitC[0];
-                            switch(primaryCommand){
-                                    case "help": {help(splitC); break;}
-                                    case "exit": {exit(); break;}
-                                    case "new": 
-                                    case "n": {newGame(splitC);break;}
-                                    case "saveLog":
-                                    case "sl":{saveLog(splitC); break;}
-                                    case "saveBoard":
-                                    case "sb":{saveBoard(splitC); break;}
-                                    case "loadBoard":
-                                    case "lb":{loadBoard(splitC);break;}
-                                    case "move":
-                                    case "m":{move(splitC);break;}
-                                    case "checkLegal":
-                                    case "cl":{checkLegal(splitC);break;}
-                                    case "view":
-                                    case "v":{view();break;}
-                                    case "undo":
-                                    case "u":{undo();break;}
-                                    default: {System.out.println("> Command not found. Type \"help\" for commands");break;}
-                            }
-                    }
-            }	
+            //Verifies that there is an input.
+            if(splitC.length > 0){
+                primaryCommand = splitC[0];
+                switch(primaryCommand){
+                    case "help": {help(splitC); break;}
+                    case "exit": {exit(); break;}
+                    case "new": 
+                    case "n": {newGame(splitC);break;}
+                    case "saveLog":
+                    case "sl":{saveLog(splitC); break;}
+                    case "saveBoard":
+                    case "sb":{saveBoard(splitC); break;}
+                    case "loadBoard":
+                    case "lb":{loadBoard(splitC);break;}
+                    case "move":
+                    case "m":{move(splitC);break;}
+                    case "checkLegal":
+                    case "cl":{checkLegal(splitC);break;}
+                    case "view":
+                    case "v":{view();break;}
+                    case "undo":
+                    case "u":{undo();break;}
+                    default: {System.out.println("> Command not found. Type \"help\" for commands");break;}
+                }
+            }
+        }	
     }
 
     //Prints help info
@@ -141,43 +141,41 @@ public class TextUI{
 
     //Makes a new move
     public void move(String[] cmd){
-            try{
-                    Board b = gameEngine.getCurrentBoard();
-                    if(!gameEngine.boardExists()){
-                            throw new BadInputException("> There currently is no board to make a move on.");
-                    }
-
-                    if(cmd.length == 4){
-                            int x, y;
-                            if(Translator.isNumber(cmd[1]) && Translator.isNumber(cmd[2])){
-                                    int w = b.getWidth();
-                                    int h = b.getHeight();
-                                    if((x = Integer.parseInt(cmd[1])) >= 0 && x < w && (y = Integer.parseInt(cmd[2])) >= 0 && y < h){
-                                            if(cmd[3].equals("b") || cmd[3].equals("black") || cmd[3].equals("w") || cmd[3].equals("white")){
-                                                    if(gameEngine.makeMove(x,y,Translator.translateToInt(cmd[3].charAt(0)))){
-                                                            String message = "> Placed "+cmd[3]+" at ("+cmd[1]+","+cmd[2]+")";
-                                                            addToLog(message);
-                                                            System.out.println(message);
-                                                            printGameBoard(true);
-                                                            boardSaved = false;
-                                                    }
-                                                    else
-                                                            throw new BadInputException("> This move is illegal.");
-                                            }
-                                            else
-                                                    throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");
-                                    }
-                                    else
-                                            throw new BadInputException("> The x and y positions need to be non-negative numbers within the board.");		
-                            }
-                            else
-                                    throw new BadInputException("> The x and y positions need to be numbers.");
-                    }
-                    else
-                            throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y> <arg colour>");
+        try{
+            if(gameEngine == null){
+                    throw new BadInputException("> There currently is no board to make a move on.");
             }
-            catch(BadInputException bad){System.out.println(bad.getMsg());}
-            catch(BoardFormatException bad){}		
+            if(cmd.length == 4){
+                        int x, y;
+                        if(Translator.isNumber(cmd[1]) && Translator.isNumber(cmd[2])){
+                                int w = b.getWidth();
+                                int h = b.getHeight();
+                                if((x = Integer.parseInt(cmd[1])) >= 0 && x < w && (y = Integer.parseInt(cmd[2])) >= 0 && y < h){
+                                        if(cmd[3].equals("b") || cmd[3].equals("black") || cmd[3].equals("w") || cmd[3].equals("white")){
+                                                if(gameEngine.makeMove(x,y,Translator.translateToInt(cmd[3].charAt(0)))){
+                                                        String message = "> Placed "+cmd[3]+" at ("+cmd[1]+","+cmd[2]+")";
+                                                        addToLog(message);
+                                                        System.out.println(message);
+                                                        printGameBoard(true);
+                                                        boardSaved = false;
+                                                }
+                                                else
+                                                        throw new BadInputException("> This move is illegal.");
+                                        }
+                                        else
+                                                throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");
+                                }
+                                else
+                                        throw new BadInputException("> The x and y positions need to be non-negative numbers within the board.");		
+                        }
+                        else
+                                throw new BadInputException("> The x and y positions need to be numbers.");
+                }
+                else
+                        throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y> <arg colour>");
+        }
+        catch(BadInputException bad){System.out.println(bad.getMsg());}
+        catch(BoardFormatException bad){}		
     }
 
     //Undoes the last move made.
@@ -223,70 +221,68 @@ public class TextUI{
                             throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");
             }
             catch(BadInputException bad){System.out.println(bad.getMsg());}
-            catch(BoardFormatException bad){System.out.println(bad.getMsg());}
+            catch(BoardFormatException bad){System.err.println(bad.getMsg());}
     }
 
     //Saves current board to a file
     public void saveBoard(String[] cmd){
-            try{
-                Board b = gameEngine.getCurrentBoard();
-                if(!gameEngine.boardExists())
-                        throw new BadInputException("> Board has not been created or loaded yet.");
-                else{
-                    switch(cmd.length){
-                    case 1: {FileIO.writeBoard(gameEngine); break;}
-                    case 2: {FileIO.writeBoard(gameEngine, FileIO.RELATIVEPATH+FileIO.DEFOUTPUT+cmd[1]);break;}
-                    default:{throw new BadInputException("> Inappropriate number of args. Usage: saveBoard (sb) [arg name]");}
-                    }
-                boardSaved = true;
-                }
+        try{
+            if(gameEngine == null)
+                    throw new BadInputException("> Board has not been created or loaded yet.");
+
+            switch(cmd.length){
+                case 1: {FileIO.writeBoard(gameEngine); break;}
+                case 2: {FileIO.writeBoard(gameEngine, FileIO.RELATIVEPATH+FileIO.DEFOUTPUT+cmd[1]);break;}
+                default:{throw new BadInputException("> Inappropriate number of args. Usage: saveBoard (sb) [arg name]");}
             }
-            catch(BadInputException bad){System.out.println(bad.getMsg());}		
+            boardSaved = true;
+        }
+        catch(BadInputException bad){System.out.println(bad.getMsg());}
+        catch(BoardFormatException bad){System.err.println(bad.getMsg());}
+        catch(NumberFormatException bad){System.err.println("ERROR: Non-integer values used to save board.");}
     }
 
     //Loads a given board file
     public void loadBoard(String[] cmd){
-            try{
-                    Board b;
-                    switch(cmd.length){
-                            case 1:{gameEngine = FileIO.readBoard(); break;}
-                            case 2:{gameEngine = FileIO.readBoard(FileIO.RELATIVEPATH+FileIO.DEFINPUT+cmd[1]); break;}
-                            default:{throw new BadInputException("> Inappropriate number of args. Usage: loadBoard (lb) [arg name]");}
-                    }
-                    //gameEngine.newGame(b);
-
-                    String text = "> Loaded "+gameEngine.getCurrentBoard().getWidth()+"x"+gameEngine.getCurrentBoard().getHeight();
-                    addToLog(text);
-                    System.out.println(text);
-                    printGameBoard(true);
+        try{
+            switch(cmd.length){
+                case 1:{gameEngine = FileIO.readBoard(); break;}
+                case 2:{gameEngine = FileIO.readBoard(FileIO.RELATIVEPATH+FileIO.DEFINPUT+cmd[1]); break;}
+                default:{throw new BadInputException("> Inappropriate number of args. Usage: loadBoard (lb) [arg name]");}
             }
-            catch(BadInputException bad){System.out.println(bad.getMsg());}
-            catch(BoardFormatException board){System.out.println(board.getMsg());}
+            
+            String text = "> Loaded "+gameEngine.getCurrentBoard().getWidth()+"x"+gameEngine.getCurrentBoard().getHeight();
+            if(gameEngine.getObjective() != null)
+                text += "\n> Loaded Objective: "+gameEngine.getObjective().getOriginal();
+            addToLog(text);
+            System.out.println(text);
+            printGameBoard(true);
+        }
+        catch(BadInputException bad){System.out.println(bad.getMsg());}
+        catch(BoardFormatException board){System.err.println(board.getMsg());}
     }
 
     //Saves log to a file.
     public void saveLog(String[] cmd){
-            try{
-                    if(log.equals(""))
-                            throw new BadInputException("> The log is empty. Stop wasting files.");
-
-                    else{
-                            switch(cmd.length){
-                            case 1: {FileIO.writeLog(log); break;}
-                            case 2: {FileIO.writeLog(log, FileIO.RELATIVEPATH+FileIO.DEFLOGOUTPUT+cmd[1]);break;}
-                            default:{throw new BadInputException("> Inappropriate number of args. Usage: saveLog (sl) [arg name]");}
-                            }	
-                    logSaved = true;
-                    }
-            }
-            catch(BadInputException bad){System.out.println(bad.getMsg());}
+        try{
+            if(log.equals(""))
+                throw new BadInputException("> The log is empty. Stop wasting files.");
+            
+            switch(cmd.length){
+                case 1: {FileIO.writeLog(log); break;}
+                case 2: {FileIO.writeLog(log, FileIO.RELATIVEPATH+FileIO.DEFLOGOUTPUT+cmd[1]);break;}
+                default:{throw new BadInputException("> Inappropriate number of args. Usage: saveLog (sl) [arg name]");}
+            }	
+            logSaved = true;
+        }
+        catch(BadInputException bad){System.out.println(bad.getMsg());}
     }
 
     //Updates log
     public void addToLog(String data){
-            log += ('\n'+(new Timestamp((new GregorianCalendar()).getTimeInMillis())).toString()+'\n');
-            log += data+'\n';
-            logSaved = false;
+        log += ('\n'+(new Timestamp((new GregorianCalendar()).getTimeInMillis())).toString()+'\n');
+        log += data+'\n';
+        logSaved = false;
     }
 
     //Prints game board.
