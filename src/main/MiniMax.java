@@ -2,14 +2,12 @@ package main;
 
 import java.util.ArrayList;
 
-import main.Objective.Action;
-
 public class MiniMax extends AI{
 
-	Objective evaluator;
+	private Objective evaluator;
 	private LegalMoveChecker lmc;
 	
-	Objective otherEvaluator = new Objective(getOpponentObjective(), getOtherColour(), evaluator.position);
+	Objective otherEvaluator = new Objective(getOpponentObjective(), getOtherColour(), evaluator.getPosition());
 	
 	public MiniMax(Objective objective, int c){//), int[] searchSp){
 		evaluator = objective;
@@ -18,7 +16,7 @@ public class MiniMax extends AI{
 	}
 	
 	private String getOpponentObjective() {
-		if(evaluator.action == Action.KILL) return "defend";
+		if(evaluator.getAction() == "kill") return "defend";
 		else return "kill";
 	}
 	
@@ -84,7 +82,7 @@ public class MiniMax extends AI{
 		 ArrayList<Coordinate> al = new ArrayList<Coordinate>();
 		 for(int i = 0; i < b.getWidth(); i++){
 				for(int j=0;j<b.getHeight();j++){
-					if (i>lowerBoundX && i<upperBoundX && j>lowerBoundY && j<upperBoundY){
+					if (i>=lowerBoundX && i<=upperBoundX && j>=lowerBoundY && j<=upperBoundY){
 						if (lm[i][j]){
 							al.add(new Coordinate(i,j));
 						}

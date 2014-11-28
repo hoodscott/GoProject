@@ -13,10 +13,10 @@ public class Objective {
     
     // Action black;
     // Action white;
-    Action action;
-    int colour;
-    int otherColour;
-    Coordinate position; 
+    private Action action;
+    private int colour;
+    
+    private Coordinate position; 
     
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
     public Objective(String action, int colour, Coordinate position){
