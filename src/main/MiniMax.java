@@ -40,7 +40,6 @@ public class MiniMax extends AI{
 	
 	
 	private int min(Board b) {
-		if (otherEvaluator.checkSucceeded(b)) return -1;
 		int lowestScore = 1;
 		boolean[][] lm = getLegalMoves(b, getOtherColour());
 		ArrayList<Coordinate> moves = getLMList(b, lm);
@@ -48,6 +47,7 @@ public class MiniMax extends AI{
 		for (Coordinate move : moves) {
 			Board clone = b.clone();
 			clone.set(move.x, move.y, getOtherColour());
+			if (otherEvaluator.checkSucceeded(clone)) return -1;
 			score = max(clone);
 			if (score < lowestScore)
 				lowestScore = score;
@@ -57,8 +57,7 @@ public class MiniMax extends AI{
 	}
 	
 	
-	private int max(Board b) {
-		if (evaluator.checkSucceeded(b)) return 1;		
+	private int max(Board b) {	
 		int highestScore = -1;
 		
 		boolean[][] lm = getLegalMoves(b, getOtherColour());
@@ -67,6 +66,7 @@ public class MiniMax extends AI{
 		for (Coordinate move : moves) {
 			Board clone = b.clone();
 			clone.set(move.x, move.y, colour);
+			if (evaluator.checkSucceeded(clone)) return 1;
 			min(clone);
 			if (score > highestScore)
 				highestScore = score;
