@@ -73,8 +73,8 @@ public class MiniMax extends AI{
 	}
 	
 	 public int getOtherColour(){
-	    	if(colour == 1) return 2;
-	    	return 1;
+	    	if(colour == Board.BLACK) return Board.WHITE;
+	    	return Board.BLACK;
 	 }
 
 	 // create array list containing the coordinates of the legal moves
