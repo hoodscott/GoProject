@@ -101,7 +101,7 @@ public class Translator {
         else 
             throw new BoardFormatException("ERROR: The initial line does not contain two valid integers.");
         
-        if (h > raw.size() - 1)
+        if (h > raw.size())
             throw new BoardFormatException("ERROR: There are not enough rows in the specification.");
         
         for (int i = 0; i < h; i++)
@@ -110,7 +110,7 @@ public class Translator {
         
         rawBoard = new int[w][h];
         for (int i = 0; i < h; i++) {
-            String row = raw.remove(i);
+            String row = raw.remove(0);
             for (int j = 0; j < w; j++)
                 rawBoard[j][i] = Translator.translateToInt(row.charAt(j));
         }
@@ -137,7 +137,7 @@ public class Translator {
         StringBuilder content = new StringBuilder();
         int w = board.getWidth(); int h = board.getHeight();
         char[][] cBoard = new char[h][w];
-        content.append(w+' '+h+ '\n');
+        content.append(w+" "+h+ '\n');
 
         for(int i = 0; i < w; i++)
             for(int j = 0; j < h;j++)
@@ -157,7 +157,7 @@ public class Translator {
     public static String translateToSearchSpaceInstruction(int[] searchValues)throws BoardFormatException{
         String s = "";
         for(int i = 0; i < searchValues.length - 1; i++)
-            s += searchValues[i]+' ';
+            s += searchValues[i]+" ";
 
         s += searchValues[searchValues.length - 1];
         

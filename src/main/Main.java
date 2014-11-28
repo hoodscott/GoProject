@@ -12,7 +12,7 @@ public class Main{
                 gUI.start(gE);
             }
             else {
-                    TextUI tUI = new TextUI(gE);
+                    TextUI tUI = new TextUI();
                     tUI.init();
             }
 	}

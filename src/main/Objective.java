@@ -38,7 +38,7 @@ public class Objective {
     }
     
     private Action translateToAction(String action) {
-		if (action == "kill") return Action.KILL;
+		if ("kill".equals(action)) return Action.KILL;
 		return Action.DEFEND;	
 	}
     
