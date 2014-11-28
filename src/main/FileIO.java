@@ -2,6 +2,7 @@ package main;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.lang.StringBuilder;
         
 public final class FileIO {   
 
@@ -14,50 +15,23 @@ public final class FileIO {
     private static final String DEFBOARDNAME = "board";
 
     //Default Board writing method
-    public static void writeBoard(GameEngine gE){writeBoard(gE,(RELATIVEPATH+DEFOUTPUT+DEFBOARDNAME));}
+    public static void writeBoard(GameEngine gameEngine)throws BoardFormatException{
+        writeBoard(gameEngine,(RELATIVEPATH+DEFOUTPUT+DEFBOARDNAME));
+    }
 
     //Board writing method with given path
-    public static void writeBoard(GameEngine gE, String path){
-        
-        Board board = gE.getCurrentBoard();
-        String content = "";
-        try{
-            int w = board.getWidth(); int h = board.getHeight();
-            char[][] cBoard = new char[h][w];
-            content += w+" "+h+ '\n';
-
-            for(int i = 0; i < w; i++)
-                for(int j = 0; j < h;j++)
-                    cBoard[j][i] = Translator.translateToChar(board.get(i,j));
-
-            for(int i = 0; i < h; i++)
-                content += new String(cBoard[i]) + '\n';
-
-            writeFile(content, path);
-        }
-        catch(BoardFormatException badBoard){System.err.println(badBoard.getMsg());}
+    public static void writeBoard(GameEngine gameEngine, String path) throws BoardFormatException{
+        writeFile(Translator.translateToInstructions(gameEngine),path);
     }
 
     //Default Board reading method
-    public static GameEngine readBoard() throws BoardFormatException {return readBoard(RELATIVEPATH+DEFINPUT+DEFBOARDNAME);}
+    public static GameEngine readBoard() throws BoardFormatException, NumberFormatException 
+    {return readBoard(RELATIVEPATH+DEFINPUT+DEFBOARDNAME);}
 
     //Board reading method for a given path
-    public static GameEngine readBoard(String path) throws BoardFormatException{
-        
+    public static GameEngine readBoard(String path) throws BoardFormatException, NumberFormatException{
         ArrayList<String> lines = readFile(path);
-        Board gameBoard;
-        GameEngine gE = new GameEngine();
-
-        if((gameBoard = Translator.translateToBoard(lines)) != null){
-            gE.newGame(gameBoard);
-            return gE;
-        }
-
-        else{
-            System.err.println("ERROR: Inputted board cannot be processed. Returning default board.");
-            gE.newGame(new Board());
-            return gE;
-        }
+        return Translator.translateGameInstructions(lines);
     }
 
     //Default Log writing method
@@ -166,8 +140,6 @@ public final class FileIO {
         }
     }   
     
-
-
     //Adjusts Paths for Unix/Linux or Windows
     public static String pathOS(String path){
 

@@ -13,18 +13,24 @@ public class Objective {
     
     // Action black;
     // Action white;
-    Action action;
-    int colour;
-    int otherColour;
-    Coordinate position;
-   
+    private Action action;
+    private int colour;
+    private int otherColour;
+    private Coordinate position;
+    private int originalColour;
+    private String originalAction;
     
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
     public Objective(String action, int colour, Coordinate position){
-    	this.action = Action.KILL;//getAction(action);
+        originalAction = action;
+        originalColour = colour;
+    	this.action =  Action.KILL;//getAction(action);
         this.colour = colour;
         this.position = position;
     }
+    
+    //Returns original command for objective construction.
+    public String getOriginal(){return originalAction+" "+originalColour+" "+position.x+" "+position.y;}
     
     //Checks if the objective succeeded for the given player.
     public boolean checkSucceeded(Board board){

@@ -117,6 +117,38 @@ public class Translator {
         return new Board(rawBoard);
     }
     
+    //Translates GameEngine into writable String
+    public static String translateToInstructions(GameEngine gameEngine) throws BoardFormatException{
+        
+        Board board = gameEngine.getCurrentBoard();
+        Objective objective = gameEngine.getObjective();
+        int[] searchValues = gameEngine.getAISearchValues();
+        
+        StringBuilder content = new StringBuilder();
+        int w = board.getWidth(); int h = board.getHeight();
+        char[][] cBoard = new char[h][w];
+        content.append(w+' '+h+ '\n');
+
+        for(int i = 0; i < w; i++)
+            for(int j = 0; j < h;j++)
+                cBoard[j][i] = Translator.translateToChar(board.get(i,j));
+
+        for(int i = 0; i < h; i++){
+            content.append(cBoard[i]);
+            content.append('\n');
+        }
+
+        if(objective != null && searchValues != null){
+            content.append(objective.getOriginal() + '\n');
+            
+            for(int i = 0; i < searchValues.length - 1; i++)
+                content.append(searchValues[i]+' ');
+            
+            content.append(searchValues[searchValues.length - 1]);
+        }        
+        return content.toString();
+    }
+    
     
     // Method for translation of char positions to int values
     public static int translateToInt(char value) throws BoardFormatException {

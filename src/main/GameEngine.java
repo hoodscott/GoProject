@@ -45,14 +45,14 @@ public class GameEngine{
   }
 
   // Returns the current board to the caller 
-  public Board getCurrentBoard(){
-    return currentBoard;
-  }
+  public Board getCurrentBoard(){return currentBoard;}
+  //Returns objective to caller
+  public Objective getObjective(){return objective;}
+  //Returns ai search values
+  public int[] getAISearchValues(){return aiSearchValues;}
   
   // Checks if a board has already been instantiatey by newGame() or not.
-  public boolean boardExists(){
-    return boardInstantiated;
-  }
+  public boolean boardExists(){return boardInstantiated;}
 
   //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
   //Checks whether the move is legal and if so, place the piece and return true
