@@ -1,5 +1,4 @@
-Usage: startGame (sg) [arg name]
-Arguments: arg path - some name to write to.
+Usage: startGame (sg) <blackplayer> <white player>
+Arguments: blackplayer, whiteplayer = human (h) or minimax (mini)
 Description:
-This command will write the game moves made in the console to /src/saveData/logs/log (Linux) or \src\saveData\logs\log (Windows).
-If provided with a path argument it will write to that path instead. Notably, if the file already exists the file name will be changed to "Filename" => "FilenameX", where X is some number.
+This command will start a game between the two given players. Notably, it is currently required that 1 human plays against 1 ai.

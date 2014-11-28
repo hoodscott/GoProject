@@ -142,7 +142,40 @@ public class TextUI{
     
     //Starts game with an AI
     public void startGame(String[] cmd){
-        
+        try{
+            if(cmd.length != 3)
+                throw new BoardFormatException("> Inappropriate number of args. Usage: startGame (sg) <black player> <white player>");
+            if(gameEngine == null || gameEngine.getObjective() == null)
+                throw new BoardFormatException("> No objective has been defined.");
+            
+            int humanColour = 0;
+            int aiColour = 0;
+            
+            switch(cmd[1]){
+                case "h":
+                case "human": humanColour = Board.BLACK; break;
+                case "mini": 
+                case "minimax": aiColour = Board.BLACK; break;
+                default: throw new BoardFormatException("> The argument needs to be either a human (h) or minimax (m).");
+            }
+            
+            if((cmd[2].equals("h") || cmd[2].equals("human")) && humanColour == 0)
+                humanColour = Board.WHITE;
+            else if((cmd[2].equals("mini") || cmd[2].equals("minimax")) && aiColour == 0)
+                aiColour = Board.WHITE;
+            else
+                throw new BoardFormatException("> Only one ai and one human are allowed as arguments.");
+            
+            playerColour = humanColour;
+            gameEngine.setMiniMax(aiColour);
+            
+            String message = "> Starting game with black as "+(playerColour == Board.BLACK? "human" : "minimax")+
+                    " and white as "+(playerColour == Board.WHITE? "human" : "minimax")+".";
+            
+            addToLog(message);
+            System.out.println(message);
+        }
+        catch(BoardFormatException bad){System.out.println(bad.getMsg());}
     }
 
     //Makes a new move
@@ -185,8 +218,8 @@ public class TextUI{
                 printGameBoard(true);
                 boardSaved = false;
             }
-                else
-                    throw new BadInputException("> This move is illegal.");
+            else
+                throw new BadInputException("> This move is illegal.");
 
         }
         catch(BadInputException bad){System.out.println(bad.getMsg());}

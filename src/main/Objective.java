@@ -15,13 +15,14 @@ public class Objective {
     // Action white;
     private Action action;
     private int colour;
+    private int startingColour;
     
     private Coordinate position; 
     
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
     public Objective(String action, int colour, Coordinate position){
     	this.action = translateToAction(action);
-        this.colour = colour;
+        this.colour = startingColour = colour;
         this.position = position;
     }
     
@@ -62,7 +63,7 @@ public class Objective {
     }
     
   //Returns whether the player plays first or not.
-    public boolean isStarting(){return false;}
+    public boolean isStarting(int colour){return colour == startingColour;}
     
     public int getOtherColour(){
     	if(colour == Board.BLACK) return Board.WHITE;

@@ -51,6 +51,9 @@ public class GameEngine{
   
   // Checks if a board has already been instantiatey by newGame() or not.
   public boolean isInGame(){return inGame;}
+  
+  //Sets the AI to be a minimax algorithm
+  public void setMiniMax(int colour){ai = new MiniMax(objective, colour);}
 
   //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
   //Checks whether the move is legal and if so, place the piece and return true
