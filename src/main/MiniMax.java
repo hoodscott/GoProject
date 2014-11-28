@@ -28,6 +28,10 @@ public class MiniMax extends AI{
 		for (Coordinate move : moves) {
 			Board clone = b.clone();
 			clone.set(move.x, move.y, colour);
+			if (evaluator.checkSucceeded(clone)){
+				//System.out.println(move.x + " " + move.y);
+				return move;
+			}	
 			score = min(clone);
 			if (score > 0) {
 				bestMove = move;
