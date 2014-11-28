@@ -44,6 +44,7 @@ public class Objective {
 	}
     
 	//Checks if the objective succeeded for the given player.
+    // !!!!!!!!!!!! add colour parameter and remove the second objective from minimax
     public boolean checkSucceeded(Board board){
     	if (action.equals(Action.KILL)){
     		if(board.get(position.x, position.y) != getOtherColour()) 
@@ -51,16 +52,22 @@ public class Objective {
     	}
     	
     	// check if the group has more than one eye
+    	// check if the defending stone is dead
     	if(action.equals(Action.DEFEND)){
-    		eyes = 0;
+    		/*eyes = 0;
     		boolean b[][] = new boolean[board.getWidth()][board.getHeight()];
     		Coordinate p = new Coordinate(position.x,position.y);
     		countEyes(board, b, p);
-    		if (eyes > 1) return true;
+    		if (eyes > 1) return true;*/
+    		if(board.get(position.x, position.y) != colour) 
+    			return true;
+    		
     	}
     	
     	return false;
     }
+    
+    
     
   //Returns whether the player plays first or not.
     public boolean isStarting(int colour){return colour == startingColour;}
@@ -71,7 +78,7 @@ public class Objective {
     }
     
     // functions to count the eyes of the defending group
-    
+    /*
     public void countEyes(Board board, boolean b[][], Coordinate p){
 		// if checked already or opponent return
     	if (b[p.x][p.y] == true || board.get(p.x, p.y) == getOtherColour()) return;
@@ -106,8 +113,8 @@ public class Objective {
 
 	public boolean checkIfEye(Board board, Coordinate p){
 		// check all eight positions (whichever exist) around
-		for (int i = p.x-1 ;i<= p.x+1; i++){
-			loop2: for(int j = p.y-1; j<=p.y+1; j++){
+		for (int i = p.x-1 ; i <= p.x+1; i++){
+			loop2: for(int j = p.y-1; j <= p.y+1; j++){
 				// do not check the potential eye itself 
 				if (i==p.x && j == p.y ) continue loop2;
 				if(i >= 0 && j >= 0 && i<=board.getWidth() - 1 && j<=board.getHeight() - 1){
@@ -116,5 +123,5 @@ public class Objective {
 			}
 		}		
 		return true;
-	}     
+	}     */
 }
