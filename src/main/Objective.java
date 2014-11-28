@@ -105,93 +105,16 @@ public class Objective {
 	}
 
 	public boolean checkIfEye(Board board, Coordinate p){
-		// check all eight positions around if empty and not edge
-		if (p.x > 0 && p.y > 0 && p.x<board.getWidth() - 1 && p.y<board.getHeight() - 1) {
-			if 	(	board.get(p.x-1, p.y-1) == colour && 
-					board.get(p.x-1, p.y) == colour &&	
-					board.get(p.x-1, p.y+1) == colour &&	
-					board.get(p.x, p.y-1) == colour &&
-					board.get(p.x, p.y+1) == colour &&
-					board.get(p.x+1,p.y-1) == colour &&
-					board.get(p.x+1,p.y) == colour &&
-					board.get(p.x+1,p.y+1) == colour) 
-				return true;
-		}
-		
-		// check top left corner
-		if(p.x == 0 && p.y == 0){
-			if 	(	board.get(p.x, p.y+1) == colour &&
-					board.get(p.x+1,p.y) == colour &&
-					board.get(p.x+1,p.y+1) == colour)
-				return true;
-				
-		}
-		
-		// check bottom left corner
-		if(p.x == board.getWidth() - 1 && p.y == 0){
-			if 	(	board.get(p.x-1, p.y) == colour &&
-					board.get(p.x-1, p.y+1) == colour &&
-					board.get(p.x, p.y+1) == colour) 
-				return true;		
-		}
-		
-		// check bottom right corner
-		if(p.x == board.getWidth() - 1 && p.y == board.getHeight() - 1){
-			if 	(	board.get(p.x-1, p.y) == colour &&
-					board.get(p.x-1, p.y-1) == colour &&
-					board.get(p.x, p.y-1) == colour ) 
-				return true;			
-		}
-		
-		// check top right corner
-		if(p.x == 0 && p.y == board.getHeight() - 1){
-			if 	(	board.get(p.x, p.y-1) == colour &&
-					board.get(p.x+1,p.y) == colour &&
-					board.get(p.x+1,p.y-1) == colour) 
-				return true;				
-		}
-
-		// check 0 column
-		if(p.x > 0 && p.x < board.getWidth() - 1 && p.y == 0){
-			if 	(	board.get(p.x-1, p.y) == colour &&	
-					board.get(p.x-1, p.y+1) == colour &&	
-					board.get(p.x, p.y+1) == colour &&
-					board.get(p.x+1,p.y) == colour &&
-					board.get(p.x+1,p.y+1) == colour) 
-				return true;	
-		}
-		
-		// check 0 row
-		if(p.x == 0 && p.y > 0 && p.y < board.getHeight() - 1){
-			if 	(	board.get(p.x, p.y-1) == colour &&
-					board.get(p.x, p.y+1) == colour &&
-					board.get(p.x+1,p.y-1) == colour &&
-					board.get(p.x+1,p.y) == colour &&
-					board.get(p.x+1,p.y+1) == colour) 
-				return true;	
-		}
-		
-
-		// check last column
-		if(p.x<board.getWidth() - 1 && p.x > 0 && p.y==board.getHeight() - 1){
-			if 	(	board.get(p.x-1, p.y) == colour &&
-					board.get(p.x-1, p.y-1) == colour &&
-					board.get(p.x, p.y-1) == colour && 
-					board.get(p.x+1,p.y-1) == colour &&
-					board.get(p.x+1,p.y) == colour)
-				return true;
-		}
-		
-		// check last row
-		if(p.x==board.getWidth() - 1 && p.y > 0 && p.y<board.getHeight() - 1){
-			if 	(	board.get(p.x-1,p.y-1) == colour &&
-					board.get(p.x-1,p.y) == colour &&
-					board.get(p.x-1,p.y+1) == colour &&
-					board.get(p.x, p.y-1) == colour &&
-					board.get(p.x, p.y+1) == colour)
-				return true;	
-		}
-		// not an eye
-		return false;
+		// check all eight positions (whichever exist) around
+		for (int i = p.x-1 ;i<= p.x+1; i++){
+			loop2: for(int j = p.y-1; j<=p.y+1; j++){
+				// do not check the potential eye itself 
+				if (i==p.x && j == p.y ) continue loop2;
+				if(i >= 0 && j >= 0 && i<=board.getWidth() - 1 && j<=board.getHeight() - 1){
+					if (board.get(i,j) != colour) return false;
+				}
+			}
+		}		
+		return true;
 	}     
 }
