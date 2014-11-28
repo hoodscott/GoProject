@@ -11,7 +11,7 @@ public class TextUI{
     //Instance variables
     private String log = "";
     private GameEngine gameEngine;
-    private String[] commands = {"help","exit","saveBoard (sb)","saveLog (sl)","view (v)","move (m)","checkLegal (cl)","new (n)",
+    private String[] commands = {"help","exit","saveBoard (sb)","saveLog (sl)","view (v)","move (m)","checkLegal (cl)","new (n)","startGame (sg)",
                                 "loadBoard (lb)","undo (u)"};
     private boolean exit;
     private boolean boardSaved;
@@ -139,38 +139,46 @@ public class TextUI{
         catch(BadInputException bad){System.out.println(bad.getMsg());}
         catch(NumberFormatException e){System.out.println("> Inappropriate dimensions in args. Dimensions need to be positive numbers.");}
     }
+    
+    //Starts game with an AI
+    public void startGame(String[] cmd){
+        
+    }
 
     //Makes a new move
     public void move(String[] cmd){
+        int colour;
         try{
-            if(gameEngine == null){
+            if(gameEngine == null)
                 throw new BadInputException("> There currently is no board to make a move on.");
-            }
-            if(cmd.length == 4 && !gameEngine.isInGame()){
-                int x, y;
-                int w = gameEngine.getCurrentBoard().getWidth();
-                int h = gameEngine.getCurrentBoard().getHeight();
-                if((x = Integer.parseInt(cmd[1])) >= 0 && x < w && (y = Integer.parseInt(cmd[2])) >= 0 && y < h){
-                        if(cmd[3].equals("b") || cmd[3].equals("black") || cmd[3].equals("w") || cmd[3].equals("white")){
-                                if(gameEngine.makeMove(x,y,Translator.translateToInt(cmd[3].charAt(0)))){
-                                        String message = "> Placed "+cmd[3]+" at ("+cmd[1]+","+cmd[2]+")";
-                                        addToLog(message);
-                                        System.out.println(message);
-                                        printGameBoard(true);
-                                        boardSaved = false;
-                                }
-                                else
-                                        throw new BadInputException("> This move is illegal.");
-                        }
-                        else
-                                throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");
-                }
-                else
-                        throw new BadInputException("> The x and y positions need to be non-negative numbers within the board.");		
+            if(cmd.length < 3)
+                throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y> <arg colour>");
+            
+            int x, y;
+            int w = gameEngine.getCurrentBoard().getWidth();
+            int h = gameEngine.getCurrentBoard().getHeight();
+
+            if((x = Integer.parseInt(cmd[1])) < 0 || x > w || (y = Integer.parseInt(cmd[2])) < 0 || y > h)
+                throw new BadInputException("> The x and y positions need to be non-negative numbers within the board.");
+            
+            if(gameEngine.isInGame() && cmd.length == 4)
+                throw new BadInputException("> Inappropriate number of args. When in-game usage is: move (m) <arg x> <arg y>");
+            else if(cmd[3].equals("b") || cmd[3].equals("black") || cmd[3].equals("w") || cmd[3].equals("white")){
 
             }
+            
+            if(gameEngine.makeMove(x,y,Translator.translateToInt(cmd[3].charAt(0)))){
+                String message = "> Placed "+cmd[3]+" at ("+cmd[1]+","+cmd[2]+")";
+                addToLog(message);
+                System.out.println(message);
+                printGameBoard(true);
+                boardSaved = false;
+            }
+                else
+                    throw new BadInputException("> This move is illegal.");
             else
-                        throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y> <arg colour>");
+                throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");		
+
         }
         catch(BadInputException bad){System.out.println(bad.getMsg());}
         catch(BoardFormatException bad){}		
