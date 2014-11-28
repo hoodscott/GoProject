@@ -118,12 +118,22 @@ public class Translator {
     }
     
     //Translates GameEngine into writable String
-    public static String translateToInstructions(GameEngine gameEngine) throws BoardFormatException{
+    public static String translateToFile(GameEngine gameEngine) throws BoardFormatException{
         
         Board board = gameEngine.getCurrentBoard();
         Objective objective = gameEngine.getObjective();
         int[] searchValues = gameEngine.getAISearchValues();
+        StringBuilder content = new StringBuilder();
         
+        content.append(translateToBoardInstruction(board));
+
+        if(objective != null && searchValues != null){
+            content.append(translateToObjectiveInstruction(objective));
+            content.append(translateToSearchSpaceInstruction(searchValues));
+        }        
+        return content.toString();
+    }
+    public static String translateToBoardInstruction(Board board) throws BoardFormatException{        
         StringBuilder content = new StringBuilder();
         int w = board.getWidth(); int h = board.getHeight();
         char[][] cBoard = new char[h][w];
@@ -137,17 +147,21 @@ public class Translator {
             content.append(cBoard[i]);
             content.append('\n');
         }
-
-        if(objective != null && searchValues != null){
-            content.append(translateToString(objective.getColour())+' '+objective.getAction()+' '+
-            objective.getPosition().x +' '+objective.getPosition().y+'\n');
-            
-            for(int i = 0; i < searchValues.length - 1; i++)
-                content.append(searchValues[i]+' ');
-            
-            content.append(searchValues[searchValues.length - 1]);
-        }        
         return content.toString();
+    
+    }
+    public static String translateToObjectiveInstruction(Objective objective) throws BoardFormatException{
+        return translateToString(objective.getColour())+' '+objective.getAction()+' '+
+        objective.getPosition().x +' '+objective.getPosition().y+'\n';}
+    
+    public static String translateToSearchSpaceInstruction(int[] searchValues)throws BoardFormatException{
+        String s = "";
+        for(int i = 0; i < searchValues.length - 1; i++)
+            s += searchValues[i]+' ';
+
+        s += searchValues[searchValues.length - 1];
+        
+        return s;
     }
     
     

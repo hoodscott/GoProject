@@ -21,7 +21,7 @@ public final class FileIO {
 
     //Board writing method with given path
     public static void writeBoard(GameEngine gameEngine, String path) throws BoardFormatException{
-        writeFile(Translator.translateToInstructions(gameEngine),path);
+        writeFile(Translator.translateToFile(gameEngine),path);
     }
 
     //Default Board reading method

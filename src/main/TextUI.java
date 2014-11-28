@@ -16,10 +16,11 @@ public class TextUI{
     private boolean exit;
     private boolean boardSaved;
     private boolean logSaved;
+    private String playerColour;
 
     //Constructor
     public TextUI(GameEngine g){
-            gameEngine = g;
+        gameEngine = g;
     }
 
     //Main method for running the UI.
@@ -141,56 +142,53 @@ public class TextUI{
 
     //Makes a new move
     public void move(String[] cmd){
-        /*try{
+        try{
             if(gameEngine == null){
-                    throw new BadInputException("> There currently is no board to make a move on.");
+                throw new BadInputException("> There currently is no board to make a move on.");
             }
-            if(cmd.length == 4){
-                        int x, y;
-                        if(Translator.isNumber(cmd[1]) && Translator.isNumber(cmd[2])){
-                                int w = b.getWidth();
-                                int h = b.getHeight();
-                                if((x = Integer.parseInt(cmd[1])) >= 0 && x < w && (y = Integer.parseInt(cmd[2])) >= 0 && y < h){
-                                        if(cmd[3].equals("b") || cmd[3].equals("black") || cmd[3].equals("w") || cmd[3].equals("white")){
-                                                if(gameEngine.makeMove(x,y,Translator.translateToInt(cmd[3].charAt(0)))){
-                                                        String message = "> Placed "+cmd[3]+" at ("+cmd[1]+","+cmd[2]+")";
-                                                        addToLog(message);
-                                                        System.out.println(message);
-                                                        printGameBoard(true);
-                                                        boardSaved = false;
-                                                }
-                                                else
-                                                        throw new BadInputException("> This move is illegal.");
-                                        }
-                                        else
-                                                throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");
+            if(cmd.length == 4 && !gameEngine.isInGame()){
+                int x, y;
+                int w = gameEngine.getCurrentBoard().getWidth();
+                int h = gameEngine.getCurrentBoard().getHeight();
+                if((x = Integer.parseInt(cmd[1])) >= 0 && x < w && (y = Integer.parseInt(cmd[2])) >= 0 && y < h){
+                        if(cmd[3].equals("b") || cmd[3].equals("black") || cmd[3].equals("w") || cmd[3].equals("white")){
+                                if(gameEngine.makeMove(x,y,Translator.translateToInt(cmd[3].charAt(0)))){
+                                        String message = "> Placed "+cmd[3]+" at ("+cmd[1]+","+cmd[2]+")";
+                                        addToLog(message);
+                                        System.out.println(message);
+                                        printGameBoard(true);
+                                        boardSaved = false;
                                 }
                                 else
-                                        throw new BadInputException("> The x and y positions need to be non-negative numbers within the board.");		
+                                        throw new BadInputException("> This move is illegal.");
                         }
                         else
-                                throw new BadInputException("> The x and y positions need to be numbers.");
+                                throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");
                 }
                 else
+                        throw new BadInputException("> The x and y positions need to be non-negative numbers within the board.");		
+
+            }
+            else
                         throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y> <arg colour>");
         }
         catch(BadInputException bad){System.out.println(bad.getMsg());}
-        catch(BoardFormatException bad){}*/		
+        catch(BoardFormatException bad){}		
     }
 
     //Undoes the last move made.
     public void undo(){
             try{
-                    if(!gameEngine.boardExists())
-                            throw new BadInputException("> There is no board with moves to undo.");
-                    if(gameEngine.undoLastMove())
-                            throw new BadInputException("> There are no moves to undo on this board.");
+                if(gameEngine == null)
+                        throw new BadInputException("> There is no board with moves to undo.");
+                if(gameEngine.undoLastMove())
+                        throw new BadInputException("> There are no moves to undo on this board.");
 
-                    String message = " > Undoing last move...";
-                    addToLog(message);
-                    System.out.println(message);
-                    printGameBoard(true);
-                    boardSaved = false;
+                String message = " > Undoing last move...";
+                addToLog(message);
+                System.out.println(message);
+                printGameBoard(true);
+                boardSaved = false;
             }
             catch(BadInputException bad){System.out.println(bad.getMsg());}
     }
@@ -198,7 +196,7 @@ public class TextUI{
     //Prints the current board
     public void view(){
             try{
-                    if(!gameEngine.boardExists())
+                    if(gameEngine == null)
                             throw new BadInputException("> There currently is no board to view.");
 
                     printGameBoard(false);
@@ -208,7 +206,7 @@ public class TextUI{
 
     public void checkLegal(String[] cmd){
             try{
-                    if(!gameEngine.boardExists())
+                    if(gameEngine == null)
                             throw new BadInputException("> There currently is no board to check.");
                     if(cmd.length != 2)
                             throw new BadInputException("> Inappropriate number of args. Usage: checkLegal (cl) <arg colour>");
@@ -252,8 +250,8 @@ public class TextUI{
             }
             
             String text = "> Loaded "+gameEngine.getCurrentBoard().getWidth()+"x"+gameEngine.getCurrentBoard().getHeight();
-            //if(gameEngine.getObjective() != null)
-                //text += "\n> Loaded Objective: "+gameEngine.getObjective().getOriginal();
+            if(gameEngine.getObjective() != null)
+                text += "\n> Loaded Objective: "+Translator.translateToObjectiveInstruction(gameEngine.getObjective());
             addToLog(text);
             System.out.println(text);
             printGameBoard(true);

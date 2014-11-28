@@ -9,7 +9,6 @@ public class GameEngine{
   private Board currentBoard;
   private AI ai;
   private Objective objective;
-  private boolean boardInstantiated;
   private boolean inGame;
   private int[] aiSearchValues;
 
@@ -26,7 +25,6 @@ public class GameEngine{
   public GameEngine(Board board, Objective objective, int[] searchValues){
       currentBoard = board;
       this.objective = objective;
-      boardInstantiated = true;
       moveChecker = new LegalMoveChecker();
       aiSearchValues = searchValues;
   }
@@ -52,7 +50,7 @@ public class GameEngine{
   public int[] getAISearchValues(){return aiSearchValues;}
   
   // Checks if a board has already been instantiatey by newGame() or not.
-  public boolean boardExists(){return boardInstantiated;}
+  public boolean isInGame(){return inGame;}
 
   //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
   //Checks whether the move is legal and if so, place the piece and return true
