@@ -41,8 +41,10 @@ public class GraphicalUI {
 	private JPanel boardPanel, chooserPanel, buttonPanel, gridPanel;
 	private JButton undoButton, resetButton;
 	private JLabel playerLabel, whiteLabel, blackLabel;
-	private JRadioButton whiteHumanRadio, whiteAIRadio, blackHumanRadio, blackAIRadio;
+	private JRadioButton whiteHumanRadio, whiteAIRadio, blackHumanRadio,
+			blackAIRadio;
 	private ButtonGroup whiteGroup, blackGroup;
+	private BoardJPanel board;
 
 	/**
 	 * Start the gui.
@@ -239,7 +241,7 @@ public class GraphicalUI {
 		// label for player chooser
 		playerLabel = new JLabel("  Choose Players:");
 		chooserPanel.add(playerLabel);
-		
+
 		// add whitespace along top of chooser panel
 		chooserPanel.add(new JLabel());
 		chooserPanel.add(new JLabel());
@@ -295,14 +297,14 @@ public class GraphicalUI {
 		// button to undo last move
 		undoButton = new JButton("Undo");
 		gridPanel.add(undoButton);
-		
+
 		// add action listener for this button
 		undoButton.addActionListener(new GridListener());
 
 		// button to reset problem
 		resetButton = new JButton("Reset");
 		gridPanel.add(resetButton);
-		
+
 		// add action listener for this button
 		resetButton.addActionListener(new GridListener());
 
@@ -322,7 +324,8 @@ public class GraphicalUI {
 		boardPanel.setBorder(BorderFactory
 				.createEtchedBorder(EtchedBorder.LOWERED));
 
-		// TODO put actual board here
+		board = new BoardJPanel();
+		boardPanel.add(board);
 
 		gbCons.ipadx = width / 2;
 		gbCons.gridx = 1;
@@ -335,14 +338,14 @@ public class GraphicalUI {
 		// END OF FRAME //
 
 	}
-	
+
 	/**
 	 * Listener classes for menus.
 	 */
 	private class FileMenuListener implements ActionListener {
 
-		// TODO implement actions 
-		
+		// TODO implement actions
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "New Problem") {
@@ -356,11 +359,11 @@ public class GraphicalUI {
 			}
 		}
 	}
-	
+
 	private class LogMenuListener implements ActionListener {
 
-		// TODO implement actions 
-		
+		// TODO implement actions
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "Save Log") {
@@ -370,11 +373,11 @@ public class GraphicalUI {
 			}
 		}
 	}
-	
+
 	private class DebugMenuListener implements ActionListener {
 
-		// TODO implement actions 
-		
+		// TODO implement actions
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "Do A Debug") {
@@ -382,12 +385,11 @@ public class GraphicalUI {
 			}
 		}
 	}
-	
+
 	private class HelpMenuListener implements ActionListener {
-		
-		
-		// TODO implement actions 
-		
+
+		// TODO implement actions
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "Shout for Help") {
@@ -395,7 +397,7 @@ public class GraphicalUI {
 			}
 		}
 	}
-	
+
 	/**
 	 * Listener classes for buttons.
 	 */
@@ -404,9 +406,9 @@ public class GraphicalUI {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JRadioButton button = (JRadioButton) e.getSource();
-			
+
 			// TODO implement actions
-			
+
 			if (button.getText().equals("Human")) {
 				// set human as white player
 			} else {
@@ -414,15 +416,15 @@ public class GraphicalUI {
 			}
 		}
 	}
-	
+
 	private class BlackRadioListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JRadioButton button = (JRadioButton) e.getSource();
-			
+
 			// TODO implement actions
-			
+
 			if (button.getText().equals("Human")) {
 				// set human as black player
 			} else {
@@ -430,15 +432,15 @@ public class GraphicalUI {
 			}
 		}
 	}
-	
+
 	private class GridListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton button = (JButton) e.getSource();
-			
-			// TODO implements actions 
-			
+
+			// TODO implements actions
+
 			if (button.getText().equals("Undo")) {
 				// undo last move
 			} else {

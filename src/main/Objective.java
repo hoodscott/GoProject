@@ -13,26 +13,25 @@ public class Objective {
     
     // Action black;
     // Action white;
-    private Action action;
-    private int colour;
-    private int otherColour;
-    private Coordinate position;
-    private int originalColour;
-    private String originalAction;
+    Action action;
+    int colour;
+    int otherColour;
+    Coordinate position;
+   
     
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
     public Objective(String action, int colour, Coordinate position){
-        originalAction = action;
-        originalColour = colour;
-    	this.action =  Action.KILL;//getAction(action);
+    	this.action = translateToAction(action);
         this.colour = colour;
         this.position = position;
     }
     
-    //Returns original command for objective construction.
-    public String getOriginal(){return originalAction+" "+originalColour+" "+position.x+" "+position.y;}
+    private Action translateToAction(String action) {
+		if (action == "kill") return Action.KILL;
+		return Action.DEFEND;	
+	}
     
-    //Checks if the objective succeeded for the given player.
+	//Checks if the objective succeeded for the given player.
     public boolean checkSucceeded(Board board){
     	if (action.equals(Action.KILL)){
     		if(board.get(position.x, position.y) != getOtherColour()) 
