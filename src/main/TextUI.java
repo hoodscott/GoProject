@@ -172,6 +172,10 @@ public class TextUI{
             String message = "> Starting game with black as "+(playerColour == Board.BLACK? "human" : "minimax")+
                     " and white as "+(playerColour == Board.WHITE? "human" : "minimax")+".";
             
+            if(gameEngine.getObjective().isStarting(playerColour))
+                message += "\n> Your turn ("+Translator.translateToString(playerColour)+")";
+            else
+            
             addToLog(message);
             System.out.println(message);
         }
@@ -217,6 +221,10 @@ public class TextUI{
                 System.out.println(message);
                 printGameBoard(true);
                 boardSaved = false;
+                
+                if(gameEngine.isInGame()){
+                    String message = "";
+                }
             }
             else
                 throw new BadInputException("> This move is illegal.");
@@ -225,6 +233,9 @@ public class TextUI{
         catch(BadInputException bad){System.out.println(bad.getMsg());}
         catch(BoardFormatException bad){System.err.println(bad.getMsg());}		
         catch(NumberFormatException bad){System.out.println("> The x and y positions need to be non-negative numbers within the board.");}
+    }
+    
+    public void aiMove(){
     }
 
     //Undoes the last move made.
