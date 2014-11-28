@@ -13,10 +13,10 @@ public class Objective {
     
     // Action black;
     // Action white;
-    Action action;
-    int colour;
-    int otherColour;
-    Coordinate position; 
+    private Action action;
+    private int colour;
+    
+    private Coordinate position; 
     
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
     public Objective(String action, int colour, Coordinate position){
@@ -65,19 +65,19 @@ public class Objective {
     public boolean isStarting(){return false;}
     
     public int getOtherColour(){
-    	if(colour == 1) return 2;
-    	return 1;
+    	if(colour == Board.BLACK) return Board.WHITE;
+    	return Board.BLACK;
     }
     
     // functions to count the eyes of the defending group
     
     public void countEyes(Board board, boolean b[][], Coordinate p){
-		// if checked already or black
-    	if (b[p.x][p.y] == true || board.get(p.x, p.y) == 1) return;
-		// mark as checked
+		// if checked already or opponent return
+    	if (b[p.x][p.y] == true || board.get(p.x, p.y) == getOtherColour()) return;
+		// else mark as checked
 		b[p.x][p.y]=true;
-		// if liberty found -> check if eye
-		if (board.get(p.x, p.y) == 0) {
+		// if position is empty -> check if eye
+		if (board.get(p.x, p.y) == Board.EMPTY) {
 			if (checkIfEye(board,p) == true) {
 				eyes++;
 			}
@@ -105,7 +105,7 @@ public class Objective {
 
 	public boolean checkIfEye(Board board, Coordinate p){
 		// check all eight positions around if empty and not edge
-		if (board.get(p.x, p.y) == 0 && p.x > 0 && p.y > 0 && p.x<board.getWidth() - 1 && p.y<board.getHeight() - 1) {
+		if (p.x > 0 && p.y > 0 && p.x<board.getWidth() - 1 && p.y<board.getHeight() - 1) {
 			if 	(	board.get(p.x-1, p.y-1) == colour && 
 					board.get(p.x-1, p.y) == colour &&	
 					board.get(p.x-1, p.y+1) == colour &&	
@@ -118,7 +118,7 @@ public class Objective {
 		}
 		
 		// check top left corner
-		if(board.get(p.x, p.y) == 0 && p.x == 0 && p.y == 0){
+		if(p.x == 0 && p.y == 0){
 			if 	(	board.get(p.x, p.y+1) == colour &&
 					board.get(p.x+1,p.y) == colour &&
 					board.get(p.x+1,p.y+1) == colour)
@@ -127,7 +127,7 @@ public class Objective {
 		}
 		
 		// check bottom left corner
-		if(board.get(p.x, p.y) == 0 && p.x == board.getWidth() - 1 && p.y == 0){
+		if(p.x == board.getWidth() - 1 && p.y == 0){
 			if 	(	board.get(p.x-1, p.y) == colour &&
 					board.get(p.x-1, p.y+1) == colour &&
 					board.get(p.x, p.y+1) == colour) 
@@ -135,7 +135,7 @@ public class Objective {
 		}
 		
 		// check bottom right corner
-		if(board.get(p.x, p.y) == 0 && p.x == board.getWidth() - 1 && p.y == board.getHeight() - 1){
+		if(p.x == board.getWidth() - 1 && p.y == board.getHeight() - 1){
 			if 	(	board.get(p.x-1, p.y) == colour &&
 					board.get(p.x-1, p.y-1) == colour &&
 					board.get(p.x, p.y-1) == colour ) 
@@ -143,7 +143,7 @@ public class Objective {
 		}
 		
 		// check top right corner
-		if(board.get(p.x, p.y) == 0 && p.x == 0 && p.y == board.getHeight() - 1){
+		if(p.x == 0 && p.y == board.getHeight() - 1){
 			if 	(	board.get(p.x, p.y-1) == colour &&
 					board.get(p.x+1,p.y) == colour &&
 					board.get(p.x+1,p.y-1) == colour) 
@@ -151,7 +151,7 @@ public class Objective {
 		}
 
 		// check 0 column
-		if(board.get(p.x, p.y) == 0 && p.x > 0 && p.x < board.getWidth() - 1 && p.y == 0){
+		if(p.x > 0 && p.x < board.getWidth() - 1 && p.y == 0){
 			if 	(	board.get(p.x-1, p.y) == colour &&	
 					board.get(p.x-1, p.y+1) == colour &&	
 					board.get(p.x, p.y+1) == colour &&
@@ -161,7 +161,7 @@ public class Objective {
 		}
 		
 		// check 0 row
-		if(board.get(p.x, p.y) == 0 && p.x == 0 && p.y > 0 && p.y < board.getHeight() - 1){
+		if(p.x == 0 && p.y > 0 && p.y < board.getHeight() - 1){
 			if 	(	board.get(p.x, p.y-1) == colour &&
 					board.get(p.x, p.y+1) == colour &&
 					board.get(p.x+1,p.y-1) == colour &&
@@ -172,7 +172,7 @@ public class Objective {
 		
 
 		// check last column
-		if(board.get(p.x, p.y) == 0 && p.x<board.getWidth() - 1 && p.x > 0 && p.y==board.getHeight() - 1){
+		if(p.x<board.getWidth() - 1 && p.x > 0 && p.y==board.getHeight() - 1){
 			if 	(	board.get(p.x-1, p.y) == colour &&
 					board.get(p.x-1, p.y-1) == colour &&
 					board.get(p.x, p.y-1) == colour && 
@@ -182,7 +182,7 @@ public class Objective {
 		}
 		
 		// check last row
-		if(board.get(p.x, p.y) == 0 && p.x==board.getWidth() - 1 && p.y > 0 && p.y<board.getHeight() - 1){
+		if(p.x==board.getWidth() - 1 && p.y > 0 && p.y<board.getHeight() - 1){
 			if 	(	board.get(p.x-1,p.y-1) == colour &&
 					board.get(p.x-1,p.y) == colour &&
 					board.get(p.x-1,p.y+1) == colour &&
