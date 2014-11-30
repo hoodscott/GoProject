@@ -31,7 +31,7 @@ public class MiniMax extends AI{
 			clone.set(move.x, move.y, colour);	
 			Coordinate pos = evaluator.getPosition();
 			// evaluate current move
-			if(evaluator.getAction() == "kill" && clone.get(pos.x, pos.y) == Board.EMPTY){	
+			if(evaluator.getAction().equals("kill") && clone.get(pos.x, pos.y) == Board.EMPTY){	
 				// if action is kill and killing is done 	
 				return move;
 			}
@@ -62,7 +62,7 @@ public class MiniMax extends AI{
 			clone.set(move.x, move.y, getOtherColour());
 			Coordinate pos = evaluator.getPosition();
 			//
-			if(evaluator.getAction() == "defend" && clone.get(pos.x, pos.y) == Board.EMPTY){	
+			if(evaluator.getAction().equals("defend") && clone.get(pos.x, pos.y) == Board.EMPTY){	
 				// if action of opponent is kill and killing is done 	
 				return -1; // -> best move for opponent
 			}
@@ -88,7 +88,7 @@ public class MiniMax extends AI{
 			Board clone = b.clone();
 			clone.set(move.x, move.y, colour);
 			Coordinate pos = evaluator.getPosition();
-			if(evaluator.getAction() == "kill" && clone.get(pos.x, pos.y) == Board.EMPTY){	
+			if(evaluator.getAction().equals("kill") && clone.get(pos.x, pos.y) == Board.EMPTY){	
 				// if action is kill and killing is done 	
 				return 1; // best move for AI
 			}
