@@ -38,13 +38,11 @@ public class GraphicalUI {
 	private JMenu fileMenu, logSubmenu;
 	private JMenuItem menuItem;
 	private Container pane;
-	private JPanel boardPanel, chooserPanel, buttonPanel, gridPanel;
+	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
 	private JButton undoButton, resetButton;
-	private JLabel playerLabel, whiteLabel, blackLabel;
-	private JRadioButton whiteHumanRadio, whiteAIRadio, blackHumanRadio,
-			blackAIRadio;
-	private ButtonGroup whiteGroup, blackGroup;
+	private JLabel objectiveLabel, objective, playerLabel;
 	private BoardJPanel boardJP;
+	static JLabel player;
 
 	/**
 	 * Start the gui.
@@ -211,88 +209,81 @@ public class GraphicalUI {
 		frame.setJMenuBar(menuBar);
 
 		// END OF MENUBAR //
-		// START OF GRIDBAG LAYOUT //
+		// START OF PANE LAYOUT //
 
 		// border layout for frame
 		pane = frame.getContentPane();
 		pane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		pane.setLayout(new GridBagLayout());
-		GridBagConstraints gbCons = new GridBagConstraints();
-		gbCons.weightx = 0.5;
-		gbCons.weighty = 0.5;
-		gbCons.fill = GridBagConstraints.BOTH;
+		pane.setLayout(new BorderLayout());
 
+		// START OF BOARD PANEL //
+
+		// left panel for the board
+		boardPanel = new JPanel();
+		boardPanel.setBackground(Color.gray);
+		boardPanel.setBorder(BorderFactory
+				.createEtchedBorder(EtchedBorder.LOWERED));
+		boardPanel.setPreferredSize(new Dimension(height, width / 8 * 5));
+
+		boardJP = new BoardJPanel(gameEngine);
+		boardPanel.add(boardJP);
+
+		pane.add(boardPanel, BorderLayout.WEST);
+
+		// END OF BOARD PANEL
 		// START OF BUTTON PANEL //
 
 		// right panel for buttons
-		buttonPanel = new JPanel(new BorderLayout());
+		buttonPanel = new JPanel(new GridLayout(0, 1));
 		buttonPanel.setBackground(Color.lightGray);
 		buttonPanel.setBorder(BorderFactory
 				.createEtchedBorder(EtchedBorder.LOWERED));
 
-		// START OF CHOOSER PANEL //
+		// START OF LABEL PANEL //
 
 		// top right panel for choosing player and move
-		chooserPanel = new JPanel(new GridLayout(0, 3));
-		chooserPanel.setBackground(Color.lightGray);
-		chooserPanel.setBorder(BorderFactory
+		labelPanel = new JPanel(new GridLayout(0, 2));
+		labelPanel.setBackground(Color.lightGray);
+		labelPanel.setBorder(BorderFactory
 				.createEtchedBorder(EtchedBorder.LOWERED));
 
-		// label for player chooser
-		playerLabel = new JLabel("  Choose Players:");
-		chooserPanel.add(playerLabel);
+		// labels for player chooser
+		objectiveLabel = new JLabel("      Objective:");
+		// TODO add objective to this label
+		objective = new JLabel();
 
-		// add whitespace along top of chooser panel
-		chooserPanel.add(new JLabel());
-		chooserPanel.add(new JLabel());
+		// add objective labels to panel
+		labelPanel.add(objectiveLabel);
+		labelPanel.add(objective);
 
-		// label and radio buttons to select white player
-		whiteLabel = new JLabel("        White Player: ");
-		whiteHumanRadio = new JRadioButton("Human");
-		whiteHumanRadio.setSelected(true);
-		whiteAIRadio = new JRadioButton("AI");
+		// add padding to panel
+		labelPanel.add(new JPanel());
+		labelPanel.add(new JPanel());
 
-		// add white radio buttons to group
-		whiteGroup = new ButtonGroup();
-		whiteGroup.add(whiteHumanRadio);
-		whiteGroup.add(whiteAIRadio);
+		// labels to show whose turn it is
+		playerLabel = new JLabel("      Player: ");
+		player = new JLabel(BoardJPanel.getPlayer());
 
-		// add action listener to radio items in white group
-		whiteHumanRadio.addActionListener(new WhiteRadioListener());
-		whiteAIRadio.addActionListener(new WhiteRadioListener());
+		// add labels to panel
+		labelPanel.add(playerLabel);
+		labelPanel.add(player);
 
-		// add label and radio items to chooser panel
-		chooserPanel.add(whiteLabel);
-		chooserPanel.add(whiteHumanRadio);
-		chooserPanel.add(whiteAIRadio);
-
-		// label and radio buttons to select black player
-		blackLabel = new JLabel("        Black Player:");
-		blackHumanRadio = new JRadioButton("Human");
-		blackHumanRadio.setSelected(true);
-		blackAIRadio = new JRadioButton("AI");
-
-		// add black radio buttons to group
-		blackGroup = new ButtonGroup();
-		blackGroup.add(blackHumanRadio);
-		blackGroup.add(blackAIRadio);
-
-		// add action listener to radio items in black group
-		blackHumanRadio.addActionListener(new BlackRadioListener());
-		blackAIRadio.addActionListener(new BlackRadioListener());
-
-		// add label and radio items to chooser panel
-		chooserPanel.add(blackLabel);
-		chooserPanel.add(blackHumanRadio);
-		chooserPanel.add(blackAIRadio);
+		// add padding to panel
+		labelPanel.add(new JPanel());
+		labelPanel.add(new JPanel());
 
 		// add chooser panel to top of button panel
-		buttonPanel.add(chooserPanel, BorderLayout.NORTH);
+		buttonPanel.add(labelPanel, BorderLayout.NORTH);
 
-		// END OF CHOOSER PANEL //
+		// END OF LABEL PANEL //
+		// START OF LABEL PANEL //
 
 		// grid panel for some buttons
 		gridPanel = new JPanel(new GridLayout(0, 2));
+
+		// add padding to panel
+		gridPanel.add(new JPanel());
+		gridPanel.add(new JPanel());
 
 		// button to undo last move
 		undoButton = new JButton("Undo");
@@ -311,29 +302,10 @@ public class GraphicalUI {
 		// add grid panel to button panel
 		buttonPanel.add(gridPanel, BorderLayout.SOUTH);
 
-		gbCons.gridx = 0;
-		gbCons.gridy = 0;
-		pane.add(buttonPanel, gbCons);
+		// add right hand panel to pane
+		pane.add(buttonPanel);
 
 		// END OF BUTTON PANEL //
-		// START OF BOARD PANEL //
-
-		// left panel for the board
-		boardPanel = new JPanel();
-		boardPanel.setBackground(Color.gray);
-		boardPanel.setBorder(BorderFactory
-				.createEtchedBorder(EtchedBorder.LOWERED));
-
-		boardJP = new BoardJPanel(gameEngine);
-		boardPanel.add(boardJP);
-
-		gbCons.ipadx = width / 2;
-		gbCons.gridx = 1;
-		gbCons.gridy = 0;
-		gbCons.gridheight = 2;
-		pane.add(boardPanel, gbCons);
-
-		// END OF BOARD PANEL
 		// END OF GRIDBAD LAYOUT //
 		// END OF FRAME //
 
@@ -407,41 +379,6 @@ public class GraphicalUI {
 		}
 	}
 
-	/**
-	 * Listener classes for buttons.
-	 */
-	private class WhiteRadioListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			JRadioButton button = (JRadioButton) e.getSource();
-
-			// TODO implement actions
-
-			if (button.getText().equals("Human")) {
-				// set human as white player
-			} else {
-				// set AI as white player
-			}
-		}
-	}
-
-	private class BlackRadioListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			JRadioButton button = (JRadioButton) e.getSource();
-
-			// TODO implement actions
-
-			if (button.getText().equals("Human")) {
-				// set human as black player
-			} else {
-				// set AI as black player
-			}
-		}
-	}
-
 	// action listener for buttons in grid on bottom left
 	private class GridListener implements ActionListener {
 		@Override
@@ -450,6 +387,7 @@ public class GraphicalUI {
 			if (button.getText().equals("Undo")) {
 				gameEngine.undoLastMove();
 				boardJP.changePlayer();
+				player.setText(BoardJPanel.getPlayer());
 				boardJP.loadBoard(gameEngine);
 			} else {
 				// TODO reset board here

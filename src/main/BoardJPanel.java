@@ -57,6 +57,7 @@ public class BoardJPanel extends JPanel {
 			repaint();
 			// change player
 			changePlayer();
+			GraphicalUI.player.setText(getPlayer());
 		}
 		else {
 			//TODO report invalid move here
@@ -121,6 +122,14 @@ public class BoardJPanel extends JPanel {
 			colour++;
 		} else {
 			colour--;
+		}
+	}
+
+	public static String getPlayer() {
+		if (colour == 1) {
+			return "Black to move";
+		} else {
+			return "White to move";
 		}
 	}
 
