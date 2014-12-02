@@ -133,6 +133,14 @@ public class GraphicalUI {
 				"Saves current board");
 		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
+		
+		menuItem = new JMenuItem("Save Problem As...", KeyEvent.VK_S);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Saves current board to specified path");
+		menuItem.addActionListener(new FileMenuListener());
+		fileMenu.add(menuItem);
 
 		fileMenu.addSeparator();
 		fileMenu.addSeparator();
@@ -324,6 +332,7 @@ public class GraphicalUI {
 				// default 9x9
 				gameEngine = new GameEngine(new Board());
 				boardJP.loadBoard(gameEngine);
+			
 			// load specified board
 			} else if (e.getActionCommand() == "Load Problem") {
 				JFileChooser loadBoard = new JFileChooser();
@@ -337,16 +346,28 @@ public class GraphicalUI {
 				} else {
 					System.out.println("User cancelled load board selection."); // TODO: Write to label?
 				}
-			// save current board
+			
+			// save current board to default location
 			} else if (e.getActionCommand() == "Save Problem") {
-				// TODO add dialogue box the choose where to save
 				try {
 					FileIO.writeBoard(gameEngine);
 				} catch (BoardFormatException bfe) {
 					System.err.println(bfe.getMsg());
 				}
+					
+			// save current board to specified location
 			} else {
-				System.exit(0);
+				JFileChooser saveBoard = new JFileChooser();
+				int command = saveBoard.showSaveDialog(pane);
+				if (command == JFileChooser.APPROVE_OPTION) {
+					try {
+						FileIO.writeBoard(gameEngine); // TODO: Write to specified path instead of default
+					} catch (BoardFormatException bfe) {
+						System.err.println(bfe.getMsg());
+					}
+				} else {
+					System.out.println("User cancelled save board selection."); // TODO: Write to label?
+				}
 			}
 		}
 	}
