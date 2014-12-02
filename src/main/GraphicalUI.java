@@ -385,10 +385,14 @@ public class GraphicalUI {
 		public void actionPerformed(ActionEvent e) {
 			JButton button = (JButton) e.getSource();
 			if (button.getText().equals("Undo")) {
-				gameEngine.undoLastMove();
-				boardJP.changePlayer();
-				player.setText(BoardJPanel.getPlayer());
-				boardJP.loadBoard(gameEngine);
+				if (gameEngine.undoLastMove()) {
+					boardJP.changePlayer();
+					player.setText(BoardJPanel.getPlayer());
+					boardJP.loadBoard(gameEngine);
+				}
+				else {
+					//TODO report error here
+				}
 			} else {
 				// TODO reset board here
 			}
