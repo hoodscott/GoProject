@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -317,19 +318,26 @@ public class GraphicalUI {
 	private class FileMenuListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			// load new board
 			if (e.getActionCommand() == "New Problem") {
 				// TODO add dialogue box here to choose size of board
 				// default 9x9
 				gameEngine = new GameEngine(new Board());
 				boardJP.loadBoard(gameEngine);
+			// load specified board
 			} else if (e.getActionCommand() == "Load Problem") {
-				// TODO add dialogue box to choose where to load from (file
-				// chooser?)
-				try {
-					gameEngine = FileIO.readBoard();
-				} catch (BoardFormatException bfe) {
-					System.err.println(bfe.getMsg());
+				JFileChooser loadBoard = new JFileChooser();
+				int command = loadBoard.showOpenDialog(pane);
+				if (command == JFileChooser.APPROVE_OPTION) {
+					try {
+						gameEngine = FileIO.readBoard();
+					} catch (BoardFormatException bfe) {
+						System.err.println(bfe.getMsg()); // TODO: Write to label?
+					}
+				} else {
+					System.out.println("User cancelled load board selection."); // TODO: Write to label?
 				}
+			// save current board
 			} else if (e.getActionCommand() == "Save Problem") {
 				// TODO add dialogue box the choose where to save
 				try {
