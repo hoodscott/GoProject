@@ -30,7 +30,7 @@ import javax.swing.border.EtchedBorder;
 public class GraphicalUI {
 
 	// private instance variables
-	private GameEngine gameE;
+	private GameEngine gameEngine;
 
 	// private instance variables for swing
 	private JFrame frame;
@@ -44,7 +44,7 @@ public class GraphicalUI {
 	private JRadioButton whiteHumanRadio, whiteAIRadio, blackHumanRadio,
 			blackAIRadio;
 	private ButtonGroup whiteGroup, blackGroup;
-	private BoardJPanel board;
+	private BoardJPanel boardJP;
 
 	/**
 	 * Start the gui.
@@ -68,7 +68,7 @@ public class GraphicalUI {
 	 * @param gE
 	 */
 	public GraphicalUI(GameEngine gE) {
-		gameE = gE;
+		gameEngine = gE;
 		initialise();
 	}
 
@@ -324,8 +324,8 @@ public class GraphicalUI {
 		boardPanel.setBorder(BorderFactory
 				.createEtchedBorder(EtchedBorder.LOWERED));
 
-		board = new BoardJPanel();
-		boardPanel.add(board);
+		boardJP = new BoardJPanel(gameEngine);
+		boardPanel.add(boardJP);
 
 		gbCons.ipadx = width / 2;
 		gbCons.gridx = 1;
@@ -343,27 +343,36 @@ public class GraphicalUI {
 	 * Listener classes for menus.
 	 */
 	private class FileMenuListener implements ActionListener {
-
-		// TODO implement actions
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "New Problem") {
-				// load new board
+				// TODO add dialogue box here to choose size of board
+				// default 9x9
+				gameEngine = new GameEngine(new Board());
+				boardJP.loadBoard(gameEngine);
 			} else if (e.getActionCommand() == "Load Problem") {
-				// load given board
+				// TODO add dialogue box to choose where to load from (file
+				// chooser?)
+				try {
+					gameEngine = FileIO.readBoard();
+				} catch (BoardFormatException bfe) {
+					System.err.println(bfe.getMsg());
+				}
 			} else if (e.getActionCommand() == "Save Problem") {
-				// save board
+				// TODO add dialogue box the choose where to save
+				try {
+					FileIO.writeBoard(gameEngine);
+				} catch (BoardFormatException bfe) {
+					System.err.println(bfe.getMsg());
+				}
 			} else {
-				// exit game
+				System.exit(0);
 			}
 		}
 	}
 
 	private class LogMenuListener implements ActionListener {
-
-		// TODO implement actions
-
+		// TODO implement log after every move and then implement these actions
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "Save Log") {
@@ -433,18 +442,17 @@ public class GraphicalUI {
 		}
 	}
 
+	// action listener for buttons in grid on bottom left
 	private class GridListener implements ActionListener {
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton button = (JButton) e.getSource();
-
-			// TODO implements actions
-
 			if (button.getText().equals("Undo")) {
-				// undo last move
+				gameEngine.undoLastMove();
+				boardJP.changePlayer();
+				boardJP.loadBoard(gameEngine);
 			} else {
-				// reset all moves
+				// TODO reset board here
 			}
 		}
 	}
