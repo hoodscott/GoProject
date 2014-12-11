@@ -151,17 +151,23 @@ public class GraphicalUI {
 				"Saves or loads the log of the program.");
 		logSubmenu.setMnemonic(KeyEvent.VK_4);
 		logSubmenu.setMnemonic(KeyEvent.VK_G);
-
-		// menu item for saving the log
-		menuItem = new JMenuItem("Save Log");
+		
+		// menu item for loading the log
+		menuItem = new JMenuItem("Load Log");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5,
 				ActionEvent.ALT_MASK));
 		menuItem.addActionListener(new LogMenuListener());
 		logSubmenu.add(menuItem);
 
-		// menu item for loading the log
-		menuItem = new JMenuItem("Load Log");
+		// menu items for saving the log
+		menuItem = new JMenuItem("Save Log");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6,
+				ActionEvent.ALT_MASK));
+		menuItem.addActionListener(new LogMenuListener());
+		logSubmenu.add(menuItem);
+		
+		menuItem = new JMenuItem("Save Log As...");
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_7,
 				ActionEvent.ALT_MASK));
 		menuItem.addActionListener(new LogMenuListener());
 		logSubmenu.add(menuItem);
@@ -174,7 +180,7 @@ public class GraphicalUI {
 
 		// menu item for exiting the program
 		menuItem = new JMenuItem("Exit", KeyEvent.VK_E);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_7,
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_8,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Exits the program");
@@ -376,10 +382,25 @@ public class GraphicalUI {
 		// TODO implement log after every move and then implement these actions
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand() == "Save Log") {
-				// save log
+			// load specified log
+			if (e.getActionCommand() == "Load Log") {
+				JFileChooser loadLog = new JFileChooser();
+				int command = loadLog.showOpenDialog(pane);
+				if (command == JFileChooser.APPROVE_OPTION) {
+					try {
+						// TODO: Log loading function?
+					} catch (Exception exc) {
+						// Add appropriate exception
+					}
+				} else {
+					System.out.println("User cancelled load log selection."); // TODO: Write to label?
+				}
+			
+			// save log in default place
+			} else if (e.getActionCommand() == "Save Log"){
+				// TODO: try/catch command: writeLog(String log);
 			} else {
-				// load log
+				// TODO: try/catch command: writeLog(String log, String path);
 			}
 		}
 	}
