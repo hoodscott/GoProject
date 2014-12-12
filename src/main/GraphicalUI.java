@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -30,7 +31,7 @@ import javax.swing.border.EtchedBorder;
 public class GraphicalUI {
 
 	// private instance variables
-	private GameEngine gameE;
+	private GameEngine gameEngine;
 
 	// private instance variables for swing
 	private JFrame frame;
@@ -38,13 +39,13 @@ public class GraphicalUI {
 	private JMenu fileMenu, logSubmenu;
 	private JMenuItem menuItem;
 	private Container pane;
-	private JPanel boardPanel, chooserPanel, buttonPanel, gridPanel;
-	private JButton undoButton, resetButton;
-	private JLabel playerLabel, whiteLabel, blackLabel;
-	private JRadioButton whiteHumanRadio, whiteAIRadio, blackHumanRadio,
-			blackAIRadio;
-	private ButtonGroup whiteGroup, blackGroup;
-	private BoardJPanel board;
+	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
+	private JButton undoButton, resetButton, passButton;
+	private JLabel objectiveLabel, objective, playerLabel, invMoveLabel;
+	private BoardJPanel boardJP;
+	static JLabel player;
+	static JLabel invMove;
+	
 
 	/**
 	 * Start the gui.
@@ -68,7 +69,7 @@ public class GraphicalUI {
 	 * @param gE
 	 */
 	public GraphicalUI(GameEngine gE) {
-		gameE = gE;
+		gameEngine = gE;
 		initialise();
 	}
 
@@ -134,6 +135,14 @@ public class GraphicalUI {
 				"Saves current board");
 		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
+		
+		menuItem = new JMenuItem("Save Problem As...", KeyEvent.VK_S);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Saves current board to specified path");
+		menuItem.addActionListener(new FileMenuListener());
+		fileMenu.add(menuItem);
 
 		fileMenu.addSeparator();
 		fileMenu.addSeparator();
@@ -144,17 +153,23 @@ public class GraphicalUI {
 				"Saves or loads the log of the program.");
 		logSubmenu.setMnemonic(KeyEvent.VK_4);
 		logSubmenu.setMnemonic(KeyEvent.VK_G);
-
-		// menu item for saving the log
-		menuItem = new JMenuItem("Save Log");
+		
+		// menu item for loading the log
+		menuItem = new JMenuItem("Load Log");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5,
 				ActionEvent.ALT_MASK));
 		menuItem.addActionListener(new LogMenuListener());
 		logSubmenu.add(menuItem);
 
-		// menu item for loading the log
-		menuItem = new JMenuItem("Load Log");
+		// menu items for saving the log
+		menuItem = new JMenuItem("Save Log");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6,
+				ActionEvent.ALT_MASK));
+		menuItem.addActionListener(new LogMenuListener());
+		logSubmenu.add(menuItem);
+		
+		menuItem = new JMenuItem("Save Log As...");
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_7,
 				ActionEvent.ALT_MASK));
 		menuItem.addActionListener(new LogMenuListener());
 		logSubmenu.add(menuItem);
@@ -167,7 +182,7 @@ public class GraphicalUI {
 
 		// menu item for exiting the program
 		menuItem = new JMenuItem("Exit", KeyEvent.VK_E);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_7,
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_8,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Exits the program");
@@ -211,88 +226,89 @@ public class GraphicalUI {
 		frame.setJMenuBar(menuBar);
 
 		// END OF MENUBAR //
-		// START OF GRIDBAG LAYOUT //
+		// START OF PANE LAYOUT //
 
 		// border layout for frame
 		pane = frame.getContentPane();
 		pane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		pane.setLayout(new GridBagLayout());
-		GridBagConstraints gbCons = new GridBagConstraints();
-		gbCons.weightx = 0.5;
-		gbCons.weighty = 0.5;
-		gbCons.fill = GridBagConstraints.BOTH;
+		pane.setLayout(new BorderLayout());
 
+		// START OF BOARD PANEL //
+
+		// left panel for the board
+		boardPanel = new JPanel();
+		boardPanel.setBackground(Color.gray);
+		boardPanel.setBorder(BorderFactory
+				.createEtchedBorder(EtchedBorder.LOWERED));
+		boardPanel.setPreferredSize(new Dimension(height, width / 8 * 5));
+
+		boardJP = new BoardJPanel(gameEngine);
+		boardPanel.add(boardJP);
+
+		pane.add(boardPanel, BorderLayout.WEST);
+
+		// END OF BOARD PANEL
 		// START OF BUTTON PANEL //
 
 		// right panel for buttons
-		buttonPanel = new JPanel(new BorderLayout());
+		buttonPanel = new JPanel(new GridLayout(0, 1));
 		buttonPanel.setBackground(Color.lightGray);
 		buttonPanel.setBorder(BorderFactory
 				.createEtchedBorder(EtchedBorder.LOWERED));
 
-		// START OF CHOOSER PANEL //
+		// START OF LABEL PANEL //
 
 		// top right panel for choosing player and move
-		chooserPanel = new JPanel(new GridLayout(0, 3));
-		chooserPanel.setBackground(Color.lightGray);
-		chooserPanel.setBorder(BorderFactory
+		labelPanel = new JPanel(new GridLayout(0, 2));
+		labelPanel.setBackground(Color.lightGray);
+		labelPanel.setBorder(BorderFactory
 				.createEtchedBorder(EtchedBorder.LOWERED));
 
-		// label for player chooser
-		playerLabel = new JLabel("  Choose Players:");
-		chooserPanel.add(playerLabel);
+		// labels for player chooser
+		objectiveLabel = new JLabel("      Objective:");
+		// TODO add objective to this label
+		objective = new JLabel();
 
-		// add whitespace along top of chooser panel
-		chooserPanel.add(new JLabel());
-		chooserPanel.add(new JLabel());
+		// add objective labels to panel
+		labelPanel.add(objectiveLabel);
+		labelPanel.add(objective);
 
-		// label and radio buttons to select white player
-		whiteLabel = new JLabel("        White Player: ");
-		whiteHumanRadio = new JRadioButton("Human");
-		whiteHumanRadio.setSelected(true);
-		whiteAIRadio = new JRadioButton("AI");
+		// add padding to panel
+		labelPanel.add(new JPanel());
+		labelPanel.add(new JPanel());
 
-		// add white radio buttons to group
-		whiteGroup = new ButtonGroup();
-		whiteGroup.add(whiteHumanRadio);
-		whiteGroup.add(whiteAIRadio);
+		// labels to show whose turn it is
+		playerLabel = new JLabel("      Player: ");
+		player = new JLabel(BoardJPanel.getPlayer());
 
-		// add action listener to radio items in white group
-		whiteHumanRadio.addActionListener(new WhiteRadioListener());
-		whiteAIRadio.addActionListener(new WhiteRadioListener());
+		// add labels to panel
+		labelPanel.add(playerLabel);
+		labelPanel.add(player);
 
-		// add label and radio items to chooser panel
-		chooserPanel.add(whiteLabel);
-		chooserPanel.add(whiteHumanRadio);
-		chooserPanel.add(whiteAIRadio);
+		// labels to show invalid moves
+		invMoveLabel = new JLabel("     Invalid Move: ");
+		invMove = new JLabel(BoardJPanel.getInvMove(1));
 
-		// label and radio buttons to select black player
-		blackLabel = new JLabel("        Black Player:");
-		blackHumanRadio = new JRadioButton("Human");
-		blackHumanRadio.setSelected(true);
-		blackAIRadio = new JRadioButton("AI");
+		// add labels to panel
+		labelPanel.add(invMoveLabel);
+		labelPanel.add(invMove);
 
-		// add black radio buttons to group
-		blackGroup = new ButtonGroup();
-		blackGroup.add(blackHumanRadio);
-		blackGroup.add(blackAIRadio);
-
-		// add action listener to radio items in black group
-		blackHumanRadio.addActionListener(new BlackRadioListener());
-		blackAIRadio.addActionListener(new BlackRadioListener());
-
-		// add label and radio items to chooser panel
-		chooserPanel.add(blackLabel);
-		chooserPanel.add(blackHumanRadio);
-		chooserPanel.add(blackAIRadio);
+		// add padding to panel
+		labelPanel.add(new JPanel());
+		labelPanel.add(new JPanel());
 
 		// add chooser panel to top of button panel
-		buttonPanel.add(chooserPanel, BorderLayout.NORTH);
+		buttonPanel.add(labelPanel, BorderLayout.NORTH);
 
-		// END OF CHOOSER PANEL //
+		// END OF LABEL PANEL //
+		// START OF LABEL PANEL //
 
 		// grid panel for some buttons
 		gridPanel = new JPanel(new GridLayout(0, 2));
+
+		// add padding to panel
+		gridPanel.add(new JPanel());
+		gridPanel.add(new JPanel());
 
 		// button to undo last move
 		undoButton = new JButton("Undo");
@@ -307,33 +323,20 @@ public class GraphicalUI {
 
 		// add action listener for this button
 		resetButton.addActionListener(new GridListener());
+		
+		//button to allow players to pass
+		passButton = new JButton("Pass");
+		gridPanel.add(passButton);
 
+		// add action listener for this button
+		passButton.addActionListener(new GridListener());
 		// add grid panel to button panel
 		buttonPanel.add(gridPanel, BorderLayout.SOUTH);
 
-		gbCons.gridx = 0;
-		gbCons.gridy = 0;
-		pane.add(buttonPanel, gbCons);
+		// add right hand panel to pane
+		pane.add(buttonPanel);
 
 		// END OF BUTTON PANEL //
-		// START OF BOARD PANEL //
-
-		// left panel for the board
-		boardPanel = new JPanel();
-		boardPanel.setBackground(Color.gray);
-		boardPanel.setBorder(BorderFactory
-				.createEtchedBorder(EtchedBorder.LOWERED));
-
-		board = new BoardJPanel();
-		boardPanel.add(board);
-
-		gbCons.ipadx = width / 2;
-		gbCons.gridx = 1;
-		gbCons.gridy = 0;
-		gbCons.gridheight = 2;
-		pane.add(boardPanel, gbCons);
-
-		// END OF BOARD PANEL
 		// END OF GRIDBAD LAYOUT //
 		// END OF FRAME //
 
@@ -343,33 +346,77 @@ public class GraphicalUI {
 	 * Listener classes for menus.
 	 */
 	private class FileMenuListener implements ActionListener {
-
-		// TODO implement actions
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			// load new board
 			if (e.getActionCommand() == "New Problem") {
-				// load new board
+				// TODO add dialogue box here to choose size of board
+				// default 9x9
+				gameEngine = new GameEngine(new Board());
+				boardJP.loadBoard(gameEngine);
+			
+			// load specified board
 			} else if (e.getActionCommand() == "Load Problem") {
-				// load given board
+				JFileChooser loadBoard = new JFileChooser();
+				int command = loadBoard.showOpenDialog(pane);
+				if (command == JFileChooser.APPROVE_OPTION) {
+					try {
+						gameEngine = FileIO.readBoard();
+					} catch (BoardFormatException bfe) {
+						System.err.println(bfe.getMsg()); // TODO: Write to label?
+					}
+				} else {
+					System.out.println("User cancelled load board selection."); // TODO: Write to label?
+				}
+			
+			// save current board to default location
 			} else if (e.getActionCommand() == "Save Problem") {
-				// save board
+				try {
+					FileIO.writeBoard(gameEngine);
+				} catch (BoardFormatException bfe) {
+					System.err.println(bfe.getMsg());
+				}
+					
+			// save current board to specified location
 			} else {
-				// exit game
+				JFileChooser saveBoard = new JFileChooser();
+				int command = saveBoard.showSaveDialog(pane);
+				if (command == JFileChooser.APPROVE_OPTION) {
+					try {
+						FileIO.writeBoard(gameEngine); // TODO: Write to specified path instead of default
+					} catch (BoardFormatException bfe) {
+						System.err.println(bfe.getMsg());
+					}
+				} else {
+					System.out.println("User cancelled save board selection."); // TODO: Write to label?
+				}
 			}
 		}
 	}
 
 	private class LogMenuListener implements ActionListener {
-
-		// TODO implement actions
-
+		// TODO implement log after every move and then implement these actions
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand() == "Save Log") {
-				// save log
+			// load specified log
+			if (e.getActionCommand() == "Load Log") {
+				JFileChooser loadLog = new JFileChooser();
+				int command = loadLog.showOpenDialog(pane);
+				if (command == JFileChooser.APPROVE_OPTION) {
+					try {
+						// TODO: Log loading function?
+					} catch (Exception exc) {
+						// Add appropriate exception
+					}
+				} else {
+					System.out.println("User cancelled load log selection."); // TODO: Write to label?
+				}
+			
+			// save log in default place
+			} else if (e.getActionCommand() == "Save Log"){
+				// TODO: try/catch command: writeLog(String log);
 			} else {
-				// load log
+				// TODO: try/catch command: writeLog(String log, String path);
 			}
 		}
 	}
@@ -398,53 +445,34 @@ public class GraphicalUI {
 		}
 	}
 
-	/**
-	 * Listener classes for buttons.
-	 */
-	private class WhiteRadioListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			JRadioButton button = (JRadioButton) e.getSource();
-
-			// TODO implement actions
-
-			if (button.getText().equals("Human")) {
-				// set human as white player
-			} else {
-				// set AI as white player
-			}
-		}
-	}
-
-	private class BlackRadioListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			JRadioButton button = (JRadioButton) e.getSource();
-
-			// TODO implement actions
-
-			if (button.getText().equals("Human")) {
-				// set human as black player
-			} else {
-				// set AI as black player
-			}
-		}
-	}
-
+	// action listener for buttons in grid on bottom left
 	private class GridListener implements ActionListener {
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton button = (JButton) e.getSource();
-
-			// TODO implements actions
-
 			if (button.getText().equals("Undo")) {
-				// undo last move
-			} else {
-				// reset all moves
+				if (gameEngine.undoLastMove()) {
+					boardJP.changePlayer();
+					player.setText(BoardJPanel.getPlayer());
+					boardJP.loadBoard(gameEngine);
+				}
+				
+				else {
+					//TODO report error here
+				
+				}
+			
+			
+			}if(button.getText().equals("Pass")){
+				
+				if( true){
+						//TODO create pass function in gameEngine
+						boardJP.changePlayer();
+						player.setText(BoardJPanel.getPlayer());
+						boardJP.loadBoard(gameEngine);
+				}else {
+			}
+				// TODO reset board here
 			}
 		}
 	}
