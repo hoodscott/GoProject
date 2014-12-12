@@ -11,23 +11,30 @@ public class Objective {
         DEFEND
     }
     
-    // Action black;
-    // Action white;
+    Action black;
+    Action white;
     private Action action;
-    private int colour;
-    private int startingColour;
+    private final int startingColour;
     
-    private Coordinate position; 
+    private final Coordinate position; 
     
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
     public Objective(String action, int colour, Coordinate position){
-    	this.action = translateToAction(action);
-        this.colour = startingColour = colour;
+        startingColour = colour;
+        this.action = translateToAction(action);
+        if(startingColour == Board.BLACK){
+            black = this.action;
+            white = getOpposingAction(black);
+        }
+        else{
+            white = this.action;
+            black = getOpposingAction(white);    
+        }     
         this.position = position;
     }
     
     public String getAction(){return translateToString(action);}
-    public int getColour(){return colour;}
+    public int getColour(){return startingColour;}
     public Coordinate getPosition(){return position;}
     
     private String translateToString(Action action){
@@ -43,38 +50,40 @@ public class Objective {
 		return Action.DEFEND;	
 	}
     
+    private Action getOpposingAction(Action action){
+        switch(action){
+            case KILL: return Action.DEFEND;
+            case DEFEND: return Action.KILL;
+        }
+        return null;
+    }
+    
 	//Checks if the objective succeeded for the given player.
     // !!!!!!!!!!!! add colour parameter and remove the second objective from minimax
-    public boolean checkSucceeded(Board board){
-    	if (action.equals(Action.KILL)){
-    		if(board.get(position.x, position.y) != getOtherColour()) 
-    			return true;
-    	}
-    	
-    	// check if the group has more than one eye
-    	// check if the defending stone is dead
-    	if(action.equals(Action.DEFEND)){
-    		/*eyes = 0;
-    		boolean b[][] = new boolean[board.getWidth()][board.getHeight()];
-    		Coordinate p = new Coordinate(position.x,position.y);
-    		countEyes(board, b, p);
-    		if (eyes > 1) return true;*/
-    		if(board.get(position.x, position.y) != colour) 
-    			return true;
-    		
-    	}
-    	
-    	return false;
+    public boolean checkSucceeded(Board board, int colour){
+        if(colour == Board.BLACK){
+            if(black.equals(Action.KILL))
+                return board.get(position.x, position.y) != colour;
+            else
+                return board.get(position.x, position.y) == colour;
+        }
+        else{
+            if(white.equals(Action.KILL))
+                return board.get(position.x, position.y) != colour;
+            else
+                return board.get(position.x, position.y) == colour;
+        }
     }
     
     
     
   //Returns whether the player plays first or not.
     public boolean isStarting(int colour){return colour == startingColour;}
-    
-    public int getOtherColour(){
-    	if(colour == Board.BLACK) return Board.WHITE;
-    	return Board.BLACK;
+    public int getStartingColour(){return startingColour;}
+    public int getOtherColour(int colour){
+        if(colour == Board.BLACK)
+            return Board.WHITE;
+        else return Board.BLACK;
     }
     
     // functions to count the eyes of the defending group

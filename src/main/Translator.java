@@ -175,7 +175,7 @@ public class Translator {
             case Board.C_WHITE:
                 return Board.WHITE;
             default:
-                throw new BoardFormatException("ERROR: ERROR: The board value to translate contains illegal character " + value + ".");
+                throw new BoardFormatException("ERROR: The board value to translate contains illegal character " + value + ".");
         }
     }
 
@@ -203,7 +203,7 @@ public class Translator {
             case Board.WHITE:
                 return Board.S_WHITE;
             default:
-                throw new BoardFormatException("ERROR: The given ");
+                throw new BoardFormatException("ERROR: The board value to translate contains illegal integer " + i + ".");
         }
     }
 }

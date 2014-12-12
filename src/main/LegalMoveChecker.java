@@ -18,8 +18,11 @@ public class LegalMoveChecker {
 	}
 
 	//Main MoveChecking method.
-	public boolean checkMove(Board board, int x, int y, int colour){
-
+	public boolean checkMove(Board board, Coordinate coord, int colour){
+        
+        
+        int x = coord.x;
+        int y = coord.y;
 		Board bCopy = board.clone();
 		int aggressor;
 		int defender;

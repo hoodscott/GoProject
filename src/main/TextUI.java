@@ -11,11 +11,13 @@ public class TextUI{
     //Instance variables
     private String log = "";
     private GameEngine gameEngine;
-    private String[] commands = {"help","exit","saveBoard (sb)","saveLog (sl)","view (v)","move (m)","checkLegal (cl)","new (n)","startGame (sg)",
+    private String[] commands = {"help","exit","saveBoard (sb)","saveLog (sl)","view (v)","move (m)","pass (p)","checkLegal (cl)","startGame (sg)",
                                 "loadBoard (lb)","undo (u)"};
     private boolean exit;
     private boolean boardSaved;
     private boolean logSaved;
+    private boolean playerPassed;
+    private boolean aiPassed;
     private int playerColour;
 
     //Constructor
@@ -47,8 +49,6 @@ public class TextUI{
                 switch(primaryCommand){
                     case "help": {help(splitC); break;}
                     case "exit": {exit(); break;}
-                    case "new": 
-                    case "n": {newGame(splitC);break;}
                     case "saveLog":
                     case "sl":{saveLog(splitC); break;}
                     case "saveBoard":
@@ -57,6 +57,8 @@ public class TextUI{
                     case "lb":{loadBoard(splitC);break;}
                     case "move":
                     case "m":{move(splitC);break;}
+                    case "pass":
+                    case "p":{pass(); break;}
                     case "startGame":
                     case "sg":{startGame(splitC);break;}
                     case "checkLegal":
@@ -110,43 +112,14 @@ public class TextUI{
         exit = true;
         System.out.println("> Exiting UI...");
     }
-
-    //Creates new game
-    public void newGame(String[] cmd){
-        try{
-
-            String text;
-            if(cmd.length == 1){
-                text = "> Creating new 9x9 Board...";
-                gameEngine = new GameEngine(new Board());
-            }
-            else if(cmd.length == 3){
-                int w; int h;
-                if((w = Integer.parseInt(cmd[1])) > 0 && (h = Integer.parseInt(cmd[2])) > 0){
-                    text = "> Creating new "+w+"x"+h+" Board...";
-                    gameEngine = new GameEngine(new Board(w,h));
-                }
-                else 
-                    throw new BadInputException("> Inappropriate dimensions in args. Dimensions need to be positive numbers.");	
-            }
-            else
-                throw new BadInputException("> Inappropriate number of args. Usage: new (n) [[arg width] [arg height]]");
-
-            addToLog(text);
-            System.out.println(text);
-            printGameBoard(true);
-        }
-        catch(BadInputException bad){System.out.println(bad.getMsg());}
-        catch(NumberFormatException e){System.out.println("> Inappropriate dimensions in args. Dimensions need to be positive numbers.");}
-    }
     
     //Starts game with an AI
     public void startGame(String[] cmd){
         try{
-            if(cmd.length != 3)
-                throw new BoardFormatException("> Inappropriate number of args. Usage: startGame (sg) <black player> <white player>");
             if(gameEngine == null || gameEngine.getObjective() == null)
                 throw new BoardFormatException("> No objective has been defined.");
+            if(cmd.length != 3)
+                throw new BoardFormatException("> Inappropriate number of args. Usage: startGame (sg) <black player> <white player>");
             
             int humanColour = 0;
             int aiColour = 0;
@@ -168,28 +141,30 @@ public class TextUI{
             
             playerColour = humanColour;
             gameEngine.setMiniMax(aiColour);
+            gameEngine.startGame();
             
             String message = "> Starting game with black as "+(playerColour == Board.BLACK? "human" : "minimax")+
                     " and white as "+(playerColour == Board.WHITE? "human" : "minimax")+".";
             
+            //message += "\n> "+Translator.translateToString(playerColour)+"\'s turn:";
+                        
             addToLog(message);
             System.out.println(message);
+            
+            if(gameEngine.getObjective().isStarting(aiColour))
+                aiMove();
         }
         catch(BoardFormatException bad){System.out.println(bad.getMsg());}
     }
 
     //Makes a new move
     public void move(String[] cmd){
-        int colour;
         try{
-            if(gameEngine == null)
+            if(gameEngine == null || !gameEngine.isInGame())
                 throw new BadInputException("> There currently is no board to make a move on.");
             
-            if(cmd.length < 3 || cmd.length > 4)
-                if(gameEngine.isInGame())
-                    throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y>");
-                else
-                    throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y> <arg colour>");
+            if(cmd.length != 3)
+                throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y>");
             
             int x, y;
             int w = gameEngine.getCurrentBoard().getWidth();
@@ -198,25 +173,18 @@ public class TextUI{
             if((x = Integer.parseInt(cmd[1])) < 0 || x > w || (y = Integer.parseInt(cmd[2])) < 0 || y > h)
                 throw new BadInputException("> The x and y positions need to be non-negative numbers within the board.");
             
-            if(cmd.length == 4 && !gameEngine.isInGame()){
-                if(cmd[3].equals("b") || cmd[3].equals("black") || cmd[3].equals("w") || cmd[3].equals("white"))
-                    colour = Translator.translateToInt(cmd[3].charAt(0));
-                else
-                    throw new BadInputException("> The colour argument needs to be either \"black\" (b) or \"white\" (w)");	                    
-            }
-            else if (cmd.length == 3 && gameEngine.isInGame())
-                colour = playerColour;
-            else if(gameEngine.isInGame())
-                throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y>");
-            else
-                throw new BadInputException("> Inappropriate number of args. Usage: move (m) <arg x> <arg y> <arg colour>");
-            
-            if(gameEngine.makeMove(x,y,colour)){
-                String message = "> Placed "+cmd[3]+" at ("+cmd[1]+","+cmd[2]+")";
+            if(gameEngine.makeMove(new Coordinate(x,y), playerColour)){
+                String message = "> Placed "+Translator.translateToString(playerColour)+" at ("+cmd[1]+","+cmd[2]+")";
                 addToLog(message);
                 System.out.println(message);
                 printGameBoard(true);
                 boardSaved = false;
+            
+                aiMove();
+                    
+                message = "> "+Translator.translateToString(playerColour)+"\'s turn:";
+                addToLog(message);
+                System.out.println(message);
             }
             else
                 throw new BadInputException("> This move is illegal.");
@@ -225,6 +193,33 @@ public class TextUI{
         catch(BadInputException bad){System.out.println(bad.getMsg());}
         catch(BoardFormatException bad){System.err.println(bad.getMsg());}		
         catch(NumberFormatException bad){System.out.println("> The x and y positions need to be non-negative numbers within the board.");}
+    }
+    
+    public void pass(){
+        try{
+            if(gameEngine == null || !gameEngine.isInGame())
+                throw new BadInputException("> There is no board to pass on.");
+            
+            String message = "> "+Translator.translateToString(playerColour)+"passes";
+            addToLog(message);
+            System.out.println(message);
+            
+            aiMove();
+        }
+        catch(BadInputException bad){System.out.println(bad.getMsg());}
+        catch(BoardFormatException bad){}
+    }
+    
+    public void aiMove(){
+        try{
+            String message = "> "+Translator.translateToString(gameEngine.getAI().getColour())+"\'s turn:";
+            message += "\n> "+Translator.translateToString(gameEngine.getAI().getColour())+" "+gameEngine.aiMove();
+            addToLog(message);
+            System.out.println(message);
+            printGameBoard(true);
+            boardSaved = false;
+        }
+        catch(BoardFormatException bad){}
     }
 
     //Undoes the last move made.
