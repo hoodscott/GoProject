@@ -10,5 +10,7 @@ public abstract class AI {
     
     protected int colour;
     
-    public abstract Coordinate nextMove(Board b, boolean[][] legalMoves);
+    public abstract Coordinate nextMove(Board b);
+    
+    public int getColour(){return this.colour;}
 }

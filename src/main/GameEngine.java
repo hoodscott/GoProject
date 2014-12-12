@@ -11,6 +11,7 @@ public class GameEngine{
   private Objective objective;
   private boolean inGame;
   private int[] aiSearchValues;
+  private int playerColour;
 
   // Default Constructor
   public GameEngine(){this(new Board());}
@@ -37,29 +38,47 @@ public class GameEngine{
     
     for (int i = 0; i<xDim; i++)
       for (int j = 0; j<yDim; j++)
-        legalMoves[i][j] =  moveChecker.checkMove(currentBoard, i, j, colour);
+        legalMoves[i][j] =  moveChecker.checkMove(currentBoard, new Coordinate(i,j), colour);
       
     return legalMoves;
   }
 
   // Returns the current board to the caller 
   public Board getCurrentBoard(){return currentBoard;}
+  
   //Returns objective to caller
   public Objective getObjective(){return objective;}
+  
   //Returns ai search values
   public int[] getAISearchValues(){return aiSearchValues;}
+  
+  //Returns ai search values
+  public AI getAI(){return ai;}
   
   // Checks if a board has already been instantiatey by newGame() or not.
   public boolean isInGame(){return inGame;}
   
+  public void startGame(){inGame = true;}
+  
   //Sets the AI to be a minimax algorithm
-  public void setMiniMax(int colour){ai = new MiniMax(objective, colour);}
-
+  public void setMiniMax(int colour){ai = new MiniMax(objective, colour, aiSearchValues);}
+  
   //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
   //Checks whether the move is legal and if so, place the piece and return true
-  //if the move is illegal, return false 
-  public boolean makeMove(int x, int y, int colour){
-    if (moveChecker.checkMove(currentBoard, x, y, colour)){
+  //if the move is illegal, return false
+  
+  public String aiMove(){
+    Coordinate c = ai.nextMove(currentBoard);
+    if(c.x == -1 && c.y == -1)
+        return "passes";
+    else{
+        makeMove(c, ai.getColour());
+        return "moves to ("+c.x+","+c.y+")";
+    }              
+  }
+  
+  public boolean makeMove(Coordinate coord, int colour){
+    if (moveChecker.checkMove(currentBoard, coord, colour)){
       moveChecker.addBoard(currentBoard);
       currentBoard = moveChecker.getLastLegal();
       return true;
