@@ -58,7 +58,7 @@ public class BoardJPanel extends JPanel {
 	// Draw counter onto position
 	public void updateBoard(int x, int y, int c) {
 		int i = 1;
-		if (gameE.makeMove(x, y, c)) {
+		if (gameE.makeMove(new Coordinate(x, y), c)) {
 			// move made, repaint board
 			repaint();
 			// change player
@@ -151,6 +151,15 @@ public class BoardJPanel extends JPanel {
 			return "Valid Move";
 		}
 		
+	}
+	
+	public static void setPlayer(String player){
+		if(player == "black"){
+			colour = Board.BLACK;	
+		}
+		if(player == "white"){
+			colour = Board.WHITE;	
+		}
 	}
 	
 	//public static int getNumStones() {

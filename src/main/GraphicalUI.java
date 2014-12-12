@@ -480,7 +480,7 @@ public class GraphicalUI {
 			if(button.getText().equals("Reset")){
 				if (gameEngine.restartBoard()) {
 					System.out.println("rfbd");
-					boardJP.changePlayer();
+					boardJP.setPlayer("black");
 					player.setText(BoardJPanel.getPlayer());
 					boardJP.loadBoard(gameEngine);
 				}
