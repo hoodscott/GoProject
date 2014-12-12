@@ -40,7 +40,7 @@ public class GraphicalUI {
 	private JMenuItem menuItem;
 	private Container pane;
 	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
-	private JButton undoButton, resetButton;
+	private JButton undoButton, resetButton, passButton;
 	private JLabel objectiveLabel, objective, playerLabel;
 	private BoardJPanel boardJP;
 	static JLabel player;
@@ -313,7 +313,13 @@ public class GraphicalUI {
 
 		// add action listener for this button
 		resetButton.addActionListener(new GridListener());
+		
+		//button to allow players to pass
+		passButton = new JButton("Pass");
+		gridPanel.add(passButton);
 
+		// add action listener for this button
+		passButton.addActionListener(new GridListener());
 		// add grid panel to button panel
 		buttonPanel.add(gridPanel, BorderLayout.SOUTH);
 
