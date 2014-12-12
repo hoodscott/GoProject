@@ -52,18 +52,23 @@ public class BoardJPanel extends JPanel {
 
 	// Draw counter onto position
 	public void updateBoard(int x, int y, int c) {
+		int i = 1;
 		if (gameE.makeMove(x, y, c)) {
 			// move made, repaint board
 			repaint();
 			// change player
 			changePlayer();
 			GraphicalUI.player.setText(getPlayer());
+			GraphicalUI.invMove.setText(getInvMove(i));
 		}
 		else {
-			//TODO report invalid move here
+			i = 0;
+			GraphicalUI.invMove.setText(getInvMove(i));
+				
+			}
 		}
 
-	}
+	
 
 	// Load and draw board
 	public void loadBoard(GameEngine ge) {
@@ -131,6 +136,15 @@ public class BoardJPanel extends JPanel {
 		} else {
 			return "White to move";
 		}
+	}
+	
+	public static String getInvMove(int i){
+		if (i == 0){
+			return "Invalid Move";
+		}else{
+			return "Valid Move";
+		}
+		
 	}
 
 }

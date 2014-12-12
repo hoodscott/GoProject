@@ -41,9 +41,11 @@ public class GraphicalUI {
 	private Container pane;
 	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
 	private JButton undoButton, resetButton, passButton;
-	private JLabel objectiveLabel, objective, playerLabel;
+	private JLabel objectiveLabel, objective, playerLabel, invMoveLabel;
 	private BoardJPanel boardJP;
 	static JLabel player;
+	static JLabel invMove;
+	
 
 	/**
 	 * Start the gui.
@@ -283,6 +285,14 @@ public class GraphicalUI {
 		labelPanel.add(playerLabel);
 		labelPanel.add(player);
 
+		// labels to show invalid moves
+		invMoveLabel = new JLabel("     Invalid Move: ");
+		invMove = new JLabel(BoardJPanel.getInvMove(1));
+
+		// add labels to panel
+		labelPanel.add(invMoveLabel);
+		labelPanel.add(invMove);
+
 		// add padding to panel
 		labelPanel.add(new JPanel());
 		labelPanel.add(new JPanel());
@@ -446,10 +456,22 @@ public class GraphicalUI {
 					player.setText(BoardJPanel.getPlayer());
 					boardJP.loadBoard(gameEngine);
 				}
+				
 				else {
 					//TODO report error here
+				
 				}
-			} else {
+			
+			
+			}if(button.getText().equals("Pass")){
+				
+				if( true){
+						//TODO create pass function in gameEngine
+						boardJP.changePlayer();
+						player.setText(BoardJPanel.getPlayer());
+						boardJP.loadBoard(gameEngine);
+				}else {
+			}
 				// TODO reset board here
 			}
 		}
