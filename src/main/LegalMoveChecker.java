@@ -11,6 +11,7 @@ public class LegalMoveChecker {
 	private static final int BLACK = Board.BLACK;
 	private static final int WHITE = Board.WHITE;
 	
+	
         //Constructor
 	public LegalMoveChecker(){
 		moveHistory = new ArrayList<>();

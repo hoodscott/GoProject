@@ -14,6 +14,7 @@ public class BoardJPanel extends JPanel {
 	private Board board;
 	public static int colour = 1;
 	public GameEngine gameE;
+	public int numStones = 0;
 
 	// Board constructor
 	public BoardJPanel(GameEngine gameEngine) {
@@ -21,7 +22,7 @@ public class BoardJPanel extends JPanel {
 		// Create panel
 		super();
 		setPreferredSize(new Dimension(BOARD_LENGTH, BOARD_LENGTH));
-		
+		 
 		// set private variables
 		this.gameE = gameEngine;
 		board = gameEngine.getCurrentBoard();
@@ -47,6 +48,10 @@ public class BoardJPanel extends JPanel {
 				updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
 
 			}
+			// method for following the cursor
+			public void mouseMoved(MouseEvent e){
+				
+			}
 		});
 	}
 
@@ -60,6 +65,7 @@ public class BoardJPanel extends JPanel {
 			changePlayer();
 			GraphicalUI.player.setText(getPlayer());
 			GraphicalUI.invMove.setText(getInvMove(i));
+			numStones= numStones +1;
 		}
 		else {
 			i = 0;
@@ -146,5 +152,9 @@ public class BoardJPanel extends JPanel {
 		}
 		
 	}
+	
+	//public static int getNumStones() {
+	//	return numStones;
+	//}
 
 }
