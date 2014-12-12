@@ -11,6 +11,7 @@ public class GameEngine{
   private Objective objective;
   private boolean inGame;
   private int[] aiSearchValues;
+  private Board initialBoard;
 
   // Default Constructor
   public GameEngine(){this(new Board());}
@@ -23,7 +24,7 @@ public class GameEngine{
   
   //Initialises GameEngine with Board, Objective and searchValues to be used by the AI.
   public GameEngine(Board board, Objective objective, int[] searchValues){
-      currentBoard = board;
+      currentBoard = initialBoard = board;
       this.objective = objective;
       moveChecker = new LegalMoveChecker();
       aiSearchValues = searchValues;
@@ -73,5 +74,12 @@ public class GameEngine{
       return false;
     currentBoard = moveChecker.removeLast();
     return true;
+  }
+  
+  public boolean restartBoard(){
+	  if (moveChecker.isEmpty()) return false;
+	  currentBoard = initialBoard;
+	  moveChecker = new LegalMoveChecker();
+	  return true;
   }
 }
