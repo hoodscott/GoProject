@@ -18,11 +18,11 @@ public class BoardJPanel extends JPanel {
 
 	// Board constructor
 	public BoardJPanel(GameEngine gameEngine) {
-
+		
 		// Create panel
 		super();
 		setPreferredSize(new Dimension(BOARD_LENGTH, BOARD_LENGTH));
-		 
+		
 		// set private variables
 		this.gameE = gameEngine;
 		board = gameEngine.getCurrentBoard();
@@ -130,6 +130,25 @@ public class BoardJPanel extends JPanel {
 		g.setColor(new Color(205, 133, 63)); // rgb of brown colour
 		g.fillRect(1, 1, squareSize * (lines - 1) - 2, squareSize * (lines - 1)
 				- 2);
+		
+		// Draw search space as grey rectangles when specified
+		int[] searchSpace = gameE.getAISearchValues();
+		if (searchSpace != null) {
+			g.setColor(Color.gray); // re-colour board as grey
+			g.fillRect(1, 1, squareSize * (lines - 1) - 2, squareSize * (lines - 1)
+					- 2);
+			
+			// re-colour brown rectangles included in search space 
+			// NOTE: assumes 0,0 as top left co-ordinate
+			int x2 = searchSpace[2];
+			int y2 = searchSpace[3];
+			for (int x1 = searchSpace[0]; x1 < x2; x1++) {
+				for (int y1 = searchSpace[1]; y1 < y2; y1++) {
+					g.setColor(new Color(205, 133, 63));
+					g.fillRect(x1 * squareSize, y1 * squareSize, squareSize, squareSize);
+				}
+			}
+		}
 
 		// Draw grid of rectangles
 		for (int x = 0; x < lines - 1; x++) {
@@ -139,7 +158,7 @@ public class BoardJPanel extends JPanel {
 						squareSize);
 			}
 		}
-
+		
 		// Draws counters on grid
 		board = gameE.getCurrentBoard();
 		for (int i = 0; i < lines; i++) {
@@ -166,7 +185,7 @@ public class BoardJPanel extends JPanel {
 		for (int i = 0; i < lines; i++) {
 			for (int j = 0; j < lines; j++) {
 				if (greyCounters.get(i, j) == 1) {
-					g.setColor(new Color(0,0,0,50));
+					g.setColor(new Color(0,0,0,50)); // 50 is transparency setting
 					g.fillOval((j * squareSize - stoneSize) - 2, (i
 							* squareSize - stoneSize) - 2, squareSize + 4,
 							squareSize + 4);
