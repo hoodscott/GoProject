@@ -11,7 +11,7 @@ public class BoardJPanel extends JPanel {
 	// constants
 	private static final int BOARD_LENGTH = 600;
 	private int lines;
-	private Board board;
+	private Board board, greyCounters;
 	public static int colour = 1;
 	public GameEngine gameE;
 	public int numStones = 0;
@@ -26,11 +26,15 @@ public class BoardJPanel extends JPanel {
 		// set private variables
 		this.gameE = gameEngine;
 		board = gameEngine.getCurrentBoard();
+		greyCounters = new Board();
 		lines = board.getHeight();
 
 		// Add stone to board when user clicks
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				greyCounters = new Board(); // create blank board each time mouse clicks
+				repaint();
+				
 				double x = e.getPoint().getX();
 				double y = e.getPoint().getY();
 				int squareSize = BOARD_LENGTH / (lines - 1);
@@ -44,17 +48,51 @@ public class BoardJPanel extends JPanel {
 				int yRemainder = (int) y - (yPos * squareSize);
 				if (yRemainder > squareSize / 2)
 					yPos++;
-
-				updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
-
-			}
-			// method for following the cursor
-			public void mouseMoved(MouseEvent e){
 				
+				// Update counter when close enough to intersection
+				int border = squareSize / 4;
+				
+				if ((xRemainder < squareSize / 2 - border) || (xRemainder > squareSize / 2 + border)
+					&& (yRemainder < squareSize / 2 - border) || (yRemainder > squareSize / 2 + border)) {
+					updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
+				} else {
+					GraphicalUI.invMove.setText("Select Closer To Intersection");
+				}
+			}
+		});
+		
+		// Show transparent grey stones
+		this.addMouseMotionListener(new MouseAdapter() {
+			public void mouseMoved(MouseEvent e){
+				greyCounters = new Board(); // create blank board each time mouse moves
+				repaint();
+				
+				double x = e.getPoint().getX();
+				double y = e.getPoint().getY();
+				int squareSize = BOARD_LENGTH / (lines - 1);
+
+				// Get position of counter
+				int xPos = (int) x / squareSize;
+				int xRemainder = (int) x - (xPos * squareSize);
+				if (xRemainder > squareSize / 2)
+					xPos++;
+				int yPos = (int) y / squareSize;
+				int yRemainder = (int) y - (yPos * squareSize);
+				if (yRemainder > squareSize / 2)
+					yPos++;
+				
+				// Show grey transparent counter when close enough to intersection
+				int border = squareSize / 4;
+				
+				if ((xRemainder < squareSize / 2 - border) || (xRemainder > squareSize / 2 + border)
+					&& (yRemainder < squareSize / 2 - border) || (yRemainder > squareSize / 2 + border)) {
+					greyCounters.set(yPos,xPos,1);
+					repaint();
+				} 
 			}
 		});
 	}
-
+	
 	// Draw counter onto position
 	public void updateBoard(int x, int y, int c) {
 		int i = 1;
@@ -73,8 +111,6 @@ public class BoardJPanel extends JPanel {
 				
 			}
 		}
-
-	
 
 	// Load and draw board
 	public void loadBoard(GameEngine ge) {
@@ -122,6 +158,18 @@ public class BoardJPanel extends JPanel {
 					g.setColor(Color.white);
 					g.fillOval(j * squareSize - stoneSize, i * squareSize
 							- stoneSize, squareSize, squareSize);
+				}
+			}
+		}
+		
+		// Show grey transparent counters
+		for (int i = 0; i < lines; i++) {
+			for (int j = 0; j < lines; j++) {
+				if (greyCounters.get(i, j) == 1) {
+					g.setColor(new Color(0,0,0,50));
+					g.fillOval((j * squareSize - stoneSize) - 2, (i
+							* squareSize - stoneSize) - 2, squareSize + 4,
+							squareSize + 4);
 				}
 			}
 		}
