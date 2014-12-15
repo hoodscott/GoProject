@@ -81,12 +81,18 @@ public class BoardJPanel extends JPanel {
 				if (yRemainder > squareSize / 2)
 					yPos++;
 				
-				// Show grey transparent counter when close enough to intersection
+				// Show transparent stones when close enough to intersection
 				int border = squareSize / 4;
 				
 				if ((xRemainder < squareSize / 2 - border) || (xRemainder > squareSize / 2 + border)
 					&& (yRemainder < squareSize / 2 - border) || (yRemainder > squareSize / 2 + border)) {
-					greyCounters.set(yPos,xPos,1);
+					boolean[][] legalMoves = gameE.getLegalMoves(colour);
+					if (legalMoves[yPos][xPos]) {
+						greyCounters.set(yPos,xPos,colour);
+					} else {
+						// show red transparent stones for illegal moves
+						greyCounters.set(yPos,xPos,3);
+					}
 					repaint();
 				} 
 			}
@@ -184,8 +190,21 @@ public class BoardJPanel extends JPanel {
 		// Show grey transparent counters
 		for (int i = 0; i < lines; i++) {
 			for (int j = 0; j < lines; j++) {
+				// show transparent black stones
 				if (greyCounters.get(i, j) == 1) {
-					g.setColor(new Color(0,0,0,50)); // 50 is transparency setting
+					g.setColor(new Color(0,0,0,50)); 
+					g.fillOval((j * squareSize - stoneSize) - 2, (i
+							* squareSize - stoneSize) - 2, squareSize + 4,
+							squareSize + 4);
+				// show transparent white stones
+				} else if (greyCounters.get(i, j) == 2) {
+					g.setColor(new Color(255,255,255,50));
+					g.fillOval((j * squareSize - stoneSize) - 2, (i
+							* squareSize - stoneSize) - 2, squareSize + 4,
+							squareSize + 4);
+				// show transparent red stones - illegal
+				} else if (greyCounters.get(i,j) == 3) {
+					g.setColor(new Color(125,0,0,150));
 					g.fillOval((j * squareSize - stoneSize) - 2, (i
 							* squareSize - stoneSize) - 2, squareSize + 4,
 							squareSize + 4);
