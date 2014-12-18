@@ -11,13 +11,14 @@ public class BoardJPanel extends JPanel {
 	// constants
 	private static final int BOARD_LENGTH = 600;
 	private int lines;
-	private Board board;
+	private Board board, greyCounters;
 	public static int colour = 1;
 	public GameEngine gameE;
+	public int numStones = 0;
 
 	// Board constructor
 	public BoardJPanel(GameEngine gameEngine) {
-
+		
 		// Create panel
 		super();
 		setPreferredSize(new Dimension(BOARD_LENGTH, BOARD_LENGTH));
@@ -25,11 +26,15 @@ public class BoardJPanel extends JPanel {
 		// set private variables
 		this.gameE = gameEngine;
 		board = gameEngine.getCurrentBoard();
+		greyCounters = new Board();
 		lines = board.getHeight();
 
 		// Add stone to board when user clicks
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				greyCounters = new Board(); // create blank board each time mouse clicks
+				repaint();
+				
 				double x = e.getPoint().getX();
 				double y = e.getPoint().getY();
 				int squareSize = BOARD_LENGTH / (lines - 1);
@@ -43,23 +48,68 @@ public class BoardJPanel extends JPanel {
 				int yRemainder = (int) y - (yPos * squareSize);
 				if (yRemainder > squareSize / 2)
 					yPos++;
+				
+				// Update counter when close enough to intersection
+				int border = squareSize / 4;
+				
+				if ((xRemainder < squareSize / 2 - border) || (xRemainder > squareSize / 2 + border)
+					&& (yRemainder < squareSize / 2 - border) || (yRemainder > squareSize / 2 + border)) {
+					updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
+				} else {
+					GraphicalUI.invMove.setText("Select Closer To Intersection");
+				}
+			}
+		});
+		
+		// Show transparent grey stones
+		this.addMouseMotionListener(new MouseAdapter() {
+			public void mouseMoved(MouseEvent e){
+				greyCounters = new Board(); // create blank board each time mouse moves
+				repaint();
+				
+				double x = e.getPoint().getX();
+				double y = e.getPoint().getY();
+				int squareSize = BOARD_LENGTH / (lines - 1);
 
-				updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
-
+				// Get position of counter
+				int xPos = (int) x / squareSize;
+				int xRemainder = (int) x - (xPos * squareSize);
+				if (xRemainder > squareSize / 2)
+					xPos++;
+				int yPos = (int) y / squareSize;
+				int yRemainder = (int) y - (yPos * squareSize);
+				if (yRemainder > squareSize / 2)
+					yPos++;
+				
+				// Show transparent stones when close enough to intersection
+				int border = squareSize / 4;
+				
+				if ((xRemainder < squareSize / 2 - border) || (xRemainder > squareSize / 2 + border)
+					&& (yRemainder < squareSize / 2 - border) || (yRemainder > squareSize / 2 + border)) {
+					boolean[][] legalMoves = gameE.getLegalMoves(colour);
+					if (legalMoves[yPos][xPos]) {
+						greyCounters.set(yPos,xPos,colour);
+					} else {
+						// show red transparent stones for illegal moves
+						greyCounters.set(yPos,xPos,3);
+					}
+					repaint();
+				} 
 			}
 		});
 	}
-
+	
 	// Draw counter onto position
 	public void updateBoard(int x, int y, int c) {
 		int i = 1;
-		if (gameE.makeMove(x, y, c)) {
+		if (gameE.makeMove(new Coordinate(x, y), c)) {
 			// move made, repaint board
 			repaint();
 			// change player
 			changePlayer();
 			GraphicalUI.player.setText(getPlayer());
 			GraphicalUI.invMove.setText(getInvMove(i));
+			numStones= numStones +1;
 		}
 		else {
 			i = 0;
@@ -67,8 +117,6 @@ public class BoardJPanel extends JPanel {
 				
 			}
 		}
-
-	
 
 	// Load and draw board
 	public void loadBoard(GameEngine ge) {
@@ -88,6 +136,25 @@ public class BoardJPanel extends JPanel {
 		g.setColor(new Color(205, 133, 63)); // rgb of brown colour
 		g.fillRect(1, 1, squareSize * (lines - 1) - 2, squareSize * (lines - 1)
 				- 2);
+		
+		// Draw search space as grey rectangles when specified
+		int[] searchSpace = gameE.getAISearchValues();
+		if (searchSpace != null) {
+			g.setColor(Color.gray); // re-colour board as grey
+			g.fillRect(1, 1, squareSize * (lines - 1) - 2, squareSize * (lines - 1)
+					- 2);
+			
+			// re-colour brown rectangles included in search space 
+			// NOTE: assumes 0,0 as top left co-ordinate
+			int x2 = searchSpace[2];
+			int y2 = searchSpace[3];
+			for (int x1 = searchSpace[0]; x1 < x2; x1++) {
+				for (int y1 = searchSpace[1]; y1 < y2; y1++) {
+					g.setColor(new Color(205, 133, 63));
+					g.fillRect(x1 * squareSize, y1 * squareSize, squareSize, squareSize);
+				}
+			}
+		}
 
 		// Draw grid of rectangles
 		for (int x = 0; x < lines - 1; x++) {
@@ -97,7 +164,7 @@ public class BoardJPanel extends JPanel {
 						squareSize);
 			}
 		}
-
+		
 		// Draws counters on grid
 		board = gameE.getCurrentBoard();
 		for (int i = 0; i < lines; i++) {
@@ -116,6 +183,31 @@ public class BoardJPanel extends JPanel {
 					g.setColor(Color.white);
 					g.fillOval(j * squareSize - stoneSize, i * squareSize
 							- stoneSize, squareSize, squareSize);
+				}
+			}
+		}
+		
+		// Show grey transparent counters
+		for (int i = 0; i < lines; i++) {
+			for (int j = 0; j < lines; j++) {
+				// show transparent black stones
+				if (greyCounters.get(i, j) == 1) {
+					g.setColor(new Color(0,0,0,50)); 
+					g.fillOval((j * squareSize - stoneSize) - 2, (i
+							* squareSize - stoneSize) - 2, squareSize + 4,
+							squareSize + 4);
+				// show transparent white stones
+				} else if (greyCounters.get(i, j) == 2) {
+					g.setColor(new Color(255,255,255,50));
+					g.fillOval((j * squareSize - stoneSize) - 2, (i
+							* squareSize - stoneSize) - 2, squareSize + 4,
+							squareSize + 4);
+				// show transparent red stones - illegal
+				} else if (greyCounters.get(i,j) == 3) {
+					g.setColor(new Color(125,0,0,150));
+					g.fillOval((j * squareSize - stoneSize) - 2, (i
+							* squareSize - stoneSize) - 2, squareSize + 4,
+							squareSize + 4);
 				}
 			}
 		}
@@ -146,5 +238,18 @@ public class BoardJPanel extends JPanel {
 		}
 		
 	}
+	
+	public static void setPlayer(String player){
+		if(player == "black"){
+			colour = Board.BLACK;	
+		}
+		if(player == "white"){
+			colour = Board.WHITE;	
+		}
+	}
+	
+	//public static int getNumStones() {
+	//	return numStones;
+	//}
 
 }

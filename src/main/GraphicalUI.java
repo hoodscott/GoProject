@@ -39,7 +39,13 @@ public class GraphicalUI {
 	private JMenu fileMenu, logSubmenu;
 	private JMenuItem menuItem;
 	private Container pane;
-	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
+	private JPanel boardPanel;
+
+	private JPanel labelPanel;
+
+	private JPanel buttonPanel;
+
+	private JPanel gridPanel;
 	private JButton undoButton, resetButton, passButton;
 	private JLabel objectiveLabel, objective, playerLabel, invMoveLabel;
 	private BoardJPanel boardJP;
@@ -464,15 +470,20 @@ public class GraphicalUI {
 			
 			
 			}if(button.getText().equals("Pass")){
-				
 				if( true){
 						//TODO create pass function in gameEngine
 						boardJP.changePlayer();
 						player.setText(BoardJPanel.getPlayer());
 						boardJP.loadBoard(gameEngine);
 				}else {
-			}
-				// TODO reset board here
+			}}
+			if(button.getText().equals("Reset")){
+				if (gameEngine.restartBoard()) {
+					System.out.println("rfbd");
+					boardJP.setPlayer("black");
+					player.setText(BoardJPanel.getPlayer());
+					boardJP.loadBoard(gameEngine);
+				}
 			}
 		}
 	}
