@@ -88,7 +88,10 @@ public class BoardJPanel extends JPanel {
 
 				// Show transparent stones when close enough to intersection
 				int border = squareSize / 4;
+
+				// sanity check for hovering over the intersection
 				if (xPos < lines && yPos < lines) {
+					// draw grey ghost counters on board
 					if ((xRemainder < squareSize / 2 - border)
 							|| (xRemainder > squareSize / 2 + border)
 							&& (yRemainder < squareSize / 2 - border)
@@ -158,8 +161,8 @@ public class BoardJPanel extends JPanel {
 			for (int x1 = searchSpace[0]; x1 < x2; x1++) {
 				for (int y1 = searchSpace[1]; y1 < y2; y1++) {
 					g.setColor(new Color(205, 133, 63));
-					g.fillRect(x1 * squareSize, y1 * squareSize, squareSize,
-							squareSize);
+					g.fillRect(squareSize + x1 * squareSize, squareSize + y1
+							* squareSize, squareSize, squareSize);
 				}
 			}
 		}
