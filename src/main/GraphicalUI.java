@@ -6,8 +6,6 @@ import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -15,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -24,7 +21,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.KeyStroke;
 import javax.swing.border.EtchedBorder;
 
@@ -36,22 +32,14 @@ public class GraphicalUI {
 	// private instance variables for swing
 	private JFrame frame;
 	private JMenuBar menuBar;
-	private JMenu fileMenu, logSubmenu;
+	private JMenu fileMenu;
 	private JMenuItem menuItem;
 	private Container pane;
-	private JPanel boardPanel;
-
-	private JPanel labelPanel;
-
-	private JPanel buttonPanel;
-
-	private JPanel gridPanel;
+	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
 	private JButton undoButton, resetButton, passButton;
 	private JLabel objectiveLabel, objective, playerLabel, invMoveLabel;
 	private BoardJPanel boardJP;
-	static JLabel player;
-	static JLabel invMove;
-	
+	static JLabel player, invMove;
 
 	/**
 	 * Start the gui.
@@ -141,7 +129,7 @@ public class GraphicalUI {
 				"Saves current board");
 		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
-		
+
 		menuItem = new JMenuItem("Save Problem As...", KeyEvent.VK_S);
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,
 				ActionEvent.ALT_MASK));
@@ -150,40 +138,6 @@ public class GraphicalUI {
 		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
 
-		fileMenu.addSeparator();
-		fileMenu.addSeparator();
-
-		// log sub menu
-		logSubmenu = new JMenu("Log");
-		logSubmenu.getAccessibleContext().setAccessibleDescription(
-				"Saves or loads the log of the program.");
-		logSubmenu.setMnemonic(KeyEvent.VK_4);
-		logSubmenu.setMnemonic(KeyEvent.VK_G);
-		
-		// menu item for loading the log
-		menuItem = new JMenuItem("Load Log");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5,
-				ActionEvent.ALT_MASK));
-		menuItem.addActionListener(new LogMenuListener());
-		logSubmenu.add(menuItem);
-
-		// menu items for saving the log
-		menuItem = new JMenuItem("Save Log");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6,
-				ActionEvent.ALT_MASK));
-		menuItem.addActionListener(new LogMenuListener());
-		logSubmenu.add(menuItem);
-		
-		menuItem = new JMenuItem("Save Log As...");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_7,
-				ActionEvent.ALT_MASK));
-		menuItem.addActionListener(new LogMenuListener());
-		logSubmenu.add(menuItem);
-
-		// adds log sub menu to log menu
-		fileMenu.add(logSubmenu);
-
-		fileMenu.addSeparator();
 		fileMenu.addSeparator();
 
 		// menu item for exiting the program
@@ -291,6 +245,10 @@ public class GraphicalUI {
 		labelPanel.add(playerLabel);
 		labelPanel.add(player);
 
+		// add padding to panel
+		labelPanel.add(new JPanel());
+		labelPanel.add(new JPanel());
+
 		// labels to show invalid moves
 		invMoveLabel = new JLabel("     Invalid Move: ");
 		invMove = new JLabel(BoardJPanel.getInvMove(1));
@@ -298,10 +256,6 @@ public class GraphicalUI {
 		// add labels to panel
 		labelPanel.add(invMoveLabel);
 		labelPanel.add(invMove);
-
-		// add padding to panel
-		labelPanel.add(new JPanel());
-		labelPanel.add(new JPanel());
 
 		// add chooser panel to top of button panel
 		buttonPanel.add(labelPanel, BorderLayout.NORTH);
@@ -329,8 +283,8 @@ public class GraphicalUI {
 
 		// add action listener for this button
 		resetButton.addActionListener(new GridListener());
-		
-		//button to allow players to pass
+
+		// button to allow players to pass
 		passButton = new JButton("Pass");
 		gridPanel.add(passButton);
 
@@ -360,8 +314,8 @@ public class GraphicalUI {
 				// default 9x9
 				gameEngine = new GameEngine(new Board());
 				boardJP.loadBoard(gameEngine);
-			
-			// load specified board
+
+				// load specified board
 			} else if (e.getActionCommand() == "Load Problem") {
 				JFileChooser loadBoard = new JFileChooser();
 				int command = loadBoard.showOpenDialog(pane);
@@ -369,60 +323,42 @@ public class GraphicalUI {
 					try {
 						gameEngine = FileIO.readBoard();
 					} catch (BoardFormatException bfe) {
-						System.err.println(bfe.getMsg()); // TODO: Write to label?
+						System.err.println(bfe.getMsg()); // TODO: Write to
+															// label?
 					}
 				} else {
-					System.out.println("User cancelled load board selection."); // TODO: Write to label?
+					System.out.println("User cancelled load board selection."); // TODO:
+																				// Write
+																				// to
+																				// label?
 				}
-			
-			// save current board to default location
+
+				// save current board to default location
 			} else if (e.getActionCommand() == "Save Problem") {
 				try {
 					FileIO.writeBoard(gameEngine);
 				} catch (BoardFormatException bfe) {
 					System.err.println(bfe.getMsg());
 				}
-					
-			// save current board to specified location
+
+				// save current board to specified location
 			} else {
 				JFileChooser saveBoard = new JFileChooser();
 				int command = saveBoard.showSaveDialog(pane);
 				if (command == JFileChooser.APPROVE_OPTION) {
 					try {
-						FileIO.writeBoard(gameEngine); // TODO: Write to specified path instead of default
+						FileIO.writeBoard(gameEngine); // TODO: Write to
+														// specified path
+														// instead of default
 					} catch (BoardFormatException bfe) {
 						System.err.println(bfe.getMsg());
 					}
 				} else {
-					System.out.println("User cancelled save board selection."); // TODO: Write to label?
+					System.out.println("User cancelled save board selection."); // TODO:
+																				// Write
+																				// to
+																				// label?
 				}
-			}
-		}
-	}
-
-	private class LogMenuListener implements ActionListener {
-		// TODO implement log after every move and then implement these actions
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// load specified log
-			if (e.getActionCommand() == "Load Log") {
-				JFileChooser loadLog = new JFileChooser();
-				int command = loadLog.showOpenDialog(pane);
-				if (command == JFileChooser.APPROVE_OPTION) {
-					try {
-						// TODO: Log loading function?
-					} catch (Exception exc) {
-						// Add appropriate exception
-					}
-				} else {
-					System.out.println("User cancelled load log selection."); // TODO: Write to label?
-				}
-			
-			// save log in default place
-			} else if (e.getActionCommand() == "Save Log"){
-				// TODO: try/catch command: writeLog(String log);
-			} else {
-				// TODO: try/catch command: writeLog(String log, String path);
 			}
 		}
 	}
@@ -462,22 +398,23 @@ public class GraphicalUI {
 					player.setText(BoardJPanel.getPlayer());
 					boardJP.loadBoard(gameEngine);
 				}
-				
+
 				else {
-					//TODO report error here
-				
+					// TODO report error here
+
 				}
-			
-			
-			}if(button.getText().equals("Pass")){
-				if( true){
-						//TODO create pass function in gameEngine
-						boardJP.changePlayer();
-						player.setText(BoardJPanel.getPlayer());
-						boardJP.loadBoard(gameEngine);
-				}else {
-			}}
-			if(button.getText().equals("Reset")){
+
+			}
+			if (button.getText().equals("Pass")) {
+				if (true) {
+					// TODO create pass function in gameEngine
+					boardJP.changePlayer();
+					player.setText(BoardJPanel.getPlayer());
+					boardJP.loadBoard(gameEngine);
+				} else {
+				}
+			}
+			if (button.getText().equals("Reset")) {
 				if (gameEngine.restartBoard()) {
 					System.out.println("rfbd");
 					boardJP.setPlayer("black");
