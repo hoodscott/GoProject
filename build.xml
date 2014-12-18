@@ -177,4 +177,13 @@
 		</junitreport>
 	</target>
 
+	<!-- Runs Project -->
+	<target 
+		name="run"
+		depends="jar"
+		description="Runs the application">
+
+        <java jar="${jar.dir}" fork="true"/>
+    </target>
+
 </project>

@@ -13,6 +13,7 @@ public class MiniMax extends AI{
 		evaluator = objective;
 		colour = c;
         lmc = new LegalMoveChecker();
+        setBounds(searchScope);
 	}
 	
 	//private String getOpponentObjective() {
@@ -28,11 +29,12 @@ public class MiniMax extends AI{
 		int score = 0;
 		// for every legal move put a stone down
 		for (Coordinate move : moves) {
+            System.out.println("Evaluating "+colour+" at ("+move.x+", "+move.y+")");
 			Board clone = b.clone();
 			clone.set(move.x, move.y, colour);	
-			Coordinate pos = evaluator.getPosition();
+			//Coordinate pos = evaluator.getPosition();
 			// evaluate current move
-			if(evaluator.getAction().equals("kill") && clone.get(pos.x, pos.y) == Board.EMPTY){	
+			if(evaluator.checkSucceeded(clone, colour)){	//evaluator.getAction().equals("kill") && clone.get(pos.x, pos.y) == Board.EMPTY
 				// if action is kill and killing is done 	
 				return move;
 			}
@@ -107,17 +109,17 @@ public class MiniMax extends AI{
 
 	 // create array list containing the coordinates of the legal moves
 	 public ArrayList<Coordinate> getLMList (Board b, boolean lm[][]){
-		 ArrayList<Coordinate> al = new ArrayList<>();
-		 for(int i = 0; i < b.getWidth(); i++){
-				for(int j=0;j<b.getHeight();j++){
-					if ((i>=lowerBoundX && i<=upperBoundX) && (j>=lowerBoundY && j<=upperBoundY)){
-						if (lm[i][j]){
-							al.add(new Coordinate(i,j));
-                            System.out.println("AI considers move: ("+i+", "+j+")");
-						}
-					}
-				}
-			}
+		ArrayList<Coordinate> al = new ArrayList<>();
+		for(int i = 0; i < b.getWidth(); i++){
+            for(int j = 0;j < b.getHeight();j++){
+                if ((i>=lowerBoundX && i<=upperBoundX) && (j>=lowerBoundY && j<=upperBoundY)){
+                    if (lm[i][j]){
+                        al.add(new Coordinate(i,j));
+                        System.out.println("AI considers move: ("+i+", "+j+")");
+                    }
+                }
+            }
+		}
 		 return al;
 	 }
 	  
