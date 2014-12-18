@@ -321,7 +321,9 @@ public class GraphicalUI {
 				int command = loadBoard.showOpenDialog(pane);
 				if (command == JFileChooser.APPROVE_OPTION) {
 					try {
-						gameEngine = FileIO.readBoard();
+						gameEngine = FileIO.readBoard(loadBoard
+								.getSelectedFile().getAbsolutePath());
+						boardJP.loadBoard(gameEngine);
 					} catch (BoardFormatException bfe) {
 						System.err.println(bfe.getMsg()); // TODO: Write to
 															// label?
@@ -342,14 +344,13 @@ public class GraphicalUI {
 				}
 
 				// save current board to specified location
-			} else {
+			} else if (e.getActionCommand() == "Save Problem As...") {
 				JFileChooser saveBoard = new JFileChooser();
 				int command = saveBoard.showSaveDialog(pane);
 				if (command == JFileChooser.APPROVE_OPTION) {
 					try {
-						FileIO.writeBoard(gameEngine); // TODO: Write to
-														// specified path
-														// instead of default
+						FileIO.writeBoard(gameEngine, saveBoard
+								.getSelectedFile().getAbsolutePath());
 					} catch (BoardFormatException bfe) {
 						System.err.println(bfe.getMsg());
 					}
@@ -360,12 +361,16 @@ public class GraphicalUI {
 																				// label?
 				}
 			}
+			// exit program
+			else {
+				System.exit(0);
+			}
 		}
 	}
 
 	private class DebugMenuListener implements ActionListener {
 
-		// TODO implement actions
+		// TODO implement debugging actions
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -377,7 +382,7 @@ public class GraphicalUI {
 
 	private class HelpMenuListener implements ActionListener {
 
-		// TODO implement actions
+		// TODO implement helper actions
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -406,8 +411,8 @@ public class GraphicalUI {
 
 			}
 			if (button.getText().equals("Pass")) {
+				// TODO create pass function in gameEngine
 				if (true) {
-					// TODO create pass function in gameEngine
 					boardJP.changePlayer();
 					player.setText(BoardJPanel.getPlayer());
 					boardJP.loadBoard(gameEngine);
@@ -416,8 +421,7 @@ public class GraphicalUI {
 			}
 			if (button.getText().equals("Reset")) {
 				if (gameEngine.restartBoard()) {
-					System.out.println("rfbd");
-					boardJP.setPlayer("black");
+					BoardJPanel.setPlayer("black");
 					player.setText(BoardJPanel.getPlayer());
 					boardJP.loadBoard(gameEngine);
 				}
