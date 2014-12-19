@@ -90,7 +90,7 @@ public class BoardJPanel extends JPanel {
 				int border = squareSize / 4;
 
 				// sanity check for hovering over the intersection
-				if (xPos < lines && yPos < lines) {
+				if (xPos > 0 && yPos > 0 && xPos < lines && yPos < lines) {
 					// draw grey ghost counters on board
 					if ((xRemainder < squareSize / 2 - border)
 							|| (xRemainder > squareSize / 2 + border)
@@ -151,8 +151,8 @@ public class BoardJPanel extends JPanel {
 		int[] searchSpace = gameE.getAISearchValues();
 		if (searchSpace != null) {
 			g.setColor(Color.gray); // re-colour board as grey
-			g.fillRect(1, 1, squareSize * (lines - 1) - 2, squareSize
-					* (lines - 1) - 2);
+			g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
+					* (lines + 1) - 2);
 
 			// re-colour brown rectangles included in search space
 			// NOTE: assumes 0,0 as top left co-ordinate
