@@ -409,8 +409,10 @@ public class GraphicalUI {
 						"Select board size...", "New Problem",
 						JOptionPane.PLAIN_MESSAGE, null, sizes, "9");
 				if (s != null) {
+					// set new board to specified size
 					int length = Integer.parseInt(s);
 					gameEngine = new GameEngine(new Board(length, length));
+					// set player to back then draw the new board
 					BoardJPanel.setPlayer("black");
 					boardJP.loadBoard(gameEngine);
 				}
@@ -454,12 +456,9 @@ public class GraphicalUI {
 					player.setText(BoardJPanel.getPlayer());
 					boardJP.loadBoard(gameEngine);
 				}
-
 				else {
-					// TODO report error here
-
+					invMove.setText("No more moves to undo");
 				}
-
 			}
 			if (button.getText().equals("Pass")) {
 				// TODO create pass function in gameEngine
@@ -468,6 +467,7 @@ public class GraphicalUI {
 					player.setText(BoardJPanel.getPlayer());
 					boardJP.loadBoard(gameEngine);
 				} else {
+					// TODO write message to user if passing fails
 				}
 			}
 			if (button.getText().equals("Reset")) {
