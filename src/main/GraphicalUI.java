@@ -36,7 +36,7 @@ public class GraphicalUI {
 	private JMenuItem menuItem;
 	private Container pane;
 	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
-	private JButton undoButton, resetButton, passButton;
+	private JButton undoButton, resetButton, passButton, boundsButton;
 	private JLabel objectiveLabel, objective, playerLabel, invMoveLabel;
 	private BoardJPanel boardJP;
 	static JLabel player, invMove;
@@ -308,6 +308,14 @@ public class GraphicalUI {
 
 		// add action listener for this button
 		passButton.addActionListener(new GridListener());
+
+		// button to undo last move
+		boundsButton = new JButton("Show Bounds");
+		gridPanel.add(boundsButton);
+
+		// add action listener for this button
+		boundsButton.addActionListener(new GridListener());
+		
 		// add grid panel to button panel
 		buttonPanel.add(gridPanel, BorderLayout.SOUTH);
 
@@ -389,10 +397,10 @@ public class GraphicalUI {
 				gameEngine = new GameEngine(new Board());
 				BoardJPanel.setPlayer("black");
 				boardJP.loadBoard(gameEngine);
-			// load specified board
+				// load specified board
 			} else {
 				// TODO: allow user to choose size
-				gameEngine = new GameEngine(new Board(10,10));
+				gameEngine = new GameEngine(new Board(10, 10));
 				BoardJPanel.setPlayer("black");
 				boardJP.loadBoard(gameEngine);
 			}
@@ -456,6 +464,10 @@ public class GraphicalUI {
 					player.setText(BoardJPanel.getPlayer());
 					boardJP.loadBoard(gameEngine);
 				}
+			}
+			if (button.getText().equals("Show Bounds")) {
+				BoardJPanel.setBounds(gameEngine.getAISearchValues());
+				boardJP.loadBoard(gameEngine);
 			}
 		}
 	}

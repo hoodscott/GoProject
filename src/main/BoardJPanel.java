@@ -15,6 +15,7 @@ public class BoardJPanel extends JPanel {
 	public static int colour = 1;
 	public GameEngine gameE;
 	public int numStones = 0;
+	private static int[] searchSpace;
 
 	// Board constructor
 	public BoardJPanel(GameEngine gameEngine) {
@@ -151,7 +152,7 @@ public class BoardJPanel extends JPanel {
 				- 2);
 
 		// Draw search space as grey rectangles when specified
-		int[] searchSpace = gameE.getAISearchValues();
+		//int[] searchSpace = gameE.getAISearchValues();
 		if (searchSpace != null) {
 			g.setColor(Color.gray); // re-colour board as grey
 			g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
@@ -271,6 +272,10 @@ public class BoardJPanel extends JPanel {
 		if (player == "white") {
 			colour = Board.WHITE;
 		}
+	}
+
+	public static void setBounds(int[] aiSearchValues) {
+		searchSpace = aiSearchValues;
 	}
 
 	// public static int getNumStones() {
