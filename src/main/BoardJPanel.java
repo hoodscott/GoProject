@@ -204,29 +204,34 @@ public class BoardJPanel extends JPanel {
 		}
 
 		// Show grey transparent counters
-		for (int i = 0; i < lines; i++) {
-			for (int j = 0; j < lines; j++) {
-				// show transparent black stones
-				if (greyCounters.get(i, j) == 1) {
-					g.setColor(new Color(0, 0, 0, 50));
-					g.fillOval((squareSize + j * squareSize - stoneSize) - 2,
-							(squareSize + i * squareSize - stoneSize) - 2,
-							squareSize + 4, squareSize + 4);
-					// show transparent white stones
-				} else if (greyCounters.get(i, j) == 2) {
-					g.setColor(new Color(255, 255, 255, 50));
-					g.fillOval((squareSize + j * squareSize - stoneSize) - 2,
-							(squareSize + i * squareSize - stoneSize) - 2,
-							squareSize + 4, squareSize + 4); // show
-																// transparent
-																// red
-																// stones -
-																// illegal
-				} else if (greyCounters.get(i, j) == 3) {
-					g.setColor(new Color(125, 0, 0, 150));
-					g.fillOval((squareSize + j * squareSize - stoneSize) - 2,
-							(squareSize + i * squareSize - stoneSize) - 2,
-							squareSize + 4, squareSize + 4);
+		if (board.getHeight() == greyCounters.getHeight()) {
+			for (int i = 0; i < lines; i++) {
+				for (int j = 0; j < lines; j++) {
+					// show transparent black stones
+					if (greyCounters.get(i, j) == 1) {
+						g.setColor(new Color(0, 0, 0, 50));
+						g.fillOval(
+								(squareSize + j * squareSize - stoneSize) - 2,
+								(squareSize + i * squareSize - stoneSize) - 2,
+								squareSize + 4, squareSize + 4);
+						// show transparent white stones
+					} else if (greyCounters.get(i, j) == 2) {
+						g.setColor(new Color(255, 255, 255, 50));
+						g.fillOval(
+								(squareSize + j * squareSize - stoneSize) - 2,
+								(squareSize + i * squareSize - stoneSize) - 2,
+								squareSize + 4, squareSize + 4); // show
+																	// transparent
+																	// red
+																	// stones -
+																	// illegal
+					} else if (greyCounters.get(i, j) == 3) {
+						g.setColor(new Color(125, 0, 0, 150));
+						g.fillOval(
+								(squareSize + j * squareSize - stoneSize) - 2,
+								(squareSize + i * squareSize - stoneSize) - 2,
+								squareSize + 4, squareSize + 4);
+					}
 				}
 			}
 		}
