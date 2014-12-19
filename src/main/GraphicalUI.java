@@ -108,11 +108,11 @@ public class GraphicalUI {
 		subMenu = new JMenu("New Problem");
 		subMenu.getAccessibleContext().setAccessibleDescription(
 				"Creates a new problem.");
-		subMenu.setMnemonic(KeyEvent.VK_4);
-		subMenu.setMnemonic(KeyEvent.VK_G);
+		subMenu.setMnemonic(KeyEvent.VK_1);
+		subMenu.setMnemonic(KeyEvent.VK_N);
 
 		// Menu item for new game
-		menuItem = new JMenuItem("Default (9x9)", KeyEvent.VK_N);
+		menuItem = new JMenuItem("Default (9x9)", KeyEvent.VK_D);
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
@@ -121,8 +121,8 @@ public class GraphicalUI {
 		subMenu.add(menuItem);
 
 		// Menu item for new game
-		menuItem = new JMenuItem("Custom...", KeyEvent.VK_N);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+		menuItem = new JMenuItem("Custom...", KeyEvent.VK_C);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Creates a New board with specified size");
@@ -133,7 +133,7 @@ public class GraphicalUI {
 
 		// Menu items for saving the board
 		menuItem = new JMenuItem("Load Problem", KeyEvent.VK_L);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2,
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Loads a Go problem board");
@@ -142,15 +142,15 @@ public class GraphicalUI {
 
 		// Menu items for saving the board
 		menuItem = new JMenuItem("Save Problem", KeyEvent.VK_S);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3,
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Saves current board");
 		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
 
-		menuItem = new JMenuItem("Save Problem As...", KeyEvent.VK_S);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,
+		menuItem = new JMenuItem("Save Problem As...", KeyEvent.VK_V);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Saves current board to specified path");
@@ -161,7 +161,7 @@ public class GraphicalUI {
 
 		// menu item for exiting the program
 		menuItem = new JMenuItem("Exit", KeyEvent.VK_E);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_8,
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Exits the program");
@@ -291,6 +291,7 @@ public class GraphicalUI {
 
 		// button to undo last move
 		undoButton = new JButton("Undo");
+		undoButton.setMnemonic(KeyEvent.VK_U);
 		gridPanel.add(undoButton);
 
 		// add action listener for this button
@@ -298,6 +299,7 @@ public class GraphicalUI {
 
 		// button to reset problem
 		resetButton = new JButton("Reset");
+		resetButton.setMnemonic(KeyEvent.VK_R);
 		gridPanel.add(resetButton);
 
 		// add action listener for this button
@@ -305,6 +307,7 @@ public class GraphicalUI {
 
 		// button to allow players to pass
 		passButton = new JButton("Pass");
+		passButton.setMnemonic(KeyEvent.VK_A);
 		gridPanel.add(passButton);
 
 		// add action listener for this button
@@ -312,6 +315,7 @@ public class GraphicalUI {
 
 		// button to undo last move
 		boundsButton = new JButton("Show Bounds");
+		boundsButton.setMnemonic(KeyEvent.VK_B);
 		gridPanel.add(boundsButton);
 
 		// add action listener for this button
