@@ -32,7 +32,7 @@ public class GraphicalUI {
 	// private instance variables for swing
 	private JFrame frame;
 	private JMenuBar menuBar;
-	private JMenu fileMenu;
+	private JMenu fileMenu, subMenu;
 	private JMenuItem menuItem;
 	private Container pane;
 	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
@@ -103,14 +103,32 @@ public class GraphicalUI {
 				"The only menu in this program that has menu items");
 		menuBar.add(fileMenu);
 
+		// Menu items for new boards
+		subMenu = new JMenu("New Problem");
+		subMenu.getAccessibleContext().setAccessibleDescription(
+				"Creates a new problem.");
+		subMenu.setMnemonic(KeyEvent.VK_4);
+		subMenu.setMnemonic(KeyEvent.VK_G);
+
 		// Menu item for new game
-		menuItem = new JMenuItem("New Problem", KeyEvent.VK_N);
+		menuItem = new JMenuItem("Default (9x9)", KeyEvent.VK_N);
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
-				"Creates a New board");
-		menuItem.addActionListener(new FileMenuListener());
-		fileMenu.add(menuItem);
+				"Creates a New board with default size of 9x9");
+		menuItem.addActionListener(new SubMenuListener());
+		subMenu.add(menuItem);
+
+		// Menu item for new game
+		menuItem = new JMenuItem("Custom...", KeyEvent.VK_N);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Creates a New board with specified size");
+		menuItem.addActionListener(new SubMenuListener());
+		subMenu.add(menuItem);
+
+		fileMenu.add(subMenu);
 
 		// Menu items for saving the board
 		menuItem = new JMenuItem("Load Problem", KeyEvent.VK_L);
@@ -308,15 +326,8 @@ public class GraphicalUI {
 	private class FileMenuListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// load new board
-			if (e.getActionCommand() == "New Problem") {
-				// TODO add dialogue box here to choose size of board
-				// default 9x9
-				gameEngine = new GameEngine(new Board());
-				boardJP.loadBoard(gameEngine);
-
-				// load specified board
-			} else if (e.getActionCommand() == "Load Problem") {
+			// load specified board
+			if (e.getActionCommand() == "Load Problem") {
 				JFileChooser loadBoard = new JFileChooser();
 				int command = loadBoard.showOpenDialog(pane);
 				if (command == JFileChooser.APPROVE_OPTION) {
@@ -364,6 +375,26 @@ public class GraphicalUI {
 			// exit program
 			else {
 				System.exit(0);
+			}
+		}
+	}
+
+	private class SubMenuListener implements ActionListener {
+		// TODO implement log after every move and then implement these actions
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// load default board
+			if (e.getActionCommand() == "Default (9x9)") {
+				// default 9x9
+				gameEngine = new GameEngine(new Board());
+				BoardJPanel.setPlayer("black");
+				boardJP.loadBoard(gameEngine);
+			// load specified board
+			} else {
+				// TODO: allow user to choose size
+				gameEngine = new GameEngine(new Board(10,10));
+				BoardJPanel.setPlayer("black");
+				boardJP.loadBoard(gameEngine);
 			}
 		}
 	}

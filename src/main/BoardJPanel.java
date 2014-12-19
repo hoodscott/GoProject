@@ -26,14 +26,15 @@ public class BoardJPanel extends JPanel {
 		// set private variables
 		this.gameE = gameEngine;
 		board = gameEngine.getCurrentBoard();
-		greyCounters = new Board();
 		lines = board.getHeight();
+		greyCounters = new Board(lines, lines);
 
 		// Add stone to board when user clicks
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				greyCounters = new Board(); // create blank board each time
-											// mouse clicks
+				greyCounters = new Board(lines, lines); // create blank board
+														// each time
+				// mouse clicks
 				repaint();
 
 				int squareSize = BOARD_LENGTH / (lines + 1);
@@ -68,8 +69,9 @@ public class BoardJPanel extends JPanel {
 		// Show transparent grey stones
 		this.addMouseMotionListener(new MouseAdapter() {
 			public void mouseMoved(MouseEvent e) {
-				greyCounters = new Board(); // create blank board each time
-											// mouse moves
+				greyCounters = new Board(lines, lines); // create blank board
+														// each time
+				// mouse moves
 				repaint();
 
 				int squareSize = BOARD_LENGTH / (lines + 1);
@@ -137,6 +139,7 @@ public class BoardJPanel extends JPanel {
 	// Draw board
 	public void paint(Graphics g) {
 		// Frame variables
+		lines = gameE.getCurrentBoard().getHeight();
 		int squareSize = (BOARD_LENGTH) / (lines + 1);
 		int stoneSize = squareSize / 2;
 
@@ -148,8 +151,7 @@ public class BoardJPanel extends JPanel {
 				- 2);
 
 		// Draw search space as grey rectangles when specified
-		//int[] searchSpace = gameE.getAISearchValues();
-		int[] searchSpace = {0,0,4,4};
+		int[] searchSpace = gameE.getAISearchValues();
 		if (searchSpace != null) {
 			g.setColor(Color.gray); // re-colour board as grey
 			g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
@@ -215,8 +217,10 @@ public class BoardJPanel extends JPanel {
 					g.setColor(new Color(255, 255, 255, 50));
 					g.fillOval((squareSize + j * squareSize - stoneSize) - 2,
 							(squareSize + i * squareSize - stoneSize) - 2,
-							squareSize + 4, squareSize + 4); // show transparent
-																// red stones -
+							squareSize + 4, squareSize + 4); // show
+																// transparent
+																// red
+																// stones -
 																// illegal
 				} else if (greyCounters.get(i, j) == 3) {
 					g.setColor(new Color(125, 0, 0, 150));
