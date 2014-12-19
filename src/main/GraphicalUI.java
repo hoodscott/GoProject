@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.EtchedBorder;
@@ -268,7 +269,7 @@ public class GraphicalUI {
 		labelPanel.add(new JPanel());
 
 		// labels to show invalid moves
-		invMoveLabel = new JLabel("     Invalid Move: ");
+		invMoveLabel = new JLabel("     User Message: ");
 		invMove = new JLabel(BoardJPanel.getInvMove(1));
 
 		// add labels to panel
@@ -315,7 +316,7 @@ public class GraphicalUI {
 
 		// add action listener for this button
 		boundsButton.addActionListener(new GridListener());
-		
+
 		// add grid panel to button panel
 		buttonPanel.add(gridPanel, BorderLayout.SOUTH);
 
@@ -397,12 +398,19 @@ public class GraphicalUI {
 				gameEngine = new GameEngine(new Board());
 				BoardJPanel.setPlayer("black");
 				boardJP.loadBoard(gameEngine);
-				// load specified board
 			} else {
-				// TODO: allow user to choose size
-				gameEngine = new GameEngine(new Board(10, 10));
-				BoardJPanel.setPlayer("black");
-				boardJP.loadBoard(gameEngine);
+				// load specified board
+				Object[] sizes = { "9", "14", "19" };
+				String s = (String) JOptionPane.showInputDialog(frame,
+						"Select board size...", "New Problem",
+						JOptionPane.PLAIN_MESSAGE, null, sizes, "9");
+				if (s != null) {
+					int length = Integer.parseInt(s);
+					gameEngine = new GameEngine(new Board(length, length));
+					BoardJPanel.setPlayer("black");
+					boardJP.loadBoard(gameEngine);
+				}
+
 			}
 		}
 	}
