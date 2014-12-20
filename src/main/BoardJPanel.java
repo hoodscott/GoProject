@@ -2,6 +2,7 @@ package main;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 
@@ -10,7 +11,7 @@ public class BoardJPanel extends JPanel {
 
 	// constants
 	private static final int BOARD_LENGTH = 600;
-	private int lines;
+	private static int lines;
 	private Board board, greyCounters;
 	public static int colour = 1;
 	public GameEngine gameE;
@@ -29,6 +30,7 @@ public class BoardJPanel extends JPanel {
 		board = gameEngine.getCurrentBoard();
 		lines = board.getHeight();
 		greyCounters = new Board(lines, lines);
+		searchSpace = gameE.getAISearchValues();
 
 		// Add stone to board when user clicks
 		this.addMouseListener(new MouseAdapter() {
@@ -143,6 +145,7 @@ public class BoardJPanel extends JPanel {
 		lines = gameE.getCurrentBoard().getHeight();
 		int squareSize = (BOARD_LENGTH) / (lines + 1);
 		int stoneSize = squareSize / 2;
+		int[] noBounds = {0,0,lines,lines};
 
 		// Board colour and border fill
 		g.setColor(Color.black);
@@ -154,7 +157,7 @@ public class BoardJPanel extends JPanel {
 		// Draw search space as grey rectangles when specified
 		// and bounds button selected
 		if (GraphicalUI.getBounds()) {
-			if (searchSpace != null) {
+			if (searchSpace != null && !Arrays.equals(searchSpace,noBounds)) {
 				g.setColor(Color.gray); // re-colour board as grey
 				g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
 						* (lines + 1) - 2);
@@ -278,6 +281,10 @@ public class BoardJPanel extends JPanel {
 
 	public static void setBounds(int[] aiSearchValues) {
 		searchSpace = aiSearchValues;
+	}
+	
+	public static int getLines() {
+		return lines;
 	}
 
 	// public static int getNumStones() {

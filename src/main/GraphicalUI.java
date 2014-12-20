@@ -160,7 +160,35 @@ public class GraphicalUI {
 				"Saves current board to specified path");
 		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
+		
+		fileMenu.addSeparator();
+		
+		// Submenu for setting bounds
+		subMenu = new JMenu("Bounds");
+		subMenu.getAccessibleContext().setAccessibleDescription(
+				"Allows user to set bounds.");
+		subMenu.setMnemonic(KeyEvent.VK_B);
 
+		// Menu item for setting bounds
+		menuItem = new JMenuItem("Set Bounds", KeyEvent.VK_B);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Allow user to specify board bounds");
+		menuItem.addActionListener(new BoundsMenuListener());
+		subMenu.add(menuItem);
+		
+		// Menu item for removing bounds
+		menuItem = new JMenuItem("Remove Bounds", KeyEvent.VK_R);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Removes bounds from problem");
+		menuItem.addActionListener(new BoundsMenuListener());
+		subMenu.add(menuItem);
+		
+		fileMenu.add(subMenu);
+		
 		fileMenu.addSeparator();
 
 		// menu item for exiting the program
@@ -170,6 +198,41 @@ public class GraphicalUI {
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Exits the program");
 		menuItem.addActionListener(new FileMenuListener());
+		fileMenu.add(menuItem);
+		
+		// Build help menu for debugging commands
+		fileMenu = new JMenu("Problem Creation");
+		fileMenu.setMnemonic(KeyEvent.VK_P);
+		fileMenu.getAccessibleContext()
+				.setAccessibleDescription(
+						"Menu with options during problem creation mode");
+		menuBar.add(fileMenu);
+		
+		// menu item for using black stones
+		menuItem = new JMenuItem("Use Black Stones", KeyEvent.VK_B);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Place only black stones down");
+		menuItem.addActionListener(new CreationMenuListener());
+		fileMenu.add(menuItem);
+		
+		// menu item for using white stones
+		menuItem = new JMenuItem("Use White Stones", KeyEvent.VK_W);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Place only white stones down");
+		menuItem.addActionListener(new CreationMenuListener());
+		fileMenu.add(menuItem);
+		
+		// menu item for using white/black stones
+		menuItem = new JMenuItem("Use Both Stones", KeyEvent.VK_M);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Places stones in black and white order");
+		menuItem.addActionListener(new CreationMenuListener());
 		fileMenu.add(menuItem);
 
 		// Build help menu for debugging commands
@@ -413,7 +476,6 @@ public class GraphicalUI {
 	}
 
 	private class SubMenuListener implements ActionListener {
-		// TODO implement log after every move and then implement these actions
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// load default board
@@ -437,6 +499,40 @@ public class GraphicalUI {
 					boardJP.loadBoard(gameEngine);
 				}
 
+			}
+		}
+	}
+	
+	private class BoundsMenuListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// allow user to set bounds
+			if (e.getActionCommand() == "Set Bounds") {
+				// TODO: Display dialogue box allowing bound setting
+				// TODO: Need method for setting bounds in GameEngine
+			} else {
+				// remove bounds - (make bounds size of board)
+				int lines = BoardJPanel.getLines();
+				int[] noBounds = {0,0,lines,lines};
+				BoardJPanel.setBounds(noBounds);
+			}
+		}
+		
+	}
+	
+	private class CreationMenuListener implements ActionListener {
+
+		// TODO implement debugging actions
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand() == "Use Black Stones") {
+				// set down only black stones
+			} else if (e.getActionCommand() == "Use White Stones") {
+				// set down only white stones
+			} else {
+				// use a mixture of stones
 			}
 		}
 	}
@@ -513,6 +609,22 @@ public class GraphicalUI {
 				} else {
 					bounds = false;
 					boardJP.loadBoard(gameEngine);
+				}
+			}
+			if (button.getText().equals("Competitive Play Mode")) {
+				creationButton.setSelected(false);
+				if (!competitive) {
+					competitive = true;
+				} else {
+					competitive = false;
+				}
+			}
+			if (button.getText().equals("Problem Creation Mode")) {
+				competitiveButton.setSelected(false);
+				if (!creation) {
+					creation = true;
+				} else {
+					creation = false;
 				}
 			}
 		}
