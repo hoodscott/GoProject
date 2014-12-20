@@ -8,9 +8,9 @@ public final class FileIO {
 
     //Default paths
     public static final String RELATIVEPATH = System.getProperty("user.dir");
-    public static final String DEFLOGOUTPUT = "\\saveData\\logs\\";
-    public static final String DEFOUTPUT = "\\saveData\\boards\\";
-    public static final String DEFINPUT = "\\saveData\\boards\\";
+    public static final String DEFLOGOUTPUT = "\\src\\saveData\\logs\\";
+    public static final String DEFOUTPUT = "\\src\\saveData\\boards\\";
+    public static final String DEFINPUT = "\\src\\saveData\\boards\\";
     private static final String DEFLOGNAME = "log";
     private static final String DEFBOARDNAME = "board";
 

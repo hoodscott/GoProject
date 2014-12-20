@@ -32,8 +32,14 @@ public class Objective {
         }     
         this.position = position;
     }
-    
     public String getAction(){return translateToString(action);}
+    public String getAction(int colour){        
+        switch(colour){
+            case Board.BLACK: return translateToString(black);
+            case Board.WHITE: return translateToString(white);
+        }
+        return null;
+    }
     public int getColour(){return startingColour;}
     public Coordinate getPosition(){return position;}
     
@@ -63,13 +69,13 @@ public class Objective {
     public boolean checkSucceeded(Board board, int colour){
         if(colour == Board.BLACK){
             if(black.equals(Action.KILL))
-                return board.get(position.x, position.y) != colour;
+                return board.get(position.x, position.y) != getOtherColour(colour);
             else
                 return board.get(position.x, position.y) == colour;
         }
         else{
             if(white.equals(Action.KILL))
-                return board.get(position.x, position.y) != colour;
+                return board.get(position.x, position.y) != getOtherColour(colour);
             else
                 return board.get(position.x, position.y) == colour;
         }

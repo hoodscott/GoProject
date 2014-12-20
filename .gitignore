@@ -1,3 +1,6 @@
 src\saveData\
 bin
 lib
+/nbproject/private
+/dist/
+/build/

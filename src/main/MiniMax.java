@@ -10,10 +10,10 @@ public class MiniMax extends AI{
 	//Objective otherEvaluator = new Objective(getOpponentObjective(), getOtherColour(), evaluator.getPosition());
 	
 	public MiniMax(Objective objective, int c, int[] searchScope){
-		evaluator = objective;
-		colour = c;
-        lmc = new LegalMoveChecker();
-        setBounds(searchScope);
+            evaluator = objective;
+            colour = c;
+            lmc = new LegalMoveChecker();
+            setBounds(searchScope);
 	}
 	
 	//private String getOpponentObjective() {
@@ -25,80 +25,121 @@ public class MiniMax extends AI{
 	@Override
 	public Coordinate nextMove(Board b) {
 		Coordinate bestMove = null;
-		ArrayList<Coordinate> moves = getLMList(b, getLegalMoves(b, colour));	
+                ArrayList <Coordinate> moves = new ArrayList <>();
+                ArrayList <Board> boards = new ArrayList <>();
+                
+		getLMList(b, moves, boards, colour);
+                
 		int score = 0;
 		// for every legal move put a stone down
-		for (Coordinate move : moves) {
-            System.out.println("Evaluating "+colour+" at ("+move.x+", "+move.y+")");
-			Board clone = b.clone();
-			clone.set(move.x, move.y, colour);	
-			//Coordinate pos = evaluator.getPosition();
-			// evaluate current move
-			if(evaluator.checkSucceeded(clone, colour)){	//evaluator.getAction().equals("kill") && clone.get(pos.x, pos.y) == Board.EMPTY
-				// if action is kill and killing is done 	
-				return move;
-			}
-			// continue to opponent`s best reaction to this particular move
-			score = min(clone);
-			// return final result
-			if (score > 0) {
-				bestMove = move;
-			}
-			if (score == 0) // pass
-				return new Coordinate(-1,-1);	
+		for (int i = 0; i < moves.size(); i++) {
+                    Coordinate move = moves.get(i);
+                    Board clone = boards.get(i);
+                    try{
+                        System.out.println("Evaluating "+Translator.translateToString(colour)+" at ("+move.x+", "+move.y+")");
+                    }
+                    catch(BoardFormatException bad){}
+
+                    //Board clone = b.clone();
+                    //clone.set(move.x, move.y, colour);	
+                    //Coordinate pos = evaluator.getPosition();
+                    // evaluate current move
+                    if(evaluator.getAction(colour).equals("kill") && evaluator.checkSucceeded(clone, colour)){
+                        return move;
+                    }
+                    // continue to opponent`s best reaction to this particular move
+                    score = min(clone);
+                    // return final result
+                    if (score == 1) {
+                        bestMove = move;
+                    }
 		}
+                
+                if (bestMove == null) // pass
+                    return new Coordinate(-1,-1);
+                
 		return bestMove;
 	}
 	
 	
 	private int min(Board b) {
 		int lowestScore = 1;
-		boolean[][] lm = getLegalMoves(b, getOtherColour());
-		ArrayList<Coordinate> moves = getLMList(b, lm);
-		int score = 0;
-		// if there are no legal moves -> pass
+                ArrayList <Coordinate> moves = new ArrayList <>();
+                ArrayList <Board> boards = new ArrayList <>();
+		int score;
+                int opponentColour = evaluator.getOtherColour(colour);                
+		getLMList(b, moves, boards, opponentColour);
+                
+
+		
+                // Base Case
 		if (moves.isEmpty()) {
-			return 0;
+                    if(evaluator.checkSucceeded(b, opponentColour)){
+                        System.out.println("Min considers moves bad.");
+                        return -1;                    
+                    }
+
+                    else{
+                        System.out.println("Min considers moves good.");
+                        return 1;
+                    }
 		}
-		for (Coordinate move : moves) {
-			Board clone = b.clone();
-			clone.set(move.x, move.y, getOtherColour());
+                
+                for (int i = 0; i < moves.size(); i++) {
+                        Coordinate move = moves.get(i);
+                        Board clone = boards.get(i);
+                        printGameBoard(clone);
 			Coordinate pos = evaluator.getPosition();
-			//
-			if(evaluator.getAction().equals("defend") && clone.get(pos.x, pos.y) == Board.EMPTY){	
-				// if action of opponent is kill and killing is done 	
-				return -1; // -> best move for opponent
+                        System.out.println("Minimizes ("+move.x+", "+move.y+")");
+                        
+                        //Checks successful kill
+			if(evaluator.getAction(opponentColour).equals("kill") && evaluator.checkSucceeded(clone, opponentColour)){	
+                            return -1;
 			}
 			score = max(clone);
 			if (score < lowestScore)
-				lowestScore = score;
+                            lowestScore = score;
 		}
+                
 		return lowestScore;
 	}
 	
 	
 	private int max(Board b) {	
 		int highestScore = -1;
-		
-		boolean[][] lm = getLegalMoves(b, getOtherColour());
-		ArrayList<Coordinate> moves = getLMList(b, lm);
+                ArrayList <Coordinate> moves = new ArrayList <>();
+                ArrayList <Board> boards = new ArrayList <>();
+                getLMList(b, moves, boards, colour);
+                
 		int score = 0;
-		// if no legal moves -> pass
+                
+		//Base case
 		if (moves.isEmpty()) {
-			return 0;
+                    if(evaluator.checkSucceeded(b, colour)){
+                        System.out.println("Max considers moves good.");
+                        return 1;
+                    }
+                    else{
+                        System.out.println("Max considers moves bad.");
+                        return -1;
+                    }
 		}
-		for (Coordinate move : moves) {
-			Board clone = b.clone();
-			clone.set(move.x, move.y, colour);
+                
+		for (int i = 0; i < moves.size(); i++) {
+                        Coordinate move = moves.get(i);
+                        Board clone = boards.get(i);
+                        printGameBoard(clone);
 			Coordinate pos = evaluator.getPosition();
-			if(evaluator.getAction().equals("kill") && clone.get(pos.x, pos.y) == Board.EMPTY){	
-				// if action is kill and killing is done 	
-				return 1; // best move for AI
+                        System.out.println("Maximizes ("+move.x+", "+move.y+")");
+                        
+			if(evaluator.getAction(colour).equals("kill") && evaluator.checkSucceeded(b, colour)){	
+                            return 1;
 			}
 			score = min(clone);
 			if (score > highestScore)
 				highestScore = score;
 		}
+                
 		return highestScore;
 	}
 	
@@ -108,19 +149,17 @@ public class MiniMax extends AI{
 	 }
 
 	 // create array list containing the coordinates of the legal moves
-	 public ArrayList<Coordinate> getLMList (Board b, boolean lm[][]){
-		ArrayList<Coordinate> al = new ArrayList<>();
-		for(int i = 0; i < b.getWidth(); i++){
-            for(int j = 0;j < b.getHeight();j++){
-                if ((i>=lowerBoundX && i<=upperBoundX) && (j>=lowerBoundY && j<=upperBoundY)){
-                    if (lm[i][j]){
-                        al.add(new Coordinate(i,j));
-                        System.out.println("AI considers move: ("+i+", "+j+")");
+	 public void getLMList (Board b, ArrayList <Coordinate> moves, ArrayList <Board> boards, int colour){
+		for(int i = lowerBoundX; i <= upperBoundX; i++){
+                    for(int j = lowerBoundY; j <= upperBoundY;j++){
+                        Coordinate c = new Coordinate(i,j);
+                        if (lmc.checkMove(b, c, colour)){
+                            moves.add(c);
+                            boards.add(lmc.getLastLegal());
+                            System.out.println("AI considers move: ("+i+", "+j+")");
+                        }
                     }
-                }
-            }
 		}
-		 return al;
 	 }
 	  
 	public boolean[][] getLegalMoves(Board b, int colour){
@@ -134,5 +173,79 @@ public class MiniMax extends AI{
 	      
 	    return legalMoves;
 	  }
+        
+            public void printGameBoard(Board b){
+
+            int[][] board = b.getRaw();
+            ArrayList<String> lines = new ArrayList<>();
+
+            try{
+                    for(int i = 0; i < board[0].length; i++){
+                            lines.add("");
+                            int p = lines.size()-1;
+                            for(int j = 0; j < board.length; j++)
+                                    lines.set(p, lines.get(p)+Translator.translateToChar(board[j][i]));
+                    }
+                    printBoard(lines);
+            }
+            catch(BoardFormatException bad){System.err.println(bad.getMsg()+"\n> The board could not be printed");}
+            }
+            
+            //Prints general boards.
+            public void printBoard(ArrayList<String> lines){
+
+            System.out.println();
+            lines = addBoardDetails(lines);
+
+            for(String s : lines){
+                    System.out.println(s);
+                }
+
+            System.out.println();
+
+    }
+    //Adds details to a board view. Currently just board indexing.
+    public ArrayList <String> addBoardDetails(ArrayList <String> board){
+
+            //indices
+            int width = board.get(0).length();
+            int height = board.size();
+            int wLength = String.valueOf(width).length(); //Digit length for buffering.
+            int hLength = String.valueOf(height).length();
+
+            ArrayList <String> detailedBoard = new ArrayList<>();
+
+            //Row indices
+            for(int i = 0; i < height; i++){
+
+                    String spacing = "";
+                    int buffer = String.valueOf(i).length();
+
+                    while(buffer++ < hLength)
+                            spacing += ' ';
+
+                    spacing += Integer.toString(i) + ' ';
+                    detailedBoard.add(spacing + board.get(i));
+            }
+
+            detailedBoard.add("");
+
+            //Column indices
+            for(int i = 0; i < wLength; i++){
+
+                    String line = "";
+                    for(int j = 0; j < width; j++){
+                            if(String.valueOf(j).length() > i)
+                                    line += Integer.toString(j).charAt(i);
+                            else
+                                    line += ' ';
+                    }
+                    for(int j = 0; j < hLength; j++)
+                            line = ' '+line;
+                    detailedBoard.add(' '+line);
+            }
+            return detailedBoard;
+    }
+            
 
 }

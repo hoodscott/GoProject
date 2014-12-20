@@ -3,6 +3,8 @@
 	basedir="."
 	xmlns:ivy="antlib:org.apache.ivy.ant"
 	default="jar"
+
+	
 >
 	
 	<!-- Setting pathname properties -->
@@ -183,7 +185,7 @@
 		depends="jar"
 		description="Runs the application">
 
-        <java jar="${jar.dir}" fork="true"/>
+        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
     </target>
 
 </project>
