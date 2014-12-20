@@ -121,8 +121,12 @@ public class BoardJPanel extends JPanel {
 		if (gameE.makeMove(new Coordinate(x, y), c)) {
 			// move made, repaint board
 			repaint();
-			// change player
-			changePlayer();
+			
+			// change player when mixed stones selected or competitive mode
+			if (GraphicalUI.getMixedStones() || GraphicalUI.getCompetitive()) {
+				changePlayer();
+			}
+			
 			GraphicalUI.player.setText(getPlayer());
 			GraphicalUI.invMove.setText(getInvMove(i));
 			numStones = numStones + 1;

@@ -42,7 +42,8 @@ public class GraphicalUI {
 	private JToggleButton boundsButton, competitiveButton, creationButton;
 	private JLabel objectiveLabel, objective, playerLabel, invMoveLabel;
 	private BoardJPanel boardJP;
-	private static boolean bounds, competitive, creation;
+	private static boolean bounds, competitive, creation; // for toggle buttons
+	private static boolean mixedStones, deleteStones; // problem creation options
 
 	static JLabel player, invMove;
 
@@ -83,6 +84,9 @@ public class GraphicalUI {
 		height = (width / 16) * 9;
 		xInit = 100;
 		yInit = 100;
+		
+		// set stones to white then black as default
+		mixedStones = true;
 
 		// START OF FRAME //
 
@@ -227,11 +231,22 @@ public class GraphicalUI {
 		fileMenu.add(menuItem);
 		
 		// menu item for using white/black stones
-		menuItem = new JMenuItem("Use Both Stones", KeyEvent.VK_M);
+		menuItem = new JMenuItem("Use Both Stones", KeyEvent.VK_B);
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Places stones in black and white order");
+		menuItem.addActionListener(new CreationMenuListener());
+		fileMenu.add(menuItem);
+		
+		fileMenu.addSeparator();
+		
+		// menu item for removing stones
+		menuItem = new JMenuItem("Delete Stones", KeyEvent.VK_D);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Allow user to delete stones");
 		menuItem.addActionListener(new CreationMenuListener());
 		fileMenu.add(menuItem);
 
@@ -527,12 +542,24 @@ public class GraphicalUI {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand() == "Use Black Stones") {
+			if ((e.getActionCommand() == "Use Black Stones") && creation) {
 				// set down only black stones
-			} else if (e.getActionCommand() == "Use White Stones") {
+				BoardJPanel.setPlayer("black");
+				mixedStones = false;
+				deleteStones = false;
+			} else if ((e.getActionCommand() == "Use White Stones") && creation) {
 				// set down only white stones
-			} else {
+				BoardJPanel.setPlayer("white");
+				mixedStones = false;
+				deleteStones = false;
+			} else if ((e.getActionCommand() == "Use Both Stones") && creation){
 				// use a mixture of stones
+				mixedStones = true;
+				deleteStones = false;
+			} else if ((e.getActionCommand() == "Delete Stones") && creation){
+				// remove stones user clicks on
+				deleteStones = true;
+				mixedStones = false;
 			}
 		}
 	}
@@ -631,7 +658,7 @@ public class GraphicalUI {
 		
 	}
 	
-	// Getter for GUI booleans
+	// Getter for GUI toggle button booleans
 	public static boolean getBounds() {
 		return bounds;
 	}
@@ -642,6 +669,15 @@ public class GraphicalUI {
 	
 	public static boolean getCreation() {
 		return creation;
+	}
+	
+	// Getters for problem creation mode booleans
+	public static boolean getMixedStones() {
+		return mixedStones;
+	}
+	
+	public static boolean getDeleteStones() {
+		return deleteStones;
 	}
 
 }
