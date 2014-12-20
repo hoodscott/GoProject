@@ -61,7 +61,15 @@ public class BoardJPanel extends JPanel {
 						|| (xRemainder > squareSize / 2 + border)
 						&& (yRemainder < squareSize / 2 - border)
 						|| (yRemainder > squareSize / 2 + border)) {
-					updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
+					// check if user is attempting to delete stone
+					if (GraphicalUI.getDeleteStones() && GraphicalUI.getCreation()) {
+						// remove selected stone from board
+						gameE.getCurrentBoard().set(yPos,xPos,0);
+						repaint();
+						// else add stone to board
+					} else {
+						updateBoard(yPos, xPos, colour); // SET TO BLACK STONE ON FIRST MOVE
+					}
 				} else {
 					GraphicalUI.invMove
 							.setText("Select Closer To Intersection");
