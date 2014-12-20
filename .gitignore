@@ -4,3 +4,6 @@ lib
 /nbproject/private
 /dist/
 /build/
+/nbbuild.xml
+/nbproject
+/manifest.mf
