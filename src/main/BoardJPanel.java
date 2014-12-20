@@ -202,68 +202,40 @@ public class BoardJPanel extends JPanel {
 		if (lines == 9) {
 			g.setColor(Color.black);
 			// Create 5 small ovals in place
-			g.fillOval(
-					(squareSize + 2 * squareSize - 8) - 2,
-					(squareSize + 2 * squareSize - 8) - 2,
-					20, 20);
-			g.fillOval(
-					(squareSize + 6 * squareSize - 8) - 2,
-					(squareSize + 2 * squareSize - 8) - 2,
-					20, 20);
-			g.fillOval(
-					(squareSize + 2 * squareSize - 8) - 2,
-					(squareSize + 6 * squareSize - 8) - 2,
-					20, 20);
-			g.fillOval(
-					(squareSize + 6 * squareSize - 8) - 2,
-					(squareSize + 6 * squareSize - 8) - 2,
-					20, 20);
-			g.fillOval(
-					(squareSize + 4 * squareSize - 10) - 2,
-					(squareSize + 4 * squareSize - 10) - 2,
-					20, 20);
+			g.fillOval(squareSize + 2 * squareSize - 10, 
+					squareSize + 2 * squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 6 * squareSize - 10, 
+					squareSize + 2 * squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 2 * squareSize - 10, 
+					squareSize + 6 * squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 6 * squareSize - 10, 
+					squareSize + 6 * squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 4 * squareSize - 10, 
+					squareSize + 4 * squareSize - 10, 20, 20);
 		}
 		
 		// For 19x19 - Show 9 circles
 				if (lines == 19) {
 					g.setColor(Color.black);
 					// Create 9 small ovals in place
-					g.fillOval(
-							(squareSize + 3 * squareSize - 5) - 2,
-							(squareSize + 3 * squareSize - 5) - 2,
-							14, 14);
-					g.fillOval(
-							(squareSize + 9 * squareSize - 5) - 2,
-							(squareSize + 3 * squareSize - 5) - 2,
-							14, 14);
-					g.fillOval(
-							(squareSize + 15 * squareSize - 5) - 2,
-							(squareSize + 3 * squareSize - 5) - 2,
-							14, 14);
-					g.fillOval(
-							(squareSize + 3 * squareSize - 5) - 2,
-							(squareSize + 9 * squareSize - 5) - 2,
-							14, 14);
-					g.fillOval(
-							(squareSize + 3 * squareSize - 5) - 2,
-							(squareSize + 15 * squareSize - 5) - 2,
-							14, 14);
-					g.fillOval(
-							(squareSize + 9 * squareSize - 5) - 2,
-							(squareSize + 9 * squareSize - 5) - 2,
-							14, 14);
-					g.fillOval(
-							(squareSize + 9 * squareSize - 5) - 2,
-							(squareSize + 15 * squareSize - 5) - 2,
-							14, 14);
-					g.fillOval(
-							(squareSize + 15 * squareSize - 5) - 2,
-							(squareSize + 9 * squareSize - 5) - 2,
-							14, 14);
-					g.fillOval(
-							(squareSize + 15 * squareSize - 5) - 2,
-							(squareSize + 15 * squareSize - 5) - 2,
-							14, 14);
+					g.fillOval(squareSize + 3 * squareSize - 7, 
+							squareSize + 3 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 9 * squareSize - 7, 
+							squareSize + 3 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 15 * squareSize - 7, 
+							squareSize + 3 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 9 * squareSize - 7, 
+							squareSize + 9 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 9 * squareSize - 7, 
+							squareSize + 15 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 3 * squareSize - 7, 
+							squareSize + 9 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 3 * squareSize - 7, 
+							squareSize + 15 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 15 * squareSize - 7, 
+							squareSize + 15 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 15 * squareSize - 7, 
+							squareSize + 9 * squareSize - 7, 14, 14);
 				}
 
 		// Draws counters on grid
