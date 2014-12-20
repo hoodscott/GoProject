@@ -152,21 +152,23 @@ public class BoardJPanel extends JPanel {
 				- 2);
 
 		// Draw search space as grey rectangles when specified
-		//int[] searchSpace = gameE.getAISearchValues();
-		if (searchSpace != null) {
-			g.setColor(Color.gray); // re-colour board as grey
-			g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
-					* (lines + 1) - 2);
+		// and bounds button selected
+		if (GraphicalUI.getBounds()) {
+			if (searchSpace != null) {
+				g.setColor(Color.gray); // re-colour board as grey
+				g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
+						* (lines + 1) - 2);
 
-			// re-colour brown rectangles included in search space
-			// NOTE: assumes 0,0 as top left co-ordinate
-			int x2 = searchSpace[2];
-			int y2 = searchSpace[3];
-			for (int x1 = searchSpace[0]; x1 < x2; x1++) {
-				for (int y1 = searchSpace[1]; y1 < y2; y1++) {
-					g.setColor(new Color(205, 133, 63));
-					g.fillRect(squareSize + x1 * squareSize, squareSize + y1
-							* squareSize, squareSize, squareSize);
+				// re-colour brown rectangles included in search space
+				// NOTE: assumes 0,0 as top left co-ordinate
+				int x2 = searchSpace[2];
+				int y2 = searchSpace[3];
+				for (int x1 = searchSpace[0]; x1 < x2; x1++) {
+					for (int y1 = searchSpace[1]; y1 < y2; y1++) {
+						g.setColor(new Color(205, 133, 63));
+						g.fillRect(squareSize + x1 * squareSize, squareSize + y1
+								* squareSize, squareSize, squareSize);
+					}
 				}
 			}
 		}

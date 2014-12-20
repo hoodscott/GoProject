@@ -22,6 +22,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import javax.swing.KeyStroke;
 import javax.swing.border.EtchedBorder;
 
@@ -37,9 +38,12 @@ public class GraphicalUI {
 	private JMenuItem menuItem;
 	private Container pane;
 	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
-	private JButton undoButton, resetButton, passButton, boundsButton;
+	private JButton undoButton, resetButton, passButton;
+	private JToggleButton boundsButton, competitiveButton, creationButton;
 	private JLabel objectiveLabel, objective, playerLabel, invMoveLabel;
 	private BoardJPanel boardJP;
+	private static boolean bounds, competitive, creation;
+
 	static JLabel player, invMove;
 
 	/**
@@ -288,6 +292,22 @@ public class GraphicalUI {
 		// add padding to panel
 		gridPanel.add(new JPanel());
 		gridPanel.add(new JPanel());
+		
+		// button to show bounds of problem
+		competitiveButton = new JToggleButton("Competitive Play Mode");
+		competitiveButton.setMnemonic(KeyEvent.VK_P);
+		gridPanel.add(competitiveButton);
+
+		// add action listener for this button
+		competitiveButton.addActionListener(new GridToggleListener());
+		
+		// button to show bounds of problem
+		creationButton = new JToggleButton("Problem Creation Mode");
+		creationButton.setMnemonic(KeyEvent.VK_C);
+		gridPanel.add(creationButton);
+
+		// add action listener for this button
+		creationButton.addActionListener(new GridToggleListener());
 
 		// button to undo last move
 		undoButton = new JButton("Undo");
@@ -313,13 +333,13 @@ public class GraphicalUI {
 		// add action listener for this button
 		passButton.addActionListener(new GridListener());
 
-		// button to undo last move
-		boundsButton = new JButton("Show Bounds");
+		// button to show bounds of problem
+		boundsButton = new JToggleButton("Show Bounds");
 		boundsButton.setMnemonic(KeyEvent.VK_B);
 		gridPanel.add(boundsButton);
 
 		// add action listener for this button
-		boundsButton.addActionListener(new GridListener());
+		boundsButton.addActionListener(new GridToggleListener());
 
 		// add grid panel to button panel
 		buttonPanel.add(gridPanel, BorderLayout.SOUTH);
@@ -477,11 +497,39 @@ public class GraphicalUI {
 					boardJP.loadBoard(gameEngine);
 				}
 			}
+		}
+	}
+	
+	// action listener for toggle buttons
+	private class GridToggleListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JToggleButton button = (JToggleButton) e.getSource();
 			if (button.getText().equals("Show Bounds")) {
-				BoardJPanel.setBounds(gameEngine.getAISearchValues());
-				boardJP.loadBoard(gameEngine);
+				if (!bounds) {
+					bounds = true;
+					boardJP.loadBoard(gameEngine);
+				} else {
+					bounds = false;
+					boardJP.loadBoard(gameEngine);
+				}
 			}
 		}
+		
+	}
+	
+	// Getter for GUI booleans
+	public static boolean getBounds() {
+		return bounds;
+	}
+	
+	public static boolean getCompetitive() {
+		return competitive;
+	}
+	
+	public static boolean getCreation() {
+		return creation;
 	}
 
 }
