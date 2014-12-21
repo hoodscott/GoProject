@@ -22,6 +22,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import javax.swing.KeyStroke;
 import javax.swing.border.EtchedBorder;
 
@@ -37,9 +38,13 @@ public class GraphicalUI {
 	private JMenuItem menuItem;
 	private Container pane;
 	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
-	private JButton undoButton, resetButton, passButton, boundsButton;
+	private JButton undoButton, resetButton, passButton;
+	private JToggleButton boundsButton, competitiveButton, creationButton;
 	private JLabel objectiveLabel, objective, playerLabel, invMoveLabel;
 	private BoardJPanel boardJP;
+	private static boolean bounds, competitive, creation; // for toggle buttons
+	private static boolean mixedStones, deleteStones; // problem creation options
+
 	static JLabel player, invMove;
 
 	/**
@@ -79,6 +84,9 @@ public class GraphicalUI {
 		height = (width / 16) * 9;
 		xInit = 100;
 		yInit = 100;
+		
+		// set stones to white then black as default
+		mixedStones = true;
 
 		// START OF FRAME //
 
@@ -156,7 +164,35 @@ public class GraphicalUI {
 				"Saves current board to specified path");
 		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
+		
+		fileMenu.addSeparator();
+		
+		// Submenu for setting bounds
+		subMenu = new JMenu("Bounds");
+		subMenu.getAccessibleContext().setAccessibleDescription(
+				"Allows user to set bounds.");
+		subMenu.setMnemonic(KeyEvent.VK_B);
 
+		// Menu item for setting bounds
+		menuItem = new JMenuItem("Set Bounds", KeyEvent.VK_B);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Allow user to specify board bounds");
+		menuItem.addActionListener(new BoundsMenuListener());
+		subMenu.add(menuItem);
+		
+		// Menu item for removing bounds
+		menuItem = new JMenuItem("Remove Bounds", KeyEvent.VK_R);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Removes bounds from problem");
+		menuItem.addActionListener(new BoundsMenuListener());
+		subMenu.add(menuItem);
+		
+		fileMenu.add(subMenu);
+		
 		fileMenu.addSeparator();
 
 		// menu item for exiting the program
@@ -166,6 +202,52 @@ public class GraphicalUI {
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Exits the program");
 		menuItem.addActionListener(new FileMenuListener());
+		fileMenu.add(menuItem);
+		
+		// Build help menu for debugging commands
+		fileMenu = new JMenu("Problem Creation");
+		fileMenu.setMnemonic(KeyEvent.VK_P);
+		fileMenu.getAccessibleContext()
+				.setAccessibleDescription(
+						"Menu with options during problem creation mode");
+		menuBar.add(fileMenu);
+		
+		// menu item for using black stones
+		menuItem = new JMenuItem("Use Black Stones", KeyEvent.VK_B);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Place only black stones down");
+		menuItem.addActionListener(new CreationMenuListener());
+		fileMenu.add(menuItem);
+		
+		// menu item for using white stones
+		menuItem = new JMenuItem("Use White Stones", KeyEvent.VK_W);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Place only white stones down");
+		menuItem.addActionListener(new CreationMenuListener());
+		fileMenu.add(menuItem);
+		
+		// menu item for using white/black stones
+		menuItem = new JMenuItem("Use Both Stones", KeyEvent.VK_B);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Places stones in black and white order");
+		menuItem.addActionListener(new CreationMenuListener());
+		fileMenu.add(menuItem);
+		
+		fileMenu.addSeparator();
+		
+		// menu item for removing stones
+		menuItem = new JMenuItem("Delete Stones", KeyEvent.VK_D);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Allow user to delete stones");
+		menuItem.addActionListener(new CreationMenuListener());
 		fileMenu.add(menuItem);
 
 		// Build help menu for debugging commands
@@ -288,6 +370,22 @@ public class GraphicalUI {
 		// add padding to panel
 		gridPanel.add(new JPanel());
 		gridPanel.add(new JPanel());
+		
+		// button to show bounds of problem
+		competitiveButton = new JToggleButton("Competitive Play Mode");
+		competitiveButton.setMnemonic(KeyEvent.VK_P);
+		gridPanel.add(competitiveButton);
+
+		// add action listener for this button
+		competitiveButton.addActionListener(new GridToggleListener());
+		
+		// button to show bounds of problem
+		creationButton = new JToggleButton("Problem Creation Mode");
+		creationButton.setMnemonic(KeyEvent.VK_C);
+		gridPanel.add(creationButton);
+
+		// add action listener for this button
+		creationButton.addActionListener(new GridToggleListener());
 
 		// button to undo last move
 		undoButton = new JButton("Undo");
@@ -313,13 +411,13 @@ public class GraphicalUI {
 		// add action listener for this button
 		passButton.addActionListener(new GridListener());
 
-		// button to undo last move
-		boundsButton = new JButton("Show Bounds");
+		// button to show bounds of problem
+		boundsButton = new JToggleButton("Show Bounds");
 		boundsButton.setMnemonic(KeyEvent.VK_B);
 		gridPanel.add(boundsButton);
 
 		// add action listener for this button
-		boundsButton.addActionListener(new GridListener());
+		boundsButton.addActionListener(new GridToggleListener());
 
 		// add grid panel to button panel
 		buttonPanel.add(gridPanel, BorderLayout.SOUTH);
@@ -393,7 +491,6 @@ public class GraphicalUI {
 	}
 
 	private class SubMenuListener implements ActionListener {
-		// TODO implement log after every move and then implement these actions
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// load default board
@@ -417,6 +514,52 @@ public class GraphicalUI {
 					boardJP.loadBoard(gameEngine);
 				}
 
+			}
+		}
+	}
+	
+	private class BoundsMenuListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// allow user to set bounds
+			if (e.getActionCommand() == "Set Bounds") {
+				// TODO: Display dialogue box allowing bound setting
+				// TODO: Need method for setting bounds in GameEngine
+			} else {
+				// remove bounds - (make bounds size of board)
+				int lines = BoardJPanel.getLines();
+				int[] noBounds = {0,0,lines,lines};
+				BoardJPanel.setBounds(noBounds);
+			}
+		}
+		
+	}
+	
+	private class CreationMenuListener implements ActionListener {
+
+		// TODO implement debugging actions
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if ((e.getActionCommand() == "Use Black Stones") && creation) {
+				// set down only black stones
+				BoardJPanel.setPlayer("black");
+				mixedStones = false;
+				deleteStones = false;
+			} else if ((e.getActionCommand() == "Use White Stones") && creation) {
+				// set down only white stones
+				BoardJPanel.setPlayer("white");
+				mixedStones = false;
+				deleteStones = false;
+			} else if ((e.getActionCommand() == "Use Both Stones") && creation){
+				// use a mixture of stones
+				mixedStones = true;
+				deleteStones = false;
+			} else if ((e.getActionCommand() == "Delete Stones") && creation){
+				// remove stones user clicks on
+				deleteStones = true;
+				mixedStones = false;
 			}
 		}
 	}
@@ -477,11 +620,64 @@ public class GraphicalUI {
 					boardJP.loadBoard(gameEngine);
 				}
 			}
+		}
+	}
+	
+	// action listener for toggle buttons
+	private class GridToggleListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JToggleButton button = (JToggleButton) e.getSource();
 			if (button.getText().equals("Show Bounds")) {
-				BoardJPanel.setBounds(gameEngine.getAISearchValues());
-				boardJP.loadBoard(gameEngine);
+				if (!bounds) {
+					bounds = true;
+					boardJP.loadBoard(gameEngine);
+				} else {
+					bounds = false;
+					boardJP.loadBoard(gameEngine);
+				}
+			}
+			if (button.getText().equals("Competitive Play Mode")) {
+				creationButton.setSelected(false);
+				if (!competitive) {
+					competitive = true;
+				} else {
+					competitive = false;
+				}
+			}
+			if (button.getText().equals("Problem Creation Mode")) {
+				competitiveButton.setSelected(false);
+				if (!creation) {
+					creation = true;
+				} else {
+					creation = false;
+				}
 			}
 		}
+		
+	}
+	
+	// Getter for GUI toggle button booleans
+	public static boolean getBounds() {
+		return bounds;
+	}
+	
+	public static boolean getCompetitive() {
+		return competitive;
+	}
+	
+	public static boolean getCreation() {
+		return creation;
+	}
+	
+	// Getters for problem creation mode booleans
+	public static boolean getMixedStones() {
+		return mixedStones;
+	}
+	
+	public static boolean getDeleteStones() {
+		return deleteStones;
 	}
 
 }

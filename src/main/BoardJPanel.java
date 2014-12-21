@@ -2,6 +2,7 @@ package main;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 
@@ -10,7 +11,7 @@ public class BoardJPanel extends JPanel {
 
 	// constants
 	private static final int BOARD_LENGTH = 600;
-	private int lines;
+	private static int lines;
 	private Board board, greyCounters;
 	public static int colour = 1;
 	public GameEngine gameE;
@@ -29,6 +30,7 @@ public class BoardJPanel extends JPanel {
 		board = gameEngine.getCurrentBoard();
 		lines = board.getHeight();
 		greyCounters = new Board(lines, lines);
+		searchSpace = gameE.getAISearchValues();
 
 		// Add stone to board when user clicks
 		this.addMouseListener(new MouseAdapter() {
@@ -59,7 +61,15 @@ public class BoardJPanel extends JPanel {
 						|| (xRemainder > squareSize / 2 + border)
 						&& (yRemainder < squareSize / 2 - border)
 						|| (yRemainder > squareSize / 2 + border)) {
-					updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
+					// check if user is attempting to delete stone
+					if (GraphicalUI.getDeleteStones() && GraphicalUI.getCreation()) {
+						// remove selected stone from board
+						gameE.getCurrentBoard().set(yPos,xPos,0);
+						repaint();
+						// else add stone to board
+					} else {
+						updateBoard(yPos, xPos, colour); // SET TO BLACK STONE ON FIRST MOVE
+					}
 				} else {
 					GraphicalUI.invMove
 							.setText("Select Closer To Intersection");
@@ -119,8 +129,12 @@ public class BoardJPanel extends JPanel {
 		if (gameE.makeMove(new Coordinate(x, y), c)) {
 			// move made, repaint board
 			repaint();
-			// change player
-			changePlayer();
+			
+			// change player when mixed stones selected or competitive mode
+			if (GraphicalUI.getMixedStones() || GraphicalUI.getCompetitive()) {
+				changePlayer();
+			}
+			
 			GraphicalUI.player.setText(getPlayer());
 			GraphicalUI.invMove.setText(getInvMove(i));
 			numStones = numStones + 1;
@@ -143,6 +157,7 @@ public class BoardJPanel extends JPanel {
 		lines = gameE.getCurrentBoard().getHeight();
 		int squareSize = (BOARD_LENGTH) / (lines + 1);
 		int stoneSize = squareSize / 2;
+		int[] noBounds = {0,0,lines,lines};
 
 		// Board colour and border fill
 		g.setColor(Color.black);
@@ -152,21 +167,23 @@ public class BoardJPanel extends JPanel {
 				- 2);
 
 		// Draw search space as grey rectangles when specified
-		//int[] searchSpace = gameE.getAISearchValues();
-		if (searchSpace != null) {
-			g.setColor(Color.gray); // re-colour board as grey
-			g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
-					* (lines + 1) - 2);
+		// and bounds button selected
+		if (GraphicalUI.getBounds()) {
+			if (searchSpace != null && !Arrays.equals(searchSpace,noBounds)) {
+				g.setColor(Color.gray); // re-colour board as grey
+				g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
+						* (lines + 1) - 2);
 
-			// re-colour brown rectangles included in search space
-			// NOTE: assumes 0,0 as top left co-ordinate
-			int x2 = searchSpace[2];
-			int y2 = searchSpace[3];
-			for (int x1 = searchSpace[0]; x1 < x2; x1++) {
-				for (int y1 = searchSpace[1]; y1 < y2; y1++) {
-					g.setColor(new Color(205, 133, 63));
-					g.fillRect(squareSize + x1 * squareSize, squareSize + y1
-							* squareSize, squareSize, squareSize);
+				// re-colour brown rectangles included in search space
+				// NOTE: assumes 0,0 as top left co-ordinate
+				int x2 = searchSpace[2];
+				int y2 = searchSpace[3];
+				for (int x1 = searchSpace[0]; x1 < x2; x1++) {
+					for (int y1 = searchSpace[1]; y1 < y2; y1++) {
+						g.setColor(new Color(205, 133, 63));
+						g.fillRect(squareSize + x1 * squareSize, squareSize + y1
+								* squareSize, squareSize, squareSize);
+					}
 				}
 			}
 		}
@@ -179,6 +196,47 @@ public class BoardJPanel extends JPanel {
 						squareSize);
 			}
 		}
+		
+		// Show circles on Go Board
+		// For 9x9 - Show 5 circles
+		if (lines == 9) {
+			g.setColor(Color.black);
+			// Create 5 small ovals in place
+			g.fillOval(squareSize + 2 * squareSize - 10, 
+					squareSize + 2 * squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 6 * squareSize - 10, 
+					squareSize + 2 * squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 2 * squareSize - 10, 
+					squareSize + 6 * squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 6 * squareSize - 10, 
+					squareSize + 6 * squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 4 * squareSize - 10, 
+					squareSize + 4 * squareSize - 10, 20, 20);
+		}
+		
+		// For 19x19 - Show 9 circles
+				if (lines == 19) {
+					g.setColor(Color.black);
+					// Create 9 small ovals in place
+					g.fillOval(squareSize + 3 * squareSize - 7, 
+							squareSize + 3 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 9 * squareSize - 7, 
+							squareSize + 3 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 15 * squareSize - 7, 
+							squareSize + 3 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 9 * squareSize - 7, 
+							squareSize + 9 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 9 * squareSize - 7, 
+							squareSize + 15 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 3 * squareSize - 7, 
+							squareSize + 9 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 3 * squareSize - 7, 
+							squareSize + 15 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 15 * squareSize - 7, 
+							squareSize + 15 * squareSize - 7, 14, 14);
+					g.fillOval(squareSize + 15 * squareSize - 7, 
+							squareSize + 9 * squareSize - 7, 14, 14);
+				}
 
 		// Draws counters on grid
 		board = gameE.getCurrentBoard();
@@ -276,6 +334,10 @@ public class BoardJPanel extends JPanel {
 
 	public static void setBounds(int[] aiSearchValues) {
 		searchSpace = aiSearchValues;
+	}
+	
+	public static int getLines() {
+		return lines;
 	}
 
 	// public static int getNumStones() {
