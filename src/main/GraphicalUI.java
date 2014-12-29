@@ -640,6 +640,7 @@ public class GraphicalUI {
 			}
 			if (button.getText().equals("Competitive Play Mode")) {
 				creationButton.setSelected(false);
+				creation = false;
 				if (!competitive) {
 					competitive = true;
 				} else {
@@ -648,6 +649,7 @@ public class GraphicalUI {
 			}
 			if (button.getText().equals("Problem Creation Mode")) {
 				competitiveButton.setSelected(false);
+				competitive = false;
 				if (!creation) {
 					creation = true;
 				} else {
