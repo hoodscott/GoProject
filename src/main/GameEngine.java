@@ -68,7 +68,7 @@ public class GameEngine{
   //if the move is illegal, return false
   
   public String aiMove(){
-    Coordinate c = ai.nextMove(currentBoard);
+    Coordinate c = ai.nextMove(currentBoard, moveChecker);
     if(c.x == -1 && c.y == -1)
         return "passes";
     else{

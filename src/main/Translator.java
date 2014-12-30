@@ -151,7 +151,7 @@ public class Translator {
     
     }
     public static String translateToObjectiveInstruction(Objective objective) throws BoardFormatException{
-        return translateToString(objective.getColour())+' '+objective.getAction()+' '+
+        return translateToString(objective.getColour())+' '+objective.getOriginalAction()+' '+
         objective.getPosition().x +' '+objective.getPosition().y+'\n';}
     
     public static String translateToSearchSpaceInstruction(int[] searchValues)throws BoardFormatException{

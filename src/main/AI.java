@@ -10,7 +10,7 @@ public abstract class AI {
     
     protected int colour;
     
-    public abstract Coordinate nextMove(Board b);
+    public abstract Coordinate nextMove(Board b, LegalMoveChecker lMC);
     
     public void setBounds(int[] data){
         if(data[0] > data[2]){
