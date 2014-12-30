@@ -613,8 +613,61 @@ public class GraphicalUI {
         }
     }
 
-    // action listener for toggle buttons
-    private class GridToggleListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JToggleButton button = (JToggleButton) e.getSource();
+			if (button.getText().equals("Show Bounds")) {
+				if (!bounds) {
+					bounds = true;
+					boardJP.loadBoard(gameEngine);
+				} else {
+					bounds = false;
+					boardJP.loadBoard(gameEngine);
+				}
+			}
+			if (button.getText().equals("Competitive Play Mode")) {
+				creationButton.setSelected(false);
+				creation = false;
+				if (!competitive) {
+					competitive = true;
+				} else {
+					competitive = false;
+				}
+			}
+			if (button.getText().equals("Problem Creation Mode")) {
+				competitiveButton.setSelected(false);
+				competitive = false;
+				if (!creation) {
+					creation = true;
+				} else {
+					creation = false;
+				}
+			}
+		}
+		
+	}
+	
+	// Getter for GUI toggle button booleans
+	public static boolean getBounds() {
+		return bounds;
+	}
+	
+	public static boolean getCompetitive() {
+		return competitive;
+	}
+	
+	public static boolean getCreation() {
+		return creation;
+	}
+	
+	// Getters for problem creation mode booleans
+	public static boolean getMixedStones() {
+		return mixedStones;
+	}
+	
+	public static boolean getDeleteStones() {
+		return deleteStones;
+	}
 
         @Override
         public void actionPerformed(ActionEvent e) {
