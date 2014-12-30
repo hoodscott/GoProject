@@ -431,7 +431,7 @@ public class GraphicalUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             // load specified board
-            if (e.getActionCommand() == "Load Problem") {
+            if (e.getActionCommand().equals("Load Problem")) {
                 JFileChooser loadBoard = new JFileChooser();
                 int command = loadBoard.showOpenDialog(pane);
                 if (command == JFileChooser.APPROVE_OPTION) {
@@ -451,7 +451,7 @@ public class GraphicalUI {
                 }
 
                 // save current board to default location
-            } else if (e.getActionCommand() == "Save Problem") {
+            } else if (e.getActionCommand().equals("Save Problem")) {
                 try {
                     FileIO.writeBoard(gameEngine);
                 } catch (BoardFormatException bfe) {
@@ -459,7 +459,7 @@ public class GraphicalUI {
                 }
 
                 // save current board to specified location
-            } else if (e.getActionCommand() == "Save Problem As...") {
+            } else if (e.getActionCommand().equals("Save Problem As...")) {
                 JFileChooser saveBoard = new JFileChooser();
                 int command = saveBoard.showSaveDialog(pane);
                 if (command == JFileChooser.APPROVE_OPTION) {
@@ -487,7 +487,7 @@ public class GraphicalUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             // load default board
-            if (e.getActionCommand() == "Default (9x9)") {
+            if (e.getActionCommand().equals("Default (9x9)")) {
                 // default 9x9
                 gameEngine = new GameEngine(new Board());
                 BoardJPanel.setPlayer("black");
@@ -516,7 +516,7 @@ public class GraphicalUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             // allow user to set bounds
-            if (e.getActionCommand() == "Set Bounds") {
+            if (e.getActionCommand().equals("Set Bounds")) {
 				// TODO: Display dialogue box allowing bound setting
                 // TODO: Need method for setting bounds in GameEngine
             } else {
@@ -534,21 +534,21 @@ public class GraphicalUI {
 		// TODO implement debugging actions
         @Override
         public void actionPerformed(ActionEvent e) {
-            if ((e.getActionCommand() == "Use Black Stones") && creation) {
+            if ((e.getActionCommand().equals("Use Black Stones")) && creation) {
                 // set down only black stones
                 BoardJPanel.setPlayer("black");
                 mixedStones = false;
                 deleteStones = false;
-            } else if ((e.getActionCommand() == "Use White Stones") && creation) {
+            } else if ((e.getActionCommand().equals("Use White Stones")) && creation) {
                 // set down only white stones
                 BoardJPanel.setPlayer("white");
                 mixedStones = false;
                 deleteStones = false;
-            } else if ((e.getActionCommand() == "Use Both Stones") && creation) {
+            } else if ((e.getActionCommand().equals("Use Both Stones")) && creation) {
                 // use a mixture of stones
                 mixedStones = true;
                 deleteStones = false;
-            } else if ((e.getActionCommand() == "Delete Stones") && creation) {
+            } else if ((e.getActionCommand().equals("Delete Stones")) && creation) {
                 // remove stones user clicks on
                 deleteStones = true;
                 mixedStones = false;
@@ -561,7 +561,7 @@ public class GraphicalUI {
 		// TODO implement debugging actions
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getActionCommand() == "Do A Debug") {
+            if (e.getActionCommand().equals("Do A Debug")) {
                 // debug game
             }
         }
@@ -572,7 +572,7 @@ public class GraphicalUI {
 		// TODO implement helper actions
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getActionCommand() == "Shout for Help") {
+            if (e.getActionCommand().equals("Shout for Help")) {
                 // show user help
             }
         }
