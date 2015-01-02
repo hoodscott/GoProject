@@ -192,6 +192,34 @@ public class GraphicalUI {
         fileMenu.add(subMenu);
 
         fileMenu.addSeparator();
+        
+        // Submenu for setting objective
+        subMenu = new JMenu("Objective");
+        subMenu.getAccessibleContext().setAccessibleDescription(
+                "Allows user to set the objective.");
+        subMenu.setMnemonic(KeyEvent.VK_O);
+
+        // Menu item for setting objective
+        menuItem = new JMenuItem("Set Objective", KeyEvent.VK_O);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+                ActionEvent.ALT_MASK));
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Allow user to specify board objective");
+        menuItem.addActionListener(new ObjectiveMenuListener());
+        subMenu.add(menuItem);
+
+        // Menu item for removing objective
+        menuItem = new JMenuItem("Remove Objective", KeyEvent.VK_R);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+                ActionEvent.ALT_MASK));
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Removes objective from problem");
+        menuItem.addActionListener(new ObjectiveMenuListener());
+        subMenu.add(menuItem);
+
+        fileMenu.add(subMenu);
+
+        fileMenu.addSeparator();
 
         // menu item for exiting the program
         menuItem = new JMenuItem("Exit", KeyEvent.VK_E);
@@ -323,6 +351,7 @@ public class GraphicalUI {
         objectiveLabel = new JLabel("      Objective:");
         // TODO add objective to this label
         objective = new JLabel();
+        objective.setText("None Specified");
 
         // add objective labels to panel
         labelPanel.add(objectiveLabel);
@@ -518,8 +547,6 @@ public class GraphicalUI {
                 String bounds = (String) JOptionPane.showInputDialog(frame,
                         "Specify Bounds Seperated By Spaces:", "Set Bounds",
                         JOptionPane.PLAIN_MESSAGE, null, null, "");
-                System.out.println(bounds);
-                System.out.println(bounds.length());
                 if (bounds != null && bounds.length() == 7) {
                 	// create array of specified bounds
                 	int[] selectBounds = {0,0,0,0}; 
@@ -541,6 +568,37 @@ public class GraphicalUI {
                 int[] noBounds = {0, 0, lines, lines};
                 BoardJPanel.setBounds(noBounds);
             	invMove.setText("Bounds Removed.");
+            }
+        }
+
+    }
+    
+
+    private class ObjectiveMenuListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // allow user to set objective
+            if (e.getActionCommand().equals("Set Objective")) {
+                String objective = (String) JOptionPane.showInputDialog(frame,
+                        "Specify Objective (Action, Colour, Stone Position):", "Set Bounds",
+                        JOptionPane.PLAIN_MESSAGE, null, null, "");
+                if (objective != null) {
+                	// TODO: Check for valid input
+                	String[] objParts = objective.split(" ");
+                	Coordinate pos = new Coordinate(Integer.parseInt(objParts[2]),Integer.parseInt(objParts[3]));
+                	Objective obj = new Objective(objParts[0],Integer.parseInt(objParts[1]),pos);
+                	BoardJPanel.setObjective(obj);
+                	for (String s : objParts) System.out.println(s);
+                	invMove.setText("Objective Updated");
+                } else {
+                	invMove.setText("Invalid Objective Supplied");
+                }
+            } else {
+                // remove objective from board and label
+                BoardJPanel.setObjective(null);
+            	invMove.setText("Objective Removed");
+            	objective.setText("None Specified");
             }
         }
 

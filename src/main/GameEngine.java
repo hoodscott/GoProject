@@ -60,6 +60,11 @@ public class GameEngine{
   
   public void startGame(){inGame = true;}
   
+  // Setters for search space and objective for GUI use
+  public void setBounds(int[] aiSearchValues){this.aiSearchValues = aiSearchValues;}
+  
+  public void setObjective(Objective objective){this.objective = objective;}
+  
   //Sets the AI to be a minimax algorithm
   public void setMiniMax(int colour){ai = new MiniMax(objective, colour, aiSearchValues);}
   

@@ -14,7 +14,7 @@ public class BoardJPanel extends JPanel {
 	private static int lines;
 	private Board board, greyCounters;
 	public static int colour = 1;
-	public GameEngine gameE;
+	public static GameEngine gameE;
 	public int numStones = 0;
 	private static int[] searchSpace;
 
@@ -26,7 +26,7 @@ public class BoardJPanel extends JPanel {
 		setPreferredSize(new Dimension(BOARD_LENGTH, BOARD_LENGTH));
 
 		// set private variables
-		this.gameE = gameEngine;
+		gameE = gameEngine;
 		board = gameEngine.getCurrentBoard();
 		lines = board.getHeight();
 		greyCounters = new Board(lines, lines);
@@ -73,6 +73,17 @@ public class BoardJPanel extends JPanel {
 				} else {
 					GraphicalUI.invMove
 							.setText("Select Closer To Intersection");
+				}
+				
+				// Let AI make move when competitive play mode selected with bounds and objective
+				boolean competitive = GraphicalUI.getCompetitive();
+				if (competitive && gameE.getObjective() != null && gameE.getAISearchValues() != null) {
+					gameE.setMiniMax(colour);
+					String move = gameE.aiMove();
+					changePlayer();
+					System.out.println(move);
+				} else if (competitive && (gameE.getObjective() == null || gameE.getAISearchValues() == null)) {
+					GraphicalUI.invMove.setText("Please Specify Bounds And Objective");
 				}
 			}
 		});
@@ -147,7 +158,7 @@ public class BoardJPanel extends JPanel {
 
 	// Load and draw board
 	public void loadBoard(GameEngine ge) {
-		this.gameE = ge;
+		gameE = ge;
 		repaint();
 	}
 
@@ -333,8 +344,12 @@ public class BoardJPanel extends JPanel {
 	}
 
 	public static void setBounds(int[] aiSearchValues) {
-		// TODO: Update AI search values itself through setting bounds
 		searchSpace = aiSearchValues;
+		gameE.setBounds(aiSearchValues);
+	}
+	
+	public static void setObjective(Objective objective) {
+		gameE.setObjective(objective);
 	}
 	
 	public static int getLines() {
