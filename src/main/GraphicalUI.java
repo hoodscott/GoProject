@@ -439,23 +439,21 @@ public class GraphicalUI {
                         gameEngine = FileIO.readBoard(loadBoard
                                 .getSelectedFile().getAbsolutePath());
                         boardJP.loadBoard(gameEngine);
+                    	invMove.setText("Board Loaded");
                     } catch (BoardFormatException bfe) {
-                        System.err.println(bfe.getMsg()); // TODO: Write to
-                        // label?
+                    	invMove.setText(bfe.getMsg());
                     }
                 } else {
-                    System.out.println("User cancelled load board selection."); // TODO:
-                    // Write
-                    // to
-                    // label?
+                    invMove.setText("User Cancelled Load Board Selection"); 
                 }
 
                 // save current board to default location
             } else if (e.getActionCommand().equals("Save Problem")) {
                 try {
                     FileIO.writeBoard(gameEngine);
+                	invMove.setText("Problem Saved.");
                 } catch (BoardFormatException bfe) {
-                    System.err.println(bfe.getMsg());
+                    invMove.setText(bfe.getMsg());
                 }
 
                 // save current board to specified location
@@ -466,14 +464,12 @@ public class GraphicalUI {
                     try {
                         FileIO.writeBoard(gameEngine, saveBoard
                                 .getSelectedFile().getAbsolutePath());
+                    	invMove.setText("Problem Saved");
                     } catch (BoardFormatException bfe) {
-                        System.err.println(bfe.getMsg());
+                        invMove.setText(bfe.getMsg());
                     }
                 } else {
-                    System.out.println("User cancelled save board selection."); // TODO:
-                    // Write
-                    // to
-                    // label?
+                    invMove.setText("User Cancelled Save Board Selection");
                 }
             } // exit program
             else {
@@ -492,6 +488,7 @@ public class GraphicalUI {
                 gameEngine = new GameEngine(new Board());
                 BoardJPanel.setPlayer("black");
                 boardJP.loadBoard(gameEngine);
+            	invMove.setText("Board Loaded");
             } else {
                 // load specified board
                 Object[] sizes = {"9", "14", "19"};
@@ -505,6 +502,7 @@ public class GraphicalUI {
                     // set player to back then draw the new board
                     BoardJPanel.setPlayer("black");
                     boardJP.loadBoard(gameEngine);
+                	invMove.setText("Board Loaded");
                 }
 
             }
@@ -517,13 +515,32 @@ public class GraphicalUI {
         public void actionPerformed(ActionEvent e) {
             // allow user to set bounds
             if (e.getActionCommand().equals("Set Bounds")) {
-				// TODO: Display dialogue box allowing bound setting
-                // TODO: Need method for setting bounds in GameEngine
+                String bounds = (String) JOptionPane.showInputDialog(frame,
+                        "Specify Bounds Seperated By Spaces:", "Set Bounds",
+                        JOptionPane.PLAIN_MESSAGE, null, null, "");
+                System.out.println(bounds);
+                System.out.println(bounds.length());
+                if (bounds != null && bounds.length() == 7) {
+                	// create array of specified bounds
+                	int[] selectBounds = {0,0,0,0}; 
+                	int j = 0;
+                	for (int i = 0; i<bounds.length(); i++) {
+                		if (Character.isDigit(bounds.charAt(i))) {
+                			selectBounds[j] = Integer.parseInt(String.valueOf(bounds.charAt(i)));
+                			j++;
+                		}
+                	}
+                	BoardJPanel.setBounds(selectBounds);
+                	invMove.setText("Bounds Updated");
+                } else {
+                	invMove.setText("Invalid Bounds Supplied");
+                }
             } else {
                 // remove bounds - (make bounds size of board)
                 int lines = BoardJPanel.getLines();
                 int[] noBounds = {0, 0, lines, lines};
                 BoardJPanel.setBounds(noBounds);
+            	invMove.setText("Bounds Removed.");
             }
         }
 

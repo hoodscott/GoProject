@@ -333,6 +333,7 @@ public class BoardJPanel extends JPanel {
 	}
 
 	public static void setBounds(int[] aiSearchValues) {
+		// TODO: Update AI search values itself through setting bounds
 		searchSpace = aiSearchValues;
 	}
 	
