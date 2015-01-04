@@ -165,33 +165,22 @@ public class GraphicalUI {
 
         fileMenu.addSeparator();
 
-        // Submenu for setting bounds
-        subMenu = new JMenu("Bounds");
-        subMenu.getAccessibleContext().setAccessibleDescription(
-                "Allows user to set bounds.");
-        subMenu.setMnemonic(KeyEvent.VK_B);
-
-        // Menu item for setting bounds
-        menuItem = new JMenuItem("Set Bounds", KeyEvent.VK_B);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+        // menu item for exiting the program
+        menuItem = new JMenuItem("Exit", KeyEvent.VK_E);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6,
                 ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
-                "Allow user to specify board bounds");
-        menuItem.addActionListener(new BoundsMenuListener());
-        subMenu.add(menuItem);
-
-        // Menu item for removing bounds
-        menuItem = new JMenuItem("Remove Bounds", KeyEvent.VK_R);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-                ActionEvent.ALT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Removes bounds from problem");
-        menuItem.addActionListener(new BoundsMenuListener());
-        subMenu.add(menuItem);
-
-        fileMenu.add(subMenu);
-
-        fileMenu.addSeparator();
+                "Exits the program");
+        menuItem.addActionListener(new FileMenuListener());
+        fileMenu.add(menuItem);
+        
+        // Build menu for competitive play
+        fileMenu = new JMenu("Competitive Play");
+        fileMenu.setMnemonic(KeyEvent.VK_C);
+        fileMenu.getAccessibleContext()
+                .setAccessibleDescription(
+                        "Menu with options during competitive play mode");
+        menuBar.add(fileMenu);
         
         // Submenu for setting objective
         subMenu = new JMenu("Objective");
@@ -218,19 +207,34 @@ public class GraphicalUI {
         subMenu.add(menuItem);
 
         fileMenu.add(subMenu);
+        
+        // Submenu for setting bounds
+        subMenu = new JMenu("Bounds");
+        subMenu.getAccessibleContext().setAccessibleDescription(
+                "Allows user to set bounds.");
+        subMenu.setMnemonic(KeyEvent.VK_B);
 
-        fileMenu.addSeparator();
-
-        // menu item for exiting the program
-        menuItem = new JMenuItem("Exit", KeyEvent.VK_E);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6,
+        // Menu item for setting bounds
+        menuItem = new JMenuItem("Set Bounds", KeyEvent.VK_B);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
                 ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
-                "Exits the program");
-        menuItem.addActionListener(new FileMenuListener());
-        fileMenu.add(menuItem);
+                "Allow user to specify board bounds");
+        menuItem.addActionListener(new BoundsMenuListener());
+        subMenu.add(menuItem);
 
-        // Build help menu for debugging commands
+        // Menu item for removing bounds
+        menuItem = new JMenuItem("Remove Bounds", KeyEvent.VK_R);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+                ActionEvent.ALT_MASK));
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Removes bounds from problem");
+        menuItem.addActionListener(new BoundsMenuListener());
+        subMenu.add(menuItem);
+
+        fileMenu.add(subMenu);
+
+        // Build menu for problem creation
         fileMenu = new JMenu("Problem Creation");
         fileMenu.setMnemonic(KeyEvent.VK_P);
         fileMenu.getAccessibleContext()
@@ -589,7 +593,6 @@ public class GraphicalUI {
                 	Coordinate pos = new Coordinate(Integer.parseInt(objParts[2]),Integer.parseInt(objParts[3]));
                 	Objective obj = new Objective(objParts[0],Integer.parseInt(objParts[1]),pos);
                 	BoardJPanel.setObjective(obj);
-                	for (String s : objParts) System.out.println(s);
                 	invMove.setText("Objective Updated");
                 } else {
                 	invMove.setText("Invalid Objective Supplied");
@@ -682,6 +685,10 @@ public class GraphicalUI {
                 if (gameEngine.restartBoard()) {
                     BoardJPanel.setPlayer("black");
                     player.setText(BoardJPanel.getPlayer());
+                    competitive = false;
+                    competitiveButton.setSelected(false);
+                    creation = false;
+                    creationButton.setSelected(false);
                     boardJP.loadBoard(gameEngine);
                 }
             }

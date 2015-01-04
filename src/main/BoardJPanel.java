@@ -81,7 +81,6 @@ public class BoardJPanel extends JPanel {
 					gameE.setMiniMax(colour);
 					String move = gameE.aiMove();
 					changePlayer();
-					System.out.println(move);
 				} else if (competitive && (gameE.getObjective() == null || gameE.getAISearchValues() == null)) {
 					GraphicalUI.invMove.setText("Please Specify Bounds And Objective");
 				}
