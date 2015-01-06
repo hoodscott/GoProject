@@ -729,25 +729,14 @@ public class GraphicalUI {
 		
 	}
 	
-	// Getter for GUI toggle button booleans
-	public static boolean getBounds() {
-		return bounds;
-	}
+	// Getters for GUI booleans
+	public static boolean getBounds() { return bounds; }
 	
-	public static boolean getCompetitive() {
-		return competitive;
-	}
+	public static boolean getCompetitive() { return competitive; }
 	
-	public static boolean getCreation() {
-		return creation;
-	}
+	public static boolean getCreation() { return creation; }
 	
-	// Getters for problem creation mode booleans
-	public static boolean getMixedStones() {
-		return mixedStones;
-	}
+	public static boolean getMixedStones() { return mixedStones; }
 	
-	public static boolean getDeleteStones() {
-		return deleteStones;
-	}
+	public static boolean getDeleteStones() { return deleteStones; }
 }
