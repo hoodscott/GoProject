@@ -62,27 +62,34 @@ public class BoardJPanel extends JPanel {
 						&& (yRemainder < squareSize / 2 - border)
 						|| (yRemainder > squareSize / 2 + border)) {
 					// check if user is attempting to delete stone
-					if (GraphicalUI.getDeleteStones() && GraphicalUI.getCreation()) {
+					if (GraphicalUI.getDeleteStones()
+							&& GraphicalUI.getCreation()) {
 						// remove selected stone from board
-						gameE.getCurrentBoard().set(yPos,xPos,0);
+						gameE.getCurrentBoard().set(yPos, xPos, 0);
 						repaint();
 						// else add stone to board
 					} else {
-						updateBoard(yPos, xPos, colour); // SET TO BLACK STONE ON FIRST MOVE
+						updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
+															// ON FIRST MOVE
 					}
 				} else {
 					GraphicalUI.invMove
 							.setText("Select Closer To Intersection");
 				}
-				
-				// Let AI make move when competitive play mode selected with bounds and objective
+
+				// Let AI make move when competitive play mode selected with
+				// bounds and objective
 				boolean competitive = GraphicalUI.getCompetitive();
-				if (competitive && gameE.getObjective() != null && gameE.getAISearchValues() != null) {
+				if (competitive && gameE.getObjective() != null
+						&& gameE.getAISearchValues() != null) {
 					gameE.setMiniMax(colour);
 					String move = gameE.aiMove();
 					changePlayer();
-				} else if (competitive && (gameE.getObjective() == null || gameE.getAISearchValues() == null)) {
-					GraphicalUI.invMove.setText("Please Specify Bounds And Objective");
+				} else if (competitive
+						&& (gameE.getObjective() == null || gameE
+								.getAISearchValues() == null)) {
+					GraphicalUI.invMove
+							.setText("Please Specify Bounds And Objective");
 				}
 			}
 		});
@@ -139,12 +146,12 @@ public class BoardJPanel extends JPanel {
 		if (gameE.makeMove(new Coordinate(x, y), c)) {
 			// move made, repaint board
 			repaint();
-			
+
 			// change player when mixed stones selected or competitive mode
 			if (GraphicalUI.getMixedStones() || GraphicalUI.getCompetitive()) {
 				changePlayer();
 			}
-			
+
 			GraphicalUI.player.setText(getPlayer());
 			GraphicalUI.invMove.setText(getInvMove(i));
 			numStones = numStones + 1;
@@ -163,11 +170,16 @@ public class BoardJPanel extends JPanel {
 
 	// Draw board
 	public void paint(Graphics g) {
+
+		// drawing t gray box behind board to account for rounding
+		g.setColor(Color.lightGray);
+		g.fillRect(0, 0, BOARD_LENGTH, BOARD_LENGTH);
+
 		// Frame variables
 		lines = gameE.getCurrentBoard().getHeight();
 		int squareSize = (BOARD_LENGTH) / (lines + 1);
 		int stoneSize = squareSize / 2;
-		int[] noBounds = {0,0,lines,lines};
+		int[] noBounds = { 0, 0, lines, lines };
 
 		// Board colour and border fill
 		g.setColor(Color.black);
@@ -179,7 +191,7 @@ public class BoardJPanel extends JPanel {
 		// Draw search space as grey rectangles when specified
 		// and bounds button selected
 		if (GraphicalUI.getBounds()) {
-			if (searchSpace != null && !Arrays.equals(searchSpace,noBounds)) {
+			if (searchSpace != null && !Arrays.equals(searchSpace, noBounds)) {
 				g.setColor(Color.gray); // re-colour board as grey
 				g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
 						* (lines + 1) - 2);
@@ -191,8 +203,8 @@ public class BoardJPanel extends JPanel {
 				for (int x1 = searchSpace[0]; x1 < x2; x1++) {
 					for (int y1 = searchSpace[1]; y1 < y2; y1++) {
 						g.setColor(new Color(205, 133, 63));
-						g.fillRect(squareSize + x1 * squareSize, squareSize + y1
-								* squareSize, squareSize, squareSize);
+						g.fillRect(squareSize + x1 * squareSize, squareSize
+								+ y1 * squareSize, squareSize, squareSize);
 					}
 				}
 			}
@@ -206,47 +218,63 @@ public class BoardJPanel extends JPanel {
 						squareSize);
 			}
 		}
-		
+
 		// Show circles on Go Board
 		// For 9x9 - Show 5 circles
 		if (lines == 9) {
 			g.setColor(Color.black);
 			// Create 5 small ovals in place
-			g.fillOval(squareSize + 2 * squareSize - 10, 
-					squareSize + 2 * squareSize - 10, 20, 20);
-			g.fillOval(squareSize + 6 * squareSize - 10, 
-					squareSize + 2 * squareSize - 10, 20, 20);
-			g.fillOval(squareSize + 2 * squareSize - 10, 
-					squareSize + 6 * squareSize - 10, 20, 20);
-			g.fillOval(squareSize + 6 * squareSize - 10, 
-					squareSize + 6 * squareSize - 10, 20, 20);
-			g.fillOval(squareSize + 4 * squareSize - 10, 
-					squareSize + 4 * squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 2 * squareSize - 10, squareSize + 2
+					* squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 6 * squareSize - 10, squareSize + 2
+					* squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 2 * squareSize - 10, squareSize + 6
+					* squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 6 * squareSize - 10, squareSize + 6
+					* squareSize - 10, 20, 20);
+			g.fillOval(squareSize + 4 * squareSize - 10, squareSize + 4
+					* squareSize - 10, 20, 20);
 		}
-		
+
+		// For 9x9 - Show 5 circles
+		if (lines == 13) {
+			g.setColor(Color.black);
+			// Create 5 small ovals in place
+			g.fillOval(squareSize + 3 * squareSize - 8, squareSize + 3
+					* squareSize - 8, 17, 17);
+			g.fillOval(squareSize + 9 * squareSize - 8, squareSize + 3
+					* squareSize - 8, 17, 17);
+			g.fillOval(squareSize + 6 * squareSize - 8, squareSize + 6
+					* squareSize - 8, 17, 17);
+			g.fillOval(squareSize + 3 * squareSize - 8, squareSize + 9
+					* squareSize - 10, 17, 17);
+			g.fillOval(squareSize + 9 * squareSize - 8, squareSize + 9
+					* squareSize - 8, 17, 17);
+		}
+
 		// For 19x19 - Show 9 circles
-				if (lines == 19) {
-					g.setColor(Color.black);
-					// Create 9 small ovals in place
-					g.fillOval(squareSize + 3 * squareSize - 7, 
-							squareSize + 3 * squareSize - 7, 14, 14);
-					g.fillOval(squareSize + 9 * squareSize - 7, 
-							squareSize + 3 * squareSize - 7, 14, 14);
-					g.fillOval(squareSize + 15 * squareSize - 7, 
-							squareSize + 3 * squareSize - 7, 14, 14);
-					g.fillOval(squareSize + 9 * squareSize - 7, 
-							squareSize + 9 * squareSize - 7, 14, 14);
-					g.fillOval(squareSize + 9 * squareSize - 7, 
-							squareSize + 15 * squareSize - 7, 14, 14);
-					g.fillOval(squareSize + 3 * squareSize - 7, 
-							squareSize + 9 * squareSize - 7, 14, 14);
-					g.fillOval(squareSize + 3 * squareSize - 7, 
-							squareSize + 15 * squareSize - 7, 14, 14);
-					g.fillOval(squareSize + 15 * squareSize - 7, 
-							squareSize + 15 * squareSize - 7, 14, 14);
-					g.fillOval(squareSize + 15 * squareSize - 7, 
-							squareSize + 9 * squareSize - 7, 14, 14);
-				}
+		if (lines == 19) {
+			g.setColor(Color.black);
+			// Create 9 small ovals in place
+			g.fillOval(squareSize + 3 * squareSize - 7, squareSize + 3
+					* squareSize - 7, 14, 14);
+			g.fillOval(squareSize + 9 * squareSize - 7, squareSize + 3
+					* squareSize - 7, 14, 14);
+			g.fillOval(squareSize + 15 * squareSize - 7, squareSize + 3
+					* squareSize - 7, 14, 14);
+			g.fillOval(squareSize + 9 * squareSize - 7, squareSize + 9
+					* squareSize - 7, 14, 14);
+			g.fillOval(squareSize + 9 * squareSize - 7, squareSize + 15
+					* squareSize - 7, 14, 14);
+			g.fillOval(squareSize + 3 * squareSize - 7, squareSize + 9
+					* squareSize - 7, 14, 14);
+			g.fillOval(squareSize + 3 * squareSize - 7, squareSize + 15
+					* squareSize - 7, 14, 14);
+			g.fillOval(squareSize + 15 * squareSize - 7, squareSize + 15
+					* squareSize - 7, 14, 14);
+			g.fillOval(squareSize + 15 * squareSize - 7, squareSize + 9
+					* squareSize - 7, 14, 14);
+		}
 
 		// Draws counters on grid
 		board = gameE.getCurrentBoard();
@@ -346,11 +374,11 @@ public class BoardJPanel extends JPanel {
 		searchSpace = aiSearchValues;
 		gameE.setBounds(aiSearchValues);
 	}
-	
+
 	public static void setObjective(Objective objective) {
 		gameE.setObjective(objective);
 	}
-	
+
 	public static int getLines() {
 		return lines;
 	}
