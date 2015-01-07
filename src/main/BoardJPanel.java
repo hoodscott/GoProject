@@ -66,6 +66,7 @@ public class BoardJPanel extends JPanel {
 							&& GraphicalUI.getCreation()) {
 						// remove selected stone from board
 						gameE.getCurrentBoard().set(yPos, xPos, 0);
+						GraphicalUI.feedback.setText("Stone removed from:"+xPos+", "+yPos);
 						repaint();
 						// else add stone to board
 					} else {
@@ -238,7 +239,7 @@ public class BoardJPanel extends JPanel {
 					* squareSize - 10, 20, 20);
 		}
 
-		// For 9x9 - Show 5 circles
+		// For 13x13 - Show 5 circles
 		if (lines == 13) {
 			g.setColor(Color.black);
 			// Create 5 small ovals in place
