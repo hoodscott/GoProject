@@ -9,18 +9,15 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.KeyStroke;
@@ -28,25 +25,26 @@ import javax.swing.border.EtchedBorder;
 
 public class GraphicalUI {
 
-	// private instance variables
-	private GameEngine gameEngine;
+	// private static instance variables
+	private static GameEngine gameEngine;
 
 	// private instance variables for swing
 	private JFrame frame;
 	private JMenuBar menuBar;
 	private JMenu fileMenu, subMenu;
 	private JMenuItem menuItem;
-	private Container pane;
 	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
 	private JButton undoButton, resetButton, passButton;
-	private JToggleButton boundsButton, competitiveButton, creationButton;
-	private JLabel objectiveLabel, objective, playerLabel, feedbackLabel;
-	private BoardJPanel boardJP;
+	private JToggleButton boundsButton;
+	private JLabel objectiveLabel, playerLabel, feedbackLabel;
 	private static boolean bounds, competitive, creation; // for toggle buttons
 	private static boolean mixedStones, deleteStones; // problem creation
 														// options
-
-	static JLabel player, feedback;
+	// public static instance variables for swing
+	static JLabel player, feedback, objective;
+	static BoardJPanel boardJP;
+	static Container pane;
+	static JToggleButton creationButton, competitiveButton;
 
 	/**
 	 * Start the gui.
@@ -70,7 +68,7 @@ public class GraphicalUI {
 	 * @param gE
 	 */
 	public GraphicalUI(GameEngine gE) {
-		gameEngine = gE;
+		setGameEngine(gE);
 		initialise();
 	}
 
@@ -124,7 +122,7 @@ public class GraphicalUI {
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Creates a New board with default size of 9x9");
-		menuItem.addActionListener(new SubMenuListener());
+		menuItem.addActionListener(new NewMenuListener());
 		subMenu.add(menuItem);
 
 		// Menu item for new game
@@ -133,7 +131,7 @@ public class GraphicalUI {
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Creates a New board with specified size");
-		menuItem.addActionListener(new SubMenuListener());
+		menuItem.addActionListener(new NewMenuListener());
 		subMenu.add(menuItem);
 
 		fileMenu.add(subMenu);
@@ -330,7 +328,7 @@ public class GraphicalUI {
 				.createEtchedBorder(EtchedBorder.LOWERED));
 		boardPanel.setPreferredSize(new Dimension(height, width / 8 * 5));
 
-		boardJP = new BoardJPanel(gameEngine);
+		boardJP = new BoardJPanel(getGameEngine());
 		boardPanel.add(boardJP);
 
 		pane.add(boardPanel, BorderLayout.WEST);
@@ -453,304 +451,13 @@ public class GraphicalUI {
 		// END OF FRAME //
 	}
 
-	/**
-	 * Listener classes for menus.
-	 */
-	private class FileMenuListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// load specified board
-			if (e.getActionCommand().equals("Load Problem")) {
-				JFileChooser loadBoard = new JFileChooser();
-				int command = loadBoard.showOpenDialog(pane);
-				if (command == JFileChooser.APPROVE_OPTION) {
-					try {
-						gameEngine = FileIO.readBoard(loadBoard
-								.getSelectedFile().getAbsolutePath());
-						boardJP.loadBoard(gameEngine);
-						feedback.setText("Board Loaded");
-					} catch (BoardFormatException bfe) {
-						feedback.setText(bfe.getMsg());
-					}
-				} else {
-					feedback.setText("User Cancelled Load Board Selection");
-				}
-
-				// save current board to default location
-			} else if (e.getActionCommand().equals("Save Problem")) {
-				try {
-					FileIO.writeBoard(gameEngine);
-					feedback.setText("Problem Saved.");
-				} catch (BoardFormatException bfe) {
-					feedback.setText(bfe.getMsg());
-				}
-
-				// save current board to specified location
-			} else if (e.getActionCommand().equals("Save Problem As...")) {
-				JFileChooser saveBoard = new JFileChooser();
-				int command = saveBoard.showSaveDialog(pane);
-				if (command == JFileChooser.APPROVE_OPTION) {
-					try {
-						FileIO.writeBoard(gameEngine, saveBoard
-								.getSelectedFile().getAbsolutePath());
-						feedback.setText("Problem Saved");
-					} catch (BoardFormatException bfe) {
-						feedback.setText(bfe.getMsg());
-					}
-				} else {
-					feedback.setText("User Cancelled Save Board Selection");
-				}
-			} // exit program
-			else {
-				System.exit(0);
-			}
-		}
+	// game engine getter and setter for external action listeners
+	public static GameEngine getGameEngine() {
+		return gameEngine;
 	}
 
-	private class SubMenuListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// load default board
-			if (e.getActionCommand().equals("Default (9x9)")) {
-				// default 9x9
-				gameEngine = new GameEngine(new Board());
-				BoardJPanel.setPlayer("black");
-				boardJP.loadBoard(gameEngine);
-				feedback.setText("Board Loaded");
-			} else {
-				// load specified board
-				Object[] sizes = { "9", "13", "19" };
-				String s = (String) JOptionPane.showInputDialog(frame,
-						"Select board size...", "New Problem",
-						JOptionPane.PLAIN_MESSAGE, null, sizes, "9");
-				if (s != null) {
-					// set new board to specified size
-					int length = Integer.parseInt(s);
-					gameEngine = new GameEngine(new Board(length, length));
-					// set player to back then draw the new board
-					BoardJPanel.setPlayer("black");
-					boardJP.loadBoard(gameEngine);
-					feedback.setText("Board Loaded");
-				}
-
-			}
-		}
-	}
-
-	private class BoundsMenuListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// allow user to set bounds
-			if (e.getActionCommand().equals("Set Bounds")) {
-				String bounds = (String) JOptionPane.showInputDialog(frame,
-						"Specify Bounds Seperated By Spaces:", "Set Bounds",
-						JOptionPane.PLAIN_MESSAGE, null, null, "");
-				if (bounds != null && bounds.length() == 7) {
-					// create array of specified bounds
-					int[] selectBounds = { 0, 0, 0, 0 };
-					int j = 0;
-					for (int i = 0; i < bounds.length(); i++) {
-						if (Character.isDigit(bounds.charAt(i))) {
-							selectBounds[j] = Integer.parseInt(String
-									.valueOf(bounds.charAt(i)));
-							j++;
-						}
-					}
-					BoardJPanel.setBounds(selectBounds);
-					feedback.setText("Bounds updated");
-				} else {
-					feedback.setText("Invalid bounds supplied");
-				}
-			} else {
-				// remove bounds - (make bounds size of board)
-				int lines = BoardJPanel.getLines();
-				int[] noBounds = { 0, 0, lines, lines };
-				BoardJPanel.setBounds(noBounds);
-				feedback.setText("Bounds removed");
-			}
-		}
-
-	}
-
-	private class ObjectiveMenuListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// allow user to set objective
-			if (e.getActionCommand().equals("Set Objective")) {
-				String objective = (String) JOptionPane
-						.showInputDialog(
-								frame,
-								"Specify Objective (Action, Colour, Stone Position):",
-								"Set Bounds", JOptionPane.PLAIN_MESSAGE, null,
-								null, "");
-				if (objective != null) {
-					// TODO: Check for valid input
-					String[] objParts = objective.split(" ");
-					Coordinate pos = new Coordinate(
-							Integer.parseInt(objParts[2]),
-							Integer.parseInt(objParts[3]));
-					Objective obj = new Objective(objParts[0],
-							Integer.parseInt(objParts[1]), pos);
-					BoardJPanel.setObjective(obj);
-					feedback.setText("Objective updated");
-				} else {
-					feedback.setText("Invalid objective supplied");
-				}
-			} else {
-				// remove objective from board and label
-				BoardJPanel.setObjective(null);
-				feedback.setText("Objective removed");
-				objective.setText("None Specified");
-			}
-		}
-
-	}
-
-	private class CreationMenuListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if ((e.getActionCommand().equals("Use Black Stones")) && creation) {
-				// set down only black stones
-				BoardJPanel.setPlayer("black");
-				mixedStones = false;
-				deleteStones = false;
-				feedback.setText("Black stones selected");
-			} else if ((e.getActionCommand().equals("Use White Stones"))
-					&& creation) {
-				// set down only white stones
-				BoardJPanel.setPlayer("white");
-				mixedStones = false;
-				deleteStones = false;
-				feedback.setText("White stones selected");
-			} else if ((e.getActionCommand().equals("Use Both Stones"))
-					&& creation) {
-				// use a mixture of stones
-				mixedStones = true;
-				deleteStones = false;
-				feedback.setText("Both stones selected");
-			} else if ((e.getActionCommand().equals("Delete Stones"))
-					&& creation) {
-				// remove stones user clicks on
-				deleteStones = true;
-				mixedStones = false;
-				feedback.setText("Delete stones selected");
-			}
-		}
-	}
-
-	private class DebugMenuListener implements ActionListener {
-
-		// TODO implement debugging actions
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand().equals("Do A Debug")) {
-				// debug game
-			}
-		}
-	}
-
-	private class HelpMenuListener implements ActionListener {
-
-		// TODO implement helper actions
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand().equals("Shout for Help")) {
-				// show user help
-			}
-		}
-	}
-
-	// action listener for buttons in grid on bottom left
-	private class GridListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			JButton button = (JButton) e.getSource();
-			if (button.getText().equals("Undo")) {
-				if (gameEngine.undoLastMove()) {
-					boardJP.changePlayer();
-					player.setText(BoardJPanel.getPlayer() + " to move");
-					boardJP.loadBoard(gameEngine);
-					feedback.setText("Undone move");
-				} else {
-					feedback.setText("No more moves to undo");
-				}
-			}
-			if (button.getText().equals("Pass")) {
-				// TODO create pass function in gameEngine
-				if (true) {
-					feedback.setText(BoardJPanel.getPlayer() + " passes");
-					boardJP.changePlayer();
-					player.setText(BoardJPanel.getPlayer()+ " to move");
-					boardJP.loadBoard(gameEngine);
-					System.out.println(boardJP.getPlayer());
-				} else {
-					feedback.setText(BoardJPanel.getPlayer()
-							+ " could not pass");
-				}
-			}
-			if (button.getText().equals("Reset")) {
-				if (gameEngine.restartBoard()) {
-					BoardJPanel.setPlayer("black");
-					player.setText(BoardJPanel.getPlayer() + " to move");
-					competitive = false;
-					competitiveButton.setSelected(false);
-					creation = false;
-					creationButton.setSelected(false);
-					boardJP.loadBoard(gameEngine);
-					feedback.setText("Board has been reset");
-				}
-				else{
-					feedback.setText("Nothing to reset");
-				}
-			}
-		}
-	}
-
-	private class GridToggleListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			JToggleButton button = (JToggleButton) e.getSource();
-			if (button.getText().equals("Show Bounds")) {
-				if (!bounds) {
-					bounds = true;
-					boardJP.loadBoard(gameEngine);
-					feedback.setText("Bounds shown");
-				} else {
-					bounds = false;
-					boardJP.loadBoard(gameEngine);
-					feedback.setText("Bounds hidden");
-				}
-			}
-			if (button.getText().equals("Competitive Play Mode")) {
-				creationButton.setSelected(false);
-				creation = false;
-				if (!competitive) {
-					competitive = true;
-					feedback.setText("\"Competitive Play Mode\" selected");
-				} else {
-					competitive = false;
-					feedback.setText("\"Competitive Play Mode\" deselected");
-				}
-			}
-			if (button.getText().equals("Problem Creation Mode")) {
-				competitiveButton.setSelected(false);
-				competitive = false;
-				if (!creation) {
-					creation = true;
-					feedback.setText("\"Problem Creation Mode\" selected");
-				} else {
-					creation = false;
-					feedback.setText("\"Problem Creation Mode\" deselected");
-				}
-			}
-		}
-
+	public static void setGameEngine(GameEngine ge) {
+		gameEngine = ge;
 	}
 
 	// Getters for GUI booleans
@@ -772,6 +479,35 @@ public class GraphicalUI {
 
 	public static boolean getDeleteStones() {
 		return deleteStones;
+	}
+
+	// Setters for GUI booleans
+	public static void setBounds(boolean b) {
+		bounds = b;
+	}
+
+	public static void setCompetitive(boolean b) {
+		competitive = b;
+	}
+
+	public static void setCreation(boolean b) {
+		creation = b;
+	}
+
+	public static void setMixedStones(boolean b) {
+		mixedStones = b;
+	}
+
+	public static void setDeleteStones(boolean b) {
+		deleteStones = b;
+	}
+
+	// method to reset the modes to default
+	public static void resetModeButtons() {
+		competitive = false;
+		competitiveButton.setSelected(false);
+		creation = false;
+		creationButton.setSelected(false);
 	}
 
 }
