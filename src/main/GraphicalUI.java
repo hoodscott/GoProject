@@ -40,13 +40,13 @@ public class GraphicalUI {
 	private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
 	private JButton undoButton, resetButton, passButton;
 	private JToggleButton boundsButton, competitiveButton, creationButton;
-	private JLabel objectiveLabel, objective, playerLabel, invMoveLabel;
+	private JLabel objectiveLabel, objective, playerLabel, feedbackLabel;
 	private BoardJPanel boardJP;
 	private static boolean bounds, competitive, creation; // for toggle buttons
 	private static boolean mixedStones, deleteStones; // problem creation
 														// options
 
-	static JLabel player, invMove;
+	static JLabel player, feedback;
 
 	/**
 	 * Start the gui.
@@ -329,8 +329,6 @@ public class GraphicalUI {
 		boardPanel.setBorder(BorderFactory
 				.createEtchedBorder(EtchedBorder.LOWERED));
 		boardPanel.setPreferredSize(new Dimension(height, width / 8 * 5));
-		
-		
 
 		boardJP = new BoardJPanel(gameEngine);
 		boardPanel.add(boardJP);
@@ -341,14 +339,13 @@ public class GraphicalUI {
 		// START OF BUTTON PANEL //
 		// right panel for buttons
 		buttonPanel = new JPanel(new GridLayout(0, 1));
-		buttonPanel.setBackground(Color.darkGray);
 		buttonPanel.setBorder(BorderFactory
 				.createEtchedBorder(EtchedBorder.LOWERED));
 
 		// START OF LABEL PANEL //
 		// top right panel for choosing player and move
 		labelPanel = new JPanel(new GridLayout(0, 2));
-		labelPanel.setBackground(Color.gray);
+		labelPanel.setBackground(Color.lightGray);
 		labelPanel.setBorder(BorderFactory
 				.createEtchedBorder(EtchedBorder.LOWERED));
 
@@ -367,7 +364,7 @@ public class GraphicalUI {
 
 		// labels to show whose turn it is
 		playerLabel = new JLabel("      Player: ");
-		player = new JLabel(BoardJPanel.getPlayer());
+		player = new JLabel("Black to move");
 
 		// add labels to panel
 		labelPanel.add(playerLabel);
@@ -378,14 +375,14 @@ public class GraphicalUI {
 		labelPanel.add(new JPanel());
 
 		// labels to show invalid moves
-		invMoveLabel = new JLabel("     User Message: ");
-		invMove = new JLabel(BoardJPanel.getInvMove(1));
+		feedbackLabel = new JLabel("     User Message: ");
+		feedback = new JLabel("");
 
 		// add labels to panel
-		labelPanel.add(invMoveLabel);
-		labelPanel.add(invMove);
+		labelPanel.add(feedbackLabel);
+		labelPanel.add(feedback);
 
-		// add chooser panel to top of button panel
+		// add label panel to top of button panel
 		buttonPanel.add(labelPanel, BorderLayout.NORTH);
 
 		// END OF LABEL PANEL //
@@ -472,21 +469,21 @@ public class GraphicalUI {
 						gameEngine = FileIO.readBoard(loadBoard
 								.getSelectedFile().getAbsolutePath());
 						boardJP.loadBoard(gameEngine);
-						invMove.setText("Board Loaded");
+						feedback.setText("Board Loaded");
 					} catch (BoardFormatException bfe) {
-						invMove.setText(bfe.getMsg());
+						feedback.setText(bfe.getMsg());
 					}
 				} else {
-					invMove.setText("User Cancelled Load Board Selection");
+					feedback.setText("User Cancelled Load Board Selection");
 				}
 
 				// save current board to default location
 			} else if (e.getActionCommand().equals("Save Problem")) {
 				try {
 					FileIO.writeBoard(gameEngine);
-					invMove.setText("Problem Saved.");
+					feedback.setText("Problem Saved.");
 				} catch (BoardFormatException bfe) {
-					invMove.setText(bfe.getMsg());
+					feedback.setText(bfe.getMsg());
 				}
 
 				// save current board to specified location
@@ -497,12 +494,12 @@ public class GraphicalUI {
 					try {
 						FileIO.writeBoard(gameEngine, saveBoard
 								.getSelectedFile().getAbsolutePath());
-						invMove.setText("Problem Saved");
+						feedback.setText("Problem Saved");
 					} catch (BoardFormatException bfe) {
-						invMove.setText(bfe.getMsg());
+						feedback.setText(bfe.getMsg());
 					}
 				} else {
-					invMove.setText("User Cancelled Save Board Selection");
+					feedback.setText("User Cancelled Save Board Selection");
 				}
 			} // exit program
 			else {
@@ -521,7 +518,7 @@ public class GraphicalUI {
 				gameEngine = new GameEngine(new Board());
 				BoardJPanel.setPlayer("black");
 				boardJP.loadBoard(gameEngine);
-				invMove.setText("Board Loaded");
+				feedback.setText("Board Loaded");
 			} else {
 				// load specified board
 				Object[] sizes = { "9", "13", "19" };
@@ -535,7 +532,7 @@ public class GraphicalUI {
 					// set player to back then draw the new board
 					BoardJPanel.setPlayer("black");
 					boardJP.loadBoard(gameEngine);
-					invMove.setText("Board Loaded");
+					feedback.setText("Board Loaded");
 				}
 
 			}
@@ -563,16 +560,16 @@ public class GraphicalUI {
 						}
 					}
 					BoardJPanel.setBounds(selectBounds);
-					invMove.setText("Bounds Updated");
+					feedback.setText("Bounds updated");
 				} else {
-					invMove.setText("Invalid Bounds Supplied");
+					feedback.setText("Invalid bounds supplied");
 				}
 			} else {
 				// remove bounds - (make bounds size of board)
 				int lines = BoardJPanel.getLines();
 				int[] noBounds = { 0, 0, lines, lines };
 				BoardJPanel.setBounds(noBounds);
-				invMove.setText("Bounds Removed.");
+				feedback.setText("Bounds removed");
 			}
 		}
 
@@ -599,14 +596,14 @@ public class GraphicalUI {
 					Objective obj = new Objective(objParts[0],
 							Integer.parseInt(objParts[1]), pos);
 					BoardJPanel.setObjective(obj);
-					invMove.setText("Objective Updated");
+					feedback.setText("Objective updated");
 				} else {
-					invMove.setText("Invalid Objective Supplied");
+					feedback.setText("Invalid objective supplied");
 				}
 			} else {
 				// remove objective from board and label
 				BoardJPanel.setObjective(null);
-				invMove.setText("Objective Removed");
+				feedback.setText("Objective removed");
 				objective.setText("None Specified");
 			}
 		}
@@ -622,22 +619,26 @@ public class GraphicalUI {
 				BoardJPanel.setPlayer("black");
 				mixedStones = false;
 				deleteStones = false;
+				feedback.setText("Black stones selected");
 			} else if ((e.getActionCommand().equals("Use White Stones"))
 					&& creation) {
 				// set down only white stones
 				BoardJPanel.setPlayer("white");
 				mixedStones = false;
 				deleteStones = false;
+				feedback.setText("White stones selected");
 			} else if ((e.getActionCommand().equals("Use Both Stones"))
 					&& creation) {
 				// use a mixture of stones
 				mixedStones = true;
 				deleteStones = false;
+				feedback.setText("Both stones selected");
 			} else if ((e.getActionCommand().equals("Delete Stones"))
 					&& creation) {
 				// remove stones user clicks on
 				deleteStones = true;
 				mixedStones = false;
+				feedback.setText("Delete stones selected");
 			}
 		}
 	}
@@ -673,31 +674,39 @@ public class GraphicalUI {
 			if (button.getText().equals("Undo")) {
 				if (gameEngine.undoLastMove()) {
 					boardJP.changePlayer();
-					player.setText(BoardJPanel.getPlayer());
+					player.setText(BoardJPanel.getPlayer() + " to move");
 					boardJP.loadBoard(gameEngine);
+					feedback.setText("Undone move");
 				} else {
-					invMove.setText("No more moves to undo");
+					feedback.setText("No more moves to undo");
 				}
 			}
 			if (button.getText().equals("Pass")) {
 				// TODO create pass function in gameEngine
 				if (true) {
+					feedback.setText(BoardJPanel.getPlayer() + " passes");
 					boardJP.changePlayer();
-					player.setText(BoardJPanel.getPlayer());
+					player.setText(BoardJPanel.getPlayer()+ " to move");
 					boardJP.loadBoard(gameEngine);
+					System.out.println(boardJP.getPlayer());
 				} else {
-					// TODO write message to user if passing fails
+					feedback.setText(BoardJPanel.getPlayer()
+							+ " could not pass");
 				}
 			}
 			if (button.getText().equals("Reset")) {
 				if (gameEngine.restartBoard()) {
 					BoardJPanel.setPlayer("black");
-					player.setText(BoardJPanel.getPlayer());
+					player.setText(BoardJPanel.getPlayer() + " to move");
 					competitive = false;
 					competitiveButton.setSelected(false);
 					creation = false;
 					creationButton.setSelected(false);
 					boardJP.loadBoard(gameEngine);
+					feedback.setText("Board has been reset");
+				}
+				else{
+					feedback.setText("Nothing to reset");
 				}
 			}
 		}
@@ -711,9 +720,11 @@ public class GraphicalUI {
 				if (!bounds) {
 					bounds = true;
 					boardJP.loadBoard(gameEngine);
+					feedback.setText("Bounds shown");
 				} else {
 					bounds = false;
 					boardJP.loadBoard(gameEngine);
+					feedback.setText("Bounds hidden");
 				}
 			}
 			if (button.getText().equals("Competitive Play Mode")) {
@@ -721,8 +732,10 @@ public class GraphicalUI {
 				creation = false;
 				if (!competitive) {
 					competitive = true;
+					feedback.setText("\"Competitive Play Mode\" selected");
 				} else {
 					competitive = false;
+					feedback.setText("\"Competitive Play Mode\" deselected");
 				}
 			}
 			if (button.getText().equals("Problem Creation Mode")) {
@@ -730,13 +743,13 @@ public class GraphicalUI {
 				competitive = false;
 				if (!creation) {
 					creation = true;
+					feedback.setText("\"Problem Creation Mode\" selected");
 				} else {
 					creation = false;
+					feedback.setText("\"Problem Creation Mode\" deselected");
 				}
 			}
 		}
-		
-		
 
 	}
 
@@ -761,5 +774,4 @@ public class GraphicalUI {
 		return deleteStones;
 	}
 
-	
 }

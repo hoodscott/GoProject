@@ -73,7 +73,7 @@ public class BoardJPanel extends JPanel {
 															// ON FIRST MOVE
 					}
 				} else {
-					GraphicalUI.invMove
+					GraphicalUI.feedback
 							.setText("Select Closer To Intersection");
 				}
 
@@ -84,11 +84,12 @@ public class BoardJPanel extends JPanel {
 						&& gameE.getAISearchValues() != null) {
 					gameE.setMiniMax(colour);
 					String move = gameE.aiMove();
+					GraphicalUI.feedback.setText("AI move");
 					changePlayer();
 				} else if (competitive
 						&& (gameE.getObjective() == null || gameE
 								.getAISearchValues() == null)) {
-					GraphicalUI.invMove
+					GraphicalUI.feedback
 							.setText("Please Specify Bounds And Objective");
 				}
 			}
@@ -152,12 +153,13 @@ public class BoardJPanel extends JPanel {
 				changePlayer();
 			}
 
-			GraphicalUI.player.setText(getPlayer());
-			GraphicalUI.invMove.setText(getInvMove(i));
+			GraphicalUI.player.setText(getPlayer()+" to move");
+			GraphicalUI.feedback.setText(getColour(c) + " to position: " + x
+					+ ", " + y);
 			numStones = numStones + 1;
 		} else {
 			i = 0;
-			GraphicalUI.invMove.setText(getInvMove(i));
+			GraphicalUI.feedback.setText("Invalid Move");
 
 		}
 	}
@@ -346,19 +348,10 @@ public class BoardJPanel extends JPanel {
 
 	public static String getPlayer() {
 		if (colour == 1) {
-			return "Black to move";
+			return "Black";
 		} else {
-			return "White to move";
+			return "White";
 		}
-	}
-
-	public static String getInvMove(int i) {
-		if (i == 0) {
-			return "Invalid Move";
-		} else {
-			return "Valid Move";
-		}
-
 	}
 
 	public static void setPlayer(String player) {
@@ -383,8 +376,14 @@ public class BoardJPanel extends JPanel {
 		return lines;
 	}
 
-	// public static int getNumStones() {
-	// return numStones;
-	// }
+	public String getColour(int c) {
+		if (c == 1)
+			return "Black";
+		else if (c == 2)
+			return "White";
+		else
+			return "Blank";
+
+	}
 
 }
