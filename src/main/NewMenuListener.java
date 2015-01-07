@@ -16,7 +16,8 @@ public class NewMenuListener implements ActionListener {
 			GraphicalUI.setGameEngine(new GameEngine(new Board()));
 			BoardJPanel.setPlayer("black");
 			GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-			GraphicalUI.feedback.setText("Board Loaded");
+			GraphicalUI.feedback.setText("New board created");
+			GraphicalUI.objective.setText("No set objective");
 		} else {
 			// load specified board
 			Object[] sizes = { "9", "13", "19" };
@@ -31,7 +32,8 @@ public class NewMenuListener implements ActionListener {
 				// set player to back then draw the new board
 				BoardJPanel.setPlayer("black");
 				GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-				GraphicalUI.feedback.setText("Board Loaded");
+				GraphicalUI.feedback.setText("New board created");
+				GraphicalUI.objective.setText("No set objective");
 			}
 
 		}

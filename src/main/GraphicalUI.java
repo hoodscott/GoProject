@@ -350,7 +350,7 @@ public class GraphicalUI {
 		// labels for player chooser
 		objectiveLabel = new JLabel("      Objective:");
 		objective = new JLabel();
-		objective.setText("None Specified");
+		objective.setText("No set objective");
 
 		// add objective labels to panel
 		labelPanel.add(objectiveLabel);
@@ -374,7 +374,7 @@ public class GraphicalUI {
 
 		// labels to show invalid moves
 		feedbackLabel = new JLabel("     User Message: ");
-		feedback = new JLabel("");
+		feedback = new JLabel("Click to place stones");
 
 		// add labels to panel
 		labelPanel.add(feedbackLabel);

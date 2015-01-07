@@ -23,20 +23,28 @@ public class FileMenuListener implements ActionListener {
 					GraphicalUI.setGameEngine(FileIO.readBoard(loadBoard
 							.getSelectedFile().getAbsolutePath()));
 					GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-					GraphicalUI.feedback.setText("Board Loaded");
+					GraphicalUI.feedback.setText("Board loaded");
+					Objective localObjective = GraphicalUI.getGameEngine().getObjective();
+					if (localObjective==null){
+						GraphicalUI.objective.setText("Not specified");
+					}
+					else {
+						GraphicalUI.objective.setText(localObjective.toString());
+					}
+					
 				} catch (BoardFormatException bfe) {
 					GraphicalUI.feedback.setText(bfe.getMsg());
 				}
 			} else {
 				GraphicalUI.feedback
-						.setText("User Cancelled Load Board Selection");
+						.setText("User cancelled load board selection");
 			}
 
 			// save current board to default location
 		} else if (e.getActionCommand().equals("Save Problem")) {
 			try {
 				FileIO.writeBoard(GraphicalUI.getGameEngine());
-				GraphicalUI.feedback.setText("Problem Saved.");
+				GraphicalUI.feedback.setText("Problem saved");
 			} catch (BoardFormatException bfe) {
 				GraphicalUI.feedback.setText(bfe.getMsg());
 			}
@@ -49,13 +57,13 @@ public class FileMenuListener implements ActionListener {
 				try {
 					FileIO.writeBoard(GraphicalUI.getGameEngine(), saveBoard
 							.getSelectedFile().getAbsolutePath());
-					GraphicalUI.feedback.setText("Problem Saved");
+					GraphicalUI.feedback.setText("Problem saved");
 				} catch (BoardFormatException bfe) {
 					GraphicalUI.feedback.setText(bfe.getMsg());
 				}
 			} else {
 				GraphicalUI.feedback
-						.setText("User Cancelled Save Board Selection");
+						.setText("User cancelled save board selection");
 			}
 		} // exit program
 		else {

@@ -114,6 +114,11 @@ public class Objective {
             return Board.BLACK;
         }
     }
+    
+    public String toString(){
+    	// TODO write the objective to a string
+    	return "#the #objective";
+    }
 
     // functions to count the eyes of the defending group
     /*
