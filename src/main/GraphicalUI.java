@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -97,6 +99,13 @@ public class GraphicalUI {
 		frame.setSize(frameSize);
 		frame.setPreferredSize(frameSize);
 		frame.setMinimumSize(frameSize);
+		// inner class to make sure all processes are terminated when the
+		// program is closed
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent close) {
+				Runtime.getRuntime().halt(0);
+			}
+		});
 
 		// START OF MENUBAR //
 		// Create the menu bar.
@@ -451,7 +460,7 @@ public class GraphicalUI {
 		// END OF FRAME //
 	}
 
-	// game engine getter and setter for external action listeners
+	// game engine getter and setter for external action liFsteners
 	public static GameEngine getGameEngine() {
 		return gameEngine;
 	}

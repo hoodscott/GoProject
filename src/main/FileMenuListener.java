@@ -67,7 +67,7 @@ public class FileMenuListener implements ActionListener {
 			}
 		} // exit program
 		else {
-			System.exit(0);
+			Runtime.getRuntime().halt(0);
 		}
 	}
 
