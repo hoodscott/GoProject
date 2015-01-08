@@ -66,7 +66,7 @@ public class BoardJPanel extends JPanel {
 							&& GraphicalUI.getCreation()) {
 						// remove selected stone from board
 						gameE.getCurrentBoard().set(yPos, xPos, 0);
-						GraphicalUI.feedback.setText("Stone removed from:"+xPos+", "+yPos);
+						GraphicalUI.feedback.setText("Stone removed from: "+xPos+", "+yPos);
 						repaint();
 						// else add stone to board
 					} else {
@@ -91,7 +91,7 @@ public class BoardJPanel extends JPanel {
 						&& (gameE.getObjective() == null || gameE
 								.getAISearchValues() == null)) {
 					GraphicalUI.feedback
-							.setText("Please Specify Bounds And Objective");
+							.setText("Please specify bounds and objective");
 				}
 			}
 		});
@@ -160,7 +160,7 @@ public class BoardJPanel extends JPanel {
 			numStones = numStones + 1;
 		} else {
 			i = 0;
-			GraphicalUI.feedback.setText("Invalid Move");
+			GraphicalUI.feedback.setText("Invalid move");
 
 		}
 	}
