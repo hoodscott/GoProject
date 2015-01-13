@@ -22,6 +22,8 @@ public class BoardJPanel extends JPanel {
 	public static GameEngine gameE;
 	public int numStones = 0;
 	private static int[] searchSpace;
+	private boolean listeners;
+	private boolean updated;
 
 	// Board constructor
 	public BoardJPanel(GameEngine gameEngine) {
@@ -36,10 +38,13 @@ public class BoardJPanel extends JPanel {
 		lines = board.getHeight();
 		greyCounters = new Board(lines, lines);
 		searchSpace = gameE.getAISearchValues();
+		listeners = true;
+		updated = true;
 
 		// Add stone to board when user clicks
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				if (!listeners) return;
 				greyCounters = new Board(lines, lines); // create blank board
 														// each time
 				// mouse clicks
@@ -75,23 +80,26 @@ public class BoardJPanel extends JPanel {
 						repaint();
 						// else add stone to board
 					} else {
-						updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
+						updated = updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
 															// ON FIRST MOVE
 					}
 				} else {
 					GraphicalUI.feedback
 							.setText("Select Closer To Intersection");
+					updated = false;
 				}
 
 				// Let AI make move when competitive play mode selected with
 				// bounds and objective
 				boolean competitive = GraphicalUI.getCompetitive();
 				if (competitive && gameE.getObjective() != null
-						&& gameE.getAISearchValues() != null) {
+						&& gameE.getAISearchValues() != null && listeners && updated) {
+					listeners = false;
 					gameE.setMiniMax(colour);
 					String move = gameE.aiMove();
-					GraphicalUI.feedback.setText("AI move");
+					GraphicalUI.feedback.setText("AI move: " + move);
 					changePlayer();
+					listeners = true;
 				} else if (competitive
 						&& (gameE.getObjective() == null || gameE
 								.getAISearchValues() == null)) {
@@ -104,6 +112,7 @@ public class BoardJPanel extends JPanel {
 		// Show transparent grey stones
 		this.addMouseMotionListener(new MouseAdapter() {
 			public void mouseMoved(MouseEvent e) {
+				if (!listeners) return;
 				greyCounters = new Board(lines, lines); // create blank board
 														// each time
 				// mouse moves
@@ -148,7 +157,7 @@ public class BoardJPanel extends JPanel {
 	}
 
 	// Draw counter onto position
-	public void updateBoard(int x, int y, int c) {
+	public boolean updateBoard(int x, int y, int c) {
 		int i = 1;
 		if (gameE.makeMove(new Coordinate(x, y), c)) {
 			// move made, repaint board
@@ -163,10 +172,11 @@ public class BoardJPanel extends JPanel {
 			GraphicalUI.feedback.setText(getColour(c) + " to position: " + x
 					+ ", " + y);
 			numStones = numStones + 1;
+			return true;
 		} else {
 			i = 0;
 			GraphicalUI.feedback.setText("Invalid move");
-
+			return false;
 		}
 	}
 
