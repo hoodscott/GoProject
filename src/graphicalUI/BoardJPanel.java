@@ -22,8 +22,8 @@ public class BoardJPanel extends JPanel {
 	public static GameEngine gameE;
 	public int numStones = 0;
 	private static int[] searchSpace;
-	private boolean listeners;
-	private boolean updated;
+	private static boolean listeners;
+	private static boolean updated;
 
 	// Board constructor
 	public BoardJPanel(GameEngine gameEngine) {
@@ -88,24 +88,8 @@ public class BoardJPanel extends JPanel {
 							.setText("Select Closer To Intersection");
 					updated = false;
 				}
-
-				// Let AI make move when competitive play mode selected with
-				// bounds and objective
-				boolean competitive = GraphicalUI.getCompetitive();
-				if (competitive && gameE.getObjective() != null
-						&& gameE.getAISearchValues() != null && listeners && updated) {
-					listeners = false;
-					gameE.setMiniMax(colour);
-					String move = gameE.aiMove();
-					GraphicalUI.feedback.setText("AI move: " + move);
-					changePlayer();
-					listeners = true;
-				} else if (competitive
-						&& (gameE.getObjective() == null || gameE
-								.getAISearchValues() == null)) {
-					GraphicalUI.feedback
-							.setText("Please specify bounds and objective");
-				}
+				
+				GUIAIMove();
 			}
 		});
 
@@ -177,6 +161,26 @@ public class BoardJPanel extends JPanel {
 			i = 0;
 			GraphicalUI.feedback.setText("Invalid move");
 			return false;
+		}
+	}
+	
+	public static void GUIAIMove() {
+		// Let AI make move when competitive play mode selected with
+		// bounds and objective
+		boolean competitive = GraphicalUI.getCompetitive();
+		if (competitive && gameE.getObjective() != null
+				&& gameE.getAISearchValues() != null && listeners && updated) {
+			listeners = false;
+			gameE.setMiniMax(colour);
+			String move = gameE.aiMove();
+			GraphicalUI.feedback.setText("AI move: " + move);
+			changePlayer();
+			listeners = true;
+		} else if (competitive
+				&& (gameE.getObjective() == null || gameE
+						.getAISearchValues() == null)) {
+			GraphicalUI.feedback
+					.setText("Please specify bounds and objective");
 		}
 	}
 
@@ -354,7 +358,7 @@ public class BoardJPanel extends JPanel {
 	}
 
 	// helper method to change the colour of the current player
-	public void changePlayer() {
+	public static void changePlayer() {
 		if (colour == 1) {
 			colour++;
 		} else {
