@@ -242,6 +242,26 @@ public class GraphicalUI {
 		subMenu.add(menuItem);
 
 		fileMenu.add(subMenu);
+		
+		fileMenu.addSeparator();
+		
+		// Menu item for swapping player colour
+		menuItem = new JMenuItem("Swap Player Colour", KeyEvent.VK_S);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Swap human and AI playing colours");
+		menuItem.addActionListener(new CompetitiveMenuListener());
+		fileMenu.add(menuItem);
+		
+		// Menu item for swapping player colour
+		menuItem = new JMenuItem("Make AI Move", KeyEvent.VK_M);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Force AI to move first");
+		menuItem.addActionListener(new CompetitiveMenuListener());
+		fileMenu.add(menuItem);
 
 		// Build menu for problem creation
 		fileMenu = new JMenu("Problem Creation");
