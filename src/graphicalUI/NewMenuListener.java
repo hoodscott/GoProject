@@ -1,10 +1,13 @@
-package main;
+package graphicalUI;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
+
+import main.Board;
+import main.GameEngine;
 
 public class NewMenuListener implements ActionListener {
 

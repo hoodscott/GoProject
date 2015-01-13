@@ -1,10 +1,15 @@
-package main;
+package graphicalUI;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
 
 import javax.swing.JPanel;
+
+import main.Board;
+import main.Coordinate;
+import main.GameEngine;
+import main.Objective;
 
 @SuppressWarnings("serial")
 public class BoardJPanel extends JPanel {

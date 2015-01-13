@@ -1,4 +1,4 @@
-package main;
+package graphicalUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,6 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.KeyStroke;
 import javax.swing.border.EtchedBorder;
+
+import main.GameEngine;
 
 public class GraphicalUI {
 
