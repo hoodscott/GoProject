@@ -130,17 +130,6 @@ public class LegalMoveChecker implements Cloneable {
         return moveHistory.isEmpty();
     }
 
-	//Clones and returns LegalMoveChecker
-    //Note, it does not clone the actual Boards, merely the list.
-    @Override
-    public LegalMoveChecker clone() {
-        ArrayList<Board> history = new ArrayList<>();
-        for (Board b : moveHistory) {
-            history.add(b);
-        }
-        return new LegalMoveChecker(history);
-    }
-
     //recursive function to update the global liberty counter 
 
     private void checkLiberty(Board board, Coordinate c, int otherPlayer, boolean[][] visited) {
