@@ -29,6 +29,7 @@ public class FileMenuListener implements ActionListener {
 					GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
 					GraphicalUI.feedback.setText("Board loaded");
 					Objective localObjective = GraphicalUI.getGameEngine().getObjective();
+					BoardJPanel.searchSpace = GraphicalUI.getGameEngine().getAISearchValues();
 					if (localObjective==null){
 						GraphicalUI.objective.setText("Not specified");
 					}

@@ -21,7 +21,7 @@ public class BoardJPanel extends JPanel {
 	public static int colour = 1;
 	public static GameEngine gameE;
 	public int numStones = 0;
-	private static int[] searchSpace;
+	static int[] searchSpace;
 	private static boolean listeners;
 	private static boolean updated;
 
