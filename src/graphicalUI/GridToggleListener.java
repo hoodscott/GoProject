@@ -31,6 +31,7 @@ public class GridToggleListener implements ActionListener {
 				GraphicalUI.setCompetitive(false);
 				GraphicalUI.feedback
 						.setText("\"Competitive Play Mode\" deselected");
+				BoardJPanel.listeners = true;
 			}
 		}
 		if (button.getText().equals("Problem Creation Mode")) {

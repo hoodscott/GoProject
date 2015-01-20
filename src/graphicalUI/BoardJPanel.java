@@ -22,7 +22,7 @@ public class BoardJPanel extends JPanel {
 	public static GameEngine gameE;
 	public int numStones = 0;
 	static int[] searchSpace;
-	private static boolean listeners;
+	static boolean listeners;
 	private static boolean updated;
 
 	// Board constructor

@@ -36,6 +36,7 @@ import javax.swing.JButton;
 			}
 			if (button.getText().equals("Reset")) {
 				if (GraphicalUI.getGameEngine().restartBoard()) {
+					BoardJPanel.listeners = true;
 					BoardJPanel.setPlayer("black");
 					GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
 					GraphicalUI.resetModeButtons();
