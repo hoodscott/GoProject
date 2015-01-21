@@ -20,7 +20,11 @@ public class FileMenuListener implements ActionListener {
 		Component pane = null;
 		// load specified board
 		if (e.getActionCommand().equals("Load Problem")) {
-			JFileChooser loadBoard = new JFileChooser();
+			String defaultDir = System.getProperty("user.dir")
+					+ "\\saveData\\boards";
+			// convert path to match system
+			defaultDir = FileIO.pathOS(defaultDir);
+			JFileChooser loadBoard = new JFileChooser(defaultDir);
 			int command = loadBoard.showOpenDialog(pane);
 			if (command == JFileChooser.APPROVE_OPTION) {
 				try {
@@ -28,15 +32,17 @@ public class FileMenuListener implements ActionListener {
 							.getSelectedFile().getAbsolutePath()));
 					GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
 					GraphicalUI.feedback.setText("Board loaded");
-					Objective localObjective = GraphicalUI.getGameEngine().getObjective();
-					BoardJPanel.searchSpace = GraphicalUI.getGameEngine().getAISearchValues();
-					if (localObjective==null){
+					Objective localObjective = GraphicalUI.getGameEngine()
+							.getObjective();
+					BoardJPanel.searchSpace = GraphicalUI.getGameEngine()
+							.getAISearchValues();
+					if (localObjective == null) {
 						GraphicalUI.objective.setText("Not specified");
+					} else {
+						GraphicalUI.objective
+								.setText(localObjective.toString());
 					}
-					else {
-						GraphicalUI.objective.setText(localObjective.toString());
-					}
-					
+
 				} catch (BoardFormatException bfe) {
 					GraphicalUI.feedback.setText(bfe.getMsg());
 				}
@@ -56,7 +62,11 @@ public class FileMenuListener implements ActionListener {
 
 			// save current board to specified location
 		} else if (e.getActionCommand().equals("Save Problem As...")) {
-			JFileChooser saveBoard = new JFileChooser();
+			String defaultDir = System.getProperty("user.dir")
+					+ "\\saveData\\boards";
+			// convert path to match system
+			defaultDir = FileIO.pathOS(defaultDir);
+			JFileChooser saveBoard = new JFileChooser(defaultDir);
 			int command = saveBoard.showSaveDialog(pane);
 			if (command == JFileChooser.APPROVE_OPTION) {
 				try {
