@@ -49,6 +49,7 @@ public class GraphicalUI {
 	static BoardJPanel boardJP;
 	static Container pane;
 	static JToggleButton creationButton, competitiveButton;
+	static String aiType;
 
 	/**
 	 * Start the gui.
@@ -88,9 +89,12 @@ public class GraphicalUI {
 		xInit = 100;
 		yInit = 100;
 
-		// set stones to white then black as default
+		// set stones to alternate as default
 		mixedStones = true;
-
+		
+		// default AI as minimax
+		aiType = "MiniMax";
+		
 		// START OF FRAME //
 		// frame to hold all elements
 		frame = new JFrame();
@@ -260,6 +264,15 @@ public class GraphicalUI {
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Force AI to move first");
+		menuItem.addActionListener(new CompetitiveMenuListener());
+		fileMenu.add(menuItem);
+		
+		// Menu item to switch AI type
+		menuItem = new JMenuItem("Select AI Type", KeyEvent.VK_M);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+				ActionEvent.ALT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Choose algorithm that AI uses to move");
 		menuItem.addActionListener(new CompetitiveMenuListener());
 		fileMenu.add(menuItem);
 

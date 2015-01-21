@@ -28,6 +28,8 @@ public class AlphaBeta extends AI  {
         getLMList(b, moves, boards, colour);
         int depth = moves.size()-1;
         int score = 0;
+        // TODO REMOVE
+        System.out.println("in alphabeta");
         
         // put a stone down for every legal move
         for (int i = 0; i < moves.size(); i++) {

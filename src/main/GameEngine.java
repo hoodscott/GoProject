@@ -55,7 +55,7 @@ public class GameEngine{
   //Returns ai search values
   public AI getAI(){return ai;}
   
-  // Checks if a board has already been instantiatey by newGame() or not.
+  // Checks if a board has already been instantiated by newGame() or not.
   public boolean isInGame(){return inGame;}
   
   public void startGame(){inGame = true;}
@@ -67,6 +67,9 @@ public class GameEngine{
   
   //Sets the AI to be a minimax algorithm
   public void setMiniMax(int colour){ai = new MiniMax(objective, colour, aiSearchValues);}
+  
+  // Sets the AI to be an alpha beta algorithm
+  public void setAlphaBeta(int colour){ai= new AlphaBeta(objective, colour, aiSearchValues);}
   
   //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
   //Checks whether the move is legal and if so, place the piece and return true
