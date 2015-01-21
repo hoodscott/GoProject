@@ -135,28 +135,59 @@ public class Objective {
 				+ this.position.toString();
 	}
 
-	// functions to count the eyes of the defending group
 	/*
-	 * public void countEyes(Board board, boolean b[][], Coordinate p){ // if
-	 * checked already or opponent return if (b[p.x][p.y] == true ||
-	 * board.get(p.x, p.y) == getOtherColour()) return; // else mark as checked
-	 * b[p.x][p.y]=true; // if position is empty -> check if eye if
-	 * (board.get(p.x, p.y) == Board.EMPTY) { if (checkIfEye(board,p) == true) {
-	 * eyes++; } return; }
-	 * 
-	 * //out of boundary check + recursion // if (p.x>0) { Coordinate np = new
-	 * Coordinate(p.x-1,p.y); countEyes(board, b, np); } if
-	 * (p.x<board.getWidth() - 1) { Coordinate np = new Coordinate(p.x+1,p.y);
-	 * countEyes(board, b, np); } if (p.y>0) { Coordinate np = new
-	 * Coordinate(p.x,p.y-1); countEyes(board, b, np); } if
-	 * (p.y<board.getHeight() - 1){ Coordinate np = new Coordinate(p.x,p.y+1);
-	 * countEyes(board, b, np); } }
-	 * 
-	 * public boolean checkIfEye(Board board, Coordinate p){ // check all eight
-	 * positions (whichever exist) around for (int i = p.x-1 ; i <= p.x+1; i++){
-	 * loop2: for(int j = p.y-1; j <= p.y+1; j++){ // do not check the potential
-	 * eye itself if (i==p.x && j == p.y ) continue loop2; if(i >= 0 && j >= 0
-	 * && i<=board.getWidth() - 1 && j<=board.getHeight() - 1){ if
-	 * (board.get(i,j) != colour) return false; } } } return true; }
-	 */
+
+	// functions to count the eyes of the defending group
+	public void countEyes(Board board, boolean b[][], Coordinate p) {
+		// if checked already or opponent return
+		if (b[p.x][p.y] == true || board.get(p.x, p.y) == getOtherColour(0))
+			return;
+		// else mark as checked
+		b[p.x][p.y] = true;
+		// if position is empty -> check if eye
+		if (board.get(p.x, p.y) == Board.EMPTY) {
+			if (checkIfEye(board, p) == true) {
+				eyes++;
+			}
+			return;
+		}
+
+		// out of boundary check + recursion //
+		if (p.x > 0) {
+			Coordinate np = new Coordinate(p.x - 1, p.y);
+			countEyes(board, b, np);
+		}
+		if (p.x < board.getWidth() - 1) {
+			Coordinate np = new Coordinate(p.x + 1, p.y);
+			countEyes(board, b, np);
+		}
+		if (p.y > 0) {
+			Coordinate np = new Coordinate(p.x, p.y - 1);
+			countEyes(board, b, np);
+		}
+		if (p.y < board.getHeight() - 1) {
+			Coordinate np = new Coordinate(p.x, p.y + 1);
+			countEyes(board, b, np);
+		}
+	}
+
+	public boolean checkIfEye(Board board, Coordinate p) {
+		// check all eight positions (whichever exist) around
+		for (int i = p.x - 1; i <= p.x + 1; i++) {
+			loop2: for (int j = p.y - 1; j <= p.y + 1; j++) {
+				// do not check the potential eye itself
+				if (i == p.x && j == p.y)
+					continue loop2;
+				if (i >= 0 && j >= 0 && i <= board.getWidth() - 1
+						&& j <= board.getHeight() - 1) {
+					if (board.get(i, j) != 1)
+						return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	*/
+
 }
