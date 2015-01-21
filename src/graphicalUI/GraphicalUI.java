@@ -258,14 +258,16 @@ public class GraphicalUI {
 		menuItem.addActionListener(new CompetitiveMenuListener());
 		fileMenu.add(menuItem);
 		
-		// Menu item for swapping player colour
+		// Menu item for making AI move
 		menuItem = new JMenuItem("Make AI Move", KeyEvent.VK_M);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Force AI to move first");
 		menuItem.addActionListener(new CompetitiveMenuListener());
 		fileMenu.add(menuItem);
+		
+		fileMenu.addSeparator();
 		
 		// Menu item to switch AI type
 		menuItem = new JMenuItem("Select AI Type", KeyEvent.VK_M);
@@ -285,8 +287,8 @@ public class GraphicalUI {
 
 		// menu item for using black stones
 		menuItem = new JMenuItem("Use Black Stones", KeyEvent.VK_B);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Place only black stones down");
 		menuItem.addActionListener(new CreationMenuListener());
@@ -294,8 +296,8 @@ public class GraphicalUI {
 
 		// menu item for using white stones
 		menuItem = new JMenuItem("Use White Stones", KeyEvent.VK_W);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Place only white stones down");
 		menuItem.addActionListener(new CreationMenuListener());
@@ -303,8 +305,8 @@ public class GraphicalUI {
 
 		// menu item for using white/black stones
 		menuItem = new JMenuItem("Use Both Stones", KeyEvent.VK_B);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B,
+				ActionEvent.SHIFT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Places stones in black and white order");
 		menuItem.addActionListener(new CreationMenuListener());
@@ -314,8 +316,8 @@ public class GraphicalUI {
 
 		// menu item for removing stones
 		menuItem = new JMenuItem("Delete Stones", KeyEvent.VK_D);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Allow user to delete stones");
 		menuItem.addActionListener(new CreationMenuListener());
