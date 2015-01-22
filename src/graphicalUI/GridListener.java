@@ -12,12 +12,18 @@ import javax.swing.JButton;
 		public void actionPerformed(ActionEvent e) {
 			JButton button = (JButton) e.getSource();
 			if (button.getText().equals("Undo")) {
-				if (GraphicalUI.getGameEngine().undoLastMove()) {
-					GraphicalUI.boardJP.changePlayer();
+				if (GraphicalUI.getGameEngine().undoLastMove() ){ 
+				 if (GraphicalUI.getCreation()){
+					
 					GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
 					GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
 					GraphicalUI.feedback.setText("Undone move");
 				} else {
+					GraphicalUI.boardJP.changePlayer();
+					GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
+					GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+					GraphicalUI.feedback.setText("Undone move");}
+				}else{
 					GraphicalUI.feedback.setText("No more moves to undo");
 				}
 			}
