@@ -30,11 +30,20 @@ import javax.swing.JButton;
 			if (button.getText().equals("Pass")) {
 				// TODO create pass function in gameEngine
 				if (true) {
-					GraphicalUI.feedback.setText(BoardJPanel.getPlayer() + " passes");
-					GraphicalUI.boardJP.changePlayer();
-					GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
-					GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-					System.out.println(BoardJPanel.getPlayer());
+					 if (GraphicalUI.getCompetitive()){
+						 GraphicalUI.feedback.setText(BoardJPanel.getPlayer() + " passes");
+						 BoardJPanel.changePlayer();
+						 BoardJPanel.GUIAIMove();
+						 GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
+						 GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+						 System.out.println(BoardJPanel.getPlayer());
+				 }else{
+					 GraphicalUI.feedback.setText(BoardJPanel.getPlayer() + " passes");
+					 GraphicalUI.boardJP.changePlayer();
+					 GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
+					 GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+					 System.out.println(BoardJPanel.getPlayer());}
+			  
 				} else {
 					GraphicalUI.feedback.setText(BoardJPanel.getPlayer()
 							+ " could not pass");

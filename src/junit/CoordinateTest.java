@@ -28,6 +28,7 @@ public class CoordinateTest {
 	public void defaultBoard(){
 		Coordinate c  = new Coordinate(4,16);
 		
+		assertTrue(c instanceof Coordinate);
 		assertEquals(c.x,4);
 		assertEquals(c.y,16);
 	}
