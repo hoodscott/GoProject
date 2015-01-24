@@ -78,4 +78,13 @@ public class BoardTest {
 		assertTrue(a.equals(d));
 		assertFalse(b.equals(c));
 	}
+	
+	@Test
+	public void settingBoardPositions() {
+		board = new Board();
+		board.set(1,1,1);
+		board.set(5,7,2);
+		assertEquals(1,board.get(1,1));
+		assertEquals(2,board.get(5,7));
+	}
 }
