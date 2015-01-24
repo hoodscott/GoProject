@@ -227,7 +227,7 @@ public class TextUI{
             try{
                 if(gameEngine == null)
                         throw new BadInputException("> There is no board with moves to undo.");
-                if(gameEngine.undoLastMove())
+                if(!gameEngine.undoLastMove())
                         throw new BadInputException("> There are no moves to undo on this board.");
 
                 String message = " > Undoing last move...";
