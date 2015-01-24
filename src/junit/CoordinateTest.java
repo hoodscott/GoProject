@@ -25,7 +25,7 @@ public class CoordinateTest {
 	}
 
 	@Test
-	public void defaultBoard(){
+	public void testNewCoordinate(){
 		Coordinate c  = new Coordinate(4,16);
 		
 		assertTrue(c instanceof Coordinate);
