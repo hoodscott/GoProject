@@ -17,7 +17,7 @@ public class BoundsMenuListener implements ActionListener {
 					"Specify Bounds Seperated By Spaces:", "Set Bounds",
 					JOptionPane.PLAIN_MESSAGE, null, null, "");
 			// bound length must be single figures or double figures
-			if (bounds != null && bounds.length() == 7 || bounds.length() == 8 || bounds.length() == 9 || bounds.length() == 11) {
+			if (bounds != null && bounds.length() == 7 || bounds.length() == 8 || bounds.length() == 9 || bounds.length() == 10 ||bounds.length() == 11) {
 				// create array of specified bounds
 				int[] selectBounds = { 0, 0, 0, 0 };
 				int j = 0;
