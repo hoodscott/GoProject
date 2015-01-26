@@ -9,6 +9,8 @@ import javax.swing.JFileChooser;
 import main.BoardFormatException;
 import main.FileIO;
 import main.Objective;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Listener classes for menus.
@@ -22,6 +24,13 @@ public class FileMenuListener implements ActionListener {
         if (e.getActionCommand().equals("Load Problem")) {
             String defaultDir = System.getProperty("user.dir")
                     + "\\saveData\\boards";
+           
+            //Minor hotfix for Nik's shoddy buildpath
+            if(Files.notExists(Paths.get(defaultDir))){
+                defaultDir = System.getProperty("user.dir")
+                    + "\\src\\saveData\\boards";
+            }
+            
             // convert path to match system
             defaultDir = FileIO.pathOS(defaultDir);
             JFileChooser loadBoard = new JFileChooser(defaultDir);
