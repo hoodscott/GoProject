@@ -7,15 +7,19 @@ public class MiniMax extends AI {
 
     private final Objective evaluator;
     private LegalMoveChecker lmc;
-    private static final int SEARCH_SPACE_MAXIMUM = 7;
+    private static final int SEARCH_SPACE_MAXIMUM = 8; //RECOMMENDED MAXIMUM
     int opponent;
     int passCount = 0;
+    Action miniAction;
+    Action opponentAction;
 
     public MiniMax(Objective objective, int c, int[] searchScope) {
         evaluator = objective;
         colour = c;
         opponent = evaluator.getOtherColour(colour);
         setBounds(searchScope);
+        miniAction = evaluator.getAction(colour);
+        opponentAction = evaluator.getAction(opponent);
     }
 
     @Override
@@ -26,7 +30,7 @@ public class MiniMax extends AI {
 
         //Checks if objective for killing is already met and passes accordingly. 
         //For defending, all possible substates need to be checked.
-        if (evaluator.getAction(colour) == Action.KILL && evaluator.checkSucceeded(b, colour)) {
+        if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
             return new Coordinate(-1, -1);
         }
 
@@ -55,11 +59,10 @@ public class MiniMax extends AI {
     //Occurs after opponent move
     public int max(Board b, boolean passed) {
 
-        //boolean moved = false;
         //If the defended group has been killed, return failure.
-        if (evaluator.getAction(opponent) == Action.KILL && evaluator.checkSucceeded(b, opponent)) {
+        if (opponentAction == Action.KILL && evaluator.checkSucceeded(b, opponent)) {
             //System.out.println("Defeated at:");
-            printGameBoard(b);
+            //printGameBoard(b);
             return -1;
         }
 
@@ -90,19 +93,13 @@ public class MiniMax extends AI {
         }
 
         //If the AI can no longer kill the opponent
-        if (evaluator.getAction(opponent) == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
+        if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
             //System.out.println("AI successfully defended at: lb");
-            printGameBoard(b);
+            //printGameBoard(b);
             return -1;
-        } //If there are no more legal moves and the AI's defended group still lives.
-        /*
-         else if(!moved && evaluator.getAction(colour) == Action.DEFEND)
-         {
-         System.out.println("Out of moves and successfully defended at: ");
-         printGameBoard(b);
-         return 1;
-         }
-         */ else {
+        } 
+        //If there are no more legal moves and the AI's defended group still lives.
+        else {
             return 1;
         }
     }
@@ -111,9 +108,9 @@ public class MiniMax extends AI {
     public int min(Board b, boolean passed) {
 
         //If the AI has captured the opposing group
-        if (evaluator.getAction(colour) == Action.KILL && evaluator.checkSucceeded(b, colour)) {
+        if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
             //System.out.println("Succeeded at:");
-            printGameBoard(b);
+            //printGameBoard(b);
             return 1;
         }
 
@@ -124,7 +121,7 @@ public class MiniMax extends AI {
                 if (lmc.checkMove(b, currentCoord, opponent)) {
                     Board currentState = lmc.getLastLegal();
                     //System.out.println("Considering ("+x+","+y+"):");
-                    printGameBoard(currentState);
+                    //printGameBoard(currentState);
                     lmc.addBoard(currentState);
                     int result = max(currentState, false);
                     //System.out.println("Max: "+result);
@@ -145,161 +142,21 @@ public class MiniMax extends AI {
         }
 
         //If the AI's stone group can no longer be captured.
-        if (evaluator.getAction(colour) == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
+        if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
             //System.out.println("Opponent successfully defended");
             //printGameBoard(b);
             return 1;
-        } //If there are no more legal moves and the AI's defended group still lives.
-        /*
-         else if(!moved && evaluator.getAction(opponent) == Action.DEFEND)
-         {
-         System.out.println("Out of moves and opponent successfully defended at: ");
-         printGameBoard(b);
-         return -1;
-         }
-         */ else {
+        } 
+        //If there are no more legal moves and the AI's defended group still lives.
+        else {
             return -1;
         }
     }
-    /*
-     // AI is the maximizer in every case !
-     @Override
-     public Coordinate nextMove(Board b, LegalMoveChecker lmc) {
-     this.lmc = lmc;
-     Coordinate bestMove = null;
-     ArrayList<Coordinate> moves = new ArrayList<>();
-     ArrayList<Board> boards = new ArrayList<>();
-     getLMList(b, moves, boards, colour);
-     System.out.println("Predicted Search Space: " + moves.size() + "! or " + factorial(moves.size()));
-
-     int score = 0;
-     // for every legal move put a stone down
-     for (int i = 0; i < moves.size(); i++) {
-     Coordinate move = moves.get(i);
-     Board clone = boards.get(i);
-     // evaluate current move
-     if (evaluator.getAction(colour).equals("kill") && evaluator.checkSucceeded(clone, colour)) {
-     return move;
-     }
-     // continue to opponent`s best reaction to this particular move
-     score = min(clone);
-     // return final result
-     if (score == 1) {
-     bestMove = move;
-     }
-     }
-
-     if (bestMove == null) // pass
-     {
-     return new Coordinate(-1, -1);
-     }
-
-     return bestMove;
-     }
-
-     private int min(Board b) {
-     int lowestScore = 1;
-     ArrayList<Coordinate> moves = new ArrayList<>();
-     ArrayList<Board> boards = new ArrayList<>();
-     int score;
-     int opponentColour = evaluator.getOtherColour(colour);
-     getLMList(b, moves, boards, opponentColour);
-
-     // Base Case
-     if (moves.isEmpty()) {
-     if (evaluator.checkSucceeded(b, opponentColour)) {
-     //System.out.println("Min considers moves bad.");
-     return -1;
-     } else {
-     //System.out.println("Min considers moves good.");
-     return 1;
-     }
-     }
-
-     for (int i = 0; i < moves.size(); i++) {
-     Coordinate move = moves.get(i);
-     Board clone = boards.get(i);
-     //printGameBoard(clone);
-     Coordinate pos = evaluator.getPosition();
-     //System.out.println("Minimizes ("+move.x+", "+move.y+")");
-
-     //Checks successful kill
-     if (evaluator.getAction(opponentColour).equals("kill") && evaluator.checkSucceeded(clone, opponentColour)) {
-     return -1;
-     }
-     score = max(clone);
-     if (score < lowestScore) {
-     lowestScore = score;
-     }
-     }
-
-     return lowestScore;
-     }
-
-     private int max(Board b) {
-     int highestScore = -1;
-     ArrayList<Coordinate> moves = new ArrayList<>();
-     ArrayList<Board> boards = new ArrayList<>();
-     getLMList(b, moves, boards, colour);
-
-     int score = 0;
-
-     //Base case
-     if (moves.isEmpty()) {
-     if (evaluator.checkSucceeded(b, colour)) {
-     //System.out.println("Max considers moves good.");
-     return 1;
-     } else {
-     //System.out.println("Max considers moves bad.");
-     return -1;
-     }
-     }
-
-     for (int i = 0; i < moves.size(); i++) {
-     Coordinate move = moves.get(i);
-     Board clone = boards.get(i);
-     //printGameBoard(clone);
-     Coordinate pos = evaluator.getPosition();
-     //System.out.println("Maximizes ("+move.x+", "+move.y+")");
-
-     if (evaluator.getAction(colour).equals("kill") && evaluator.checkSucceeded(b, colour)) {
-     return 1;
-     }
-     score = min(clone);
-     if (score > highestScore) {
-     highestScore = score;
-     }
-     }
-
-     return highestScore;
-     }
-
-     public int getOtherColour() {
-     if (colour == Board.BLACK) {
-     return Board.WHITE;
-     }
-     return Board.BLACK;
-     }
-
-     // create array list containing the coordinates of the legal moves
-     public void getLMList(Board b, ArrayList<Coordinate> moves, ArrayList<Board> boards, int colour) {
-     for (int i = lowerBoundX; i <= upperBoundX; i++) {
-     for (int j = lowerBoundY; j <= upperBoundY; j++) {
-     Coordinate c = new Coordinate(i, j);
-     if (lmc.checkMove(b, c, colour)) {
-     moves.add(c);
-     boards.add(lmc.getLastLegal());
-     //System.out.println("AI considers move: ("+i+", "+j+")");
-     }
-     }
-     }
-     }
-     */
-
+    
     //-----------------------------
     //METHODS USED FOR TESTING ONLY
     //-----------------------------
-    public void printGameBoard(Board b) {
+    private void printGameBoard(Board b) {
 
         int[][] board = b.getRaw();
         ArrayList<String> lines = new ArrayList<>();
@@ -319,7 +176,7 @@ public class MiniMax extends AI {
     }
 
     //Prints general boards.
-    public void printBoard(ArrayList<String> lines) {
+    private void printBoard(ArrayList<String> lines) {
 
         System.out.println();
         lines = addBoardDetails(lines);
@@ -333,7 +190,7 @@ public class MiniMax extends AI {
     }
 
     //Adds details to a board view. Currently just board indexing.
-    public ArrayList<String> addBoardDetails(ArrayList<String> board) {
+    private ArrayList<String> addBoardDetails(ArrayList<String> board) {
 
         //indices
         int width = board.get(0).length();
@@ -378,7 +235,7 @@ public class MiniMax extends AI {
         return detailedBoard;
     }
 
-    public long factorial(long n) {
+    private long factorial(long n) {
         if (n > 1) {
             return n * factorial(n - 1);
         } else {

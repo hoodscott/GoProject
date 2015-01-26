@@ -34,10 +34,6 @@ public class GameEngine {
         this.objective = objective;
         moveChecker = new LegalMoveChecker();
         aiSearchValues = searchValues;
-        try{
-            System.out.println(Translator.translateToBoardInstruction(board));
-        }
-        catch(BoardFormatException b){}
     }
 
     // Checks entire board for legal moves and returns them as a 2D boolean array
