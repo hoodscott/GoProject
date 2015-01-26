@@ -1,15 +1,19 @@
 package main;
 
 //This exception is to be thrown by FileIO.java when a board is badly formatted.
-public class BoardFormatException extends Exception{
+public class BoardFormatException extends Exception {
 
-	private String message;
-	public BoardFormatException(){}
+    private String message;
 
-	public BoardFormatException(String msg){
-		message = msg;
-	}
+    public BoardFormatException() {
+    }
 
-	public String getMsg(){return message;}
+    public BoardFormatException(String msg) {
+        message = msg;
+    }
+
+    public String getMsg() {
+        return message;
+    }
 
 }

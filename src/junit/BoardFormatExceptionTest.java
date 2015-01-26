@@ -8,32 +8,31 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class BoardFormatExceptionTest {
-	
-	private BoardFormatException bfe;
 
-	@Before
-	public void setUp() throws Exception {
-		bfe = new BoardFormatException();
-	}
+    private BoardFormatException bfe;
 
-	@After
-	public void tearDown() throws Exception {
-		bfe = null;
-	}
+    @Before
+    public void setUp() throws Exception {
+        bfe = new BoardFormatException();
+    }
 
-	@Test
-	public void BoardFormatException() {
-		BoardFormatException outTest = new BoardFormatException();
-		assertEquals(outTest.getMsg(),null);
-	}
+    @After
+    public void tearDown() throws Exception {
+        bfe = null;
+    }
 
-	@Test
-	public void BoardFormatExceptionString() {
-		String message = "Test error output.";
-		BoardFormatException outTest = new BoardFormatException(message);
-		assertEquals(outTest.getMsg(),message);
-	}
+    @Test
+    public void BoardFormatException() {
+        BoardFormatException outTest = new BoardFormatException();
+        assertEquals(outTest.getMsg(), null);
+    }
+
+    @Test
+    public void BoardFormatExceptionString() {
+        String message = "Test error output.";
+        BoardFormatException outTest = new BoardFormatException(message);
+        assertEquals(outTest.getMsg(), message);
+    }
 
 }

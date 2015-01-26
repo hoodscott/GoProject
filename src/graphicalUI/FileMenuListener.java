@@ -15,75 +15,75 @@ import main.Objective;
  */
 public class FileMenuListener implements ActionListener {
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Component pane = null;
-		// load specified board
-		if (e.getActionCommand().equals("Load Problem")) {
-			String defaultDir = System.getProperty("user.dir")
-					+ "\\saveData\\boards";
-			// convert path to match system
-			defaultDir = FileIO.pathOS(defaultDir);
-			JFileChooser loadBoard = new JFileChooser(defaultDir);
-			int command = loadBoard.showOpenDialog(pane);
-			if (command == JFileChooser.APPROVE_OPTION) {
-				try {
-					GraphicalUI.setGameEngine(FileIO.readBoard(loadBoard
-							.getSelectedFile().getAbsolutePath()));
-					GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-					GraphicalUI.feedback.setText("Board loaded");
-					Objective localObjective = GraphicalUI.getGameEngine()
-							.getObjective();
-					BoardJPanel.searchSpace = GraphicalUI.getGameEngine()
-							.getAISearchValues();
-					if (localObjective == null) {
-						GraphicalUI.objective.setText("Not specified");
-					} else {
-						GraphicalUI.objective
-								.setText(localObjective.toString());
-					}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Component pane = null;
+        // load specified board
+        if (e.getActionCommand().equals("Load Problem")) {
+            String defaultDir = System.getProperty("user.dir")
+                    + "\\saveData\\boards";
+            // convert path to match system
+            defaultDir = FileIO.pathOS(defaultDir);
+            JFileChooser loadBoard = new JFileChooser(defaultDir);
+            int command = loadBoard.showOpenDialog(pane);
+            if (command == JFileChooser.APPROVE_OPTION) {
+                try {
+                    GraphicalUI.setGameEngine(FileIO.readBoard(loadBoard
+                            .getSelectedFile().getAbsolutePath()));
+                    GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+                    GraphicalUI.feedback.setText("Board loaded");
+                    Objective localObjective = GraphicalUI.getGameEngine()
+                            .getObjective();
+                    BoardJPanel.searchSpace = GraphicalUI.getGameEngine()
+                            .getAISearchValues();
+                    if (localObjective == null) {
+                        GraphicalUI.objective.setText("Not specified");
+                    } else {
+                        GraphicalUI.objective
+                                .setText(localObjective.toString());
+                    }
 
-				} catch (BoardFormatException bfe) {
-					GraphicalUI.feedback.setText(bfe.getMsg());
-				}
-			} else {
-				GraphicalUI.feedback
-						.setText("User cancelled load board selection");
-			}
+                } catch (BoardFormatException bfe) {
+                    GraphicalUI.feedback.setText(bfe.getMsg());
+                }
+            } else {
+                GraphicalUI.feedback
+                        .setText("User cancelled load board selection");
+            }
 
-			// save current board to default location
-		} else if (e.getActionCommand().equals("Save Problem")) {
-			try {
-				FileIO.writeBoard(GraphicalUI.getGameEngine());
-				GraphicalUI.feedback.setText("Problem saved");
-			} catch (BoardFormatException bfe) {
-				GraphicalUI.feedback.setText(bfe.getMsg());
-			}
+            // save current board to default location
+        } else if (e.getActionCommand().equals("Save Problem")) {
+            try {
+                FileIO.writeBoard(GraphicalUI.getGameEngine());
+                GraphicalUI.feedback.setText("Problem saved");
+            } catch (BoardFormatException bfe) {
+                GraphicalUI.feedback.setText(bfe.getMsg());
+            }
 
-			// save current board to specified location
-		} else if (e.getActionCommand().equals("Save Problem As...")) {
-			String defaultDir = System.getProperty("user.dir")
-					+ "\\saveData\\boards";
-			// convert path to match system
-			defaultDir = FileIO.pathOS(defaultDir);
-			JFileChooser saveBoard = new JFileChooser(defaultDir);
-			int command = saveBoard.showSaveDialog(pane);
-			if (command == JFileChooser.APPROVE_OPTION) {
-				try {
-					FileIO.writeBoard(GraphicalUI.getGameEngine(), saveBoard
-							.getSelectedFile().getAbsolutePath());
-					GraphicalUI.feedback.setText("Problem saved");
-				} catch (BoardFormatException bfe) {
-					GraphicalUI.feedback.setText(bfe.getMsg());
-				}
-			} else {
-				GraphicalUI.feedback
-						.setText("User cancelled save board selection");
-			}
-		} // exit program
-		else {
-			Runtime.getRuntime().halt(0);
-		}
-	}
+            // save current board to specified location
+        } else if (e.getActionCommand().equals("Save Problem As...")) {
+            String defaultDir = System.getProperty("user.dir")
+                    + "\\saveData\\boards";
+            // convert path to match system
+            defaultDir = FileIO.pathOS(defaultDir);
+            JFileChooser saveBoard = new JFileChooser(defaultDir);
+            int command = saveBoard.showSaveDialog(pane);
+            if (command == JFileChooser.APPROVE_OPTION) {
+                try {
+                    FileIO.writeBoard(GraphicalUI.getGameEngine(), saveBoard
+                            .getSelectedFile().getAbsolutePath());
+                    GraphicalUI.feedback.setText("Problem saved");
+                } catch (BoardFormatException bfe) {
+                    GraphicalUI.feedback.setText(bfe.getMsg());
+                }
+            } else {
+                GraphicalUI.feedback
+                        .setText("User cancelled save board selection");
+            }
+        } // exit program
+        else {
+            Runtime.getRuntime().halt(0);
+        }
+    }
 
 }
