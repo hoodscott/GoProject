@@ -1,19 +1,165 @@
 package main;
 
 import java.util.ArrayList;
+import main.Objective.Action;
 
 public class MiniMax extends AI {
 
-    private Objective evaluator;
+    private final Objective evaluator;
     private LegalMoveChecker lmc;
     private static final int SEARCH_SPACE_MAXIMUM = 7;
+    int opponent;
+    int passCount = 0;
 
     public MiniMax(Objective objective, int c, int[] searchScope) {
         evaluator = objective;
         colour = c;
+        opponent = evaluator.getOtherColour(colour);
         setBounds(searchScope);
     }
-
+    
+    
+    @Override
+    public Coordinate nextMove(Board b, LegalMoveChecker legalMoves){
+        lmc = legalMoves.clone();
+        int searchSpace = (upperBoundX - lowerBoundX + 1)*(upperBoundY - lowerBoundY + 1);
+        System.out.println("Possible Search Space: "+searchSpace+"! or " + factorial(searchSpace));
+        
+        //Checks if objective for killing is already met and passes accordingly. 
+        //For defending, all possible substates need to be checked.
+        if(evaluator.getAction(colour) == Action.KILL && evaluator.checkSucceeded(b, colour))
+            return new Coordinate(-1,-1);
+        
+        for(int x = lowerBoundX; x <= upperBoundX; x++)
+            for(int y = lowerBoundY; y <= upperBoundY; y++){
+                Coordinate currentCoord = new Coordinate(x,y);
+                if(lmc.checkMove(b, currentCoord, colour)){
+                    Board currentState = lmc.getLastLegal();
+                    //System.out.println("Considering ("+x+","+y+"):");
+                    //printGameBoard(currentState);
+                    lmc.addBoard(currentState);
+                    int result = min(currentState, false);
+                    //System.out.println("Result: "+result);
+                    lmc.removeLast();
+                    //If success is guaranteed.
+                    if(result == 1)
+                        return currentCoord;                
+                }
+            }
+        //If no move improves the situation (result is 0 or -1), pass.
+        return new Coordinate(-1,-1);
+    }
+    
+    //Occurs after opponent move
+    public int max(Board b, boolean passed){
+        
+        //boolean moved = false;
+                
+        //If the defended group has been killed, return failure.
+        if(evaluator.getAction(opponent) == Action.KILL && evaluator.checkSucceeded(b, opponent)){
+            //System.out.println("Defeated at:");
+            printGameBoard(b);
+            return -1;
+        }
+            
+        
+        for(int x = lowerBoundX; x <= upperBoundX; x++)
+            for(int y = lowerBoundY; y <= upperBoundY; y++){
+                Coordinate currentCoord = new Coordinate(x,y);
+                if(lmc.checkMove(b, currentCoord, colour)){
+                    //moved = true;
+                    Board currentState = lmc.getLastLegal();
+                    //System.out.println("Considering ("+x+","+y+"):");
+                    //printGameBoard(currentState);
+                    lmc.addBoard(currentState);
+                    int result = min(currentState, false);
+                    //System.out.println("Min: "+result);
+                    lmc.removeLast();
+                    
+                    //If success is guaranteed.
+                    if(result == 1)
+                        return result;                
+                }
+            }
+        
+        if(!passed){
+           //System.out.println("AI passed.");
+           return min(b, true);          
+        }
+        
+        //If the AI can no longer kill the opponent
+        if(evaluator.getAction(opponent) == Action.DEFEND && evaluator.checkSucceeded(b, opponent)){
+            //System.out.println("AI successfully defended at: lb");
+            printGameBoard(b);
+            return -1;
+        }
+        //If there are no more legal moves and the AI's defended group still lives.
+        /*
+        else if(!moved && evaluator.getAction(colour) == Action.DEFEND)
+        {
+            System.out.println("Out of moves and successfully defended at: ");
+            printGameBoard(b);
+            return 1;
+        }
+        */
+        else
+            return 1;
+    }
+    
+    //Occurs after AI move
+    public int min(Board b, boolean passed){
+        
+        //If the AI has captured the opposing group
+        if(evaluator.getAction(colour) == Action.KILL && evaluator.checkSucceeded(b, colour)){
+            //System.out.println("Succeeded at:");
+            printGameBoard(b);
+            return 1;
+        }
+        
+        //Tries all legal moves in search scope
+        for(int x = lowerBoundX; x <= upperBoundX; x++)
+            for(int y = lowerBoundY; y <= upperBoundY; y++){
+                Coordinate currentCoord = new Coordinate(x,y);
+                if(lmc.checkMove(b, currentCoord, opponent)){
+                    Board currentState = lmc.getLastLegal();
+                    //System.out.println("Considering ("+x+","+y+"):");
+                    printGameBoard(currentState);
+                    lmc.addBoard(currentState);
+                    int result = max(currentState, false);
+                    //System.out.println("Max: "+result);
+                    lmc.removeLast();
+                    
+                    //If failure is guaranteed.
+                    if(result == -1)
+                        return result;
+                }
+            }
+        
+        //Passes and tests if the opponent still can/will make moves
+        if(!passed){
+           //System.out.println("Opponent passed.");
+           return max(b, true);          
+        }
+        
+        //If the AI's stone group can no longer be captured.
+        if(evaluator.getAction(colour) == Action.DEFEND && evaluator.checkSucceeded(b, colour)){
+            //System.out.println("Opponent successfully defended");
+            //printGameBoard(b);
+            return 1;
+        }
+        //If there are no more legal moves and the AI's defended group still lives.
+        /*
+        else if(!moved && evaluator.getAction(opponent) == Action.DEFEND)
+        {
+            System.out.println("Out of moves and opponent successfully defended at: ");
+            printGameBoard(b);
+            return -1;
+        }
+        */
+        else
+            return -1;
+    }
+    /*
     // AI is the maximizer in every case !
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker lmc) {
@@ -146,21 +292,12 @@ public class MiniMax extends AI {
             }
         }
     }
-
-    public boolean[][] getLegalMoves(Board b, int colour) {
-        int xDim = b.getWidth();
-        int yDim = b.getHeight();
-        boolean[][] legalMoves = new boolean[xDim][yDim];
-
-        for (int i = 0; i < xDim; i++) {
-            for (int j = 0; j < yDim; j++) {
-                legalMoves[i][j] = lmc.checkMove(b, new Coordinate(i, j), colour);
-            }
-        }
-
-        return legalMoves;
-    }
-
+    */
+    
+    //-----------------------------
+    //METHODS USED FOR TESTING ONLY
+    //-----------------------------
+    
     public void printGameBoard(Board b) {
 
         int[][] board = b.getRaw();
@@ -242,7 +379,7 @@ public class MiniMax extends AI {
     }
 
     public long factorial(long n) {
-        if (n > 2) {
+        if (n > 1) {
             return n * factorial(n - 1);
         } else {
             return 1;
