@@ -44,20 +44,6 @@ public class Objective {
         return null;
     }
 
-	public String getOriginalAction() {
-		return translateToString(action);
-	}
-
-	public String getAction(int colour) {
-		switch (colour) {
-		case Board.BLACK:
-			return translateToString(black);
-		case Board.WHITE:
-			return translateToString(white);
-		}
-		return null;
-	}
-
 	public int getColour() {
 		return startingColour;
 	}
