@@ -18,7 +18,7 @@ public class ObjectiveMenuListener implements ActionListener {
 			Component frame = null;
 			String objective = (String) JOptionPane.showInputDialog(frame,
 					"Specify Objective (Action, Colour, Stone Position):",
-					"Set Bounds", JOptionPane.PLAIN_MESSAGE, null, null, "");
+					"Set Objective", JOptionPane.PLAIN_MESSAGE, null, null, "");
 			if (objective != null) {
 				// TODO: Check for valid input
 				try {

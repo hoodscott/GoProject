@@ -1,0 +1,36 @@
+File Menu:
+New default board - CTRL + N
+New custom-sized board - CTRL + C
+Load board - CTRL + L
+Save board - CTRL + S
+Save board as - SHIFT + S
+Exit - ALT + E
+
+Competitive Play Mode:
+Set objective - CTRL + O
+Remove objective - CTRL + R
+Set bounds - SHIFT + B
+Remove bounds - SHIFT + R
+Swap player colours - SHIFT + S
+Make AI move - SHIFT + M
+Set AI type - SHIFT + A
+
+Problem Creation Mode:
+Use black stones only - CTRL + B
+Use white stones only - CTRL + W
+Use mixed stones - CTRL + M
+Delete stones - CTRL + D
+
+Debug:
+Do a Debug - ATL + D
+
+Help:
+Show Help - ATL + H
+
+Buttons:
+Competitive mode - ALT + P
+Creation mode - ALT + C
+Undo - ALT + U
+Reset - ALT + R
+Pass - ALT + A
+Bounds - ALT + B

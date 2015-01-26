@@ -49,6 +49,7 @@ public class GraphicalUI {
 	static BoardJPanel boardJP;
 	static Container pane;
 	static JToggleButton creationButton, competitiveButton;
+	static String aiType;
 
 	/**
 	 * Start the gui.
@@ -88,9 +89,12 @@ public class GraphicalUI {
 		xInit = 100;
 		yInit = 100;
 
-		// set stones to white then black as default
+		// set stones to alternate as default
 		mixedStones = true;
-
+		
+		// default AI as minimax
+		aiType = "MiniMax";
+		
 		// START OF FRAME //
 		// frame to hold all elements
 		frame = new JFrame();
@@ -124,13 +128,12 @@ public class GraphicalUI {
 		subMenu = new JMenu("New Problem");
 		subMenu.getAccessibleContext().setAccessibleDescription(
 				"Creates a new problem.");
-		subMenu.setMnemonic(KeyEvent.VK_1);
 		subMenu.setMnemonic(KeyEvent.VK_N);
 
 		// Menu item for new game
 		menuItem = new JMenuItem("Default (9x9)", KeyEvent.VK_D);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Creates a New board with default size of 9x9");
 		menuItem.addActionListener(new NewMenuListener());
@@ -138,8 +141,8 @@ public class GraphicalUI {
 
 		// Menu item for new game
 		menuItem = new JMenuItem("Custom...", KeyEvent.VK_C);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Creates a New board with specified size");
 		menuItem.addActionListener(new NewMenuListener());
@@ -149,8 +152,8 @@ public class GraphicalUI {
 
 		// Menu items for saving the board
 		menuItem = new JMenuItem("Load Problem", KeyEvent.VK_L);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Loads a Go problem board");
 		menuItem.addActionListener(new FileMenuListener());
@@ -158,16 +161,16 @@ public class GraphicalUI {
 
 		// Menu items for saving the board
 		menuItem = new JMenuItem("Save Problem", KeyEvent.VK_S);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Saves current board");
 		menuItem.addActionListener(new FileMenuListener());
 		fileMenu.add(menuItem);
 
 		menuItem = new JMenuItem("Save Problem As...", KeyEvent.VK_V);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+				ActionEvent.SHIFT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Saves current board to specified path");
 		menuItem.addActionListener(new FileMenuListener());
@@ -177,7 +180,7 @@ public class GraphicalUI {
 
 		// menu item for exiting the program
 		menuItem = new JMenuItem("Exit", KeyEvent.VK_E);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6,
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Exits the program");
@@ -186,7 +189,7 @@ public class GraphicalUI {
 
 		// Build menu for competitive play
 		fileMenu = new JMenu("Competitive Play");
-		fileMenu.setMnemonic(KeyEvent.VK_C);
+		fileMenu.setMnemonic(KeyEvent.VK_1);
 		fileMenu.getAccessibleContext().setAccessibleDescription(
 				"Menu with options during competitive play mode");
 		menuBar.add(fileMenu);
@@ -199,8 +202,8 @@ public class GraphicalUI {
 
 		// Menu item for setting objective
 		menuItem = new JMenuItem("Set Objective", KeyEvent.VK_O);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Allow user to specify board objective");
 		menuItem.addActionListener(new ObjectiveMenuListener());
@@ -208,8 +211,8 @@ public class GraphicalUI {
 
 		// Menu item for removing objective
 		menuItem = new JMenuItem("Remove Objective", KeyEvent.VK_R);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Removes objective from problem");
 		menuItem.addActionListener(new ObjectiveMenuListener());
@@ -225,8 +228,8 @@ public class GraphicalUI {
 
 		// Menu item for setting bounds
 		menuItem = new JMenuItem("Set Bounds", KeyEvent.VK_B);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B,
+				ActionEvent.SHIFT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Allow user to specify board bounds");
 		menuItem.addActionListener(new BoundsMenuListener());
@@ -234,8 +237,8 @@ public class GraphicalUI {
 
 		// Menu item for removing bounds
 		menuItem = new JMenuItem("Remove Bounds", KeyEvent.VK_R);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,
+				ActionEvent.SHIFT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Removes bounds from problem");
 		menuItem.addActionListener(new BoundsMenuListener());
@@ -247,33 +250,44 @@ public class GraphicalUI {
 		
 		// Menu item for swapping player colour
 		menuItem = new JMenuItem("Swap Player Colour", KeyEvent.VK_S);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+				ActionEvent.SHIFT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Swap human and AI playing colours");
 		menuItem.addActionListener(new CompetitiveMenuListener());
 		fileMenu.add(menuItem);
 		
-		// Menu item for swapping player colour
+		// Menu item for making AI move
 		menuItem = new JMenuItem("Make AI Move", KeyEvent.VK_M);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,
+				ActionEvent.SHIFT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Force AI to move first");
+		menuItem.addActionListener(new CompetitiveMenuListener());
+		fileMenu.add(menuItem);
+		
+		fileMenu.addSeparator();
+		
+		// Menu item to switch AI type
+		menuItem = new JMenuItem("Select AI Type", KeyEvent.VK_A);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,
+				ActionEvent.SHIFT_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription(
+				"Choose algorithm that AI uses to move");
 		menuItem.addActionListener(new CompetitiveMenuListener());
 		fileMenu.add(menuItem);
 
 		// Build menu for problem creation
 		fileMenu = new JMenu("Problem Creation");
-		fileMenu.setMnemonic(KeyEvent.VK_P);
+		fileMenu.setMnemonic(KeyEvent.VK_2);
 		fileMenu.getAccessibleContext().setAccessibleDescription(
 				"Menu with options during problem creation mode");
 		menuBar.add(fileMenu);
 
 		// menu item for using black stones
 		menuItem = new JMenuItem("Use Black Stones", KeyEvent.VK_B);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Place only black stones down");
 		menuItem.addActionListener(new CreationMenuListener());
@@ -281,17 +295,17 @@ public class GraphicalUI {
 
 		// menu item for using white stones
 		menuItem = new JMenuItem("Use White Stones", KeyEvent.VK_W);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Place only white stones down");
 		menuItem.addActionListener(new CreationMenuListener());
 		fileMenu.add(menuItem);
 
 		// menu item for using white/black stones
-		menuItem = new JMenuItem("Use Both Stones", KeyEvent.VK_B);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem = new JMenuItem("Use Mixed Stones", KeyEvent.VK_M);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,
+				ActionEvent.SHIFT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Places stones in black and white order");
 		menuItem.addActionListener(new CreationMenuListener());
@@ -301,8 +315,8 @@ public class GraphicalUI {
 
 		// menu item for removing stones
 		menuItem = new JMenuItem("Delete Stones", KeyEvent.VK_D);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
-				ActionEvent.ALT_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
+				ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Allow user to delete stones");
 		menuItem.addActionListener(new CreationMenuListener());
@@ -318,7 +332,7 @@ public class GraphicalUI {
 
 		// menu item for a debug command
 		menuItem = new JMenuItem("Do A Debug", KeyEvent.VK_A);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"A magic trick; Debugs the entire program!");
@@ -333,8 +347,8 @@ public class GraphicalUI {
 		menuBar.add(fileMenu);
 
 		// menu item for getting help
-		menuItem = new JMenuItem("Shout for Help", KeyEvent.VK_S);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+		menuItem = new JMenuItem("Shout for Help", KeyEvent.VK_H);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,
 				ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription(
 				"Shouts for help");

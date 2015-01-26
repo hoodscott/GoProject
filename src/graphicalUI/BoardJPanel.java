@@ -21,8 +21,8 @@ public class BoardJPanel extends JPanel {
 	public static int colour = 1;
 	public static GameEngine gameE;
 	public int numStones = 0;
-	private static int[] searchSpace;
-	private static boolean listeners;
+	static int[] searchSpace;
+	static boolean listeners;
 	private static boolean updated;
 
 	// Board constructor
@@ -44,7 +44,8 @@ public class BoardJPanel extends JPanel {
 		// Add stone to board when user clicks
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (!listeners) return;
+				if (!listeners)
+					return;
 				greyCounters = new Board(lines, lines); // create blank board
 														// each time
 				// mouse clicks
@@ -76,19 +77,22 @@ public class BoardJPanel extends JPanel {
 							&& GraphicalUI.getCreation()) {
 						// remove selected stone from board
 						gameE.getCurrentBoard().set(yPos, xPos, 0);
-						GraphicalUI.feedback.setText("Stone removed from: "+xPos+", "+yPos);
+						GraphicalUI.feedback.setText("Stone removed from: "
+								+ xPos + ", " + yPos);
 						repaint();
 						// else add stone to board
 					} else {
-						updated = updateBoard(yPos, xPos, colour); // SET TO BLACK STONE
-															// ON FIRST MOVE
+						updated = updateBoard(yPos, xPos, colour); // SET TO
+																	// BLACK
+																	// STONE
+						// ON FIRST MOVE
 					}
 				} else {
 					GraphicalUI.feedback
 							.setText("Select Closer To Intersection");
 					updated = false;
 				}
-				
+
 				GUIAIMove();
 			}
 		});
@@ -96,7 +100,8 @@ public class BoardJPanel extends JPanel {
 		// Show transparent grey stones
 		this.addMouseMotionListener(new MouseAdapter() {
 			public void mouseMoved(MouseEvent e) {
-				if (!listeners) return;
+				if (!listeners)
+					return;
 				greyCounters = new Board(lines, lines); // create blank board
 														// each time
 				// mouse moves
@@ -152,7 +157,7 @@ public class BoardJPanel extends JPanel {
 				changePlayer();
 			}
 
-			GraphicalUI.player.setText(getPlayer()+" to move");
+			GraphicalUI.player.setText(getPlayer() + " to move");
 			GraphicalUI.feedback.setText(getColour(c) + " to position: " + x
 					+ ", " + y);
 			numStones = numStones + 1;
@@ -163,7 +168,7 @@ public class BoardJPanel extends JPanel {
 			return false;
 		}
 	}
-	
+
 	public static void GUIAIMove() {
 		// Let AI make move when competitive play mode selected with
 		// bounds and objective
@@ -171,16 +176,27 @@ public class BoardJPanel extends JPanel {
 		if (competitive && gameE.getObjective() != null
 				&& gameE.getAISearchValues() != null && listeners && updated) {
 			listeners = false;
-			gameE.setMiniMax(colour);
+			switch (GraphicalUI.aiType) {
+			case "MiniMax":
+				gameE.setMiniMax(colour);
+				;
+				break;
+			case "AlphaBeta":
+				gameE.setAlphaBeta(colour);
+				;
+				break;
+			default:
+				gameE.setMiniMax(colour);
+				;
+				break;
+			}
 			String move = gameE.aiMove();
 			GraphicalUI.feedback.setText("AI move: " + move);
 			changePlayer();
 			listeners = true;
 		} else if (competitive
-				&& (gameE.getObjective() == null || gameE
-						.getAISearchValues() == null)) {
-			GraphicalUI.feedback
-					.setText("Please specify bounds and objective");
+				&& (gameE.getObjective() == null || gameE.getAISearchValues() == null)) {
+			GraphicalUI.feedback.setText("Please specify bounds and objective");
 		}
 	}
 

@@ -16,16 +16,14 @@ public class BoundsMenuListener implements ActionListener {
 			String bounds = (String) JOptionPane.showInputDialog(frame,
 					"Specify Bounds Seperated By Spaces:", "Set Bounds",
 					JOptionPane.PLAIN_MESSAGE, null, null, "");
-			if (bounds != null && bounds.length() == 7) {
+			// bound length must be single figures or double figures
+			if (bounds != null && bounds.length() == 7 || bounds.length() == 8 || bounds.length() == 9 || bounds.length() == 10 ||bounds.length() == 11) {
 				// create array of specified bounds
 				int[] selectBounds = { 0, 0, 0, 0 };
 				int j = 0;
-				for (int i = 0; i < bounds.length(); i++) {
-					if (Character.isDigit(bounds.charAt(i))) {
-						selectBounds[j] = Integer.parseInt(String
-								.valueOf(bounds.charAt(i)));
-						j++;
-					}
+				String[] userBounds = bounds.split(" ");
+				for (int i = 0; i < userBounds.length; i++) {
+					selectBounds[i] = Integer.parseInt(String.valueOf(userBounds[i]));
 				}
 				BoardJPanel.setBounds(selectBounds);
 				GraphicalUI.feedback.setText("Bounds updated");
