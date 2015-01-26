@@ -130,7 +130,8 @@ public class Translator {
         if(objective != null && searchValues != null){
             content.append(translateToObjectiveInstruction(objective));
             content.append(translateToSearchSpaceInstruction(searchValues));
-        }        
+        }
+        System.out.println(content.toString());
         return content.toString();
     }
     public static String translateToBoardInstruction(Board board) throws BoardFormatException{        
@@ -147,6 +148,7 @@ public class Translator {
             content.append(cBoard[i]);
             content.append('\n');
         }
+        //System.out.println(content.toString());
         return content.toString();
     
     }

@@ -85,7 +85,8 @@ public final class FileIO {
     
     //General write method
     public static void writeFile(String output, String path){
-
+        
+        System.out.println(output);
         BufferedWriter writer = null;
         String p = path; //This adds the relative path of where Main is located.
         p = pathOS(p);
