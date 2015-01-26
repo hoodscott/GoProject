@@ -117,6 +117,7 @@ public class LegalMoveChecker implements Cloneable {
 
     //Removes the last board from the moveHistory
     public Board removeLast() {
+        //System.out.println(moveHistory.toString());
         return moveHistory.remove(moveHistory.size() - 1);
     }
 
@@ -127,7 +128,19 @@ public class LegalMoveChecker implements Cloneable {
 
     //Checks whether the moveHistory contains anything.
     public boolean isEmpty() {
+        //System.out.println(moveHistory.toString());
         return moveHistory.isEmpty();
+    }
+
+	//Clones and returns LegalMoveChecker
+    //Note, it does not clone the actual Boards, merely the list.
+    @Override
+    public LegalMoveChecker clone() {
+        ArrayList<Board> history = new ArrayList<>();
+        for (Board b : moveHistory) {
+            history.add(b.clone());
+        }
+        return new LegalMoveChecker(history);
     }
 
     //recursive function to update the global liberty counter 
