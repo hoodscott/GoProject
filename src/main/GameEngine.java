@@ -5,8 +5,7 @@ public class GameEngine {
 
     // Instance of LegalMoveChecker, used in functions to check the legality of moves 
     private LegalMoveChecker moveChecker;
-    // The object representing the current Go board 
-    private Board currentBoard;
+    private Board currentBoard; // The object representing the current Go board 
     private AI ai;
     private Objective objective;
     private boolean inGame;
@@ -71,11 +70,12 @@ public class GameEngine {
         return ai;
     }
 
-    // Checks if a board has already been instantiated by newGame() or not.
+    // Checks if the game has already been started by startGame()
     public boolean isInGame() {
         return inGame;
     }
-
+    
+    //Sets game to start, enabling moves 
     public void startGame() {
         inGame = true;
     }
@@ -84,7 +84,8 @@ public class GameEngine {
     public void setBounds(int[] aiSearchValues) {
         this.aiSearchValues = aiSearchValues;
     }
-
+    
+    //Sets the objective on the game engine
     public void setObjective(Objective objective) {
         this.objective = objective;
     }
@@ -100,8 +101,6 @@ public class GameEngine {
     }
 
     //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
-    //Checks whether the move is legal and if so, place the piece and return true
-    //if the move is illegal, return false
     public String aiMove() {
         Coordinate c = ai.nextMove(currentBoard, moveChecker);
         if (c.x == -1 && c.y == -1) {
@@ -111,7 +110,8 @@ public class GameEngine {
             return "moves to (" + c.x + "," + c.y + ")";
         }
     }
-
+    //Checks whether the move is legal and if so, place the piece and return true
+    //if the move is illegal, return false    
     public boolean makeMove(Coordinate coord, int colour) {
         if (moveChecker.checkMove(currentBoard, coord, colour)) {
             moveChecker.addBoard(currentBoard);
@@ -121,7 +121,8 @@ public class GameEngine {
             return false;
         }
     }
-
+    
+    //Attempts to undo last move. If there are no more moves, returns false.
     public boolean undoLastMove() {
         if (moveChecker.isEmpty()) {
             return false;
@@ -129,7 +130,8 @@ public class GameEngine {
         currentBoard = moveChecker.removeLast();
         return true;
     }
-
+    
+    //Restarts board by undoing all moves on the board.
     public boolean restartBoard() {
         if (moveChecker.isEmpty()) {
             return false;
