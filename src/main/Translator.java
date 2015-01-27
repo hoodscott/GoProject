@@ -134,7 +134,7 @@ public class Translator {
         for (int i = 0; i < h; i++) {
             String row = raw.remove(0);
             for (int j = 0; j < w; j++) {
-                rawBoard[j][i] = Translator.translateToInt(row.charAt(j));
+                rawBoard[i][j] = Translator.translateToInt(row.charAt(j));
             }
         }
         return new Board(rawBoard);
@@ -162,12 +162,12 @@ public class Translator {
         StringBuilder content = new StringBuilder();
         int w = board.getWidth();
         int h = board.getHeight();
-        char[][] cBoard = new char[h][w];
+        char[][] cBoard = new char[w][h];
         content.append(w + " " + h + '\n');
 
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
-                cBoard[j][i] = Translator.translateToChar(board.get(i, j));
+                cBoard[i][j] = Translator.translateToChar(board.get(i, j));
             }
         }
 
