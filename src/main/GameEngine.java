@@ -1,7 +1,5 @@
 package main;
 
-import java.util.Arrays;
-
 public class GameEngine {
   //* Class to keep track of the current game of Go and make moves on the board 
 
@@ -36,13 +34,6 @@ public class GameEngine {
         this.objective = objective;
         moveChecker = new LegalMoveChecker();
         aiSearchValues = searchValues;
-        try{
-            int[][] raw = board.getRaw();
-            for(int[] r : raw)
-                System.out.println(Arrays.toString(r));
-            System.out.println(Translator.translateToBoardInstruction(board));
-        }
-        catch(BoardFormatException b){}
     }
 
     // Checks entire board for legal moves and returns them as a 2D boolean array
