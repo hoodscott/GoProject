@@ -3,12 +3,7 @@ package main;
 //Holds objective for a player and assesses whether it is met or not.
 public class Objective {
 
-    private int eyes;
-
-    public enum Action {
-
-        KILL, DEFEND
-    }
+    public enum Action {KILL, DEFEND}
 
     Action black;
     Action white;

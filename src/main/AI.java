@@ -32,7 +32,8 @@ public abstract class AI {
             lowerBoundY = data[1];
         }
     }
-
+    
+    //Returns AI's colour
     public int getColour() {
         return this.colour;
     }
