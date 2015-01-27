@@ -134,6 +134,7 @@ public class Translator {
         System.out.println(content.toString());
         return content.toString();
     }
+    //Translates Board into a writable String
     public static String translateToBoardInstruction(Board board) throws BoardFormatException{        
         StringBuilder content = new StringBuilder();
         int w = board.getWidth(); int h = board.getHeight();
@@ -152,6 +153,7 @@ public class Translator {
         return content.toString();
     
     }
+    //Translates Objective into a writable String
     public static String translateToObjectiveInstruction(Objective objective) throws BoardFormatException{
         return translateToString(objective.getColour())+' '+objective.getOriginalAction()+' '+
         objective.getPosition().x +' '+objective.getPosition().y+'\n';}
