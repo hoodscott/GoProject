@@ -17,7 +17,7 @@ public class BoundsMenuListener implements ActionListener {
                     "Specify Bounds Seperated By Spaces:", "Set Bounds",
                     JOptionPane.PLAIN_MESSAGE, null, null, "");
             // bound length must be single figures or double figures
-            if (bounds != null && bounds.length() == 7 || bounds.length() == 8 || bounds.length() == 9 || bounds.length() == 10 || bounds.length() == 11) {
+            if (bounds != null && bounds.length() >= 7 && bounds.length() <= 11) {
                 // create array of specified bounds
                 int[] selectBounds = {0, 0, 0, 0};
                 int j = 0;
@@ -25,9 +25,9 @@ public class BoundsMenuListener implements ActionListener {
                 for (int i = 0; i < userBounds.length; i++) {
                     selectBounds[i] = Integer.parseInt(String.valueOf(userBounds[i]));
                 }
-                // check bouds are in correct format
-				if (selectBounds[0] < selectBounds[2]
-						&& selectBounds[1] < selectBounds[3]) {
+                // check bounds are in correct format
+				if (selectBounds[0] <= selectBounds[2]
+						&& selectBounds[1] <= selectBounds[3]) {
 					BoardJPanel.setBounds(selectBounds);
 					GraphicalUI.feedback.setText("Bounds updated");
 				} else {

@@ -153,7 +153,6 @@ public class BoardJPanel extends JPanel {
 
     // Draw counter onto position
     public boolean updateBoard(int x, int y, int c) {
-        int i = 1;
         if (gameE.makeMove(new Coordinate(x, y), c)) {
             // move made, repaint board
             repaint();
@@ -169,7 +168,6 @@ public class BoardJPanel extends JPanel {
             numStones = numStones + 1;
             return true;
         } else {
-            i = 0;
             GraphicalUI.feedback.setText("Invalid move");
             return false;
         }
@@ -244,11 +242,11 @@ public class BoardJPanel extends JPanel {
                 // NOTE: assumes 0,0 as top left co-ordinate
                 int x2 = searchSpace[2];
                 int y2 = searchSpace[3];
-                for (int x1 = searchSpace[0]; x1 < x2; x1++) {
-                    for (int y1 = searchSpace[1]; y1 < y2; y1++) {
+                for (int x1 = searchSpace[0]; x1 <= x2; x1++) {
+                    for (int y1 = searchSpace[1]; y1 <= y2; y1++) {
                         g.setColor(new Color(205, 133, 63));
-                        g.fillRect(squareSize + x1 * squareSize, squareSize
-                                + y1 * squareSize, squareSize, squareSize);
+                        g.fillRect((squareSize + (x1-1) * squareSize)+(squareSize/2), (squareSize
+                                + (y1-1) * squareSize)+(squareSize/2), squareSize, squareSize);
                     }
                 }
             }
