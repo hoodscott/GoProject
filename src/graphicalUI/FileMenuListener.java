@@ -24,15 +24,18 @@ public class FileMenuListener implements ActionListener {
         if (e.getActionCommand().equals("Load Problem")) {
             String defaultDir = System.getProperty("user.dir")
                     + "\\saveData\\boards";
+            
+            // convert path to match system
+            defaultDir = FileIO.pathOS(defaultDir);
            
             //Minor hotfix for Nik's shoddy buildpath
             if(Files.notExists(Paths.get(defaultDir))){
                 defaultDir = System.getProperty("user.dir")
                     + "\\src\\saveData\\boards";
+                System.out.println("no exists");
+                defaultDir = FileIO.pathOS(defaultDir);
             }
             
-            // convert path to match system
-            defaultDir = FileIO.pathOS(defaultDir);
             JFileChooser loadBoard = new JFileChooser(defaultDir);
             int command = loadBoard.showOpenDialog(pane);
             if (command == JFileChooser.APPROVE_OPTION) {
