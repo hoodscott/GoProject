@@ -155,9 +155,11 @@ public class Translator {
     }
     //Translates Objective into a writable String
     public static String translateToObjectiveInstruction(Objective objective) throws BoardFormatException{
-        return translateToString(objective.getColour())+' '+objective.getOriginalAction()+' '+
+        return translateToString(objective.getStartingColour())+' '+objective.getOriginalAction()+' '+
         objective.getPosition().x +' '+objective.getPosition().y+'\n';}
     
+    
+    //Converts search space coordinates into a printable String
     public static String translateToSearchSpaceInstruction(int[] searchValues)throws BoardFormatException{
         String s = "";
         for(int i = 0; i < searchValues.length - 1; i++)

@@ -25,11 +25,13 @@ public class Objective {
         }
         this.position = position;
     }
-
+    
+    //Returns original action
     public String getOriginalAction() {
         return translateToString(action);
     }
-
+    
+    //Gets action corresponding to colour
     public Action getAction(int colour) {
         switch (colour) {
             case Board.BLACK:
@@ -39,15 +41,12 @@ public class Objective {
         }
         return null;
     }
-
-    public int getColour() {
-        return startingColour;
-    }
-
+    //Returns position to be defended
     public Coordinate getPosition() {
         return position;
     }
-
+    
+    //Translates Action to String
     private String translateToString(Action action) {
         switch (action) {
             case KILL:
@@ -57,14 +56,16 @@ public class Objective {
         }
         return null;
     }
-
+    
+    //Translates the action String into the corresponding Action
     private Action translateToAction(String action) {
         if ("kill".equals(action)) {
             return Action.KILL;
         }
         return Action.DEFEND;
     }
-
+    
+    //Opposing Action
     private Action getOpposingAction(Action action) {
         switch (action) {
             case KILL:
@@ -75,9 +76,7 @@ public class Objective {
         return null;
     }
 
-	// Checks if the objective succeeded for the given player.
-    // !!!!!!!!!!!! add colour parameter and remove the second objective from
-    // minimax
+    // Checks if the objective succeeded for the given player.
     public boolean checkSucceeded(Board board, int colour) {
         if (colour == Board.BLACK) {
             if (black.equals(Action.KILL)) {
@@ -94,15 +93,17 @@ public class Objective {
         }
     }
 
-    // Returns whether the player plays first or not.
+    //Returns whether the player plays first or not.
     public boolean isStarting(int colour) {
         return colour == startingColour;
     }
-
+    
+    //Returns starting colour
     public int getStartingColour() {
         return startingColour;
     }
-
+    
+    //Gets opponent colour
     public int getOtherColour(int colour) {
         if (colour == Board.BLACK) {
             return Board.WHITE;
@@ -119,70 +120,12 @@ public class Objective {
             return "White";
         }
     }
-
-    // private method for toString to translate coords to string
-    private String coordString(Coordinate c) {
-        return null;
-    }
-
+    
+    //ToString, Somewhat obsolete but will stay here for tests.
+    @Override
     public String toString() {
         return toColour(this.startingColour) + " to "
                 + translateToString(this.action) + " "
                 + this.position.toString();
     }
-
-    /*
-
-     // functions to count the eyes of the defending group
-     public void countEyes(Board board, boolean b[][], Coordinate p) {
-     // if checked already or opponent return
-     if (b[p.x][p.y] == true || board.get(p.x, p.y) == getOtherColour(0))
-     return;
-     // else mark as checked
-     b[p.x][p.y] = true;
-     // if position is empty -> check if eye
-     if (board.get(p.x, p.y) == Board.EMPTY) {
-     if (checkIfEye(board, p) == true) {
-     eyes++;
-     }
-     return;
-     }
-
-     // out of boundary check + recursion //
-     if (p.x > 0) {
-     Coordinate np = new Coordinate(p.x - 1, p.y);
-     countEyes(board, b, np);
-     }
-     if (p.x < board.getWidth() - 1) {
-     Coordinate np = new Coordinate(p.x + 1, p.y);
-     countEyes(board, b, np);
-     }
-     if (p.y > 0) {
-     Coordinate np = new Coordinate(p.x, p.y - 1);
-     countEyes(board, b, np);
-     }
-     if (p.y < board.getHeight() - 1) {
-     Coordinate np = new Coordinate(p.x, p.y + 1);
-     countEyes(board, b, np);
-     }
-     }
-
-     public boolean checkIfEye(Board board, Coordinate p) {
-     // check all eight positions (whichever exist) around
-     for (int i = p.x - 1; i <= p.x + 1; i++) {
-     loop2: for (int j = p.y - 1; j <= p.y + 1; j++) {
-     // do not check the potential eye itself
-     if (i == p.x && j == p.y)
-     continue loop2;
-     if (i >= 0 && j >= 0 && i <= board.getWidth() - 1
-     && j <= board.getHeight() - 1) {
-     if (board.get(i, j) != 1)
-     return false;
-     }
-     }
-     }
-     return true;
-     }
-	
-     */
 }
