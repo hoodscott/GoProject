@@ -437,7 +437,7 @@ public class TextUI {
                 lines.add("");
                 int p = lines.size() - 1;
                 for (int j = 0; j < board.length; j++) {
-                    lines.set(p, lines.get(p) + Translator.translateToChar(board[j][i]));
+                    lines.set(p, lines.get(p) + Translator.translateToChar(board[i][j]));
                 }
             }
             printBoard(lines, saveToLog);
