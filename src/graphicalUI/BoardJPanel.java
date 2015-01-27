@@ -409,6 +409,10 @@ public class BoardJPanel extends JPanel {
         searchSpace = aiSearchValues;
         gameE.setBounds(aiSearchValues);
     }
+    
+    public static void resetBounds(){
+    	searchSpace  = null;
+    }
 
     public static void setObjective(Objective objective) {
         gameE.setObjective(objective);

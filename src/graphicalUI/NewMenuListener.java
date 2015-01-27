@@ -21,6 +21,7 @@ public class NewMenuListener implements ActionListener {
             GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
             GraphicalUI.feedback.setText("New board created");
             GraphicalUI.objective.setText("No set objective");
+            BoardJPanel.resetBounds();
         } else {
             // load specified board
             Object[] sizes = {"9", "13", "19"};
@@ -37,6 +38,7 @@ public class NewMenuListener implements ActionListener {
                 GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
                 GraphicalUI.feedback.setText("New board created");
                 GraphicalUI.objective.setText("No set objective");
+                BoardJPanel.resetBounds();
             }
 
         }
