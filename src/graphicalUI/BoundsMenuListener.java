@@ -25,10 +25,14 @@ public class BoundsMenuListener implements ActionListener {
                 for (int i = 0; i < userBounds.length; i++) {
                     selectBounds[i] = Integer.parseInt(String.valueOf(userBounds[i]));
                 }
-                BoardJPanel.setBounds(selectBounds);
-                GraphicalUI.feedback.setText("Bounds updated");
-            } else {
-                GraphicalUI.feedback.setText("Invalid bounds supplied");
+                // check bouds are in correct format
+				if (selectBounds[0] < selectBounds[2]
+						&& selectBounds[1] < selectBounds[3]) {
+					BoardJPanel.setBounds(selectBounds);
+					GraphicalUI.feedback.setText("Bounds updated");
+				} else {
+					GraphicalUI.feedback.setText("Invalid bounds supplied");
+				}
             }
         } else {
             // remove bounds - (make bounds size of board)
