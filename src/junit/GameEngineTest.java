@@ -57,6 +57,8 @@ public class GameEngineTest {
         Board b = new Board(2, 2);
         Objective o = new Objective("kill", 1, new Coordinate(2, 2));
         int[] ss = {0, 0, 1, 1};
+        System.out.println(o.toString());
+        System.out.println(gameEngine.getObjective().toString());
         assertTrue(b.equals(gameEngine.getCurrentBoard()));
         assertEquals(o.toString(), gameEngine.getObjective().toString());
         assertTrue(Arrays.equals(ss, gameEngine.getAISearchValues()));

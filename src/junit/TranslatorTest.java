@@ -81,7 +81,7 @@ public class TranslatorTest {
             e.printStackTrace();
         }
 
-        assertEquals(objective.getColour(), 2);
+        assertEquals(objective.getStartingColour(), 2);
         assertEquals(objective.getOriginalAction(), "kill");
         assertEquals(objective.getPosition().toString(), new Coordinate(4, 5).toString());
     }

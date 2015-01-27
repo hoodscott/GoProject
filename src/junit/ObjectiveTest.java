@@ -44,13 +44,6 @@ public class ObjectiveTest {
         assertEquals(action, "kill");
     }
     */
-
-    @Test
-    public void testGetColour() {
-        int colour = objective.getColour();
-        assertEquals(1, colour);
-    }
-
     @Test
     public void testGetPosition() {
         Coordinate position = objective.getPosition();
