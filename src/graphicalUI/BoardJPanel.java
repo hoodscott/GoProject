@@ -390,6 +390,7 @@ public class BoardJPanel extends JPanel {
         } else {
             colour--;
         }
+        GraphicalUI.player.setText(getPlayer() + " to move");
     }
 
     public static String getPlayer() {
