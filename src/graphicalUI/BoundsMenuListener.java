@@ -18,16 +18,21 @@ public class BoundsMenuListener implements ActionListener {
                     JOptionPane.PLAIN_MESSAGE, null, null, "");
             // bound length must be single figures or double figures
             if (bounds != null && bounds.length() >= 7 && bounds.length() <= 11) {
+            	boolean validbounds = true;
                 // create array of specified bounds
                 int[] selectBounds = {0, 0, 0, 0};
-                int j = 0;
                 String[] userBounds = bounds.split(" ");
                 for (int i = 0; i < userBounds.length; i++) {
-                    selectBounds[i] = Integer.parseInt(String.valueOf(userBounds[i]));
+                	int bound = Integer.parseInt(String.valueOf(userBounds[i]));
+                	if (bound >= 0 && bound < BoardJPanel.getLines()) {
+                		selectBounds[i] = Integer.parseInt(String.valueOf(userBounds[i]));
+                	} else {
+                		validbounds = false;
+                	}
                 }
                 // check bounds are in correct format
 				if (selectBounds[0] <= selectBounds[2]
-						&& selectBounds[1] <= selectBounds[3]) {
+						&& selectBounds[1] <= selectBounds[3] && validbounds) {
 					BoardJPanel.setBounds(selectBounds);
 					GraphicalUI.feedback.setText("Bounds updated");
 				} else {
