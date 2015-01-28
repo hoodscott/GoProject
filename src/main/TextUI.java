@@ -273,7 +273,7 @@ public class TextUI {
             System.out.println(message);
             printGameBoard(true);
             boardSaved = false;
-        } catch (BoardFormatException bad) {
+        } catch (BoardFormatException | AIException a) {System.out.println("AI: "+a.getMessage());
         }
     }
 

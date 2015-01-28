@@ -10,6 +10,7 @@ import main.Board;
 import main.Coordinate;
 import main.GameEngine;
 import main.Objective;
+import main.AIException;
 
 @SuppressWarnings("serial")
 public class BoardJPanel extends JPanel {
@@ -194,7 +195,12 @@ public class BoardJPanel extends JPanel {
                     ;
                     break;
             }
-            String move = gameE.aiMove();
+            String move;
+            try{
+                move = gameE.aiMove();
+            }
+            catch(AIException e){move = e.getMsg();}
+            
             GraphicalUI.feedback.setText("AI move: " + move);
             changePlayer();
             listeners = true;

@@ -22,7 +22,7 @@ public class MiniMax extends AI {
     }
 
     @Override
-    public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
+    public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) throws AIException{
         lmc = legalMoves.clone();
         int searchSpace = (upperBoundX - lowerBoundX + 1) * (upperBoundY - lowerBoundY + 1);
         System.out.println("Possible Search Space: " + searchSpace + "! or " + factorial(searchSpace));

@@ -13,7 +13,7 @@ public abstract class AI {
     protected int colour;
 
     //NextMove method to be implemented by subclasses
-    public abstract Coordinate nextMove(Board b, LegalMoveChecker lMC);
+    public abstract Coordinate nextMove(Board b, LegalMoveChecker lMC) throws AIException;
 
     //Sets the bounds for the AI to search in. Notably, the input should be in the (x1, y1, x2, y2) format.
     public void setBounds(int[] data) {
