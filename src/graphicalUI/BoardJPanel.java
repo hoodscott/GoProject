@@ -80,7 +80,7 @@ public class BoardJPanel extends JPanel {
                     if (GraphicalUI.getDeleteStones()
                             && GraphicalUI.getCreation()) {
                         // remove selected stone from board
-                        gameE.getCurrentBoard().set(yPos, xPos, 0);
+                        gameE.getCurrentBoard().set(xPos, yPos, 0);
                         GraphicalUI.feedback.setText("Stone removed from: "
                                 + xPos + ", " + yPos);
                         repaint();
@@ -390,6 +390,7 @@ public class BoardJPanel extends JPanel {
         } else {
             colour--;
         }
+        GraphicalUI.player.setText(getPlayer() + " to move");
     }
 
     public static String getPlayer() {

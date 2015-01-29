@@ -30,9 +30,15 @@ public class CreationMenuListener implements ActionListener {
         } else if ((e.getActionCommand().equals("Delete Stones"))
                 && GraphicalUI.getCreation()) {
             // remove stones user clicks on
-            GraphicalUI.setMixedStones(false);
-            GraphicalUI.setDeleteStones(true);
-            GraphicalUI.feedback.setText("Delete stones selected");
+        	if (GraphicalUI.getDeleteStones()) {
+        		GraphicalUI.setMixedStones(true);
+        		GraphicalUI.setDeleteStones(false);
+        		GraphicalUI.feedback.setText("Delete stones deselected");
+        	} else {
+        		GraphicalUI.setMixedStones(false);
+        		GraphicalUI.setDeleteStones(true);
+        		GraphicalUI.feedback.setText("Delete stones selected");
+        	}
         }
     }
 }

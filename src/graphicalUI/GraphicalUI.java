@@ -170,7 +170,7 @@ public class GraphicalUI {
 
         menuItem = new JMenuItem("Save Problem As...", KeyEvent.VK_V);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
-                ActionEvent.SHIFT_MASK));
+                ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "Saves current board to specified path");
         menuItem.addActionListener(new FileMenuListener());
@@ -305,7 +305,7 @@ public class GraphicalUI {
         // menu item for using white/black stones
         menuItem = new JMenuItem("Use Mixed Stones", KeyEvent.VK_M);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,
-                ActionEvent.SHIFT_MASK));
+                ActionEvent.CTRL_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "Places stones in black and white order");
         menuItem.addActionListener(new CreationMenuListener());
