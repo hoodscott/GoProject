@@ -12,24 +12,24 @@ import org.junit.Test;
 
 public class CoordinateTest {
 
-	private Coordinate coordinate;
-	
-	@Before
-	public void setUp() throws Exception {
-		coordinate = new Coordinate(0, 0);
-	}
+    private Coordinate coordinate;
 
-	@After
-	public void tearDown() throws Exception {
-		coordinate = null;
-	}
+    @Before
+    public void setUp() throws Exception {
+        coordinate = new Coordinate(0, 0);
+    }
 
-	@Test
-	public void testNewCoordinate(){
-		Coordinate c  = new Coordinate(4,16);
-		
-		assertTrue(c instanceof Coordinate);
-		assertEquals(c.x,4);
-		assertEquals(c.y,16);
-	}
+    @After
+    public void tearDown() throws Exception {
+        coordinate = null;
+    }
+
+    @Test
+    public void testNewCoordinate() {
+        Coordinate c = new Coordinate(4, 16);
+
+        assertTrue(c instanceof Coordinate);
+        assertEquals(c.x, 4);
+        assertEquals(c.y, 16);
+    }
 }

@@ -101,6 +101,9 @@ public class Translator {
         else 
             throw new BoardFormatException("ERROR: The initial line does not contain two valid integers.");
         
+        if(w != h)
+            throw new BoardFormatException("ERROR: The width and height of the board need to be equal.");
+        
         if (h > raw.size())
             throw new BoardFormatException("ERROR: There are not enough rows in the specification.");
         
@@ -130,9 +133,11 @@ public class Translator {
         if(objective != null && searchValues != null){
             content.append(translateToObjectiveInstruction(objective));
             content.append(translateToSearchSpaceInstruction(searchValues));
-        }        
+        }
+        System.out.println(content.toString());
         return content.toString();
     }
+    //Translates Board into a writable String
     public static String translateToBoardInstruction(Board board) throws BoardFormatException{        
         StringBuilder content = new StringBuilder();
         int w = board.getWidth(); int h = board.getHeight();
@@ -147,13 +152,17 @@ public class Translator {
             content.append(cBoard[i]);
             content.append('\n');
         }
+        //System.out.println(content.toString());
         return content.toString();
     
     }
+    //Translates Objective into a writable String
     public static String translateToObjectiveInstruction(Objective objective) throws BoardFormatException{
-        return translateToString(objective.getColour())+' '+objective.getOriginalAction()+' '+
+        return translateToString(objective.getStartingColour())+' '+objective.getOriginalAction()+' '+
         objective.getPosition().x +' '+objective.getPosition().y+'\n';}
     
+    
+    //Converts search space coordinates into a printable String
     public static String translateToSearchSpaceInstruction(int[] searchValues)throws BoardFormatException{
         String s = "";
         for(int i = 0; i < searchValues.length - 1; i++)

@@ -49,7 +49,7 @@ public class LegalMoveChecker implements Cloneable {
             defender = BLACK;
         }
 
-            //3. check if any enemy stones have no liberty; if so remove them
+        //3. check if any enemy stones have no liberty; if so remove them
         // 3.1. check if there are any adjacent enemy stones to the current one
         LinkedList<Coordinate> enemyCoordinates = new LinkedList<>();
 
@@ -69,7 +69,7 @@ public class LegalMoveChecker implements Cloneable {
             enemyCoordinates.add(new Coordinate(x, y + 1));
         }
 
-            // if yes check if there are enemy stones without liberty and remove them if
+        // if yes check if there are enemy stones without liberty and remove them if
         while (!enemyCoordinates.isEmpty()) {
             Coordinate c = enemyCoordinates.remove();
             liberties = 0;
@@ -117,6 +117,7 @@ public class LegalMoveChecker implements Cloneable {
 
     //Removes the last board from the moveHistory
     public Board removeLast() {
+        //System.out.println(moveHistory.toString());
         return moveHistory.remove(moveHistory.size() - 1);
     }
 
@@ -127,22 +128,22 @@ public class LegalMoveChecker implements Cloneable {
 
     //Checks whether the moveHistory contains anything.
     public boolean isEmpty() {
+        //System.out.println(moveHistory.toString());
         return moveHistory.isEmpty();
     }
 
-	//Clones and returns LegalMoveChecker
+    //Clones and returns LegalMoveChecker
     //Note, it does not clone the actual Boards, merely the list.
     @Override
     public LegalMoveChecker clone() {
         ArrayList<Board> history = new ArrayList<>();
         for (Board b : moveHistory) {
-            history.add(b);
+            history.add(b.clone());
         }
         return new LegalMoveChecker(history);
     }
 
     //recursive function to update the global liberty counter 
-
     private void checkLiberty(Board board, Coordinate c, int otherPlayer, boolean[][] visited) {
         if (visited[c.x][c.y] || board.get(c.x, c.y) == otherPlayer || liberties > 0) {
             return;

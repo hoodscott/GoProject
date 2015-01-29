@@ -1,10 +1,9 @@
-
 package main;
 
 import java.util.Arrays;
 
-public class Board{
-	
+public class Board {
+
     private final int[][] boardRep;
     private static final int DEF_DIMENSION = 9; //Default dimension for empty boards
     public static final int EMPTY = 0;
@@ -16,7 +15,7 @@ public class Board{
     public static final String S_EMPTY = "empty";
     public static final String S_BLACK = "black";
     public static final String S_WHITE = "white";
-	
+
     // Create empty board
     public Board() {
         boardRep = new int[DEF_DIMENSION][DEF_DIMENSION];
@@ -24,20 +23,27 @@ public class Board{
 
     // Create new board from given int array
     public Board(int[][] board) {
-        boardRep = board;   
+        boardRep = board;
     }
 
     //Create an empty board that takes in a pair of dimensions
-    public Board(int width, int height){
+    public Board(int width, int height) {
         boardRep = new int[width][height];
     }
 
     // Get x and y dimensions of board
-    public int getWidth(){return boardRep.length;}
-    public int getHeight(){return boardRep[0].length;}
+    public int getWidth() {
+        return boardRep.length;
+    }
+
+    public int getHeight() {
+        return boardRep[0].length;
+    }
 
     //Get raw representation of the board
-    public int[][] getRaw(){return boardRep;}
+    public int[][] getRaw() {
+        return boardRep;
+    }
 
     // Get int representation of board position
     public int get(int x, int y) {
@@ -50,19 +56,20 @@ public class Board{
     }
 
     //Tests for equality among Boards. Use with care.
-    public boolean equals(Board b){
-    return (b != null) && Arrays.deepEquals(boardRep, b.getRaw());
+    public boolean equals(Board b) {
+        return (b != null) && Arrays.deepEquals(boardRep, b.getRaw());
     }
 
     // Make deep copy of original Board
     @Override
     public Board clone() {
         Board clone = new Board(boardRep.length, boardRep[0].length);
-        for (int i = 0; i < boardRep.length; i++)
-            for(int j = 0; j < boardRep[0].length; j++) 
-                clone.set(i,j,boardRep[i][j]);
+        for (int i = 0; i < boardRep.length; i++) {
+            for (int j = 0; j < boardRep[0].length; j++) {
+                clone.set(i, j, boardRep[i][j]);
+            }
+        }
 
         return clone;
-        }
-	
+    }
 }
