@@ -13,104 +13,104 @@ import org.junit.Test;
 
 public class LegalMoveCheckerTest {
     /*
-	private LegalMoveChecker moveChecker;
+     private LegalMoveChecker moveChecker;
 	
-	@Before
-	public void setUp() throws Exception{
-		moveChecker = new LegalMoveChecker();
-	}
+     @Before
+     public void setUp() throws Exception{
+     moveChecker = new LegalMoveChecker();
+     }
 	
-	@After
-	public void tearDown() throws Exception {
-		moveChecker = null;
-	}
+     @After
+     public void tearDown() throws Exception {
+     moveChecker = null;
+     }
 	
-	@Test
-	public void OccupiedB() {
-		int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
-		Board board = new Board(b);
-		boolean result;
-		for(int i = 0; i < board.getWidth() ;i++){
-			for(int j = 0; j < board.getHeight() ;j++){
-				if(board.get(i, j) != 0){ 
-					result = moveChecker.checkMove(board, i, j, 1);
-					assertEquals(false,result);
-				}
-			}
-		}
-	}
+     @Test
+     public void OccupiedB() {
+     int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
+     Board board = new Board(b);
+     boolean result;
+     for(int i = 0; i < board.getWidth() ;i++){
+     for(int j = 0; j < board.getHeight() ;j++){
+     if(board.get(i, j) != 0){ 
+     result = moveChecker.checkMove(board, i, j, 1);
+     assertEquals(false,result);
+     }
+     }
+     }
+     }
 	
-	@Test
-	public void OccupiedW() {
-		int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
-		Board board = new Board(b);
-		boolean result;
-		for(int i = 0; i < board.getWidth() ;i++){
-			for(int j = 0; j < board.getHeight() ;j++){
-				if(board.get(i, j) != 0){ 
-					result = moveChecker.checkMove(board, i, j, 2);
-					assertEquals(false,result);
-				}
-			}
-		}
-	}
+     @Test
+     public void OccupiedW() {
+     int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
+     Board board = new Board(b);
+     boolean result;
+     for(int i = 0; i < board.getWidth() ;i++){
+     for(int j = 0; j < board.getHeight() ;j++){
+     if(board.get(i, j) != 0){ 
+     result = moveChecker.checkMove(board, i, j, 2);
+     assertEquals(false,result);
+     }
+     }
+     }
+     }
 	
-	@Test
-	public void FreeB() {
-		int b[][] = {{0,0,0,0},{0,1,0,0},{1,2,0,1},{0,1,1,0}};
-		Board board = new Board(b);
-		boolean result;
-		for(int i = 0; i < board.getWidth() ;i++){
-			for(int j = 0; j < board.getHeight() ;j++){
-				if(board.get(i, j) == 0){ 
-					result = moveChecker.checkMove(board, i, j, 1);
-					assertEquals(true,result);
-				}
-			}
-		}
-	}
+     @Test
+     public void FreeB() {
+     int b[][] = {{0,0,0,0},{0,1,0,0},{1,2,0,1},{0,1,1,0}};
+     Board board = new Board(b);
+     boolean result;
+     for(int i = 0; i < board.getWidth() ;i++){
+     for(int j = 0; j < board.getHeight() ;j++){
+     if(board.get(i, j) == 0){ 
+     result = moveChecker.checkMove(board, i, j, 1);
+     assertEquals(true,result);
+     }
+     }
+     }
+     }
 	
-	@Test
-	public void FreeW() {
-		int b[][] = {{0,0,0,0},{1,1,0,0},{0,2,0,0},{0,1,1,0}};
-		Board board = new Board(b);
-		boolean result;
-		for(int i = 0; i < board.getWidth() ;i++){
-			for(int j = 0; j < board.getHeight() ;j++){
-				if(board.get(i, j) == 0){ 
-					result = moveChecker.checkMove(board, i, j, 2);
-					assertEquals(true,result);
-				}
-			}
-		}
-	}
+     @Test
+     public void FreeW() {
+     int b[][] = {{0,0,0,0},{1,1,0,0},{0,2,0,0},{0,1,1,0}};
+     Board board = new Board(b);
+     boolean result;
+     for(int i = 0; i < board.getWidth() ;i++){
+     for(int j = 0; j < board.getHeight() ;j++){
+     if(board.get(i, j) == 0){ 
+     result = moveChecker.checkMove(board, i, j, 2);
+     assertEquals(true,result);
+     }
+     }
+     }
+     }
 	
-	@Test
-	public void IllegalFree() {
-		int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
-		Board board = new Board(b);
-		boolean result = moveChecker.checkMove(board, 2, 2, 2);
-		assertEquals(false,result);
-	}
+     @Test
+     public void IllegalFree() {
+     int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
+     Board board = new Board(b);
+     boolean result = moveChecker.checkMove(board, 2, 2, 2);
+     assertEquals(false,result);
+     }
 	
-	@Test
-	public void Capture() {
-		int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
-		int b1[][] = {{0,0,0,0},{0,1,1,0},{1,0,1,1},{0,1,1,0}};
-		Board board = new Board(b);
-		Board board1 = new Board(b1);
-		moveChecker.checkMove(board, 2, 2, 1);
-		boolean result = (moveChecker.getLastLegal().equals(board1));
-		assertEquals(true,result);
-	}
+     @Test
+     public void Capture() {
+     int b[][] = {{0,0,0,0},{0,1,1,0},{1,2,0,1},{0,1,1,0}};
+     int b1[][] = {{0,0,0,0},{0,1,1,0},{1,0,1,1},{0,1,1,0}};
+     Board board = new Board(b);
+     Board board1 = new Board(b1);
+     moveChecker.checkMove(board, 2, 2, 1);
+     boolean result = (moveChecker.getLastLegal().equals(board1));
+     assertEquals(true,result);
+     }
 	
-	@Test
-	public void SuperKo() {
-		int b[][] = {{0,0,0,0},{1,1,2,2},{1,0,1,2},{1,1,2,2}};
-		Board board = new Board(b);
-		moveChecker.checkMove(board, 2, 1, 2);
-		boolean result = moveChecker.checkMove(board, 2, 2, 1);
-		assertEquals(false,result);
-	}
-	*/
+     @Test
+     public void SuperKo() {
+     int b[][] = {{0,0,0,0},{1,1,2,2},{1,0,1,2},{1,1,2,2}};
+     Board board = new Board(b);
+     moveChecker.checkMove(board, 2, 1, 2);
+     boolean result = moveChecker.checkMove(board, 2, 2, 1);
+     assertEquals(false,result);
+     }
+     */
 }
