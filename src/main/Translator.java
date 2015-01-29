@@ -101,6 +101,9 @@ public class Translator {
         else 
             throw new BoardFormatException("ERROR: The initial line does not contain two valid integers.");
         
+        if(w != h)
+            throw new BoardFormatException("ERROR: The width and height of the board need to be equal.");
+        
         if (h > raw.size())
             throw new BoardFormatException("ERROR: There are not enough rows in the specification.");
         
