@@ -40,7 +40,7 @@ public class GraphicalUI {
     private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
     private JButton undoButton, resetButton, passButton;
     private JToggleButton boundsButton;
-    private JLabel objectiveLabel, playerLabel, feedbackLabel, aiLabel;
+    private JLabel objectiveLabel, playerLabel, feedbackLabel;
     
     // private static instance variables for swing
     private static JFrame frame;
@@ -48,6 +48,7 @@ public class GraphicalUI {
     private static boolean mixedStones, deleteStones; // problem creation
     // options
     private static JMenu competitiveFileMenu, creationFileMenu;
+    private static JLabel aiLabel;
     
     // public static instance variables for swing
     static JLabel player, feedback, objective, currentAILabel;
@@ -64,8 +65,7 @@ public class GraphicalUI {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    GraphicalUI window = new GraphicalUI(gE);
-                    window.frame.setVisible(true);
+                    GraphicalUI.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -448,7 +448,9 @@ public class GraphicalUI {
         
         // labels to show current AI type
         aiLabel = new JLabel("    AI Type: ");
+        aiLabel.setVisible(false);
         currentAILabel = new JLabel(aiType);
+        currentAILabel.setVisible(false);
         
         // add labels to panel
         labelPanel.add(aiLabel);
@@ -567,11 +569,15 @@ public class GraphicalUI {
     	GraphicalUI.feedback.setText("Entered Competitive Mode");
     	// enable competitive tools
     	competitiveFileMenu.setEnabled(true);
+    	aiLabel.setVisible(true);
+    	currentAILabel.setVisible(true);
     }
     
     public static void enterCreation(){
     	// disable competitive tools
     	competitiveFileMenu.setEnabled(false);
+    	aiLabel.setVisible(false);
+    	currentAILabel.setVisible(false);
     	// change mode to creation
     	competitiveButton.setSelected(false);
     	creationButton.setSelected(true);
