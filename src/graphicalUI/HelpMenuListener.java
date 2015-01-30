@@ -11,7 +11,6 @@ public class HelpMenuListener implements ActionListener {
 	// TODO implement helper actions
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO fix this
 		if (e.getActionCommand().equals("Shout for Help")) {
 			String filePath = FileIO.pathOS(FileIO.RELATIVEPATH + "\\info\\GUIShortcuts");
 			ArrayList<String> keyboardFile = FileIO
