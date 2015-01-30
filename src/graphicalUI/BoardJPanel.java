@@ -139,10 +139,16 @@ public class BoardJPanel extends JPanel {
                             && (yRemainder < squareSize / 2 - border)
                             || (yRemainder > squareSize / 2 + border)) {
                         boolean[][] legalMoves = gameE.getLegalMoves(colour);
-                        if (legalMoves[xPos][yPos]) {
+                        // show grey stones when deleting
+                        if (GraphicalUI.getDeleteStones()){
+                        	greyCounters.set(xPos, yPos, -1);
+                        }
+                        // show colour of stone being placed
+                        else if (legalMoves[xPos][yPos]) {
                             greyCounters.set(xPos, yPos, colour);
-                        } else {
-                            // show red transparent stones for illegal moves
+                        }
+                        // show red stones for illegal moves
+                        else {
                             greyCounters.set(xPos, yPos, 3);
                         }
                         repaint();
@@ -375,6 +381,14 @@ public class BoardJPanel extends JPanel {
                         // illegal
                     } else if (greyCounters.get(i, j) == 3) {
                         g.setColor(new Color(125, 0, 0, 150));
+                        g.fillOval(
+                                (squareSize + i * squareSize - stoneSize) - 2,
+                                (squareSize + j * squareSize - stoneSize) - 2,
+                                squareSize + 4, squareSize + 4);
+                    }
+                    else if (greyCounters.get(i, j) == -1) {
+                    	// show transparent grey stones when deleting
+                    	g.setColor(new Color(50,  50, 50, 150));
                         g.fillOval(
                                 (squareSize + i * squareSize - stoneSize) - 2,
                                 (squareSize + j * squareSize - stoneSize) - 2,
