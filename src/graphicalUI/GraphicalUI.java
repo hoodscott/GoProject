@@ -364,7 +364,7 @@ public class GraphicalUI {
         menuBar.add(fileMenu);
 
         // menu item for getting help
-        menuItem = new JMenuItem("Shout for Help", KeyEvent.VK_H);
+        menuItem = new JMenuItem("Show Keyboard Shortcuts", KeyEvent.VK_H);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,
                 ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
