@@ -40,12 +40,12 @@ public class GraphicalUI {
     private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
     private JButton undoButton, resetButton, passButton;
     private JToggleButton boundsButton;
-    private JLabel objectiveLabel, playerLabel, feedbackLabel;
+    private JLabel objectiveLabel, playerLabel, feedbackLabel, aiLabel;
     private static boolean bounds, competitive, creation; // for toggle buttons
     private static boolean mixedStones, deleteStones; // problem creation
     // options
     // public static instance variables for swing
-    static JLabel player, feedback, objective;
+    static JLabel player, feedback, objective, currentAILabel;
     static BoardJPanel boardJP;
     static Container pane;
     static JToggleButton creationButton, competitiveButton;
@@ -424,6 +424,18 @@ public class GraphicalUI {
         // add labels to panel
         labelPanel.add(feedbackLabel);
         labelPanel.add(feedback);
+        
+        // add padding to panel
+        labelPanel.add(new JPanel());
+        labelPanel.add(new JPanel());
+        
+        // labels to show current AI type
+        aiLabel = new JLabel("    AI Type: ");
+        currentAILabel = new JLabel(aiType);
+        
+        // add labels to panel
+        labelPanel.add(aiLabel);
+        labelPanel.add(currentAILabel);
 
         // add label panel to top of button panel
         buttonPanel.add(labelPanel, BorderLayout.NORTH);

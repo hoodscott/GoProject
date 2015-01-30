@@ -30,6 +30,7 @@ public class CompetitiveMenuListener implements ActionListener {
                 GraphicalUI.aiType = s;
             }
             GraphicalUI.feedback.setText("AI type selected: " + s);
+            GraphicalUI.currentAILabel.setText(s);
         }
     }
 
