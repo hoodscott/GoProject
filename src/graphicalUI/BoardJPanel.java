@@ -154,6 +154,7 @@ public class BoardJPanel extends JPanel {
 
     // Draw counter onto position
     public boolean updateBoard(int x, int y, int c) {
+    	
         if (gameE.makeMove(new Coordinate(x, y), c)) {
             // move made, repaint board
             repaint();
@@ -167,11 +168,13 @@ public class BoardJPanel extends JPanel {
             GraphicalUI.feedback.setText(getColour(c) + " to position: " + x
                     + ", " + y);
             numStones = numStones + 1;
+            // TODO repaint board here?
             return true;
         } else {
             GraphicalUI.feedback.setText("Invalid move");
             return false;
         }
+        
     }
 
     public static void GUIAIMove() {
