@@ -1,7 +1,5 @@
 package main;
 
-import java.util.ArrayList;
-
 import main.Objective.Action;
 
 public class AlphaBeta extends AI {
@@ -27,12 +25,6 @@ public class AlphaBeta extends AI {
         opponentAction = evaluator.getAction(opponent);
     }
     
-    // iteratevam
-    // na vseki move pravq check dali e terminal position (ili veche e captured ili defended, ili nqma legal move )
-    // ako veche captured ili defended - returnvam beta 
-    // ako 0 moves ako capture return Beta inache Alpha
-    
-    
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker lmc) {
         this.lmc = lmc.clone();
@@ -42,32 +34,36 @@ public class AlphaBeta extends AI {
         if (abAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
         	return new Coordinate(-1, -1);
         }
-        
-        // get available legal moves
-        ArrayList<Coordinate> moves = new ArrayList<>();
-        ArrayList<Board> boards = new ArrayList<>();
-        getLMList(b, moves, boards, colour);
+       
         int score = 0;
 
         // put a stone down for every legal move
-        for (int i = 0; i < moves.size(); i++) {
-            Coordinate move = moves.get(i);
-            Board clone = boards.get(i);
-            // check the possibility of only one move needed
-            if (abAction == Action.KILL && evaluator.checkSucceeded(clone, colour)) {
-                return move;
-            }
-            // continue to opponent`s best reaction to this particular move
-            score = alphaBeta(clone, ALPHA, BETA, opponent);
-
-            // compare the scores of all initial moves
-            if (score > globalScore && score > 0) {
-                globalScore = score;
-                bestMove = move;
+        for (int x = lowerBoundX; x <= upperBoundX; x++) {
+            for (int y = lowerBoundY; y <= upperBoundY; y++) {
+                Coordinate currentCoord = new Coordinate(x, y);
+                if (lmc.checkMove(b, currentCoord, colour)) {
+                	Board currentState = lmc.getLastLegal();
+                	lmc.addBoard(currentState);
+                	
+                	// check the possibility of only one move needed
+                	if (abAction == Action.KILL && evaluator.checkSucceeded(currentState, colour)) {
+                		return currentCoord;
+                	}
+            
+                	// continue to opponent`s best reaction to this particular move
+                	score = alphaBeta(currentState, ALPHA, BETA, opponent);
+                	lmc.removeLast();
+                	
+                	// compare the scores of all initial moves
+                	if (score > globalScore && score > 0) {
+                		globalScore = score;
+                		bestMove = currentCoord;
+                	}
+                }
             }
         }
 
-        // return the best one or pass if no move will improve the situation 
+        // pass if no move will improve the situation 
         if (bestMove == null) 
         {
             return new Coordinate(-1, -1); // pass
@@ -79,28 +75,30 @@ public class AlphaBeta extends AI {
     public int alphaBeta(Board currentBoard, int alpha, int beta, int player) {
     	///////////////////////////////////////////////////////////////////////////
     	// check for terminal position
-    	 // if objective is completed at this stage
-        if (abAction == Action.KILL && evaluator.checkSucceeded(currentBoard, colour)) {
+    	// if killing objective is completed at this stage
+    	if (abAction == Action.KILL && evaluator.checkSucceeded(currentBoard, colour)) {
             return BETA;
         }
         // if AI failed to defend 
         if (opponentAction == Action.KILL && evaluator.checkSucceeded(currentBoard, opponent)) {
             return ALPHA;
         }
-        
-    	//get the coordinates and number of legal moves for current player
-    	ArrayList<Coordinate> moves = new ArrayList<>();
-        ArrayList<Board> boards = new ArrayList<>();
-        getLMList(currentBoard, moves, boards, player);
-        int numberOfLegalMoves = moves.size();
     	
-    	// if no more valid moves
-        if (numberOfLegalMoves == 0) {
-            // evaluate the board
-            if (evaluator.checkSucceeded(currentBoard, colour)) {
-                return BETA;
-            } else {
-                return ALPHA;
+    	// if no more valid moves evaluate the board
+        if (noMoreLegalMoves(currentBoard, player)) {
+            if (player == colour){
+            	if (evaluator.checkSucceeded(currentBoard, colour)) {
+                    return BETA;
+                } else {
+                    return ALPHA;
+                }
+            }
+            else{
+            	if (evaluator.checkSucceeded(currentBoard, opponent)) {
+                    return ALPHA;
+                } else {
+                    return BETA;
+                }
             }
         }
         ///////////////////////////////////////////////////////////////////////////
@@ -109,13 +107,20 @@ public class AlphaBeta extends AI {
         // if maximizing player`s turn 
         if (player == colour) {
             int score = ALPHA;
-            for (int i = 0; i < moves.size(); i++) {
-                Board clone = boards.get(i);
-                // get response to current move from other player
-                score = Math.max(score, alphaBeta(clone, alpha, beta, opponent));
-                alpha = Math.max(alpha, score);
-                if (beta <= alpha) {
-                    break;          // beta cut-off
+            for (int x = lowerBoundX; x <= upperBoundX; x++) {
+                for (int y = lowerBoundY; y <= upperBoundY; y++) {
+                    Coordinate currentCoord = new Coordinate(x, y);
+                    if (lmc.checkMove(currentBoard, currentCoord, colour)) {
+                    	Board currentState = lmc.getLastLegal();
+                    	lmc.addBoard(currentState);
+                    	// get response to current move from other player
+                    	score = Math.max(score, alphaBeta(currentState, alpha, beta, opponent));
+                    	lmc.removeLast();
+                    	alpha = Math.max(alpha, score);
+                    	if (beta <= alpha) {
+                    		break;          // beta cut-off
+                    	}
+                    }
                 }
             }
             return score;
@@ -124,13 +129,20 @@ public class AlphaBeta extends AI {
         // if minimizing player`s turn
         else {
             int score = BETA;
-            for (int i = 0; i < moves.size(); i++) {
-                Board clone = boards.get(i);
-                // get response to current move from other player
-                score = Math.min(score, alphaBeta(clone, alpha, beta, colour));
-                beta = Math.min(beta, score);
-                if (beta <= alpha) {
-                    break;          // alpha cut-off
+            for (int x = lowerBoundX; x <= upperBoundX; x++) {
+                for (int y = lowerBoundY; y <= upperBoundY; y++) {
+                    Coordinate currentCoord = new Coordinate(x, y);
+                    if (lmc.checkMove(currentBoard, currentCoord, opponent)) {
+                    	Board currentState = lmc.getLastLegal();
+                    	lmc.addBoard(currentState);
+                    	// get response to current move from other player
+                    	score = Math.min(score, alphaBeta(currentState, alpha, beta, colour));
+                    	lmc.removeLast();
+                    	beta = Math.min(beta, score);
+                    	if (beta <= alpha) {
+                    		break;          // alpha cut-off
+                    	}
+                    }
                 }
             }
             return score;
@@ -138,17 +150,17 @@ public class AlphaBeta extends AI {
     }
     
     
-    // create array list containing the coordinates of the legal moves
-    public void getLMList(Board b, ArrayList<Coordinate> moves, ArrayList<Board> boards, int colour) {
+    // checks if there are not legal moves
+    public boolean noMoreLegalMoves(Board b, int colour) {
         for (int i = lowerBoundX; i <= upperBoundX; i++) {
             for (int j = lowerBoundY; j <= upperBoundY; j++) {
                 Coordinate c = new Coordinate(i, j);
                 if (lmc.checkMove(b, c, colour)) {
-                    moves.add(c);
-                    boards.add(lmc.getLastLegal());
+                    return false;
                 }
             }
         }
+        return true;
     }
 }
 	
