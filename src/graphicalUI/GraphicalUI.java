@@ -36,6 +36,7 @@ public class GraphicalUI {
     private JFrame frame;
     private JMenuBar menuBar;
     private JMenu fileMenu, subMenu;
+	
     private JMenuItem menuItem;
     private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
     private JButton undoButton, resetButton, passButton;
@@ -50,6 +51,7 @@ public class GraphicalUI {
     static Container pane;
     static JToggleButton creationButton, competitiveButton;
     static String aiType;
+    private static JMenu competitiveFileMenu, creationFileMenu;
 
     /**
      * Start the gui.
@@ -191,12 +193,51 @@ public class GraphicalUI {
         fileMenu.add(menuItem);
 
         // Build menu for competitive play
-        fileMenu = new JMenu("Competitive Play");
-        fileMenu.setMnemonic(KeyEvent.VK_1);
-        fileMenu.getAccessibleContext().setAccessibleDescription(
+        competitiveFileMenu = new JMenu("Competitive Play");
+        competitiveFileMenu.setMnemonic(KeyEvent.VK_1);
+        competitiveFileMenu.getAccessibleContext().setAccessibleDescription(
                 "Menu with options during competitive play mode");
-        menuBar.add(fileMenu);
+        competitiveFileMenu.setEnabled(competitive);
+        menuBar.add(competitiveFileMenu);
 
+        
+
+        // Menu item for swapping player colour
+        menuItem = new JMenuItem("Swap Player Colour", KeyEvent.VK_S);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+                ActionEvent.SHIFT_MASK));
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Swap human and AI playing colours");
+        menuItem.addActionListener(new CompetitiveMenuListener());
+        competitiveFileMenu.add(menuItem);
+
+        // Menu item for making AI move
+        menuItem = new JMenuItem("Make AI Move", KeyEvent.VK_M);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,
+                ActionEvent.SHIFT_MASK));
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Force AI to move first");
+        menuItem.addActionListener(new CompetitiveMenuListener());
+        competitiveFileMenu.add(menuItem);
+
+        competitiveFileMenu.addSeparator();
+
+        // Menu item to switch AI type
+        menuItem = new JMenuItem("Select AI Type", KeyEvent.VK_A);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,
+                ActionEvent.SHIFT_MASK));
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Choose algorithm that AI uses to move");
+        menuItem.addActionListener(new CompetitiveMenuListener());
+        competitiveFileMenu.add(menuItem);
+
+        // Build menu for problem creation
+        creationFileMenu = new JMenu("Problem Creation");
+        creationFileMenu.setMnemonic(KeyEvent.VK_2);
+        creationFileMenu.getAccessibleContext().setAccessibleDescription(
+                "Menu with options during problem creation mode");
+        menuBar.add(creationFileMenu);
+        
         // Submenu for setting objective
         subMenu = new JMenu("Objective");
         subMenu.getAccessibleContext().setAccessibleDescription(
@@ -221,7 +262,7 @@ public class GraphicalUI {
         menuItem.addActionListener(new ObjectiveMenuListener());
         subMenu.add(menuItem);
 
-        fileMenu.add(subMenu);
+        creationFileMenu.add(subMenu);
 
         // Submenu for setting bounds
         subMenu = new JMenu("Bounds");
@@ -247,45 +288,9 @@ public class GraphicalUI {
         menuItem.addActionListener(new BoundsMenuListener());
         subMenu.add(menuItem);
 
-        fileMenu.add(subMenu);
+        creationFileMenu.add(subMenu);
 
-        fileMenu.addSeparator();
-
-        // Menu item for swapping player colour
-        menuItem = new JMenuItem("Swap Player Colour", KeyEvent.VK_S);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
-                ActionEvent.SHIFT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Swap human and AI playing colours");
-        menuItem.addActionListener(new CompetitiveMenuListener());
-        fileMenu.add(menuItem);
-
-        // Menu item for making AI move
-        menuItem = new JMenuItem("Make AI Move", KeyEvent.VK_M);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,
-                ActionEvent.SHIFT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Force AI to move first");
-        menuItem.addActionListener(new CompetitiveMenuListener());
-        fileMenu.add(menuItem);
-
-        fileMenu.addSeparator();
-
-        // Menu item to switch AI type
-        menuItem = new JMenuItem("Select AI Type", KeyEvent.VK_A);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,
-                ActionEvent.SHIFT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Choose algorithm that AI uses to move");
-        menuItem.addActionListener(new CompetitiveMenuListener());
-        fileMenu.add(menuItem);
-
-        // Build menu for problem creation
-        fileMenu = new JMenu("Problem Creation");
-        fileMenu.setMnemonic(KeyEvent.VK_2);
-        fileMenu.getAccessibleContext().setAccessibleDescription(
-                "Menu with options during problem creation mode");
-        menuBar.add(fileMenu);
+        creationFileMenu.addSeparator();
 
         // menu item for using black stones
         menuItem = new JMenuItem("Use Black Stones", KeyEvent.VK_B);
@@ -294,7 +299,7 @@ public class GraphicalUI {
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "Place only black stones down");
         menuItem.addActionListener(new CreationMenuListener());
-        fileMenu.add(menuItem);
+        creationFileMenu.add(menuItem);
 
         // menu item for using white stones
         menuItem = new JMenuItem("Use White Stones", KeyEvent.VK_W);
@@ -303,7 +308,7 @@ public class GraphicalUI {
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "Place only white stones down");
         menuItem.addActionListener(new CreationMenuListener());
-        fileMenu.add(menuItem);
+        creationFileMenu.add(menuItem);
 
         // menu item for using white/black stones
         menuItem = new JMenuItem("Use Mixed Stones", KeyEvent.VK_M);
@@ -312,9 +317,9 @@ public class GraphicalUI {
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "Places stones in black and white order");
         menuItem.addActionListener(new CreationMenuListener());
-        fileMenu.add(menuItem);
+        creationFileMenu.add(menuItem);
 
-        fileMenu.addSeparator();
+        creationFileMenu.addSeparator();
 
         // menu item for removing stones
         menuItem = new JMenuItem("Delete Stones", KeyEvent.VK_D);
@@ -323,7 +328,7 @@ public class GraphicalUI {
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "Allow user to delete stones");
         menuItem.addActionListener(new CreationMenuListener());
-        fileMenu.add(menuItem);
+        creationFileMenu.add(menuItem);
 
         // Build help menu for debugging commands
         fileMenu = new JMenu("Debug");
@@ -545,20 +550,26 @@ public class GraphicalUI {
     
     public static void enterCompetitive(){
     	// disable creation tools
+    	creationFileMenu.setEnabled(false);
+    	// change mode to competitive
     	competitiveButton.setSelected(true);
     	creationButton.setSelected(false);
     	competitive = true;
     	GraphicalUI.feedback.setText("Entered Competitive Mode");
     	// enable competitive tools
+    	competitiveFileMenu.setEnabled(true);
     }
     
     public static void enterCreation(){
     	// disable competitive tools
+    	competitiveFileMenu.setEnabled(false);
+    	// change mode to creation
     	competitiveButton.setSelected(false);
     	creationButton.setSelected(true);
     	competitive = false;
     	GraphicalUI.feedback.setText("Entered Problem Creation Mode");
     	// enable creation tools
+    	creationFileMenu.setEnabled(true);
     }
 
     public static void setMixedStones(boolean b) {
