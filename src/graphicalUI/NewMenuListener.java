@@ -40,7 +40,8 @@ public class NewMenuListener implements ActionListener {
                 GraphicalUI.objective.setText("No set objective");
                 BoardJPanel.resetBounds();
             }
-
         }
+        GraphicalUI.saveName = "Untitled";
+        GraphicalUI.setFrameTitle(GraphicalUI.saveName);
     }
 }

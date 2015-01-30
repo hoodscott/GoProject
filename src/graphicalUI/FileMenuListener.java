@@ -40,10 +40,13 @@ public class FileMenuListener implements ActionListener {
             int command = loadBoard.showOpenDialog(pane);
             if (command == JFileChooser.APPROVE_OPTION) {
                 try {
+                	// set save name on title bar
+                	GraphicalUI.saveName = loadBoard.getSelectedFile().getName();
+                    GraphicalUI.setFrameTitle(GraphicalUI.saveName);
+                    // load board
                     GraphicalUI.setGameEngine(FileIO.readBoard(loadBoard
                             .getSelectedFile().getAbsolutePath()));
                     GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                    GraphicalUI.feedback.setText("Board loaded");
                     Objective localObjective = GraphicalUI.getGameEngine()
                             .getObjective();
                     BoardJPanel.searchSpace = GraphicalUI.getGameEngine()
@@ -54,6 +57,7 @@ public class FileMenuListener implements ActionListener {
                         GraphicalUI.objective
                                 .setText(localObjective.toString());
                     }
+                    GraphicalUI.feedback.setText("Board loaded");
 
                 } catch (BoardFormatException bfe) {
                     GraphicalUI.feedback.setText(bfe.getMsg());
@@ -82,9 +86,13 @@ public class FileMenuListener implements ActionListener {
             int command = saveBoard.showSaveDialog(pane);
             if (command == JFileChooser.APPROVE_OPTION) {
                 try {
+                	//save board
                     FileIO.writeBoard(GraphicalUI.getGameEngine(), saveBoard
                             .getSelectedFile().getAbsolutePath());
                     GraphicalUI.feedback.setText("Problem saved");
+                    // update title save name
+                    GraphicalUI.saveName = saveBoard.getSelectedFile().getName();
+                    GraphicalUI.setFrameTitle(GraphicalUI.saveName);
                 } catch (BoardFormatException bfe) {
                     GraphicalUI.feedback.setText(bfe.getMsg());
                 }

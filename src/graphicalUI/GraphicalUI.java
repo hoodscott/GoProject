@@ -31,27 +31,31 @@ public class GraphicalUI {
 
     // private static instance variables
     private static GameEngine gameEngine;
+    static String saveName;
 
     // private instance variables for swing
-    private JFrame frame;
     private JMenuBar menuBar;
     private JMenu fileMenu, subMenu;
-	
     private JMenuItem menuItem;
     private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
     private JButton undoButton, resetButton, passButton;
     private JToggleButton boundsButton;
     private JLabel objectiveLabel, playerLabel, feedbackLabel, aiLabel;
+    
+    // private static instance variables for swing
+    private static JFrame frame;
     private static boolean bounds, competitive; // for toggle buttons
     private static boolean mixedStones, deleteStones; // problem creation
     // options
+    private static JMenu competitiveFileMenu, creationFileMenu;
+    
     // public static instance variables for swing
     static JLabel player, feedback, objective, currentAILabel;
     static BoardJPanel boardJP;
     static Container pane;
     static JToggleButton creationButton, competitiveButton;
     static String aiType;
-    private static JMenu competitiveFileMenu, creationFileMenu;
+    ;
 
     /**
      * Start the gui.
@@ -99,6 +103,9 @@ public class GraphicalUI {
 
         // default AI as minimax
         aiType = "MiniMax";
+        
+        // set inital save name
+        saveName = "Untitled";
 
 		// START OF FRAME //
         // frame to hold all elements
@@ -117,6 +124,8 @@ public class GraphicalUI {
                 Runtime.getRuntime().halt(0);
             }
         });
+        // set window title
+        setFrameTitle(saveName);
 
 		// START OF MENUBAR //
         // Create the menu bar.
@@ -578,6 +587,11 @@ public class GraphicalUI {
 
     public static void setDeleteStones(boolean b) {
         deleteStones = b;
+    }
+    
+    public static void setFrameTitle(String s){
+    	System.out.println(s);
+    	frame.setTitle("GoProblemSolver: " + s);
     }
 
 }
