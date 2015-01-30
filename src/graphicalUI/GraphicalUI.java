@@ -41,7 +41,7 @@ public class GraphicalUI {
     private JButton undoButton, resetButton, passButton;
     private JToggleButton boundsButton;
     private JLabel objectiveLabel, playerLabel, feedbackLabel, aiLabel;
-    private static boolean bounds, competitive, creation; // for toggle buttons
+    private static boolean bounds, competitive; // for toggle buttons
     private static boolean mixedStones, deleteStones; // problem creation
     // options
     // public static instance variables for swing
@@ -91,6 +91,9 @@ public class GraphicalUI {
 
         // set stones to alternate as default
         mixedStones = true;
+        
+        // initial mode as creation
+        competitive = false;
 
         // default AI as minimax
         aiType = "MiniMax";
@@ -460,6 +463,7 @@ public class GraphicalUI {
         // button to show bounds of problem
         creationButton = new JToggleButton("Problem Creation Mode");
         creationButton.setMnemonic(KeyEvent.VK_C);
+        creationButton.setSelected(true);
         gridPanel.add(creationButton);
 
         // add action listener for this button
@@ -526,10 +530,6 @@ public class GraphicalUI {
         return competitive;
     }
 
-    public static boolean getCreation() {
-        return creation;
-    }
-
     public static boolean getMixedStones() {
         return mixedStones;
     }
@@ -542,13 +542,23 @@ public class GraphicalUI {
     public static void setBounds(boolean b) {
         bounds = b;
     }
-
-    public static void setCompetitive(boolean b) {
-        competitive = b;
+    
+    public static void enterCompetitive(){
+    	// disable creation tools
+    	competitiveButton.setSelected(true);
+    	creationButton.setSelected(false);
+    	competitive = true;
+    	GraphicalUI.feedback.setText("Entered Competitive Mode");
+    	// enable competitive tools
     }
-
-    public static void setCreation(boolean b) {
-        creation = b;
+    
+    public static void enterCreation(){
+    	// disable competitive tools
+    	competitiveButton.setSelected(false);
+    	creationButton.setSelected(true);
+    	competitive = false;
+    	GraphicalUI.feedback.setText("Entered Problem Creation Mode");
+    	// enable creation tools
     }
 
     public static void setMixedStones(boolean b) {
@@ -557,14 +567,6 @@ public class GraphicalUI {
 
     public static void setDeleteStones(boolean b) {
         deleteStones = b;
-    }
-
-    // method to reset the modes to default
-    public static void resetModeButtons() {
-        competitive = false;
-        competitiveButton.setSelected(false);
-        creation = false;
-        creationButton.setSelected(false);
     }
 
 }

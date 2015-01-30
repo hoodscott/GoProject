@@ -78,7 +78,7 @@ public class BoardJPanel extends JPanel {
                         || (yRemainder > squareSize / 2 + border)) {
                     // check if user is attempting to delete stone
                     if (GraphicalUI.getDeleteStones()
-                            && GraphicalUI.getCreation()) {
+                            && !GraphicalUI.getCompetitive()) {
                         // remove selected stone from board
                         gameE.getCurrentBoard().set(xPos, yPos, 0);
                         GraphicalUI.feedback.setText("Stone removed from: "
@@ -180,7 +180,6 @@ public class BoardJPanel extends JPanel {
     public static void GUIAIMove() {
 		// Let AI make move when competitive play mode selected with
         // bounds and objective
-    	System.out.println("making ai move");
         boolean competitive = GraphicalUI.getCompetitive();
         if (competitive && gameE.getObjective() != null
                 && gameE.getAISearchValues() != null && listeners && updated) {
