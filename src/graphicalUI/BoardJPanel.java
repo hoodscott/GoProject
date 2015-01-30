@@ -177,6 +177,7 @@ public class BoardJPanel extends JPanel {
     public static void GUIAIMove() {
 		// Let AI make move when competitive play mode selected with
         // bounds and objective
+    	System.out.println("making ai move");
         boolean competitive = GraphicalUI.getCompetitive();
         if (competitive && gameE.getObjective() != null
                 && gameE.getAISearchValues() != null && listeners && updated) {

@@ -17,7 +17,6 @@ public class CompetitiveMenuListener implements ActionListener {
             GraphicalUI.feedback.setText("Colour swapped");
             // force AI to move first
         } else if (e.getActionCommand().equals("Make AI Move") && GraphicalUI.getCompetitive()) {
-            BoardJPanel.changePlayer();
             BoardJPanel.GUIAIMove();
         } else if (e.getActionCommand().equals("Select AI Type")) {
             Object[] aiValues = {"MiniMax", "AlphaBeta"};
