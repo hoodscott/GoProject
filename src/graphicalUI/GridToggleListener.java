@@ -3,6 +3,7 @@ package graphicalUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
 public class GridToggleListener implements ActionListener {
@@ -22,7 +23,19 @@ public class GridToggleListener implements ActionListener {
             }
         }
         if (button.getText().equals("Competitive Play Mode")) {
-            GraphicalUI.enterCompetitive();
+        	if (!GraphicalUI.getProblemSettings()) {
+        		JOptionPane.showMessageDialog(GraphicalUI.frame,"Please select your bounds and objectives.");
+        		ProblemSettingsListener.selectionBox();
+        		// TODO: Add input box to choose human/AI here
+        		if (!BoundsObjectiveDialog.cancelled) {
+        			GraphicalUI.enterCompetitive();
+        		} else {
+        			GraphicalUI.competitiveButton.setSelected(false);
+        		}
+        	} else {
+        		// TODO: Add input box to choose human/AI here too
+        		GraphicalUI.enterCompetitive();
+        	}
         }
         if (button.getText().equals("Problem Creation Mode")) {
             GraphicalUI.enterCreation();

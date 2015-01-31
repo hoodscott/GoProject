@@ -9,6 +9,7 @@ import javax.swing.JFileChooser;
 import main.BoardFormatException;
 import main.FileIO;
 import main.Objective;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -51,8 +52,12 @@ public class FileMenuListener implements ActionListener {
                             .getObjective();
                     BoardJPanel.searchSpace = GraphicalUI.getGameEngine()
                             .getAISearchValues();
+                    if (BoardJPanel.searchSpace == null) {
+                    	GraphicalUI.setProblemSettings(false);
+                    }
                     if (localObjective == null) {
                         GraphicalUI.objective.setText("Not specified");
+                        GraphicalUI.setProblemSettings(false);
                     } else {
                         GraphicalUI.objective
                                 .setText(localObjective.toString());

@@ -43,14 +43,15 @@ public class GraphicalUI {
     private JLabel objectiveLabel, playerLabel, feedbackLabel;
     
     // private static instance variables for swing
-    static JFrame frame;
     private static boolean bounds, competitive; // for toggle buttons
     private static boolean mixedStones, deleteStones; // problem creation
+    private static boolean problemSettings; // user selected objective and bounds
     // options
     private static JMenu competitiveFileMenu, creationFileMenu;
     private static JLabel aiLabel;
     
     // public static instance variables for swing
+    static JFrame frame;
     static JLabel player, feedback, objective, currentAILabel;
     static BoardJPanel boardJP;
     static Container pane;
@@ -256,60 +257,6 @@ public class GraphicalUI {
         menuItem.addActionListener(new ProblemSettingsListener());
         creationFileMenu.add(menuItem);
         
-        creationFileMenu.addSeparator();
-        
-        // Submenu for setting objective
-        subMenu = new JMenu("Objective");
-        subMenu.getAccessibleContext().setAccessibleDescription(
-                "Allows user to set the objective.");
-        subMenu.setMnemonic(KeyEvent.VK_O);
-
-        // Menu item for setting objective
-        menuItem = new JMenuItem("Set Objective", KeyEvent.VK_O);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
-                ActionEvent.CTRL_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Allow user to specify board objective");
-        menuItem.addActionListener(new ObjectiveMenuListener());
-        subMenu.add(menuItem);
-
-        // Menu item for removing objective
-        menuItem = new JMenuItem("Remove Objective", KeyEvent.VK_R);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,
-                ActionEvent.CTRL_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Removes objective from problem");
-        menuItem.addActionListener(new ObjectiveMenuListener());
-        subMenu.add(menuItem);
-
-        creationFileMenu.add(subMenu);
-
-        // Submenu for setting bounds
-        subMenu = new JMenu("Bounds");
-        subMenu.getAccessibleContext().setAccessibleDescription(
-                "Allows user to set bounds.");
-        subMenu.setMnemonic(KeyEvent.VK_B);
-
-        // Menu item for setting bounds
-        menuItem = new JMenuItem("Set Bounds", KeyEvent.VK_B);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B,
-                ActionEvent.SHIFT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Allow user to specify board bounds");
-        menuItem.addActionListener(new BoundsMenuListener());
-        subMenu.add(menuItem);
-
-        // Menu item for removing bounds
-        menuItem = new JMenuItem("Remove Bounds", KeyEvent.VK_R);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,
-                ActionEvent.SHIFT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Removes bounds from problem");
-        menuItem.addActionListener(new BoundsMenuListener());
-        subMenu.add(menuItem);
-
-        creationFileMenu.add(subMenu);
-
         creationFileMenu.addSeparator();
 
         // menu item for using black stones
@@ -564,8 +511,16 @@ public class GraphicalUI {
     public static boolean getDeleteStones() {
         return deleteStones;
     }
+    
+    public static boolean getProblemSettings() {
+    	return problemSettings;
+    }
 
     // Setters for GUI booleans
+    public static void setProblemSettings(boolean b) {
+    	problemSettings = b;
+    }
+    
     public static void setBounds(boolean b) {
         bounds = b;
     }

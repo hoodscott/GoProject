@@ -422,6 +422,14 @@ public class BoardJPanel extends JPanel {
             return "White";
         }
     }
+    
+    public static int translatePlayer(String col) {
+        if (col == "Black") {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
 
     public static void setPlayer(String player) {
         if (player == "black") {
