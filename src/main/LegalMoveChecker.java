@@ -168,4 +168,10 @@ public class LegalMoveChecker implements Cloneable {
             checkLiberty(board, new Coordinate(c.x, c.y + 1), otherPlayer, visited);
         }
     }
+    
+    //For Debug Purposes. Prints object references.
+    public void printHistory()
+    {
+        System.out.println(moveHistory.toString());
+    }
 }
