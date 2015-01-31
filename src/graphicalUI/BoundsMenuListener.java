@@ -20,7 +20,7 @@ public class BoundsMenuListener implements ActionListener {
             if (bounds != null && bounds.length() >= 7 && bounds.length() <= 11) {
             	boolean validbounds = true;
                 // create array of specified bounds
-                int[] selectBounds = {0, 0, 0, 0};
+                int[] selectBounds = new int[4];
                 String[] userBounds = bounds.split(" ");
                 for (int i = 0; i < userBounds.length; i++) {
                 	int bound = Integer.parseInt(String.valueOf(userBounds[i]));
