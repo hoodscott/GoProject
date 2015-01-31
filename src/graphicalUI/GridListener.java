@@ -13,7 +13,7 @@ public class GridListener implements ActionListener {
         JButton button = (JButton) e.getSource();
         if (button.getText().equals("Undo")) {
             if (GraphicalUI.getGameEngine().undoLastMove()) {
-                if (GraphicalUI.getCreation()) {
+                if (!GraphicalUI.getCompetitive()) {
 
                     GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
                     GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
@@ -56,7 +56,6 @@ public class GridListener implements ActionListener {
                 BoardJPanel.listeners = true;
                 BoardJPanel.setPlayer("black");
                 GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
-                GraphicalUI.resetModeButtons();
                 GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
                 GraphicalUI.feedback.setText("Board has been reset");
             } else {

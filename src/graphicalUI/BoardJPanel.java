@@ -78,7 +78,7 @@ public class BoardJPanel extends JPanel {
                         || (yRemainder > squareSize / 2 + border)) {
                     // check if user is attempting to delete stone
                     if (GraphicalUI.getDeleteStones()
-                            && GraphicalUI.getCreation()) {
+                            && !GraphicalUI.getCompetitive()) {
                         // remove selected stone from board
                         gameE.getCurrentBoard().set(xPos, yPos, 0);
                         GraphicalUI.feedback.setText("Stone removed from: "
@@ -139,10 +139,16 @@ public class BoardJPanel extends JPanel {
                             && (yRemainder < squareSize / 2 - border)
                             || (yRemainder > squareSize / 2 + border)) {
                         boolean[][] legalMoves = gameE.getLegalMoves(colour);
-                        if (legalMoves[xPos][yPos]) {
+                        // show grey stones when deleting
+                        if (GraphicalUI.getDeleteStones()){
+                        	greyCounters.set(xPos, yPos, -1);
+                        }
+                        // show colour of stone being placed
+                        else if (legalMoves[xPos][yPos]) {
                             greyCounters.set(xPos, yPos, colour);
-                        } else {
-                            // show red transparent stones for illegal moves
+                        }
+                        // show red stones for illegal moves
+                        else {
                             greyCounters.set(xPos, yPos, 3);
                         }
                         repaint();
@@ -154,6 +160,7 @@ public class BoardJPanel extends JPanel {
 
     // Draw counter onto position
     public boolean updateBoard(int x, int y, int c) {
+    	
         if (gameE.makeMove(new Coordinate(x, y), c)) {
             // move made, repaint board
             repaint();
@@ -167,11 +174,13 @@ public class BoardJPanel extends JPanel {
             GraphicalUI.feedback.setText(getColour(c) + " to position: " + x
                     + ", " + y);
             numStones = numStones + 1;
+            // TODO repaint board here?
             return true;
         } else {
             GraphicalUI.feedback.setText("Invalid move");
             return false;
         }
+        
     }
 
     public static void GUIAIMove() {
@@ -372,6 +381,14 @@ public class BoardJPanel extends JPanel {
                         // illegal
                     } else if (greyCounters.get(i, j) == 3) {
                         g.setColor(new Color(125, 0, 0, 150));
+                        g.fillOval(
+                                (squareSize + i * squareSize - stoneSize) - 2,
+                                (squareSize + j * squareSize - stoneSize) - 2,
+                                squareSize + 4, squareSize + 4);
+                    }
+                    else if (greyCounters.get(i, j) == -1) {
+                    	// show transparent grey stones when deleting
+                    	g.setColor(new Color(50,  50, 50, 150));
                         g.fillOval(
                                 (squareSize + i * squareSize - stoneSize) - 2,
                                 (squareSize + j * squareSize - stoneSize) - 2,

@@ -22,31 +22,10 @@ public class GridToggleListener implements ActionListener {
             }
         }
         if (button.getText().equals("Competitive Play Mode")) {
-            GraphicalUI.creationButton.setSelected(false);
-            GraphicalUI.setCreation(false);
-            if (!GraphicalUI.getCompetitive()) {
-                GraphicalUI.setCompetitive(true);
-                GraphicalUI.feedback
-                        .setText("\"Competitive Play Mode\" selected");
-            } else {
-                GraphicalUI.setCompetitive(false);
-                GraphicalUI.feedback
-                        .setText("\"Competitive Play Mode\" deselected");
-                BoardJPanel.listeners = true;
-            }
+            GraphicalUI.enterCompetitive();
         }
         if (button.getText().equals("Problem Creation Mode")) {
-            GraphicalUI.competitiveButton.setSelected(false);
-            GraphicalUI.setCompetitive(false);
-            if (!GraphicalUI.getCreation()) {
-                GraphicalUI.setCreation(true);
-                GraphicalUI.feedback
-                        .setText("\"Problem Creation Mode\" selected");
-            } else {
-                GraphicalUI.setCreation(false);
-                GraphicalUI.feedback
-                        .setText("\"Problem Creation Mode\" deselected");
-            }
+            GraphicalUI.enterCreation();
         }
     }
 
