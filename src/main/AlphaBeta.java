@@ -26,8 +26,8 @@ public class AlphaBeta extends AI {
     }
     
     @Override
-    public Coordinate nextMove(Board b, LegalMoveChecker lmc) {
-        this.lmc = lmc.clone();
+    public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
+        this.lmc = legalMoves.clone();
         Coordinate bestMove = null;
         
         // if objective is initially met pass
