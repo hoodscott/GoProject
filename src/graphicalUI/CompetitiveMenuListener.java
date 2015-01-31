@@ -13,11 +13,11 @@ public class CompetitiveMenuListener implements ActionListener {
 		// allow user to use competitive play mode options
         // swap player colours of AI/human
         if (e.getActionCommand().equals("Swap Player Colour")) {
-            BoardJPanel.changePlayer();
+            GraphicalUI.boardJP.changePlayer();
             GraphicalUI.feedback.setText("Colour swapped");
             // force AI to move first
         } else if (e.getActionCommand().equals("Make AI Move") && GraphicalUI.getCompetitive()) {
-            BoardJPanel.GUIAIMove();
+            GraphicalUI.boardJP.GUIAIMove();
         } else if (e.getActionCommand().equals("Select AI Type")) {
             Object[] aiValues = {"MiniMax", "AlphaBeta"};
             Component frame = null;
