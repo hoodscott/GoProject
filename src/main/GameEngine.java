@@ -113,9 +113,22 @@ public class GameEngine {
     //Checks whether the move is legal and if so, place the piece and return true
     //if the move is illegal, return false    
     public boolean makeMove(Coordinate coord, int colour) {
+            System.out.println("Current: ");
+            try{
+                System.out.println("Move: ("+coord.x+", "+coord.y+")");
+                System.out.println("Colour: "+colour);
+                System.out.println(Translator.translateToBoardInstruction(currentBoard));   
+            }
+            catch(BoardFormatException b){System.out.println(b.getMsg());}
         if (moveChecker.checkMove(currentBoard, coord, colour)) {
             moveChecker.addBoard(currentBoard);
             currentBoard = moveChecker.getLastLegal();
+            System.out.println("MoveChecker Added: ");
+            try{
+                System.out.println(Translator.translateToBoardInstruction(currentBoard));
+            }
+            catch(BoardFormatException b){System.out.println(b.getMsg());}
+            moveChecker.printHistory();
             return true;
         } else {
             return false;
