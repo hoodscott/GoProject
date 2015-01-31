@@ -97,11 +97,10 @@ public class LegalMoveChecker implements Cloneable {
         if (liberties == 0) {
             return false;
         }
-        
+
         //5. Tests for SuperKo; if yes - illegal
         for (Board b : moveHistory) {
             if (b.equals(bCopy)) {
-                System.out.println("Super Ko");
                 return false;
             }
         }
@@ -174,10 +173,5 @@ public class LegalMoveChecker implements Cloneable {
     public void printHistory()
     {
         System.out.println(moveHistory.toString());
-        for(Board b : moveHistory)
-        try{
-                System.out.println(Translator.translateToBoardInstruction(b));
-            }
-            catch(BoardFormatException berr){System.out.println(berr.getMsg());}
     }
 }
