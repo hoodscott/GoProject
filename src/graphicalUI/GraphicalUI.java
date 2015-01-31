@@ -43,7 +43,7 @@ public class GraphicalUI {
     private JLabel objectiveLabel, playerLabel, feedbackLabel;
     
     // private static instance variables for swing
-    private static JFrame frame;
+    static JFrame frame;
     private static boolean bounds, competitive; // for toggle buttons
     private static boolean mixedStones, deleteStones; // problem creation
     // options
@@ -246,6 +246,17 @@ public class GraphicalUI {
         creationFileMenu.getAccessibleContext().setAccessibleDescription(
                 "Menu with options during problem creation mode");
         menuBar.add(creationFileMenu);
+        
+        // Menu item for problem settings
+        menuItem = new JMenuItem("Objective & Bounds", KeyEvent.VK_O);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
+                ActionEvent.CTRL_MASK));
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Allow user to specify board objective and bounds");
+        menuItem.addActionListener(new ProblemSettingsListener());
+        creationFileMenu.add(menuItem);
+        
+        creationFileMenu.addSeparator();
         
         // Submenu for setting objective
         subMenu = new JMenu("Objective");
