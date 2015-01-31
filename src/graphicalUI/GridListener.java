@@ -33,8 +33,8 @@ public class GridListener implements ActionListener {
             if (true) {
                 if (GraphicalUI.getCompetitive()) {
                     GraphicalUI.feedback.setText(BoardJPanel.getPlayer() + " passes");
-                    BoardJPanel.changePlayer();
-                    BoardJPanel.GUIAIMove();
+                    GraphicalUI.boardJP.changePlayer();
+                    GraphicalUI.boardJP.GUIAIMove();
                     GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
                     GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
                     System.out.println(BoardJPanel.getPlayer());

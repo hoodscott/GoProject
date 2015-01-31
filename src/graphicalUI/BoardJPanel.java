@@ -96,8 +96,11 @@ public class BoardJPanel extends JPanel {
                             .setText("Select Closer To Intersection");
                     updated = false;
                 }
-
+                
+                // Let AI move and repaint if selected
                 GUIAIMove();
+                
+                repaint();
             }
         });
 
@@ -174,7 +177,6 @@ public class BoardJPanel extends JPanel {
             GraphicalUI.feedback.setText(getColour(c) + " to position: " + x
                     + ", " + y);
             numStones = numStones + 1;
-            // TODO repaint board here?
             return true;
         } else {
             GraphicalUI.feedback.setText("Invalid move");
@@ -183,7 +185,7 @@ public class BoardJPanel extends JPanel {
         
     }
 
-    public static void GUIAIMove() {
+    public void GUIAIMove() {
 		// Let AI make move when competitive play mode selected with
         // bounds and objective
         boolean competitive = GraphicalUI.getCompetitive();
@@ -212,13 +214,16 @@ public class BoardJPanel extends JPanel {
             
             GraphicalUI.feedback.setText("AI move: " + move);
             changePlayer();
+            
+            // Show AI's move without mouse movement
+            repaint();
             listeners = true;
         } else if (competitive
                 && (gameE.getObjective() == null || gameE.getAISearchValues() == null)) {
             GraphicalUI.feedback.setText("Please specify bounds and objective");
         }
     }
-
+ 
     // Load and draw board
     public void loadBoard(GameEngine ge) {
         gameE = ge;
@@ -401,7 +406,7 @@ public class BoardJPanel extends JPanel {
     }
 
     // helper method to change the colour of the current player
-    public static void changePlayer() {
+    public void changePlayer() {
         if (colour == 1) {
             colour++;
         } else {
