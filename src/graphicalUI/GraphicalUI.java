@@ -32,7 +32,7 @@ public class GraphicalUI {
     // private static instance variables
     private static GameEngine gameEngine;
     static String saveName;
-
+    
     // private instance variables for swing
     private JMenuBar menuBar;
     private JMenu fileMenu, subMenu;
@@ -46,9 +46,12 @@ public class GraphicalUI {
     private static boolean bounds, competitive; // for toggle buttons
     private static boolean mixedStones, deleteStones; // problem creation
     private static boolean problemSettings; // user selected objective and bounds
-    // options
+    // option
+    private static boolean rowNumbers;
+    
     private static JMenu competitiveFileMenu, creationFileMenu;
     private static JLabel aiLabel;
+    
     
     // public static instance variables for swing
     static JFrame frame;
@@ -306,7 +309,7 @@ public class GraphicalUI {
         menuBar.add(fileMenu);
 
         // menu item for a debug command
-        menuItem = new JMenuItem("Do A Debug", KeyEvent.VK_A);
+        menuItem = new JMenuItem("Toggle Row Numbers", KeyEvent.VK_A);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
                 ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
@@ -564,5 +567,14 @@ public class GraphicalUI {
     public static void setFrameTitle(String s){
     	frame.setTitle("GoProblemSolver: " + s);
     }
+
+    // getter and setter for the row numbers
+	public static void toggleRowNumbers() {
+		rowNumbers = !rowNumbers;
+	}
+	
+	public static boolean getRowNumbers(){
+		return rowNumbers;
+	}
 
 }

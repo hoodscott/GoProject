@@ -402,6 +402,20 @@ public class BoardJPanel extends JPanel {
                 }
             }
         }
+        
+        // shows row numbers
+        if (GraphicalUI.getRowNumbers()){
+        	// print row nums
+        	for (int i = 0; i < lines; i++){
+        		g.setColor(new Color(255,255,255,255));
+        		g.drawString(Integer.toString(i), squareSize + i*squareSize, 2*squareSize/5);
+        	}
+        	// print column nums
+        	for (int j = 0; j < lines; j++){
+        		g.setColor(new Color(0,0,0,255));
+        		g.drawString(Integer.toString(j), squareSize/5, squareSize + j*squareSize);
+    		}
+        }
 
     }
 
