@@ -72,7 +72,15 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
         	// set coordinates
         	coord1.setSelectedIndex(obj.getPosition().x);
         	coord2.setSelectedIndex(obj.getPosition().y);
-
+        }
+        
+        // Load values of the current bounds, if they exist
+        if (GraphicalUI.getBounds()){
+        	int[] bounds = GraphicalUI.getGameEngine().getAISearchValues();
+        	bc1.setSelectedIndex(bounds[0]);
+        	bc2.setSelectedIndex(bounds[1]);
+        	bc3.setSelectedIndex(bounds[2]);
+        	bc4.setSelectedIndex(bounds[3]);
         }
         
         

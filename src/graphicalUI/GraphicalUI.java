@@ -518,6 +518,7 @@ public class GraphicalUI {
 
     // Setters for GUI booleans
     public static void setProblemSettings(boolean b) {
+    	System.out.println("this used");
     	problemSettings = b;
     }
     
