@@ -406,7 +406,7 @@ public class BoardJPanel extends JPanel {
         if (GraphicalUI.getRowNumbers()){
         	// print row nums
         	for (int i = 0; i < lines; i++){
-        		g.setColor(new Color(255,255,255,255));
+        		g.setColor(new Color(0,0,0,255));
         		g.drawString(Integer.toString(i), squareSize + i*squareSize, 2*squareSize/5);
         	}
         	// print column nums
