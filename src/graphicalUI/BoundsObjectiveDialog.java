@@ -52,6 +52,30 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
         OKButton = new JButton("OK");
         cancelButton = new JButton("Cancel");
         
+        // Load values of the current objective if it exists
+        Objective obj = GraphicalUI.getGameEngine().getObjective();
+        if (obj!=null){
+        	// set colour
+        	if (obj.getStartingColour()==1){
+        		coloursBox.setSelectedIndex(0);
+        	}
+        	else if (obj.getStartingColour()==2){
+        		coloursBox.setSelectedIndex(1);
+        	}
+        	// set action
+        	if (obj.getOriginalAction().equals("kill")){
+        		coloursBox.setSelectedIndex(0);
+        	}
+        	else if (obj.getOriginalAction().equals("defend")){
+        		coloursBox.setSelectedIndex(1);
+        	}
+        	// set coordinates
+        	coord1.setSelectedIndex(obj.getPosition().x);
+        	coord2.setSelectedIndex(obj.getPosition().y);
+
+        }
+        
+        
         // Create panel for objective choice
         objectiveChoice = new JPanel();
         objectiveChoice.add(new JLabel("Objective: "));

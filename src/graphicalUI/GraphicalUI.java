@@ -552,7 +552,7 @@ public class GraphicalUI {
     	// enable creation tools
     	creationFileMenu.setEnabled(true);
     }
-
+     
     public static void setMixedStones(boolean b) {
         mixedStones = b;
     }
