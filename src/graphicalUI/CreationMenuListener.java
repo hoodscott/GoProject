@@ -12,28 +12,28 @@ public class CreationMenuListener implements ActionListener {
 			BoardJPanel.setPlayer("black");
 			GraphicalUI.setMixedStones(false);
 			GraphicalUI.setDeleteStones(false);
-			GraphicalUI.feedback.setText("Black stones selected");
+			GraphicalUI.updateMessage("Black stones selected");
 		} else if ((e.getActionCommand().equals("Use White Stones"))) {
 			// set down only white stones
 			BoardJPanel.setPlayer("white");
 			GraphicalUI.setMixedStones(false);
 			GraphicalUI.setDeleteStones(false);
-			GraphicalUI.feedback.setText("White stones selected");
+			GraphicalUI.updateMessage("White stones selected");
 		} else if ((e.getActionCommand().equals("Use Both Stones"))) {
 			// use a mixture of stones
 			GraphicalUI.setMixedStones(true);
 			GraphicalUI.setDeleteStones(false);
-			GraphicalUI.feedback.setText("Both stones selected");
+			GraphicalUI.updateMessage("Both stones selected");
 		} else if ((e.getActionCommand().equals("Delete Stones"))) {
 			// remove stones user clicks on
 			if (GraphicalUI.getDeleteStones()) {
 				GraphicalUI.setMixedStones(true);
 				GraphicalUI.setDeleteStones(false);
-				GraphicalUI.feedback.setText("Delete stones deselected");
+				GraphicalUI.updateMessage("Delete stones deselected");
 			} else {
 				GraphicalUI.setMixedStones(false);
 				GraphicalUI.setDeleteStones(true);
-				GraphicalUI.feedback.setText("Delete stones selected");
+				GraphicalUI.updateMessage("Delete stones selected");
 			}
 		}
 	}

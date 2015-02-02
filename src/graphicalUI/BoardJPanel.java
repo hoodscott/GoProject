@@ -81,7 +81,7 @@ public class BoardJPanel extends JPanel {
                             && !GraphicalUI.getCompetitive()) {
                         // remove selected stone from board
                         gameE.getCurrentBoard().set(xPos, yPos, 0);
-                        GraphicalUI.feedback.setText("Stone removed from: "
+                        GraphicalUI.updateMessage("Stone removed from: "
                                 + xPos + ", " + yPos);
                         repaint();
                         // else add stone to board
@@ -92,8 +92,7 @@ public class BoardJPanel extends JPanel {
                         // ON FIRST MOVE
                     }
                 } else {
-                    GraphicalUI.feedback
-                            .setText("Select Closer To Intersection");
+                    GraphicalUI.updateMessage("Select Closer To Intersection");
                     updated = false;
                 }
                 
@@ -174,12 +173,12 @@ public class BoardJPanel extends JPanel {
             }
 
             GraphicalUI.player.setText(getPlayer() + " to move");
-            GraphicalUI.feedback.setText(getColour(c) + " to position: " + x
+            GraphicalUI.updateMessage(getColour(c) + " to position: " + x
                     + ", " + y);
             numStones = numStones + 1;
             return true;
         } else {
-            GraphicalUI.feedback.setText("Invalid move");
+            GraphicalUI.updateMessage("Invalid move");
             return false;
         }
         
@@ -212,7 +211,7 @@ public class BoardJPanel extends JPanel {
             }
             catch(AIException e){move = e.getMsg();}
             
-            GraphicalUI.feedback.setText("AI move: " + move);
+            GraphicalUI.updateMessage("AI move: " + move);
             changePlayer();
             
             // Show AI's move without mouse movement
@@ -220,7 +219,7 @@ public class BoardJPanel extends JPanel {
             listeners = true;
         } else if (competitive
                 && (gameE.getObjective() == null || gameE.getAISearchValues() == null)) {
-            GraphicalUI.feedback.setText("Please specify bounds and objective");
+            GraphicalUI.updateMessage("Please specify bounds and objective");
         }
     }
  

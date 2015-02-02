@@ -126,7 +126,7 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
 
 			Objective setObj = new Objective(objAction,BoardJPanel.translatePlayer(objColour),new Coordinate(objCoord1,objCoord2));
             BoardJPanel.setObjective(setObj);
-            GraphicalUI.feedback.setText("Objective updated");
+            GraphicalUI.updateMessage("Objective updated");
             GraphicalUI.objective.setText(GraphicalUI.getGameEngine()
                     .getObjective().toString());
             
@@ -138,7 +138,7 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
             
             int[] newBounds = {bCoord1, bCoord2, bCoord3, bCoord4};
 			BoardJPanel.setBounds(newBounds);
-			GraphicalUI.feedback.setText("Bounds updated");
+			GraphicalUI.updateMessage("Bounds updated");
 			
 			// Tell GUI that user has set bounds/objectives
 			GraphicalUI.setProblemSettings(true);

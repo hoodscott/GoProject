@@ -66,23 +66,22 @@ public class FileMenuListener implements ActionListener {
                         GraphicalUI.objective
                                 .setText(localObjective.toString());
                     }
-                    GraphicalUI.feedback.setText("Board loaded");
+                    GraphicalUI.updateMessage("Board loaded");
 
                 } catch (BoardFormatException bfe) {
-                    GraphicalUI.feedback.setText(bfe.getMsg());
+                    GraphicalUI.updateMessage(bfe.getMsg());
                 }
             } else {
-                GraphicalUI.feedback
-                        .setText("User cancelled load board selection");
+                GraphicalUI.updateMessage("User cancelled load board selection");
             }
 
             // save current board to default location
         } else if (e.getActionCommand().equals("Save Problem")) {
             try {
                 FileIO.writeBoard(GraphicalUI.getGameEngine());
-                GraphicalUI.feedback.setText("Problem saved");
+                GraphicalUI.updateMessage("Problem saved");
             } catch (BoardFormatException bfe) {
-                GraphicalUI.feedback.setText(bfe.getMsg());
+                GraphicalUI.updateMessage(bfe.getMsg());
             }
 
             // save current board to specified location
@@ -98,16 +97,15 @@ public class FileMenuListener implements ActionListener {
                 	//save board
                     FileIO.writeBoard(GraphicalUI.getGameEngine(), saveBoard
                             .getSelectedFile().getAbsolutePath());
-                    GraphicalUI.feedback.setText("Problem saved");
+                    GraphicalUI.updateMessage("Problem saved");
                     // update title save name
                     GraphicalUI.saveName = saveBoard.getSelectedFile().getName();
                     GraphicalUI.setFrameTitle(GraphicalUI.saveName);
                 } catch (BoardFormatException bfe) {
-                    GraphicalUI.feedback.setText(bfe.getMsg());
+                    GraphicalUI.updateMessage(bfe.getMsg());
                 }
             } else {
-                GraphicalUI.feedback
-                        .setText("User cancelled save board selection");
+                GraphicalUI.updateMessage("User cancelled save board selection");
             }
         } // exit program
         else {

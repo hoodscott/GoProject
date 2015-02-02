@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -32,6 +33,7 @@ public class GraphicalUI {
     // private static instance variables
     private static GameEngine gameEngine;
     static String saveName;
+    private static ArrayList<String> messages;
     
     // private instance variables for swing
     private JMenuBar menuBar;
@@ -51,11 +53,12 @@ public class GraphicalUI {
     
     private static JMenu competitiveFileMenu, creationFileMenu;
     private static JLabel aiLabel;
+    private static JLabel feedback;
     
     
     // public static instance variables for swing
     static JFrame frame;
-    static JLabel player, feedback, objective, currentAILabel;
+    static JLabel player, objective, currentAILabel;
     static BoardJPanel boardJP;
     static Container pane;
     static JToggleButton creationButton, competitiveButton;
@@ -110,6 +113,12 @@ public class GraphicalUI {
         
         // set inital save name
         saveName = "Untitled";
+        
+        // initalise messages arraylist
+        messages = new ArrayList<>();
+        messages.add("");
+        messages.add("");
+        messages.add("Click to place stones.");
 
 		// START OF FRAME //
         // frame to hold all elements
@@ -313,7 +322,14 @@ public class GraphicalUI {
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
                 ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
-                "A magic trick; Debugs the entire program!");
+                "Shows the keyboard commands");
+        menuItem.addActionListener(new DebugMenuListener());
+        fileMenu.add(menuItem);
+        
+        // menu item for a debug command
+        menuItem = new JMenuItem("Show Log", KeyEvent.VK_A);
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Shows the log of the program");
         menuItem.addActionListener(new DebugMenuListener());
         fileMenu.add(menuItem);
 
@@ -575,6 +591,27 @@ public class GraphicalUI {
 	
 	public static boolean getRowNumbers(){
 		return rowNumbers;
+	}
+	
+	// user message methods
+	public static void updateMessage(String s){
+		messages.add(s);
+		int l = messages.size();
+		// html in a swing label...
+		// TODO find a nice way to show previous moves
+		// feedback.setText("<html>"+messages.get(l-1)+"<br>"+messages.get(l-2)+"<br>"+messages.get(l-3)+"</html>");
+		feedback.setText(messages.get(l-1));
+	}
+	
+	public static void resetMessage(){
+		messages = new ArrayList<>();
+		messages.add("");
+		messages.add("");
+		updateMessage("Board has been reset");
+	}
+
+	public static ArrayList<String> getMessages() {
+		return messages;
 	}
 
 }

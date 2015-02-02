@@ -15,11 +15,11 @@ public class GridToggleListener implements ActionListener {
             if (!GraphicalUI.getBounds()) {
                 GraphicalUI.setBounds(true);
                 GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                GraphicalUI.feedback.setText("Bounds shown");
+                GraphicalUI.updateMessage("Bounds shown");
             } else {
                 GraphicalUI.setBounds(false);
                 GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                GraphicalUI.feedback.setText("Bounds hidden");
+                GraphicalUI.updateMessage("Bounds hidden");
             }
         }
         if (button.getText().equals("Competitive Play Mode")) {

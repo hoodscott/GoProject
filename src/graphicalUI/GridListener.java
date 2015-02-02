@@ -17,29 +17,29 @@ public class GridListener implements ActionListener {
 
                     GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
                     GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                    GraphicalUI.feedback.setText("Undone move");
+                    GraphicalUI.updateMessage("Undone move");
                 } else {
                     GraphicalUI.boardJP.changePlayer();
                     GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
                     GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                    GraphicalUI.feedback.setText("Undone move");
+                    GraphicalUI.updateMessage("Undone move");
                 }
             } else {
-                GraphicalUI.feedback.setText("No more moves to undo");
+                GraphicalUI.updateMessage("No more moves to undo");
             }
         }
         if (button.getText().equals("Pass")) {
             // TODO create pass function in gameEngine
             if (true) {
                 if (GraphicalUI.getCompetitive()) {
-                    GraphicalUI.feedback.setText(BoardJPanel.getPlayer() + " passes");
+                    GraphicalUI.updateMessage(BoardJPanel.getPlayer() + " passes");
                     GraphicalUI.boardJP.changePlayer();
                     GraphicalUI.boardJP.GUIAIMove();
                     GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
                     GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
                     System.out.println(BoardJPanel.getPlayer());
                 } else {
-                    GraphicalUI.feedback.setText(BoardJPanel.getPlayer() + " passes");
+                    GraphicalUI.updateMessage(BoardJPanel.getPlayer() + " passes");
                     GraphicalUI.boardJP.changePlayer();
                     GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
                     GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
@@ -47,7 +47,7 @@ public class GridListener implements ActionListener {
                 }
 
             } else {
-                GraphicalUI.feedback.setText(BoardJPanel.getPlayer()
+                GraphicalUI.updateMessage(BoardJPanel.getPlayer()
                         + " could not pass");
             }
         }
@@ -57,9 +57,9 @@ public class GridListener implements ActionListener {
                 BoardJPanel.setPlayer("black");
                 GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
                 GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                GraphicalUI.feedback.setText("Board has been reset");
+                GraphicalUI.updateMessage("Board has been reset");
             } else {
-                GraphicalUI.feedback.setText("Nothing to reset");
+                GraphicalUI.updateMessage("Nothing to reset");
             }
         }
     }
