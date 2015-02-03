@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -32,7 +33,8 @@ public class GraphicalUI {
     // private static instance variables
     private static GameEngine gameEngine;
     static String saveName;
-
+    private static ArrayList<String> messages;
+    
     // private instance variables for swing
     private JMenuBar menuBar;
     private JMenu fileMenu, subMenu;
@@ -43,15 +45,20 @@ public class GraphicalUI {
     private JLabel objectiveLabel, playerLabel, feedbackLabel;
     
     // private static instance variables for swing
-    private static JFrame frame;
     private static boolean bounds, competitive; // for toggle buttons
     private static boolean mixedStones, deleteStones; // problem creation
-    // options
+    private static boolean problemSettings; // user selected objective and bounds
+    // option
+    private static boolean rowNumbers;
+    
     private static JMenu competitiveFileMenu, creationFileMenu;
     private static JLabel aiLabel;
+    private static JLabel feedback;
+    
     
     // public static instance variables for swing
-    static JLabel player, feedback, objective, currentAILabel;
+    static JFrame frame;
+    static JLabel player, objective, currentAILabel;
     static BoardJPanel boardJP;
     static Container pane;
     static JToggleButton creationButton, competitiveButton;
@@ -106,6 +113,12 @@ public class GraphicalUI {
         
         // set inital save name
         saveName = "Untitled";
+        
+        // initalise messages arraylist
+        messages = new ArrayList<>();
+        messages.add("");
+        messages.add("");
+        messages.add("Click to place stones.");
 
 		// START OF FRAME //
         // frame to hold all elements
@@ -247,58 +260,15 @@ public class GraphicalUI {
                 "Menu with options during problem creation mode");
         menuBar.add(creationFileMenu);
         
-        // Submenu for setting objective
-        subMenu = new JMenu("Objective");
-        subMenu.getAccessibleContext().setAccessibleDescription(
-                "Allows user to set the objective.");
-        subMenu.setMnemonic(KeyEvent.VK_O);
-
-        // Menu item for setting objective
-        menuItem = new JMenuItem("Set Objective", KeyEvent.VK_O);
+        // Menu item for problem settings
+        menuItem = new JMenuItem("Objective & Bounds", KeyEvent.VK_O);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
                 ActionEvent.CTRL_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
-                "Allow user to specify board objective");
-        menuItem.addActionListener(new ObjectiveMenuListener());
-        subMenu.add(menuItem);
-
-        // Menu item for removing objective
-        menuItem = new JMenuItem("Remove Objective", KeyEvent.VK_R);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,
-                ActionEvent.CTRL_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Removes objective from problem");
-        menuItem.addActionListener(new ObjectiveMenuListener());
-        subMenu.add(menuItem);
-
-        creationFileMenu.add(subMenu);
-
-        // Submenu for setting bounds
-        subMenu = new JMenu("Bounds");
-        subMenu.getAccessibleContext().setAccessibleDescription(
-                "Allows user to set bounds.");
-        subMenu.setMnemonic(KeyEvent.VK_B);
-
-        // Menu item for setting bounds
-        menuItem = new JMenuItem("Set Bounds", KeyEvent.VK_B);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B,
-                ActionEvent.SHIFT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Allow user to specify board bounds");
-        menuItem.addActionListener(new BoundsMenuListener());
-        subMenu.add(menuItem);
-
-        // Menu item for removing bounds
-        menuItem = new JMenuItem("Remove Bounds", KeyEvent.VK_R);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,
-                ActionEvent.SHIFT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Removes bounds from problem");
-        menuItem.addActionListener(new BoundsMenuListener());
-        subMenu.add(menuItem);
-
-        creationFileMenu.add(subMenu);
-
+                "Allow user to specify board objective and bounds");
+        menuItem.addActionListener(new ProblemSettingsListener());
+        creationFileMenu.add(menuItem);
+        
         creationFileMenu.addSeparator();
 
         // menu item for using black stones
@@ -348,11 +318,18 @@ public class GraphicalUI {
         menuBar.add(fileMenu);
 
         // menu item for a debug command
-        menuItem = new JMenuItem("Do A Debug", KeyEvent.VK_A);
+        menuItem = new JMenuItem("Toggle Row Numbers", KeyEvent.VK_A);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
                 ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
-                "A magic trick; Debugs the entire program!");
+                "Shows the keyboard commands");
+        menuItem.addActionListener(new DebugMenuListener());
+        fileMenu.add(menuItem);
+        
+        // menu item for a debug command
+        menuItem = new JMenuItem("Show Log", KeyEvent.VK_A);
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Shows the log of the program");
         menuItem.addActionListener(new DebugMenuListener());
         fileMenu.add(menuItem);
 
@@ -553,8 +530,16 @@ public class GraphicalUI {
     public static boolean getDeleteStones() {
         return deleteStones;
     }
+    
+    public static boolean getProblemSettings() {
+    	return problemSettings;
+    }
 
     // Setters for GUI booleans
+    public static void setProblemSettings(boolean b) {
+    	problemSettings = b;
+    }
+    
     public static void setBounds(boolean b) {
         bounds = b;
     }
@@ -586,7 +571,7 @@ public class GraphicalUI {
     	// enable creation tools
     	creationFileMenu.setEnabled(true);
     }
-
+     
     public static void setMixedStones(boolean b) {
         mixedStones = b;
     }
@@ -596,8 +581,37 @@ public class GraphicalUI {
     }
     
     public static void setFrameTitle(String s){
-    	System.out.println(s);
     	frame.setTitle("GoProblemSolver: " + s);
     }
+
+    // getter and setter for the row numbers
+	public static void toggleRowNumbers() {
+		rowNumbers = !rowNumbers;
+	}
+	
+	public static boolean getRowNumbers(){
+		return rowNumbers;
+	}
+	
+	// user message methods
+	public static void updateMessage(String s){
+		messages.add(s);
+		int l = messages.size();
+		// html in a swing label...
+		// TODO find a nice way to show previous moves
+		// feedback.setText("<html>"+messages.get(l-1)+"<br>"+messages.get(l-2)+"<br>"+messages.get(l-3)+"</html>");
+		feedback.setText(messages.get(l-1));
+	}
+	
+	public static void resetMessage(){
+		messages = new ArrayList<>();
+		messages.add("");
+		messages.add("");
+		updateMessage("Board has been reset");
+	}
+
+	public static ArrayList<String> getMessages() {
+		return messages;
+	}
 
 }
