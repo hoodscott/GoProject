@@ -50,12 +50,12 @@ public class GridToggleListener implements ActionListener {
             				JOptionPane.showMessageDialog(GraphicalUI.frame,"The AI will now play against itself.\n Feel free to use the pause button.");
             				GraphicalUI.pauseButton.setEnabled(true);
             				BoardJPanel.listeners = false;
-            				GraphicalUI.enterCompetitive();
+            				GraphicalUI.changeMode(true);
             				GraphicalUI.boardJP.GUIAIMove();
             			// Else AI vs human
             			} else {
             				BoardJPanel.AIvsAI = false;
-            				GraphicalUI.enterCompetitive();
+            				GraphicalUI.changeMode(true);
             				GraphicalUI.pauseButton.setEnabled(false);
             			}
             		} else {
@@ -77,12 +77,12 @@ public class GridToggleListener implements ActionListener {
         				JOptionPane.showMessageDialog(GraphicalUI.frame,"The AI will now play against itself.\n Feel free to use the pause button.");
         				GraphicalUI.pauseButton.setEnabled(true);
         				BoardJPanel.listeners = false;
-        				GraphicalUI.enterCompetitive();
+        				GraphicalUI.changeMode(true);
         				GraphicalUI.boardJP.GUIAIMove();
         			// Else AI vs human
         			} else {
         				BoardJPanel.AIvsAI = false;
-        				GraphicalUI.enterCompetitive();
+        				GraphicalUI.changeMode(true);
         				GraphicalUI.pauseButton.setEnabled(false);
         			}
         		} else {
@@ -91,7 +91,7 @@ public class GridToggleListener implements ActionListener {
         	}
         }
         if (button.getText().equals("Problem Creation Mode")) {
-            GraphicalUI.enterCreation();
+			GraphicalUI.changeMode(false);
         }
         if (button.getText().equals("Pause")) {
         	if (!BoardJPanel.pause) {

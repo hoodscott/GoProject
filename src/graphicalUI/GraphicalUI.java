@@ -564,34 +564,27 @@ public class GraphicalUI {
         bounds = b;
     }
     
-    public static void enterCompetitive(){
-    	// disable creation tools
-    	creationFileMenu.setEnabled(false);
-    	// change mode to competitive
-    	competitiveButton.setSelected(true);
-    	creationButton.setSelected(false);
-    	competitive = true;
-    	GraphicalUI.feedback.setText("Entered Competitive Mode");
-    	// enable competitive tools
-    	competitiveFileMenu.setEnabled(true);
-    	aiLabel.setVisible(true);
-    	currentAILabel.setVisible(true);
-    	passButton.setEnabled(true);
-    }
-    
-    public static void enterCreation(){
-    	// disable competitive tools
-    	competitiveFileMenu.setEnabled(false);
-    	aiLabel.setVisible(false);
-    	currentAILabel.setVisible(false);
-    	passButton.setEnabled(false);
-    	// change mode to creation
-    	competitiveButton.setSelected(false);
-    	creationButton.setSelected(true);
-    	competitive = false;
-    	GraphicalUI.feedback.setText("Entered Problem Creation Mode");
-    	// enable creation tools
-    	creationFileMenu.setEnabled(true);
+    // change the mode of the gui, true changes to competitive, false to creation
+    public static void changeMode(boolean competitiveMode){
+    	// set competitive mode tools
+    	competitiveFileMenu.setEnabled(competitiveMode);
+    	aiLabel.setVisible(competitiveMode);
+    	currentAILabel.setVisible(competitiveMode);
+    	passButton.setEnabled(competitiveMode);
+    	// set creation mode tools
+    	creationFileMenu.setEnabled(!competitiveMode);
+    	// set buttons and mode
+    	competitive = competitiveMode;
+    	competitiveButton.setSelected(competitiveMode);
+    	creationButton.setSelected(!competitiveMode);
+    	// set message
+    	if (competitiveMode){
+    		GraphicalUI.updateMessage("Entered Competitive Mode");
+    	}
+    	else {
+    		GraphicalUI.updateMessage("Entered Problem Creation Mode");
+
+    	}
     }
      
     public static void setMixedStones(boolean b) {
