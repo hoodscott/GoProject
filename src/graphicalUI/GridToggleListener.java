@@ -14,12 +14,23 @@ public class GridToggleListener implements ActionListener {
         if (button.getText().equals("Show Bounds")) {
             if (!GraphicalUI.getBounds()) {
                 GraphicalUI.setBounds(true);
-                GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+                GraphicalUI.boardJP.repaint();
                 GraphicalUI.updateMessage("Bounds shown");
             } else {
                 GraphicalUI.setBounds(false);
-                GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+                GraphicalUI.boardJP.repaint();
                 GraphicalUI.updateMessage("Bounds hidden");
+            }
+        }
+        if (button.getText().equals("Show Co-ordinates")) {
+            if (!GraphicalUI.getRowNumbers()) {
+                GraphicalUI.toggleRowNumbers();
+                GraphicalUI.boardJP.repaint();
+                GraphicalUI.updateMessage("Co-ordinates shown");
+            } else {
+                GraphicalUI.toggleRowNumbers();
+                GraphicalUI.boardJP.repaint();
+                GraphicalUI.updateMessage("Co-ordinates hidden");
             }
         }
         if (button.getText().equals("Competitive Play Mode")) {
@@ -39,6 +50,9 @@ public class GridToggleListener implements ActionListener {
         }
         if (button.getText().equals("Problem Creation Mode")) {
             GraphicalUI.enterCreation();
+        }
+        if (button.getText().equals("Pause")) {
+        	// TODO: Implement pause during AI vs. AI
         }
     }
 

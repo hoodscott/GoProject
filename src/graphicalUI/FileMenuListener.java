@@ -54,10 +54,10 @@ public class FileMenuListener implements ActionListener {
                             .getAISearchValues();
                     // TODO maybe check the objective and bounds are in the correct form
                     // this assumes the board is saved in the correct format
-                    GraphicalUI.setBounds(true);
-                    GraphicalUI.setProblemSettings(true);
                     if (BoardJPanel.searchSpace == null) {
                     	GraphicalUI.setProblemSettings(false);
+                    } else {
+                        GraphicalUI.setProblemSettings(true);
                     }
                     if (localObjective == null) {
                         GraphicalUI.objective.setText("Not specified");
