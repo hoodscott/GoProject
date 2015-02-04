@@ -40,7 +40,7 @@ public class GraphicalUI {
     private JMenu fileMenu, subMenu;
     private JMenuItem menuItem;
     private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
-    private JButton undoButton, resetButton, passButton;
+    private JButton undoButton, resetButton;
     private JToggleButton boundsButton, coordinatesButton;
     private JLabel objectiveLabel, playerLabel, feedbackLabel;
     
@@ -61,6 +61,7 @@ public class GraphicalUI {
     static JLabel player, objective, currentAILabel;
     static BoardJPanel boardJP;
     static Container pane;
+    static JButton passButton;
     static JToggleButton creationButton, competitiveButton, pauseButton;
     static String aiType;
     ;
@@ -481,6 +482,7 @@ public class GraphicalUI {
         // button to allow players to pass
         passButton = new JButton("Pass");
         passButton.setMnemonic(KeyEvent.VK_A);
+        passButton.setEnabled(false);
         gridPanel.add(passButton);
 
         // add action listener for this button
@@ -573,6 +575,7 @@ public class GraphicalUI {
     	competitiveFileMenu.setEnabled(true);
     	aiLabel.setVisible(true);
     	currentAILabel.setVisible(true);
+    	passButton.setEnabled(true);
     }
     
     public static void enterCreation(){
@@ -580,6 +583,7 @@ public class GraphicalUI {
     	competitiveFileMenu.setEnabled(false);
     	aiLabel.setVisible(false);
     	currentAILabel.setVisible(false);
+    	passButton.setEnabled(false);
     	// change mode to creation
     	competitiveButton.setSelected(false);
     	creationButton.setSelected(true);
