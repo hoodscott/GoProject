@@ -472,6 +472,15 @@ public class BoardJPanel extends JPanel {
             colour = Board.WHITE;
         }
     }
+    
+    public static void setPlayerInt(int player) {
+		if (player == 1){
+			colour = Board.BLACK;
+		}
+		if (player == 2){
+			colour = Board.WHITE;
+		}
+	}
 
     public static void setBounds(int[] aiSearchValues) {
         searchSpace = aiSearchValues;
@@ -500,5 +509,7 @@ public class BoardJPanel extends JPanel {
         }
 
     }
+
+	
 
 }

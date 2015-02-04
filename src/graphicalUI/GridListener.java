@@ -54,7 +54,7 @@ public class GridListener implements ActionListener {
         if (button.getText().equals("Reset")) {
             if (GraphicalUI.getGameEngine().restartBoard()) {
                 BoardJPanel.listeners = true;
-                BoardJPanel.setPlayer("black");
+                BoardJPanel.setPlayerInt(GraphicalUI.getGameEngine().getObjective().getStartingColour());
                 GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
                 GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
                 GraphicalUI.updateMessage("Board has been reset");
