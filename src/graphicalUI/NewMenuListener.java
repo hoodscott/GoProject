@@ -23,6 +23,7 @@ public class NewMenuListener implements ActionListener {
             GraphicalUI.objective.setText("No set objective");
             GraphicalUI.setProblemSettings(false);
             BoardJPanel.resetBounds();
+            GraphicalUI.updateBoundsButton(false);
         } else {
             // load specified board
             Object[] sizes = {"9", "13", "19"};
@@ -41,6 +42,7 @@ public class NewMenuListener implements ActionListener {
                 GraphicalUI.objective.setText("No set objective");
                 GraphicalUI.setProblemSettings(false);
                 BoardJPanel.resetBounds();
+                GraphicalUI.updateBoundsButton(false);
             }
         }
         GraphicalUI.saveName = "Untitled";

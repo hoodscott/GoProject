@@ -41,7 +41,7 @@ public class GraphicalUI {
     private JMenuItem menuItem;
     private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
     private JButton undoButton, resetButton;
-    private JToggleButton boundsButton, coordinatesButton;
+	private JToggleButton coordinatesButton;
     private JLabel objectiveLabel, playerLabel, feedbackLabel;
     
     // private static instance variables for swing
@@ -62,7 +62,7 @@ public class GraphicalUI {
     static BoardJPanel boardJP;
     static Container pane;
     static JButton passButton;
-    static JToggleButton creationButton, competitiveButton, pauseButton;
+    static JToggleButton creationButton, competitiveButton, pauseButton, boundsButton;
     static String aiType;
     ;
 
@@ -446,7 +446,7 @@ public class GraphicalUI {
         gridPanel.add(new JPanel());
         gridPanel.add(new JPanel());
 
-        // button to show bounds of problem
+        // toggle button to select competitive mode
         competitiveButton = new JToggleButton("Competitive Play Mode");
         competitiveButton.setMnemonic(KeyEvent.VK_P);
         gridPanel.add(competitiveButton);
@@ -454,7 +454,7 @@ public class GraphicalUI {
         // add action listener for this button
         competitiveButton.addActionListener(new GridToggleListener());
 
-        // button to show bounds of problem
+        // toggle button to select creation mode
         creationButton = new JToggleButton("Problem Creation Mode");
         creationButton.setMnemonic(KeyEvent.VK_C);
         creationButton.setSelected(true);
@@ -500,6 +500,7 @@ public class GraphicalUI {
         // button to show bounds of problem
         boundsButton = new JToggleButton("Show Bounds");
         boundsButton.setMnemonic(KeyEvent.VK_B);
+        boundsButton.setEnabled(false);
         gridPanel.add(boundsButton);
 
         // add action listener for this button
@@ -633,6 +634,11 @@ public class GraphicalUI {
 
 	public static ArrayList<String> getMessages() {
 		return messages;
+	}
+	
+	// method to enable/disable bounds button
+	public static void updateBoundsButton(boolean b){
+		boundsButton.setEnabled(b);
 	}
 
 }
