@@ -404,15 +404,17 @@ public class BoardJPanel extends JPanel {
         
         // shows row numbers
         if (GraphicalUI.getRowNumbers()){
-        	// print row nums
-        	for (int i = 0; i < lines; i++){
+        	// print row nums execpt 0
+        	for (int i = 2; i <= lines; i++){
         		g.setColor(new Color(0,0,0,255));
-        		g.drawString(Integer.toString(i), squareSize + i*squareSize, 2*squareSize/5);
+        		g.setFont(new Font("Ariel", Font.BOLD, 14));
+        		// skip 0 so numbers look more presentable
+        		g.drawString(Integer.toString(i-1),i * squareSize-4, squareSize-4);
         	}
         	// print column nums
-        	for (int j = 0; j < lines; j++){
+        	for (int j = 1; j <= lines; j++){
         		g.setColor(new Color(0,0,0,255));
-        		g.drawString(Integer.toString(j), squareSize/5, squareSize + j*squareSize);
+        		g.drawString(Integer.toString(j-1),squareSize-18, j * squareSize);
     		}
         }
 

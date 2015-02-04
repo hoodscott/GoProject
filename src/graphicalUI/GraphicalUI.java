@@ -41,7 +41,7 @@ public class GraphicalUI {
     private JMenuItem menuItem;
     private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
     private JButton undoButton, resetButton, passButton;
-    private JToggleButton boundsButton;
+    private JToggleButton boundsButton, coordinatesButton;
     private JLabel objectiveLabel, playerLabel, feedbackLabel;
     
     // private static instance variables for swing
@@ -61,7 +61,7 @@ public class GraphicalUI {
     static JLabel player, objective, currentAILabel;
     static BoardJPanel boardJP;
     static Container pane;
-    static JToggleButton creationButton, competitiveButton;
+    static JToggleButton creationButton, competitiveButton, pauseButton;
     static String aiType;
     ;
 
@@ -485,6 +485,15 @@ public class GraphicalUI {
 
         // add action listener for this button
         passButton.addActionListener(new GridListener());
+        
+        // button to allow players to pass
+        pauseButton = new JToggleButton("Pause");
+        pauseButton.setMnemonic(KeyEvent.VK_S);
+        pauseButton.setEnabled(false);
+        gridPanel.add(pauseButton);
+
+        // add action listener for this button
+        pauseButton.addActionListener(new GridToggleListener());
 
         // button to show bounds of problem
         boundsButton = new JToggleButton("Show Bounds");
@@ -493,6 +502,14 @@ public class GraphicalUI {
 
         // add action listener for this button
         boundsButton.addActionListener(new GridToggleListener());
+        
+        // button to show bounds of problem
+        coordinatesButton = new JToggleButton("Show Co-ordinates");
+        coordinatesButton.setMnemonic(KeyEvent.VK_O);
+        gridPanel.add(coordinatesButton);
+
+        // add action listener for this button
+        coordinatesButton.addActionListener(new GridToggleListener());
 
         // add grid panel to button panel
         buttonPanel.add(gridPanel, BorderLayout.SOUTH);

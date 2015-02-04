@@ -14,6 +14,8 @@ public class DebugMenuListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Toggle Row Numbers")) {
             GraphicalUI.toggleRowNumbers();
+            // repaint immediately
+            GraphicalUI.boardJP.repaint();
         }
         else if (e.getActionCommand().equals("Show Log")){
         	JFrame logFrame = new JFrame("Log");
