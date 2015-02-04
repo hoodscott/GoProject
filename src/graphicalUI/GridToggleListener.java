@@ -37,22 +37,68 @@ public class GridToggleListener implements ActionListener {
         	if (!GraphicalUI.getProblemSettings()) {
         		JOptionPane.showMessageDialog(GraphicalUI.frame,"Please select your bounds and objectives.");
         		ProblemSettingsListener.selectionBox();
-        		// TODO: Add input box to choose human/AI here
         		if (!BoundsObjectiveDialog.cancelled) {
-        			GraphicalUI.enterCompetitive();
+            		// create dialog box to enter competitive mode after player choice
+            		PlayerChooseDialog pcd = new PlayerChooseDialog(GraphicalUI.frame);
+            		pcd.pack();
+            		pcd.setLocationRelativeTo(GraphicalUI.frame);
+            		pcd.setVisible(true);
+            		if (!PlayerChooseDialog.cancelled) {
+            			// Enabled AI vs AI mode
+            			if (PlayerChooseDialog.AIvsAI) {
+            				BoardJPanel.AIvsAI = true;
+            				JOptionPane.showMessageDialog(GraphicalUI.frame,"The AI will now play against itself.\n Feel free to use the pause button.");
+            				GraphicalUI.pauseButton.setEnabled(true);
+            				BoardJPanel.listeners = false;
+            				GraphicalUI.enterCompetitive();
+            				GraphicalUI.boardJP.GUIAIMove();
+            			// Else AI vs human
+            			} else {
+            				BoardJPanel.AIvsAI = false;
+            				GraphicalUI.enterCompetitive();
+            				GraphicalUI.pauseButton.setEnabled(false);
+            			}
+            		} else {
+            			GraphicalUI.competitiveButton.setSelected(false);
+            		}
+        		}
+        		
+        	// When player has already set problem settings
+        	} else {
+        		// create dialog box to enter competitive mode after player choice
+        		PlayerChooseDialog pcd = new PlayerChooseDialog(GraphicalUI.frame);
+        		pcd.pack();
+        		pcd.setLocationRelativeTo(GraphicalUI.frame);
+        		pcd.setVisible(true);
+        		// Enabled AI vs AI mode
+        		if (!PlayerChooseDialog.cancelled) {
+        			if (PlayerChooseDialog.AIvsAI) {
+        				BoardJPanel.AIvsAI = true;
+        				JOptionPane.showMessageDialog(GraphicalUI.frame,"The AI will now play against itself.\n Feel free to use the pause button.");
+        				GraphicalUI.pauseButton.setEnabled(true);
+        				BoardJPanel.listeners = false;
+        				GraphicalUI.enterCompetitive();
+        				GraphicalUI.boardJP.GUIAIMove();
+        			// Else AI vs human
+        			} else {
+        				BoardJPanel.AIvsAI = false;
+        				GraphicalUI.enterCompetitive();
+        				GraphicalUI.pauseButton.setEnabled(false);
+        			}
         		} else {
         			GraphicalUI.competitiveButton.setSelected(false);
         		}
-        	} else {
-        		// TODO: Add input box to choose human/AI here too
-        		GraphicalUI.enterCompetitive();
         	}
         }
         if (button.getText().equals("Problem Creation Mode")) {
             GraphicalUI.enterCreation();
         }
         if (button.getText().equals("Pause")) {
-        	// TODO: Implement pause during AI vs. AI
+        	if (!BoardJPanel.pause) {
+        		BoardJPanel.pause = true;
+        	} else {
+        		BoardJPanel.pause = false;
+        	}
         }
     }
 

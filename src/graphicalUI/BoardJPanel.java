@@ -3,6 +3,7 @@ package graphicalUI;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.swing.JPanel;
 
@@ -23,7 +24,7 @@ public class BoardJPanel extends JPanel {
     public static GameEngine gameE;
     public int numStones = 0;
     static int[] searchSpace;
-    static boolean listeners;
+    static boolean listeners, AIvsAI, pause;
     private static boolean updated;
 
     // Board constructor
@@ -41,6 +42,7 @@ public class BoardJPanel extends JPanel {
         searchSpace = gameE.getAISearchValues();
         listeners = true;
         updated = true;
+        pause = false;
 
         // Add stone to board when user clicks
         this.addMouseListener(new MouseAdapter() {
@@ -97,7 +99,9 @@ public class BoardJPanel extends JPanel {
                 }
                 
                 // Let AI move and repaint if selected
-                GUIAIMove();
+                if (updated && listeners) {
+                	GUIAIMove();
+                }
                 
                 repaint();
             }
@@ -106,6 +110,10 @@ public class BoardJPanel extends JPanel {
         // Show transparent grey stones
         this.addMouseMotionListener(new MouseAdapter() {
             public void mouseMoved(MouseEvent e) {
+            	if (AIvsAI) {
+            		GUIAIMove();
+            		return;
+            	}
                 if (!listeners) {
                     return;
                 }
@@ -187,9 +195,10 @@ public class BoardJPanel extends JPanel {
     public void GUIAIMove() {
 		// Let AI make move when competitive play mode selected with
         // bounds and objective
+    	if (AIvsAI && !pause) pause(1);
         boolean competitive = GraphicalUI.getCompetitive();
         if (competitive && gameE.getObjective() != null
-                && gameE.getAISearchValues() != null && listeners && updated) {
+                && gameE.getAISearchValues() != null) {
             listeners = false;
             switch (GraphicalUI.aiType) {
                 case "MiniMax":
@@ -210,16 +219,25 @@ public class BoardJPanel extends JPanel {
                 move = gameE.aiMove();
             }
             catch(AIException e){move = e.getMsg();}
-            
             GraphicalUI.updateMessage("AI move: " + move);
             changePlayer();
             
             // Show AI's move without mouse movement
             repaint();
+         
             listeners = true;
         } else if (competitive
                 && (gameE.getObjective() == null || gameE.getAISearchValues() == null)) {
             GraphicalUI.updateMessage("Please specify bounds and objective");
+        }
+    }
+    
+    // Method to pause for a certain amount of seconds
+    private static void pause(int seconds){
+        Date start = new Date();
+        Date end = new Date();
+        while(end.getTime() - start.getTime() < seconds * 1000){
+            end = new Date();
         }
     }
  
