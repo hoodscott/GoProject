@@ -24,7 +24,7 @@ public class BoardJPanel extends JPanel {
     public static GameEngine gameE;
     public int numStones = 0;
     static int[] searchSpace;
-    static boolean listeners, AIvsAI, pause;
+    static boolean listeners, AIvsAI;
     private static boolean updated;
 
     // Board constructor
@@ -42,7 +42,6 @@ public class BoardJPanel extends JPanel {
         searchSpace = gameE.getAISearchValues();
         listeners = true;
         updated = true;
-        pause = false;
 
         // Add stone to board when user clicks
         this.addMouseListener(new MouseAdapter() {
@@ -110,10 +109,6 @@ public class BoardJPanel extends JPanel {
         // Show transparent grey stones
         this.addMouseMotionListener(new MouseAdapter() {
             public void mouseMoved(MouseEvent e) {
-            	if (AIvsAI) {
-            		GUIAIMove();
-            		return;
-            	}
                 if (!listeners) {
                     return;
                 }
@@ -195,7 +190,6 @@ public class BoardJPanel extends JPanel {
     public void GUIAIMove() {
 		// Let AI make move when competitive play mode selected with
         // bounds and objective
-    	if (AIvsAI && !pause) pause(1);
         boolean competitive = GraphicalUI.getCompetitive();
         if (competitive && gameE.getObjective() != null
                 && gameE.getAISearchValues() != null) {
@@ -220,24 +214,17 @@ public class BoardJPanel extends JPanel {
             }
             catch(AIException e){move = e.getMsg();}
             GraphicalUI.updateMessage("AI move: " + move);
+            System.out.println(move);
             changePlayer();
             
             // Show AI's move without mouse movement
             repaint();
          
-            listeners = true;
+            // Allow user to move unless AI vs AI
+            if (!AIvsAI) listeners = true;
         } else if (competitive
                 && (gameE.getObjective() == null || gameE.getAISearchValues() == null)) {
             GraphicalUI.updateMessage("Please specify bounds and objective");
-        }
-    }
-    
-    // Method to pause for a certain amount of seconds
-    private static void pause(int seconds){
-        Date start = new Date();
-        Date end = new Date();
-        while(end.getTime() - start.getTime() < seconds * 1000){
-            end = new Date();
         }
     }
  

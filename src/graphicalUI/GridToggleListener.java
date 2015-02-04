@@ -44,20 +44,7 @@ public class GridToggleListener implements ActionListener {
             		pcd.setLocationRelativeTo(GraphicalUI.frame);
             		pcd.setVisible(true);
             		if (!PlayerChooseDialog.cancelled) {
-            			// Enabled AI vs AI mode
-            			if (PlayerChooseDialog.AIvsAI) {
-            				BoardJPanel.AIvsAI = true;
-            				JOptionPane.showMessageDialog(GraphicalUI.frame,"The AI will now play against itself.\n Feel free to use the pause button.");
-            				GraphicalUI.pauseButton.setEnabled(true);
-            				BoardJPanel.listeners = false;
-            				GraphicalUI.enterCompetitive();
-            				GraphicalUI.boardJP.GUIAIMove();
-            			// Else AI vs human
-            			} else {
-            				BoardJPanel.AIvsAI = false;
-            				GraphicalUI.enterCompetitive();
-            				GraphicalUI.pauseButton.setEnabled(false);
-            			}
+            			setUp();
             		} else {
             			GraphicalUI.competitiveButton.setSelected(false);
             		}
@@ -70,21 +57,8 @@ public class GridToggleListener implements ActionListener {
         		pcd.pack();
         		pcd.setLocationRelativeTo(GraphicalUI.frame);
         		pcd.setVisible(true);
-        		// Enabled AI vs AI mode
         		if (!PlayerChooseDialog.cancelled) {
-        			if (PlayerChooseDialog.AIvsAI) {
-        				BoardJPanel.AIvsAI = true;
-        				JOptionPane.showMessageDialog(GraphicalUI.frame,"The AI will now play against itself.\n Feel free to use the pause button.");
-        				GraphicalUI.pauseButton.setEnabled(true);
-        				BoardJPanel.listeners = false;
-        				GraphicalUI.enterCompetitive();
-        				GraphicalUI.boardJP.GUIAIMove();
-        			// Else AI vs human
-        			} else {
-        				BoardJPanel.AIvsAI = false;
-        				GraphicalUI.enterCompetitive();
-        				GraphicalUI.pauseButton.setEnabled(false);
-        			}
+        			setUp();
         		} else {
         			GraphicalUI.competitiveButton.setSelected(false);
         		}
@@ -93,13 +67,22 @@ public class GridToggleListener implements ActionListener {
         if (button.getText().equals("Problem Creation Mode")) {
             GraphicalUI.enterCreation();
         }
-        if (button.getText().equals("Pause")) {
-        	if (!BoardJPanel.pause) {
-        		BoardJPanel.pause = true;
-        	} else {
-        		BoardJPanel.pause = false;
-        	}
-        }
+    }
+    
+    public void setUp() {
+		// Enabled AI vs AI mode
+		if (PlayerChooseDialog.AIvsAI) {
+			BoardJPanel.AIvsAI = true;
+			JOptionPane.showMessageDialog(GraphicalUI.frame,"Use the 'Next AI Move Button' (ALT + I keys)\n to allow the AI to play against itself. \n");
+			GraphicalUI.aiMoveButton.setEnabled(true);
+			BoardJPanel.listeners = false;
+			GraphicalUI.enterCompetitive();
+		// Else AI vs human
+		} else {
+			BoardJPanel.AIvsAI = false;
+			GraphicalUI.enterCompetitive();
+			GraphicalUI.aiMoveButton.setEnabled(false);
+		}
     }
 
 }
