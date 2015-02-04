@@ -62,5 +62,9 @@ public class GridListener implements ActionListener {
                 GraphicalUI.updateMessage("Nothing to reset");
             }
         }
+        if (button.getText().equals("Next AI Move")) {
+            GraphicalUI.boardJP.GUIAIMove();
+            GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
+        }
     }
 }

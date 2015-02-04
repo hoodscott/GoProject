@@ -62,7 +62,8 @@ public class GraphicalUI {
     static BoardJPanel boardJP;
     static Container pane;
     static JButton passButton;
-    static JToggleButton creationButton, competitiveButton, pauseButton, boundsButton;
+    static JToggleButton creationButton, competitiveButton, boundsButton;
+    static JButton aiMoveButton;
     static String aiType;
     ;
 
@@ -488,14 +489,14 @@ public class GraphicalUI {
         // add action listener for this button
         passButton.addActionListener(new GridListener());
         
-        // button to allow players to pass
-        pauseButton = new JToggleButton("Pause");
-        pauseButton.setMnemonic(KeyEvent.VK_S);
-        pauseButton.setEnabled(false);
-        gridPanel.add(pauseButton);
+        // button to let AI move
+        aiMoveButton = new JButton("Next AI Move");
+        aiMoveButton.setMnemonic(KeyEvent.VK_I);
+        aiMoveButton.setEnabled(false);
+        gridPanel.add(aiMoveButton);
 
         // add action listener for this button
-        pauseButton.addActionListener(new GridToggleListener());
+        aiMoveButton.addActionListener(new GridListener());
 
         // button to show bounds of problem
         boundsButton = new JToggleButton("Show Bounds");
@@ -506,7 +507,7 @@ public class GraphicalUI {
         // add action listener for this button
         boundsButton.addActionListener(new GridToggleListener());
         
-        // button to show bounds of problem
+        // button to show co-ordinates of problem
         coordinatesButton = new JToggleButton("Show Co-ordinates");
         coordinatesButton.setMnemonic(KeyEvent.VK_O);
         gridPanel.add(coordinatesButton);
