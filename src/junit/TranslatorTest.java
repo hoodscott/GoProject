@@ -9,7 +9,7 @@ import main.Board;
 import main.BoardFormatException;
 import main.Coordinate;
 import main.GameEngine;
-import main.Objective;
+import ai.Objective;
 import main.Translator;
 
 import org.junit.After;

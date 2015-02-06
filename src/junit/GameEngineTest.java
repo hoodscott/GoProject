@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
-import main.AI;
+import ai.AI;
 import main.Coordinate;
 import main.GameEngine;
 import main.Board;
-import main.Objective;
+import ai.Objective;
 
 import org.junit.After;
 import org.junit.Before;

@@ -8,7 +8,7 @@ import javax.swing.JFileChooser;
 
 import main.BoardFormatException;
 import main.FileIO;
-import main.Objective;
+import ai.Objective;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

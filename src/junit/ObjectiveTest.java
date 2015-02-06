@@ -3,7 +3,7 @@ package junit;
 import static org.junit.Assert.*;
 import main.Board;
 import main.Coordinate;
-import main.Objective;
+import ai.Objective;
 
 import org.junit.After;
 import org.junit.Before;

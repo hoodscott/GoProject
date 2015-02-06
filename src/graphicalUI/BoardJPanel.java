@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 import main.Board;
 import main.Coordinate;
 import main.GameEngine;
-import main.Objective;
-import main.AIException;
+import ai.Objective;
+import ai.AIException;
 
 @SuppressWarnings("serial")
 public class BoardJPanel extends JPanel {
