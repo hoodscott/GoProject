@@ -54,13 +54,17 @@ public class GridListener implements ActionListener {
         if (button.getText().equals("Reset")) {
             if (GraphicalUI.getGameEngine().restartBoard()) {
                 BoardJPanel.listeners = true;
-                BoardJPanel.setPlayer("black");
+                BoardJPanel.setPlayerInt(GraphicalUI.getGameEngine().getObjective().getStartingColour());
                 GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
                 GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
                 GraphicalUI.updateMessage("Board has been reset");
             } else {
                 GraphicalUI.updateMessage("Nothing to reset");
             }
+        }
+        if (button.getText().equals("Next AI Move")) {
+            GraphicalUI.boardJP.GUIAIMove();
+            GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
         }
     }
 }

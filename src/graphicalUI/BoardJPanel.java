@@ -3,6 +3,7 @@ package graphicalUI;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.swing.JPanel;
 
@@ -23,7 +24,7 @@ public class BoardJPanel extends JPanel {
     public static GameEngine gameE;
     public int numStones = 0;
     static int[] searchSpace;
-    static boolean listeners;
+    static boolean listeners, AIvsAI;
     private static boolean updated;
 
     // Board constructor
@@ -97,7 +98,9 @@ public class BoardJPanel extends JPanel {
                 }
                 
                 // Let AI move and repaint if selected
-                GUIAIMove();
+                if (updated && listeners) {
+                	GUIAIMove();
+                }
                 
                 repaint();
             }
@@ -189,7 +192,7 @@ public class BoardJPanel extends JPanel {
         // bounds and objective
         boolean competitive = GraphicalUI.getCompetitive();
         if (competitive && gameE.getObjective() != null
-                && gameE.getAISearchValues() != null && listeners && updated) {
+                && gameE.getAISearchValues() != null) {
             listeners = false;
             switch (GraphicalUI.aiType) {
                 case "MiniMax":
@@ -210,13 +213,15 @@ public class BoardJPanel extends JPanel {
                 move = gameE.aiMove();
             }
             catch(AIException e){move = e.getMsg();}
-            
             GraphicalUI.updateMessage("AI move: " + move);
+            System.out.println(move);
             changePlayer();
             
             // Show AI's move without mouse movement
             repaint();
-            listeners = true;
+         
+            // Allow user to move unless AI vs AI
+            if (!AIvsAI) listeners = true;
         } else if (competitive
                 && (gameE.getObjective() == null || gameE.getAISearchValues() == null)) {
             GraphicalUI.updateMessage("Please specify bounds and objective");
@@ -454,6 +459,15 @@ public class BoardJPanel extends JPanel {
             colour = Board.WHITE;
         }
     }
+    
+    public static void setPlayerInt(int player) {
+		if (player == 1){
+			colour = Board.BLACK;
+		}
+		if (player == 2){
+			colour = Board.WHITE;
+		}
+	}
 
     public static void setBounds(int[] aiSearchValues) {
         searchSpace = aiSearchValues;
@@ -482,5 +496,7 @@ public class BoardJPanel extends JPanel {
         }
 
     }
+
+	
 
 }

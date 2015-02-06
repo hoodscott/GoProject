@@ -138,6 +138,7 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
             
             int[] newBounds = {bCoord1, bCoord2, bCoord3, bCoord4};
 			BoardJPanel.setBounds(newBounds);
+			GraphicalUI.updateBoundsButton(true);
 			GraphicalUI.updateMessage("Bounds updated");
 			
 			// Tell GUI that user has set bounds/objectives

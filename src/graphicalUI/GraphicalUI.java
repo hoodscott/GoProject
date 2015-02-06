@@ -40,8 +40,8 @@ public class GraphicalUI {
     private JMenu fileMenu, subMenu;
     private JMenuItem menuItem;
     private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
-    private JButton undoButton, resetButton, passButton;
-    private JToggleButton boundsButton, coordinatesButton;
+    private JButton undoButton, resetButton;
+	private JToggleButton coordinatesButton;
     private JLabel objectiveLabel, playerLabel, feedbackLabel;
     
     // private static instance variables for swing
@@ -61,7 +61,9 @@ public class GraphicalUI {
     static JLabel player, objective, currentAILabel;
     static BoardJPanel boardJP;
     static Container pane;
-    static JToggleButton creationButton, competitiveButton, pauseButton;
+    static JButton passButton;
+    static JToggleButton creationButton, competitiveButton, boundsButton;
+    static JButton aiMoveButton;
     static String aiType;
     ;
 
@@ -445,7 +447,7 @@ public class GraphicalUI {
         gridPanel.add(new JPanel());
         gridPanel.add(new JPanel());
 
-        // button to show bounds of problem
+        // toggle button to select competitive mode
         competitiveButton = new JToggleButton("Competitive Play Mode");
         competitiveButton.setMnemonic(KeyEvent.VK_P);
         gridPanel.add(competitiveButton);
@@ -453,7 +455,7 @@ public class GraphicalUI {
         // add action listener for this button
         competitiveButton.addActionListener(new GridToggleListener());
 
-        // button to show bounds of problem
+        // toggle button to select creation mode
         creationButton = new JToggleButton("Problem Creation Mode");
         creationButton.setMnemonic(KeyEvent.VK_C);
         creationButton.setSelected(true);
@@ -481,29 +483,31 @@ public class GraphicalUI {
         // button to allow players to pass
         passButton = new JButton("Pass");
         passButton.setMnemonic(KeyEvent.VK_A);
+        passButton.setEnabled(false);
         gridPanel.add(passButton);
 
         // add action listener for this button
         passButton.addActionListener(new GridListener());
         
-        // button to allow players to pass
-        pauseButton = new JToggleButton("Pause");
-        pauseButton.setMnemonic(KeyEvent.VK_S);
-        pauseButton.setEnabled(false);
-        gridPanel.add(pauseButton);
+        // button to let AI move
+        aiMoveButton = new JButton("Next AI Move");
+        aiMoveButton.setMnemonic(KeyEvent.VK_I);
+        aiMoveButton.setEnabled(false);
+        gridPanel.add(aiMoveButton);
 
         // add action listener for this button
-        pauseButton.addActionListener(new GridToggleListener());
+        aiMoveButton.addActionListener(new GridListener());
 
         // button to show bounds of problem
         boundsButton = new JToggleButton("Show Bounds");
         boundsButton.setMnemonic(KeyEvent.VK_B);
+        boundsButton.setEnabled(false);
         gridPanel.add(boundsButton);
 
         // add action listener for this button
         boundsButton.addActionListener(new GridToggleListener());
         
-        // button to show bounds of problem
+        // button to show co-ordinates of problem
         coordinatesButton = new JToggleButton("Show Co-ordinates");
         coordinatesButton.setMnemonic(KeyEvent.VK_O);
         gridPanel.add(coordinatesButton);
@@ -561,32 +565,27 @@ public class GraphicalUI {
         bounds = b;
     }
     
-    public static void enterCompetitive(){
-    	// disable creation tools
-    	creationFileMenu.setEnabled(false);
-    	// change mode to competitive
-    	competitiveButton.setSelected(true);
-    	creationButton.setSelected(false);
-    	competitive = true;
-    	GraphicalUI.feedback.setText("Entered Competitive Mode");
-    	// enable competitive tools
-    	competitiveFileMenu.setEnabled(true);
-    	aiLabel.setVisible(true);
-    	currentAILabel.setVisible(true);
-    }
-    
-    public static void enterCreation(){
-    	// disable competitive tools
-    	competitiveFileMenu.setEnabled(false);
-    	aiLabel.setVisible(false);
-    	currentAILabel.setVisible(false);
-    	// change mode to creation
-    	competitiveButton.setSelected(false);
-    	creationButton.setSelected(true);
-    	competitive = false;
-    	GraphicalUI.feedback.setText("Entered Problem Creation Mode");
-    	// enable creation tools
-    	creationFileMenu.setEnabled(true);
+    // change the mode of the gui, true changes to competitive, false to creation
+    public static void changeMode(boolean competitiveMode){
+    	// set competitive mode tools
+    	competitiveFileMenu.setEnabled(competitiveMode);
+    	aiLabel.setVisible(competitiveMode);
+    	currentAILabel.setVisible(competitiveMode);
+    	passButton.setEnabled(competitiveMode);
+    	// set creation mode tools
+    	creationFileMenu.setEnabled(!competitiveMode);
+    	// set buttons and mode
+    	competitive = competitiveMode;
+    	competitiveButton.setSelected(competitiveMode);
+    	creationButton.setSelected(!competitiveMode);
+    	// set message
+    	if (competitiveMode){
+    		GraphicalUI.updateMessage("Entered Competitive Mode");
+    	}
+    	else {
+    		GraphicalUI.updateMessage("Entered Problem Creation Mode");
+
+    	}
     }
      
     public static void setMixedStones(boolean b) {
@@ -629,6 +628,11 @@ public class GraphicalUI {
 
 	public static ArrayList<String> getMessages() {
 		return messages;
+	}
+	
+	// method to enable/disable bounds button
+	public static void updateBoundsButton(boolean b){
+		boundsButton.setEnabled(b);
 	}
 
 }

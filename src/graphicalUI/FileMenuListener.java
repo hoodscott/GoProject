@@ -52,12 +52,16 @@ public class FileMenuListener implements ActionListener {
                             .getObjective();
                     BoardJPanel.searchSpace = GraphicalUI.getGameEngine()
                             .getAISearchValues();
+                    // set initial player
+                    BoardJPanel.setPlayerInt(GraphicalUI.getGameEngine().getObjective().getStartingColour());
+                    GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
                     // TODO maybe check the objective and bounds are in the correct form
                     // this assumes the board is saved in the correct format
                     if (BoardJPanel.searchSpace == null) {
                     	GraphicalUI.setProblemSettings(false);
                     } else {
                         GraphicalUI.setProblemSettings(true);
+                        GraphicalUI.updateBoundsButton(true);
                     }
                     if (localObjective == null) {
                         GraphicalUI.objective.setText("Not specified");
