@@ -1,6 +1,10 @@
-package main;
+package ai;
 
 //Holds objective for a player and assesses whether it is met or not.
+
+import main.Board;
+import main.Coordinate;
+
 public class Objective {
 
     public enum Action {KILL, DEFEND}
@@ -13,7 +17,7 @@ public class Objective {
     private final Coordinate position;
 
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
-    public Objective(String action, int colour, Coordinate position) {
+    public Objective(String action, int colour, Coordinate position){
         startingColour = colour;
         this.action = translateToAction(action);
         if (startingColour == Board.BLACK) {

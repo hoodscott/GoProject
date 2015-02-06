@@ -1,7 +1,12 @@
-package main;
+package ai;
 
 import java.util.ArrayList;
-import main.Objective.Action;
+import main.Board;
+import main.BoardFormatException;
+import main.Coordinate;
+import main.LegalMoveChecker;
+import ai.Objective.Action;
+import main.Translator;
 
 public class MiniMax extends AI {
 
@@ -24,13 +29,13 @@ public class MiniMax extends AI {
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) throws AIException{
         lmc = legalMoves.clone();
-        int searchSpace = (upperBoundX - lowerBoundX + 1) * (upperBoundY - lowerBoundY + 1);
+        //int searchSpace = (upperBoundX - lowerBoundX + 1) * (upperBoundY - lowerBoundY + 1);
         //System.out.println("Possible Search Space: " + searchSpace + "! or " + factorial(searchSpace));
 
         //Checks if objective for killing is already met and passes accordingly. 
         //For defending, all possible substates need to be checked.
+        
         if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
-            //System.out.println("The given objective group is already dead");
             return new Coordinate(-1, -1);
         }
 
@@ -39,12 +44,10 @@ public class MiniMax extends AI {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (lmc.checkMove(b, currentCoord, colour)) {
                     Board currentState = lmc.getLastLegal();
-                    //System.out.println("Considering ("+x+","+y+"):");
-                    //printGameBoard(currentState);
                     lmc.addBoard(currentState);
                     int result = min(currentState, false);
-                    //System.out.println("Result: "+result);
                     lmc.removeLast();
+                    
                     //If success is guaranteed.
                     if (result == 1) {
                         return currentCoord;
@@ -61,8 +64,6 @@ public class MiniMax extends AI {
 
         //If the defended group has been killed, return failure.
         if (opponentAction == Action.KILL && evaluator.checkSucceeded(b, opponent)) {
-            //System.out.println("Defeated at:");
-            //printGameBoard(b);
             return -1;
         }
 
@@ -72,11 +73,8 @@ public class MiniMax extends AI {
                 if (lmc.checkMove(b, currentCoord, colour)) {
                     //moved = true;
                     Board currentState = lmc.getLastLegal();
-                    //System.out.println("Considering ("+x+","+y+"):");
-                    //printGameBoard(currentState);
                     lmc.addBoard(currentState);
                     int result = min(currentState, false);
-                    //System.out.println("Min: "+result);
                     lmc.removeLast();
 
                     //If success is guaranteed.
@@ -94,8 +92,6 @@ public class MiniMax extends AI {
 
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
-            //System.out.println("AI successfully defended at: lb");
-            //printGameBoard(b);
             return -1;
         } 
         //If there are no more legal moves and the AI's defended group still lives.
@@ -109,8 +105,6 @@ public class MiniMax extends AI {
 
         //If the AI has captured the opposing group
         if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
-            //System.out.println("Succeeded at:");
-            //printGameBoard(b);
             return 1;
         }
 
@@ -120,11 +114,8 @@ public class MiniMax extends AI {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (lmc.checkMove(b, currentCoord, opponent)) {
                     Board currentState = lmc.getLastLegal();
-                    //System.out.println("Considering ("+x+","+y+"):");
-                    //printGameBoard(currentState);
                     lmc.addBoard(currentState);
                     int result = max(currentState, false);
-                    //System.out.println("Max: "+result);
                     lmc.removeLast();
 
                     //If failure is guaranteed.
@@ -137,14 +128,11 @@ public class MiniMax extends AI {
 
         //Passes and tests if the opponent still can/will make moves
         if (!passed) {
-            //System.out.println("Opponent passed.");
             return max(b, true);
         }
 
         //If the AI's stone group can no longer be captured.
         if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
-            //System.out.println("Opponent successfully defended");
-            //printGameBoard(b);
             return 1;
         } 
         //If there are no more legal moves and the AI's defended group still lives.
