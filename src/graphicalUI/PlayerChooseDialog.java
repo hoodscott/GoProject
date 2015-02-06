@@ -7,7 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import main.Coordinate;
-import main.Objective;
+import ai.Objective;
 
 import java.awt.*;
 import java.awt.event.*;
