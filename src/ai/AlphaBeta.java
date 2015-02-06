@@ -1,6 +1,9 @@
-package main;
+package ai;
 
-import main.Objective.Action;
+import main.Board;
+import main.Coordinate;
+import main.LegalMoveChecker;
+import ai.Objective.Action;
 
 public class AlphaBeta extends AI {
 

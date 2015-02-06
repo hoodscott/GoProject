@@ -1,4 +1,4 @@
-package main;
+package ai;
 
 //This exception is for AI instances and is to be thrown when an AI no longer makes a move.
 public class AIException extends Exception{

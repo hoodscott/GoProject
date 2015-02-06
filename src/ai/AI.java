@@ -1,6 +1,11 @@
-package main;
+package ai;
 
 //This is the abstract class for all AI types to extend.
+
+import main.Board;
+import main.Coordinate;
+import main.LegalMoveChecker;
+
 public abstract class AI {
 
     //These bounds define the space that should be searched by the AI on the board. It is ensured beforehand, that they are within the board.
@@ -8,6 +13,7 @@ public abstract class AI {
     protected int upperBoundX;
     protected int lowerBoundY;
     protected int upperBoundY;
+    protected String thoughts;
 
     //Colour of the AI
     protected int colour;
