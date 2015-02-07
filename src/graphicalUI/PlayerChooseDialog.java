@@ -17,7 +17,7 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel playerBlackChoice, playerWhiteChoice, finishButtons;
 	@SuppressWarnings("rawtypes")
-	private JComboBox optionsWhiteBox, optionsBlackBox, playFirstBox;
+	private JComboBox optionsWhiteBox, optionsBlackBox;
 	private JButton OKButton, cancelButton;
 	public static boolean cancelled, AIvsAI;
 
@@ -34,10 +34,6 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
         String[] playerOptionsWhite = {"Human","MiniMax","AlphaBeta"};
         optionsWhiteBox = new JComboBox(playerOptionsWhite);
         optionsBlackBox = new JComboBox(playerOptionsWhite);
-        
-        // TODO: Add in a move first option?
-        String[] playFirst = {"Human","AI"};
-        playFirstBox = new JComboBox(playFirst);
         
         // Buttons for user selection
         OKButton = new JButton("OK");
@@ -80,17 +76,19 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
 				if (currentPlayer.equals("White")) GraphicalUI.boardJP.changePlayer();
 				GraphicalUI.aiType = whitePlayer;
 				GraphicalUI.updateMessage("AI type selected: " + whitePlayer);
+				AIvsAI = false;
 	            GraphicalUI.currentAILabel.setText(whitePlayer);
 			} else if (whitePlayer.equals("Human") && (blackPlayer.equals("AlphaBeta") || blackPlayer.equals("MiniMax"))) {
 				if (currentPlayer.equals("Black")) GraphicalUI.boardJP.changePlayer();
 				GraphicalUI.aiType = blackPlayer;
 				GraphicalUI.updateMessage("AI type selected: " + blackPlayer);
+				AIvsAI = true;
 	            GraphicalUI.currentAILabel.setText(blackPlayer);
 			}
 			
 			// else AI vs AI mode
 			if ((blackPlayer.equals("AlphaBeta") || blackPlayer.equals("MiniMax"))
-					&& whitePlayer.equals("AlphaBeta") || blackPlayer.equals("MiniMax")) {
+					&& (whitePlayer.equals("AlphaBeta") || whitePlayer.equals("MiniMax"))) {
 				// TODO: Allow 2 separate AIs to play against each other?
 				GraphicalUI.aiType = blackPlayer;
 				GraphicalUI.updateMessage("AI type selected: " + blackPlayer);

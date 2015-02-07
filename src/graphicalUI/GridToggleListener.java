@@ -82,6 +82,7 @@ public class GridToggleListener implements ActionListener {
 			BoardJPanel.AIvsAI = false;
 			GraphicalUI.changeMode(true);
 			GraphicalUI.aiMoveButton.setEnabled(false);
+			BoardJPanel.listeners = true;
 		}
     }
 
