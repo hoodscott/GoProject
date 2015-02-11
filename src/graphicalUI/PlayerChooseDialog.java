@@ -82,7 +82,7 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
 				if (currentPlayer.equals("Black")) GraphicalUI.boardJP.changePlayer();
 				GraphicalUI.aiType = blackPlayer;
 				GraphicalUI.updateMessage("AI type selected: " + blackPlayer);
-				AIvsAI = true;
+				AIvsAI = false;
 	            GraphicalUI.currentAILabel.setText(blackPlayer);
 			}
 			
