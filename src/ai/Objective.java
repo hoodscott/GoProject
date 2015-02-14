@@ -1,13 +1,15 @@
 package ai;
 
 //Holds objective for a player and assesses whether it is met or not.
-
 import main.Board;
 import main.Coordinate;
 
 public class Objective {
 
-    public enum Action {KILL, DEFEND}
+    public enum Action {
+
+        KILL, DEFEND
+    }
 
     Action black;
     Action white;
@@ -17,7 +19,7 @@ public class Objective {
     private final Coordinate position;
 
     //Objective Constructor, the text should adhere the appropriate format, containing the colour this objective is for.
-    public Objective(String action, int colour, Coordinate position){
+    public Objective(String action, int colour, Coordinate position) {
         startingColour = colour;
         this.action = translateToAction(action);
         if (startingColour == Board.BLACK) {
@@ -29,12 +31,12 @@ public class Objective {
         }
         this.position = position;
     }
-    
+
     //Returns original action
     public String getOriginalAction() {
         return translateToString(action);
     }
-    
+
     //Gets action corresponding to colour
     public Action getAction(int colour) {
         switch (colour) {
@@ -45,11 +47,13 @@ public class Objective {
         }
         return null;
     }
+
     //Returns position to be defended
+
     public Coordinate getPosition() {
         return position;
     }
-    
+
     //Translates Action to String
     private String translateToString(Action action) {
         switch (action) {
@@ -60,7 +64,7 @@ public class Objective {
         }
         return null;
     }
-    
+
     //Translates the action String into the corresponding Action
     private Action translateToAction(String action) {
         if ("kill".equals(action)) {
@@ -68,7 +72,7 @@ public class Objective {
         }
         return Action.DEFEND;
     }
-    
+
     //Opposing Action
     private Action getOpposingAction(Action action) {
         switch (action) {
@@ -101,12 +105,12 @@ public class Objective {
     public boolean isStarting(int colour) {
         return colour == startingColour;
     }
-    
+
     //Returns starting colour
     public int getStartingColour() {
         return startingColour;
     }
-    
+
     //Gets opponent colour
     public int getOtherColour(int colour) {
         if (colour == Board.BLACK) {
@@ -124,7 +128,7 @@ public class Objective {
             return "White";
         }
     }
-    
+
     //ToString, Somewhat obsolete but will stay here for tests.
     @Override
     public String toString() {

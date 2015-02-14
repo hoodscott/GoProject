@@ -9,7 +9,9 @@ public class Board {
     public static final int EMPTY = 0;
     public static final int BLACK = 1;
     public static final int WHITE = 2;
+    public static final int EMPTY_AI = 3;
     public static final char C_EMPTY = '.';
+    public static final char C_EMPTY_AI = '-';
     public static final char C_BLACK = 'b';
     public static final char C_WHITE = 'w';
     public static final String S_EMPTY = "empty";
@@ -57,7 +59,23 @@ public class Board {
 
     //Tests for equality among Boards. Use with care.
     public boolean equals(Board b) {
-        return (b != null) && Arrays.deepEquals(boardRep, b.getRaw());
+        if (b == null) {
+            return false;
+        }
+        int[][] otherBoardRep = b.getRaw();
+        for (int i = 0; i < otherBoardRep.length; i++) {
+            for (int j = 0; j < otherBoardRep[0].length; j++) {
+                int p1 = otherBoardRep[i][j];
+                int p2 = boardRep[i][j];
+                if (p1 != p2) {
+                    if (!((p1 == EMPTY_AI || p1 == EMPTY) && (p2 == EMPTY_AI || p2 == EMPTY))) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
     // Make deep copy of original Board

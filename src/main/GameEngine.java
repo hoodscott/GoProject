@@ -15,7 +15,7 @@ public class GameEngine {
     private AI ai;
     private Objective objective;
     private boolean inGame;
-    private int[] aiSearchValues;
+    //private int[] aiSearchValues;
     private Board initialBoard;
 
     // Default Constructor
@@ -28,17 +28,13 @@ public class GameEngine {
         this(board, null);
     }
 
-    //Initialises GameEngine with Board and Objective .
-    public GameEngine(Board board, Objective objective) {
-        this(board, objective, null);
-    }
+    //Initialises GameEngine with Board, Objective.
 
-    //Initialises GameEngine with Board, Objective and searchValues to be used by the AI.
-    public GameEngine(Board board, Objective objective, int[] searchValues) {
+    public GameEngine(Board board, Objective objective) {
         currentBoard = initialBoard = board;
         this.objective = objective;
         moveChecker = new LegalMoveChecker();
-        aiSearchValues = searchValues;
+        //aiSearchValues = searchValues;
     }
 
     // Checks entire board for legal moves and returns them as a 2D boolean array
@@ -67,11 +63,6 @@ public class GameEngine {
     }
 
     //Returns ai search values
-    public int[] getAISearchValues() {
-        return aiSearchValues;
-    }
-
-    //Returns ai search values
     public AI getAI() {
         return ai;
     }
@@ -80,17 +71,13 @@ public class GameEngine {
     public boolean isInGame() {
         return inGame;
     }
-    
+
     //Sets game to start, enabling moves 
     public void startGame() {
         inGame = true;
     }
 
     // Setters for search space and objective for GUI use
-    public void setBounds(int[] aiSearchValues) {
-        this.aiSearchValues = aiSearchValues;
-    }
-    
     //Sets the objective on the game engine
     public void setObjective(Objective objective) {
         this.objective = objective;
@@ -98,16 +85,16 @@ public class GameEngine {
 
     //Sets the AI to be a minimax algorithm
     public void setMiniMax(int colour) {
-        ai = new MiniMax(objective, colour, aiSearchValues);
+        ai = new MiniMax(objective, colour);
     }
 
     // Sets the AI to be an alpha beta algorithm
     public void setAlphaBeta(int colour) {
-        ai = new AlphaBeta(objective, colour, aiSearchValues);
+        ai = new AlphaBeta(objective, colour);
     }
 
     //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
-    public String aiMove() throws AIException{
+    public String aiMove() throws AIException {
         Coordinate c = ai.nextMove(currentBoard, moveChecker);
         if (c.x == -1 && c.y == -1) {
             return "passes";
@@ -116,8 +103,10 @@ public class GameEngine {
             return "moves to (" + c.x + "," + c.y + ")";
         }
     }
+
     //Checks whether the move is legal and if so, place the piece and return true
     //if the move is illegal, return false    
+
     public boolean makeMove(Coordinate coord, int colour) {
         if (moveChecker.checkMove(currentBoard, coord, colour)) {
             moveChecker.addBoard(currentBoard);
@@ -127,7 +116,7 @@ public class GameEngine {
             return false;
         }
     }
-    
+
     //Attempts to undo last move. If there are no more moves, returns false.
     public boolean undoLastMove() {
         if (moveChecker.isEmpty()) {
@@ -136,7 +125,7 @@ public class GameEngine {
         currentBoard = moveChecker.removeLast();
         return true;
     }
-    
+
     //Restarts board by undoing all moves on the board.
     public boolean restartBoard() {
         if (moveChecker.isEmpty()) {

@@ -17,37 +17,33 @@ public class MiniMax extends AI {
     Action miniAction;
     Action opponentAction;
 
-    public MiniMax(Objective objective, int c, int[] searchScope) {
+    public MiniMax(Objective objective, int c) {
         evaluator = objective;
         colour = c;
         opponent = evaluator.getOtherColour(colour);
-        setBounds(searchScope);
         miniAction = evaluator.getAction(colour);
         opponentAction = evaluator.getAction(opponent);
     }
 
     @Override
-    public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) throws AIException{
+    public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) throws AIException {
         lmc = legalMoves.clone();
-        //int searchSpace = (upperBoundX - lowerBoundX + 1) * (upperBoundY - lowerBoundY + 1);
-        //System.out.println("Possible Search Space: " + searchSpace + "! or " + factorial(searchSpace));
 
         //Checks if objective for killing is already met and passes accordingly. 
         //For defending, all possible substates need to be checked.
-        
         if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
             return new Coordinate(-1, -1);
         }
 
-        for (int x = lowerBoundX; x <= upperBoundX; x++) {
-            for (int y = lowerBoundY; y <= upperBoundY; y++) {
+        for (int x = 0; x <= b.getWidth(); x++) {
+            for (int y = b.getHeight(); y <= b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
-                if (lmc.checkMove(b, currentCoord, colour)) {
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour)) {
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
                     int result = min(currentState, false);
                     lmc.removeLast();
-                    
+
                     //If success is guaranteed.
                     if (result == 1) {
                         return currentCoord;
@@ -67,10 +63,10 @@ public class MiniMax extends AI {
             return -1;
         }
 
-        for (int x = lowerBoundX; x <= upperBoundX; x++) {
-            for (int y = lowerBoundY; y <= upperBoundY; y++) {
+        for (int x = 0; x <= b.getWidth(); x++) {
+            for (int y = 0; y <= b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
-                if (lmc.checkMove(b, currentCoord, colour)) {
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour)) {
                     //moved = true;
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
@@ -93,8 +89,7 @@ public class MiniMax extends AI {
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
             return -1;
-        } 
-        //If there are no more legal moves and the AI's defended group still lives.
+        } //If there are no more legal moves and the AI's defended group still lives.
         else {
             return 1;
         }
@@ -109,10 +104,10 @@ public class MiniMax extends AI {
         }
 
         //Tries all legal moves in search scope
-        for (int x = lowerBoundX; x <= upperBoundX; x++) {
-            for (int y = lowerBoundY; y <= upperBoundY; y++) {
+        for (int x = 0; x <= b.getWidth(); x++) {
+            for (int y = 0; y <= b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
-                if (lmc.checkMove(b, currentCoord, opponent)) {
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, opponent)) {
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
                     int result = max(currentState, false);
@@ -134,13 +129,12 @@ public class MiniMax extends AI {
         //If the AI's stone group can no longer be captured.
         if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
             return 1;
-        } 
-        //If there are no more legal moves and the AI's defended group still lives.
+        } //If there are no more legal moves and the AI's defended group still lives.
         else {
             return -1;
         }
     }
-    
+
     //-----------------------------
     //METHODS USED FOR TESTING ONLY
     //-----------------------------
