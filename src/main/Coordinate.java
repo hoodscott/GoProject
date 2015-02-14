@@ -9,7 +9,7 @@ public class Coordinate {
         this.x = x;
         this.y = y;
     }
-    
+
     @Override
     public String toString() {
         return String.valueOf(this.x) + " ," + String.valueOf(this.y);

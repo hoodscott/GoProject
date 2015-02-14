@@ -274,7 +274,8 @@ public class TextUI {
             System.out.println(message);
             printGameBoard(true);
             boardSaved = false;
-        } catch (BoardFormatException | AIException a) {System.out.println("AI: "+a.getMessage());
+        } catch (BoardFormatException | AIException a) {
+            System.out.println("AI: " + a.getMessage());
         }
     }
 
@@ -495,7 +496,6 @@ public class TextUI {
     }
 
     //Adds details to a board view. Currently just board indexing.
-
     public ArrayList<String> addBoardDetails(ArrayList<String> board) {
 
         //indices
