@@ -35,15 +35,16 @@ public class ObjectiveTest {
         assertEquals(original, "kill");
     }
     /*
-    @Test
-    public void testGetAction() {
-        String enemyAction = objective.getAction(2);
-        String action = objective.getAction(1);
+     @Test
+     public void testGetAction() {
+     String enemyAction = objective.getAction(2);
+     String action = objective.getAction(1);
 
-        assertEquals(enemyAction, "defend");
-        assertEquals(action, "kill");
-    }
-    */
+     assertEquals(enemyAction, "defend");
+     assertEquals(action, "kill");
+     }
+     */
+
     @Test
     public void testGetPosition() {
         Coordinate position = objective.getPosition();

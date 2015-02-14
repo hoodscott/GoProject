@@ -34,28 +34,27 @@ public class GraphicalUI {
     private static GameEngine gameEngine;
     static String saveName;
     private static ArrayList<String> messages;
-    
+
     // private instance variables for swing
     private JMenuBar menuBar;
     private JMenu fileMenu, subMenu;
     private JMenuItem menuItem;
     private JPanel boardPanel, labelPanel, buttonPanel, gridPanel;
     private JButton undoButton, resetButton;
-	private JToggleButton coordinatesButton;
+    private JToggleButton coordinatesButton;
     private JLabel objectiveLabel, playerLabel, feedbackLabel;
-    
+
     // private static instance variables for swing
     private static boolean bounds, competitive; // for toggle buttons
     private static boolean mixedStones, deleteStones; // problem creation
     private static boolean problemSettings; // user selected objective and bounds
     // option
     private static boolean rowNumbers;
-    
+
     private static JMenu competitiveFileMenu, creationFileMenu;
     private static JLabel aiLabel;
     public static JLabel feedback;
-    
-    
+
     // public static instance variables for swing
     static JFrame frame;
     static JLabel player, objective, currentAILabel;
@@ -65,6 +64,7 @@ public class GraphicalUI {
     static JToggleButton creationButton, competitiveButton, boundsButton;
     static JButton aiMoveButton;
     static String aiType;
+
     ;
 
     /**
@@ -106,23 +106,23 @@ public class GraphicalUI {
 
         // set stones to alternate as default
         mixedStones = true;
-        
+
         // initial mode as creation
         competitive = false;
 
         // default AI as minimax
         aiType = "MiniMax";
-        
+
         // set inital save name
         saveName = "Untitled";
-        
+
         // initalise messages arraylist
         messages = new ArrayList<>();
         messages.add("");
         messages.add("");
         messages.add("Click to place stones.");
 
-		// START OF FRAME //
+        // START OF FRAME //
         // frame to hold all elements
         frame = new JFrame();
         Insets ins = frame.getInsets();
@@ -132,7 +132,7 @@ public class GraphicalUI {
         frame.setSize(frameSize);
         frame.setPreferredSize(frameSize);
         frame.setMinimumSize(frameSize);
-		// inner class to make sure all processes are terminated when the
+        // inner class to make sure all processes are terminated when the
         // program is closed
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent close) {
@@ -142,7 +142,7 @@ public class GraphicalUI {
         // set window title
         setFrameTitle(saveName);
 
-		// START OF MENUBAR //
+        // START OF MENUBAR //
         // Create the menu bar.
         menuBar = new JMenuBar();
 
@@ -224,8 +224,6 @@ public class GraphicalUI {
         competitiveFileMenu.setEnabled(competitive);
         menuBar.add(competitiveFileMenu);
 
-        
-
         // Menu item for swapping player colour
         menuItem = new JMenuItem("Swap Player Colour", KeyEvent.VK_S);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
@@ -261,7 +259,7 @@ public class GraphicalUI {
         creationFileMenu.getAccessibleContext().setAccessibleDescription(
                 "Menu with options during problem creation mode");
         menuBar.add(creationFileMenu);
-        
+
         // Menu item for problem settings
         menuItem = new JMenuItem("Objective & Bounds", KeyEvent.VK_O);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
@@ -270,7 +268,7 @@ public class GraphicalUI {
                 "Allow user to specify board objective and bounds");
         menuItem.addActionListener(new ProblemSettingsListener());
         creationFileMenu.add(menuItem);
-        
+
         creationFileMenu.addSeparator();
 
         // menu item for using black stones
@@ -327,7 +325,7 @@ public class GraphicalUI {
                 "Shows the keyboard commands");
         menuItem.addActionListener(new DebugMenuListener());
         fileMenu.add(menuItem);
-        
+
         // menu item for a debug command
         menuItem = new JMenuItem("Show Log", KeyEvent.VK_A);
         menuItem.getAccessibleContext().setAccessibleDescription(
@@ -354,14 +352,14 @@ public class GraphicalUI {
         // add entire menu bar to frame
         frame.setJMenuBar(menuBar);
 
-		// END OF MENUBAR //
+        // END OF MENUBAR //
         // START OF PANE LAYOUT //
         // border layout for frame
         pane = frame.getContentPane();
         pane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         pane.setLayout(new BorderLayout());
 
-		// START OF BOARD PANEL //
+        // START OF BOARD PANEL //
         // left panel for the board
         boardPanel = new JPanel();
         boardPanel.setBackground(Color.lightGray);
@@ -374,14 +372,14 @@ public class GraphicalUI {
 
         pane.add(boardPanel, BorderLayout.WEST);
 
-		// END OF BOARD PANEL
+        // END OF BOARD PANEL
         // START OF BUTTON PANEL //
         // right panel for buttons
         buttonPanel = new JPanel(new GridLayout(0, 1));
         buttonPanel.setBorder(BorderFactory
                 .createEtchedBorder(EtchedBorder.LOWERED));
 
-		// START OF LABEL PANEL //
+        // START OF LABEL PANEL //
         // top right panel for choosing player and move
         labelPanel = new JPanel(new GridLayout(0, 2));
         labelPanel.setBackground(Color.lightGray);
@@ -420,17 +418,17 @@ public class GraphicalUI {
         // add labels to panel
         labelPanel.add(feedbackLabel);
         labelPanel.add(feedback);
-        
+
         // add padding to panel
         labelPanel.add(new JPanel());
         labelPanel.add(new JPanel());
-        
+
         // labels to show current AI type
         aiLabel = new JLabel("    AI Type: ");
         aiLabel.setVisible(false);
         currentAILabel = new JLabel(aiType);
         currentAILabel.setVisible(false);
-        
+
         // add labels to panel
         labelPanel.add(aiLabel);
         labelPanel.add(currentAILabel);
@@ -438,7 +436,7 @@ public class GraphicalUI {
         // add label panel to top of button panel
         buttonPanel.add(labelPanel, BorderLayout.NORTH);
 
-		// END OF LABEL PANEL //
+        // END OF LABEL PANEL //
         // START OF LABEL PANEL //
         // grid panel for some buttons
         gridPanel = new JPanel(new GridLayout(0, 2));
@@ -488,7 +486,7 @@ public class GraphicalUI {
 
         // add action listener for this button
         passButton.addActionListener(new GridListener());
-        
+
         // button to let AI move
         aiMoveButton = new JButton("Next AI Move");
         aiMoveButton.setMnemonic(KeyEvent.VK_I);
@@ -506,7 +504,7 @@ public class GraphicalUI {
 
         // add action listener for this button
         boundsButton.addActionListener(new GridToggleListener());
-        
+
         // button to show co-ordinates of problem
         coordinatesButton = new JToggleButton("Show Co-ordinates");
         coordinatesButton.setMnemonic(KeyEvent.VK_O);
@@ -521,7 +519,7 @@ public class GraphicalUI {
         // add right hand panel to pane
         pane.add(buttonPanel);
 
-		// END OF BUTTON PANEL //
+        // END OF BUTTON PANEL //
         // END OF GRIDBAD LAYOUT //
         // END OF FRAME //
     }
@@ -551,43 +549,42 @@ public class GraphicalUI {
     public static boolean getDeleteStones() {
         return deleteStones;
     }
-    
+
     public static boolean getProblemSettings() {
-    	return problemSettings;
+        return problemSettings;
     }
 
     // Setters for GUI booleans
     public static void setProblemSettings(boolean b) {
-    	problemSettings = b;
+        problemSettings = b;
     }
-    
+
     public static void setBounds(boolean b) {
         bounds = b;
     }
-    
-    // change the mode of the gui, true changes to competitive, false to creation
-    public static void changeMode(boolean competitiveMode){
-    	// set competitive mode tools
-    	competitiveFileMenu.setEnabled(competitiveMode);
-    	aiLabel.setVisible(competitiveMode);
-    	currentAILabel.setVisible(competitiveMode);
-    	passButton.setEnabled(competitiveMode);
-    	// set creation mode tools
-    	creationFileMenu.setEnabled(!competitiveMode);
-    	// set buttons and mode
-    	competitive = competitiveMode;
-    	competitiveButton.setSelected(competitiveMode);
-    	creationButton.setSelected(!competitiveMode);
-    	// set message
-    	if (competitiveMode){
-    		GraphicalUI.updateMessage("Entered Competitive Mode");
-    	}
-    	else {
-    		GraphicalUI.updateMessage("Entered Problem Creation Mode");
 
-    	}
+    // change the mode of the gui, true changes to competitive, false to creation
+    public static void changeMode(boolean competitiveMode) {
+        // set competitive mode tools
+        competitiveFileMenu.setEnabled(competitiveMode);
+        aiLabel.setVisible(competitiveMode);
+        currentAILabel.setVisible(competitiveMode);
+        passButton.setEnabled(competitiveMode);
+        // set creation mode tools
+        creationFileMenu.setEnabled(!competitiveMode);
+        // set buttons and mode
+        competitive = competitiveMode;
+        competitiveButton.setSelected(competitiveMode);
+        creationButton.setSelected(!competitiveMode);
+        // set message
+        if (competitiveMode) {
+            GraphicalUI.updateMessage("Entered Competitive Mode");
+        } else {
+            GraphicalUI.updateMessage("Entered Problem Creation Mode");
+
+        }
     }
-     
+
     public static void setMixedStones(boolean b) {
         mixedStones = b;
     }
@@ -595,44 +592,44 @@ public class GraphicalUI {
     public static void setDeleteStones(boolean b) {
         deleteStones = b;
     }
-    
-    public static void setFrameTitle(String s){
-    	frame.setTitle("GoProblemSolver: " + s);
+
+    public static void setFrameTitle(String s) {
+        frame.setTitle("GoProblemSolver: " + s);
     }
 
     // getter and setter for the row numbers
-	public static void toggleRowNumbers() {
-		rowNumbers = !rowNumbers;
-	}
-	
-	public static boolean getRowNumbers(){
-		return rowNumbers;
-	}
-	
-	// user message methods
-	public static void updateMessage(String s){
-		messages.add(s);
-		int l = messages.size();
-		// html in a swing label...
-		// TODO find a nice way to show previous moves
-		// feedback.setText("<html>"+messages.get(l-1)+"<br>"+messages.get(l-2)+"<br>"+messages.get(l-3)+"</html>");
-		feedback.setText(messages.get(l-1));
-	}
-	
-	public static void resetMessage(){
-		messages = new ArrayList<>();
-		messages.add("");
-		messages.add("");
-		updateMessage("Board has been reset");
-	}
+    public static void toggleRowNumbers() {
+        rowNumbers = !rowNumbers;
+    }
 
-	public static ArrayList<String> getMessages() {
-		return messages;
-	}
-	
-	// method to enable/disable bounds button
-	public static void updateBoundsButton(boolean b){
-		boundsButton.setEnabled(b);
-	}
+    public static boolean getRowNumbers() {
+        return rowNumbers;
+    }
+
+    // user message methods
+    public static void updateMessage(String s) {
+        messages.add(s);
+        int l = messages.size();
+		// html in a swing label...
+        // TODO find a nice way to show previous moves
+        // feedback.setText("<html>"+messages.get(l-1)+"<br>"+messages.get(l-2)+"<br>"+messages.get(l-3)+"</html>");
+        feedback.setText(messages.get(l - 1));
+    }
+
+    public static void resetMessage() {
+        messages = new ArrayList<>();
+        messages.add("");
+        messages.add("");
+        updateMessage("Board has been reset");
+    }
+
+    public static ArrayList<String> getMessages() {
+        return messages;
+    }
+
+    // method to enable/disable bounds button
+    public static void updateBoundsButton(boolean b) {
+        boundsButton.setEnabled(b);
+    }
 
 }

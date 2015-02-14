@@ -96,12 +96,12 @@ public class BoardJPanel extends JPanel {
                     GraphicalUI.updateMessage("Select Closer To Intersection");
                     updated = false;
                 }
-                
+
                 // Let AI move and repaint if selected
                 if (updated && listeners) {
-                	GUIAIMove();
+                    GUIAIMove();
                 }
-                
+
                 repaint();
             }
         });
@@ -145,14 +145,12 @@ public class BoardJPanel extends JPanel {
                             || (yRemainder > squareSize / 2 + border)) {
                         boolean[][] legalMoves = gameE.getLegalMoves(colour);
                         // show grey stones when deleting
-                        if (GraphicalUI.getDeleteStones()){
-                        	greyCounters.set(xPos, yPos, -1);
-                        }
-                        // show colour of stone being placed
+                        if (GraphicalUI.getDeleteStones()) {
+                            greyCounters.set(xPos, yPos, -1);
+                        } // show colour of stone being placed
                         else if (legalMoves[xPos][yPos]) {
                             greyCounters.set(xPos, yPos, colour);
-                        }
-                        // show red stones for illegal moves
+                        } // show red stones for illegal moves
                         else {
                             greyCounters.set(xPos, yPos, 3);
                         }
@@ -165,7 +163,7 @@ public class BoardJPanel extends JPanel {
 
     // Draw counter onto position
     public boolean updateBoard(int x, int y, int c) {
-    	
+
         if (gameE.makeMove(new Coordinate(x, y), c)) {
             // move made, repaint board
             repaint();
@@ -184,11 +182,11 @@ public class BoardJPanel extends JPanel {
             GraphicalUI.updateMessage("Invalid move");
             return false;
         }
-        
+
     }
 
     public void GUIAIMove() {
-		// Let AI make move when competitive play mode selected with
+        // Let AI make move when competitive play mode selected with
         // bounds and objective
         boolean competitive = GraphicalUI.getCompetitive();
         if (competitive && gameE.getObjective() != null
@@ -209,25 +207,28 @@ public class BoardJPanel extends JPanel {
                     break;
             }
             String move;
-            try{
+            try {
                 move = gameE.aiMove();
+            } catch (AIException e) {
+                move = e.getMsg();
             }
-            catch(AIException e){move = e.getMsg();}
             GraphicalUI.updateMessage("AI move: " + move);
             System.out.println(move);
             changePlayer();
-            
+
             // Show AI's move without mouse movement
             repaint();
-         
+
             // Allow user to move unless AI vs AI
-            if (!AIvsAI) listeners = true;
+            if (!AIvsAI) {
+                listeners = true;
+            }
         } else if (competitive
                 && (gameE.getObjective() == null || gameE.getAISearchValues() == null)) {
             GraphicalUI.updateMessage("Please specify bounds and objective");
         }
     }
- 
+
     // Load and draw board
     public void loadBoard(GameEngine ge) {
         gameE = ge;
@@ -254,7 +255,7 @@ public class BoardJPanel extends JPanel {
         g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize * (lines + 1)
                 - 2);
 
-		// Draw search space as grey rectangles when specified
+        // Draw search space as grey rectangles when specified
         // and bounds button selected
         if (GraphicalUI.getBounds()) {
             if (searchSpace != null && !Arrays.equals(searchSpace, noBounds)) {
@@ -262,15 +263,15 @@ public class BoardJPanel extends JPanel {
                 g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
                         * (lines + 1) - 2);
 
-				// re-colour brown rectangles included in search space
+                // re-colour brown rectangles included in search space
                 // NOTE: assumes 0,0 as top left co-ordinate
                 int x2 = searchSpace[2];
                 int y2 = searchSpace[3];
                 for (int x1 = searchSpace[0]; x1 <= x2; x1++) {
                     for (int y1 = searchSpace[1]; y1 <= y2; y1++) {
                         g.setColor(new Color(205, 133, 63));
-                        g.fillRect((squareSize + (x1-1) * squareSize)+(squareSize/2), (squareSize
-                                + (y1-1) * squareSize)+(squareSize/2), squareSize, squareSize);
+                        g.fillRect((squareSize + (x1 - 1) * squareSize) + (squareSize / 2), (squareSize
+                                + (y1 - 1) * squareSize) + (squareSize / 2), squareSize, squareSize);
                     }
                 }
             }
@@ -285,7 +286,7 @@ public class BoardJPanel extends JPanel {
             }
         }
 
-		// Show circles on Go Board
+        // Show circles on Go Board
         // For 9x9 - Show 5 circles
         if (lines == 9) {
             g.setColor(Color.black);
@@ -394,10 +395,9 @@ public class BoardJPanel extends JPanel {
                                 (squareSize + i * squareSize - stoneSize) - 2,
                                 (squareSize + j * squareSize - stoneSize) - 2,
                                 squareSize + 4, squareSize + 4);
-                    }
-                    else if (greyCounters.get(i, j) == -1) {
-                    	// show transparent grey stones when deleting
-                    	g.setColor(new Color(50,  50, 50, 150));
+                    } else if (greyCounters.get(i, j) == -1) {
+                        // show transparent grey stones when deleting
+                        g.setColor(new Color(50, 50, 50, 150));
                         g.fillOval(
                                 (squareSize + i * squareSize - stoneSize) - 2,
                                 (squareSize + j * squareSize - stoneSize) - 2,
@@ -406,21 +406,21 @@ public class BoardJPanel extends JPanel {
                 }
             }
         }
-        
+
         // shows row numbers
-        if (GraphicalUI.getRowNumbers()){
-        	// print row nums execpt 0
-        	for (int i = 2; i <= lines; i++){
-        		g.setColor(new Color(0,0,0,255));
-        		g.setFont(new Font("Ariel", Font.BOLD, 14));
-        		// skip 0 so numbers look more presentable
-        		g.drawString(Integer.toString(i-1),i * squareSize-4, squareSize-4);
-        	}
-        	// print column nums
-        	for (int j = 1; j <= lines; j++){
-        		g.setColor(new Color(0,0,0,255));
-        		g.drawString(Integer.toString(j-1),squareSize-18, j * squareSize);
-    		}
+        if (GraphicalUI.getRowNumbers()) {
+            // print row nums execpt 0
+            for (int i = 2; i <= lines; i++) {
+                g.setColor(new Color(0, 0, 0, 255));
+                g.setFont(new Font("Ariel", Font.BOLD, 14));
+                // skip 0 so numbers look more presentable
+                g.drawString(Integer.toString(i - 1), i * squareSize - 4, squareSize - 4);
+            }
+            // print column nums
+            for (int j = 1; j <= lines; j++) {
+                g.setColor(new Color(0, 0, 0, 255));
+                g.drawString(Integer.toString(j - 1), squareSize - 18, j * squareSize);
+            }
         }
 
     }
@@ -442,7 +442,7 @@ public class BoardJPanel extends JPanel {
             return "White";
         }
     }
-    
+
     public static int translatePlayer(String col) {
         if (col == "Black") {
             return 1;
@@ -459,23 +459,23 @@ public class BoardJPanel extends JPanel {
             colour = Board.WHITE;
         }
     }
-    
+
     public static void setPlayerInt(int player) {
-		if (player == 1){
-			colour = Board.BLACK;
-		}
-		if (player == 2){
-			colour = Board.WHITE;
-		}
-	}
+        if (player == 1) {
+            colour = Board.BLACK;
+        }
+        if (player == 2) {
+            colour = Board.WHITE;
+        }
+    }
 
     public static void setBounds(int[] aiSearchValues) {
         searchSpace = aiSearchValues;
         gameE.setBounds(aiSearchValues);
     }
-    
-    public static void resetBounds(){
-    	searchSpace  = null;
+
+    public static void resetBounds() {
+        searchSpace = null;
     }
 
     public static void setObjective(Objective objective) {
@@ -496,7 +496,5 @@ public class BoardJPanel extends JPanel {
         }
 
     }
-
-	
 
 }

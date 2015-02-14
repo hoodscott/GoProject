@@ -10,7 +10,7 @@ public class CompetitiveMenuListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-		// allow user to use competitive play mode options
+        // allow user to use competitive play mode options
         // swap player colours of AI/human
         if (e.getActionCommand().equals("Swap Player Colour")) {
             GraphicalUI.boardJP.changePlayer();
