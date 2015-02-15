@@ -15,7 +15,6 @@ public class GameEngine {
     private AI ai;
     private Objective objective;
     private boolean inGame;
-    //private int[] aiSearchValues;
     private Board initialBoard;
 
     // Default Constructor
@@ -34,7 +33,6 @@ public class GameEngine {
         currentBoard = initialBoard = board;
         this.objective = objective;
         moveChecker = new LegalMoveChecker();
-        //aiSearchValues = searchValues;
     }
 
     // Checks entire board for legal moves and returns them as a 2D boolean array
@@ -134,5 +132,15 @@ public class GameEngine {
         currentBoard = initialBoard;
         moveChecker = new LegalMoveChecker();
         return true;
+    }
+    
+    //Checks if the board has bounds
+    public boolean hasBounds()
+    {
+       for(int x = 0; x < currentBoard.getWidth(); x++)
+           for(int y = 0; y < currentBoard.getHeight(); y++)
+               if(currentBoard.get(x, y) == Board.C_EMPTY_AI)
+                   return true;
+       return false;
     }
 }
