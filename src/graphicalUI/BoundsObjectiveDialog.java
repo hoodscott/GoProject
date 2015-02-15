@@ -110,9 +110,6 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
             GraphicalUI.objective.setText(GraphicalUI.getGameEngine()
                     .getObjective().toString());
             
-            // Tell GUI that user has set bounds/objectives
-            GraphicalUI.setProblemSettings(true);
-
             cancelled = false;
             setVisible(false);
         } else {

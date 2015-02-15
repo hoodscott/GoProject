@@ -38,7 +38,7 @@ public class BoardJPanel extends JPanel {
 		board = gameEngine.getCurrentBoard();
 		lines = board.getHeight();
 		greyCounters = new Board(lines, lines);
-		boundsCheck = true; // SET BOUNDS AS DEFAULT GIVEN FOR NOW
+		boundsCheck = gameE.hasBounds();
 		listeners = true;
 		updated = true;
 
@@ -250,7 +250,6 @@ public class BoardJPanel extends JPanel {
 		lines = gameE.getCurrentBoard().getHeight();
 		int squareSize = (BOARD_LENGTH) / (lines + 1);
 		int stoneSize = squareSize / 2;
-		int[] noBounds = { 0, 0, lines, lines };
 
 		// Board colour and border fill
 		g.setColor(Color.black);
@@ -262,7 +261,7 @@ public class BoardJPanel extends JPanel {
 		// Draw search space as grey rectangles when specified
 		// and bounds button selected
 		if (GraphicalUI.getBounds()) {
-			if (boundsCheck) {
+			if (boundsCheck || boundsSelectionMode) {
 				g.setColor(Color.gray); // re-colour board as grey
 				g.fillRect(1, 1, squareSize * (lines + 1) - 2, squareSize
 						* (lines + 1) - 2);
@@ -478,16 +477,6 @@ public class BoardJPanel extends JPanel {
 		}
 	}
 
-	public static void setBounds(int x, int y) {
-		Coordinate bound = new Coordinate(x, y);
-		// TODO: Add method for adding co-ordinate x y as bound
-	}
-
-	public static void resetBounds() {
-		boundsCheck = false;
-		// TODO: Delete all given bounds from board
-	}
-
 	public static void setObjective(Objective objective) {
 		gameE.setObjective(objective);
 	}
@@ -505,6 +494,10 @@ public class BoardJPanel extends JPanel {
 			return "Blank";
 		}
 
+	}
+	
+	public GameEngine getGE() {
+		return gameE;
 	}
 
 }

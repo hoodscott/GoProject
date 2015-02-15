@@ -23,10 +23,9 @@ public class ProblemSettingsListener implements ActionListener {
         if (!BoundsObjectiveDialog.cancelled) {
         	JOptionPane.showMessageDialog(GraphicalUI.frame, "Click on the board to select your bounds.\n"
         			+ "Press 'Show Bounds' once finished.");
+            BoardJPanel.boundsSelectionMode = true;
+            GraphicalUI.updateBoundsButton(true);
+    		GraphicalUI.setBounds(true);
         }
-        
-        BoardJPanel.boundsSelectionMode = true;
-        GraphicalUI.updateBoundsButton(true);
-		GraphicalUI.setBounds(true);
     }
 }

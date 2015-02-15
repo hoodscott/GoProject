@@ -53,8 +53,9 @@ public class FileMenuListener implements ActionListener {
                     GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
                     Objective localObjective = GraphicalUI.getGameEngine()
                             .getObjective();
-                    BoardJPanel.boundsCheck = true;
-                    // TODO: Check for bounds within problem
+                    if (GraphicalUI.boardJP.getGE().hasBounds()) {
+                    	BoardJPanel.boundsCheck = true;
+                    }
                     // set initial player
                     BoardJPanel.setPlayerInt(GraphicalUI.getGameEngine()
                             .getObjective().getStartingColour());
@@ -110,7 +111,7 @@ public class FileMenuListener implements ActionListener {
                 }
             } else {
                 try {
-                    FileIO.writeBoard(GraphicalUI.getGameEngine(), GraphicalUI.saveName);
+                    FileIO.writeBoard(GraphicalUI.getGameEngine(), defaultDir + "\\" + GraphicalUI.saveName);
                     GraphicalUI.updateMessage("Problem saved");
                 } catch (BoardFormatException bfe) {
                     GraphicalUI.updateMessage(bfe.getMsg());

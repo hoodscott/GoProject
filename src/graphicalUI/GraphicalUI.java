@@ -506,7 +506,7 @@ public class GraphicalUI {
         boundsButton.addActionListener(new GridToggleListener());
 
         // button to show co-ordinates of problem
-        coordinatesButton = new JToggleButton("Show Co-ordinates");
+        coordinatesButton = new JToggleButton("Show Coordinates");
         coordinatesButton.setMnemonic(KeyEvent.VK_O);
         gridPanel.add(coordinatesButton);
 
