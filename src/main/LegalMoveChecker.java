@@ -11,6 +11,7 @@ public class LegalMoveChecker implements Cloneable {
     private static final int EMPTY = Board.EMPTY;
     private static final int BLACK = Board.BLACK;
     private static final int WHITE = Board.WHITE;
+    private static final int EMPTY_AI = Board.EMPTY_AI;
 
     //Constructor
     public LegalMoveChecker() {
@@ -34,7 +35,7 @@ public class LegalMoveChecker implements Cloneable {
         lastChecked = null;
 
         //1. if there is a stone already - illegal
-        if (bCopy.get(x, y) != EMPTY) {
+        if (bCopy.get(x, y) != EMPTY && bCopy.get(x, y) != EMPTY_AI) {
             return false;
         }
 
