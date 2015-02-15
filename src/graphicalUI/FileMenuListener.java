@@ -22,20 +22,22 @@ public class FileMenuListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Component pane = null;
         // load specified board
-        if (e.getActionCommand().equals("Load Problem")) {
-            String defaultDir = System.getProperty("user.dir")
+        String defaultDir = System.getProperty("user.dir")
                     + "\\saveData\\boards";
 
-            // convert path to match system
-            defaultDir = FileIO.pathOS(defaultDir);
+        // convert path to match system
+        defaultDir = FileIO.pathOS(defaultDir);
 
-            // Minor hotfix for Nik's shoddy buildpath
-            if (Files.notExists(Paths.get(defaultDir))) {
-                defaultDir = System.getProperty("user.dir")
-                        + "\\src\\saveData\\boards";
-                System.out.println("no exists");
-                defaultDir = FileIO.pathOS(defaultDir);
-            }
+        // Minor hotfix for Nik's shoddy buildpath
+        if (Files.notExists(Paths.get(defaultDir))) {
+            defaultDir = System.getProperty("user.dir")
+                    + "\\src\\saveData\\boards";    
+            defaultDir = FileIO.pathOS(defaultDir);
+        }
+        System.out.println(defaultDir);
+        
+        if (e.getActionCommand().equals("Load Problem")) {
+
 
             JFileChooser loadBoard = new JFileChooser(defaultDir);
             int command = loadBoard.showOpenDialog(pane);
@@ -87,10 +89,6 @@ public class FileMenuListener implements ActionListener {
             // save current board to default location or ask user for one
         } else if (e.getActionCommand().equals("Save Problem")) {
             if (GraphicalUI.saveName.equals("Untitled")) {
-                String defaultDir = System.getProperty("user.dir")
-                        + "\\saveData\\boards";
-                // convert path to match system
-                defaultDir = FileIO.pathOS(defaultDir);
                 JFileChooser saveBoard = new JFileChooser(defaultDir);
                 int command = saveBoard.showSaveDialog(pane);
                 if (command == JFileChooser.APPROVE_OPTION) {
@@ -121,10 +119,6 @@ public class FileMenuListener implements ActionListener {
 
             // save current board to specified location
         } else if (e.getActionCommand().equals("Save Problem As...")) {
-            String defaultDir = System.getProperty("user.dir")
-                    + "\\saveData\\boards";
-            // convert path to match system
-            defaultDir = FileIO.pathOS(defaultDir);
             JFileChooser saveBoard = new JFileChooser(defaultDir);
             int command = saveBoard.showSaveDialog(pane);
             if (command == JFileChooser.APPROVE_OPTION) {
