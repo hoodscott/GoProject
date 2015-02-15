@@ -11,31 +11,53 @@ public class GridToggleListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JToggleButton button = (JToggleButton) e.getSource();
-		if (button.getText().equals("Show Bounds")) {
+		if (button.getText().equals("Show Bounds") || button.getText().equals("Hide Bounds")) {
 			if (BoardJPanel.boundsSelectionMode) {
-				BoardJPanel.boundsSelectionMode = false;
-		        BoardJPanel.boundsCheck = true;
-				GraphicalUI.boardJP.repaint();
-				GraphicalUI.updateMessage("Bounds updated and shown");
-			} else if (!GraphicalUI.getBounds()) {
+				if (GraphicalUI.boardJP.getGE().hasBounds()) {
+					BoardJPanel.boundsSelectionMode = false;
+			        BoardJPanel.boundsCheck = true;
+					GraphicalUI.updateMessage("Bounds updated and shown");
+					GraphicalUI.setBounds(true);
+					GraphicalUI.boardJP.repaint();
+					button.setText("Hide Bounds");
+					
+		            // Tell GUI that user has set bounds/objectives
+		            GraphicalUI.setProblemSettings(true);
+				} else {
+					BoardJPanel.boundsSelectionMode = false;
+			        BoardJPanel.boundsCheck = false;
+					GraphicalUI.boardJP.repaint();
+					GraphicalUI.setBounds(false);
+					button.setSelected(false);
+					GraphicalUI.updateBoundsButton(false);
+		            JOptionPane
+					.showMessageDialog(
+							GraphicalUI.frame,
+							"No bounds were selected. \n");
+				}
+			} else if (!BoardJPanel.boundsSelectionMode && !GraphicalUI.getBounds()) {
 				GraphicalUI.setBounds(true);
 				GraphicalUI.boardJP.repaint();
 				GraphicalUI.updateMessage("Bounds shown");
+				button.setText("Hide Bounds");
 			} else {
 				GraphicalUI.setBounds(false);
 				GraphicalUI.boardJP.repaint();
 				GraphicalUI.updateMessage("Bounds hidden");
+				button.setText("Show Bounds");
 			}
 		}
-		if (button.getText().equals("Show Co-ordinates")) {
+		if (button.getText().equals("Show Coordinates") || button.getText().equals("Hide Coordinates")) {
 			if (!GraphicalUI.getRowNumbers()) {
 				GraphicalUI.toggleRowNumbers();
 				GraphicalUI.boardJP.repaint();
-				GraphicalUI.updateMessage("Co-ordinates shown");
+				GraphicalUI.updateMessage("Coordinates shown");
+				button.setText("Hide Coordinates");
 			} else {
 				GraphicalUI.toggleRowNumbers();
 				GraphicalUI.boardJP.repaint();
-				GraphicalUI.updateMessage("Co-ordinates hidden");
+				GraphicalUI.updateMessage("Coordinates hidden");
+				button.setText("Show Coordinates");
 			}
 		}
 		if (button.getText().equals("Competitive Play Mode")) {
@@ -71,6 +93,7 @@ public class GridToggleListener implements ActionListener {
 			BoardJPanel.boundsSelectionMode = false;
 	        BoardJPanel.boundsCheck = true;
 			BoardJPanel.AIvsAI = true;
+			BoardJPanel.humanVShuman = false;
 			JOptionPane
 					.showMessageDialog(
 							GraphicalUI.frame,
@@ -78,11 +101,21 @@ public class GridToggleListener implements ActionListener {
 			GraphicalUI.aiMoveButton.setEnabled(true);
 			BoardJPanel.listeners = false;
 			GraphicalUI.changeMode(true);
-			// Else AI vs human
+		// Or human vs human
+		} else if (PlayerChooseDialog.humanVShuman) {
+			BoardJPanel.boundsSelectionMode = false;
+	        BoardJPanel.boundsCheck = true;
+			BoardJPanel.AIvsAI = false;
+			GraphicalUI.changeMode(true);
+			GraphicalUI.aiMoveButton.setEnabled(false);
+			BoardJPanel.listeners = true;
+			BoardJPanel.humanVShuman = true;
+		// Else AI vs human
 		} else {
 			BoardJPanel.boundsSelectionMode = false;
 	        BoardJPanel.boundsCheck = true;
 			BoardJPanel.AIvsAI = false;
+			BoardJPanel.humanVShuman = false;
 			GraphicalUI.changeMode(true);
 			GraphicalUI.aiMoveButton.setEnabled(false);
 			BoardJPanel.listeners = true;

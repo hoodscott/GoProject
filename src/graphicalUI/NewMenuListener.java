@@ -22,7 +22,6 @@ public class NewMenuListener implements ActionListener {
             GraphicalUI.updateMessage("New board created");
             GraphicalUI.objective.setText("No set objective");
             GraphicalUI.setProblemSettings(false);
-            BoardJPanel.resetBounds();
             GraphicalUI.updateBoundsButton(false);
         } else {
             // load specified board
@@ -41,7 +40,6 @@ public class NewMenuListener implements ActionListener {
                 GraphicalUI.updateMessage("New board created");
                 GraphicalUI.objective.setText("No set objective");
                 GraphicalUI.setProblemSettings(false);
-                BoardJPanel.resetBounds();
                 GraphicalUI.updateBoundsButton(false);
             }
         }

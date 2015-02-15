@@ -139,7 +139,7 @@ public class GameEngine {
     {
        for(int x = 0; x < currentBoard.getWidth(); x++)
            for(int y = 0; y < currentBoard.getHeight(); y++)
-               if(currentBoard.get(x, y) == Board.C_EMPTY_AI)
+               if(currentBoard.get(x, y) == Board.EMPTY_AI)
                    return true;
        return false;
     }
