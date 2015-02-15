@@ -117,9 +117,7 @@ public class BoardJPanel extends JPanel {
 				if (!listeners) {
 					return;
 				}
-				greyCounters = new Board(lines, lines); // create blank board
-				// each time
-				// mouse moves
+				greyCounters = new Board(lines, lines); // create blank board each time mouse moves
 				repaint();
 
 				int squareSize = BOARD_LENGTH / (lines + 1);
