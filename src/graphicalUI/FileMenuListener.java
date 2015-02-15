@@ -51,8 +51,8 @@ public class FileMenuListener implements ActionListener {
                     GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
                     Objective localObjective = GraphicalUI.getGameEngine()
                             .getObjective();
-                    BoardJPanel.searchSpace = GraphicalUI.getGameEngine()
-                            .getAISearchValues();
+                    BoardJPanel.boundsCheck = true;
+                    // TODO: Check for bounds within problem
                     // set initial player
                     BoardJPanel.setPlayerInt(GraphicalUI.getGameEngine()
                             .getObjective().getStartingColour());
@@ -61,7 +61,7 @@ public class FileMenuListener implements ActionListener {
 					// TODO maybe check the objective and bounds are in the
                     // correct form
                     // this assumes the board is saved in the correct format
-                    if (BoardJPanel.searchSpace == null) {
+                    if (!BoardJPanel.boundsCheck) {
                         GraphicalUI.setProblemSettings(false);
                     } else {
                         GraphicalUI.setProblemSettings(true);

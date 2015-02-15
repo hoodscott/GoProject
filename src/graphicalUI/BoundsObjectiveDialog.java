@@ -74,15 +74,6 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
             coord2.setSelectedIndex(obj.getPosition().y);
         }
 
-        // Load values of the current bounds, if they exist
-        if (GraphicalUI.getBounds()) {
-            int[] bounds = GraphicalUI.getGameEngine().getAISearchValues();
-            bc1.setSelectedIndex(bounds[0]);
-            bc2.setSelectedIndex(bounds[1]);
-            bc3.setSelectedIndex(bounds[2]);
-            bc4.setSelectedIndex(bounds[3]);
-        }
-
         // Create panel for objective choice
         objectiveChoice = new JPanel();
         objectiveChoice.add(new JLabel("Objective: "));
@@ -91,17 +82,7 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
         objectiveChoice.add(coord1);
         objectiveChoice.add(coord2);
         this.add(objectiveChoice);
-
-        // Create panel for bounds choice
-        boundsChoice = new JPanel();
-        boundsChoice.add(new JLabel("Bounds: "));
-        boundsChoice.add(bc1);
-        boundsChoice.add(bc2);
-        boundsChoice.add(new JLabel(" to "));
-        boundsChoice.add(bc3);
-        boundsChoice.add(bc4);
-        this.add(boundsChoice);
-
+        
         // Create panel for OK/Cancel
         finishButtons = new JPanel();
         finishButtons.add(OKButton);
@@ -128,18 +109,7 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
             GraphicalUI.updateMessage("Objective updated");
             GraphicalUI.objective.setText(GraphicalUI.getGameEngine()
                     .getObjective().toString());
-
-            // Update boundaries according to user input
-            int bCoord1 = Integer.parseInt((String) bc1.getSelectedItem());
-            int bCoord2 = Integer.parseInt((String) bc2.getSelectedItem());
-            int bCoord3 = Integer.parseInt((String) bc3.getSelectedItem());
-            int bCoord4 = Integer.parseInt((String) bc4.getSelectedItem());
-
-            int[] newBounds = {bCoord1, bCoord2, bCoord3, bCoord4};
-            BoardJPanel.setBounds(newBounds);
-            GraphicalUI.updateBoundsButton(true);
-            GraphicalUI.updateMessage("Bounds updated");
-
+            
             // Tell GUI that user has set bounds/objectives
             GraphicalUI.setProblemSettings(true);
 
