@@ -19,7 +19,7 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
     @SuppressWarnings("rawtypes")
     private JComboBox optionsWhiteBox, optionsBlackBox;
     private JButton OKButton, cancelButton;
-    public static boolean cancelled, AIvsAI;
+    public static boolean cancelled, AIvsAI, humanVShuman;
 
     // Constructor
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -98,6 +98,12 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
                 GraphicalUI.updateMessage("AI type selected: " + blackPlayer);
                 GraphicalUI.currentAILabel.setText(blackPlayer);
                 AIvsAI = true;
+            }
+            
+            // else Human vs Human mode
+            if ((blackPlayer.equals("Human")) && whitePlayer.equals("Human")) {
+            	GraphicalUI.currentAILabel.setText(blackPlayer);
+            	humanVShuman = true;
             }
 
             cancelled = false;

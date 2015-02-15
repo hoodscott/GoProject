@@ -93,6 +93,7 @@ public class GridToggleListener implements ActionListener {
 			BoardJPanel.boundsSelectionMode = false;
 	        BoardJPanel.boundsCheck = true;
 			BoardJPanel.AIvsAI = true;
+			BoardJPanel.humanVShuman = false;
 			JOptionPane
 					.showMessageDialog(
 							GraphicalUI.frame,
@@ -100,11 +101,21 @@ public class GridToggleListener implements ActionListener {
 			GraphicalUI.aiMoveButton.setEnabled(true);
 			BoardJPanel.listeners = false;
 			GraphicalUI.changeMode(true);
-			// Else AI vs human
+		// Or human vs human
+		} else if (PlayerChooseDialog.humanVShuman) {
+			BoardJPanel.boundsSelectionMode = false;
+	        BoardJPanel.boundsCheck = true;
+			BoardJPanel.AIvsAI = false;
+			GraphicalUI.changeMode(true);
+			GraphicalUI.aiMoveButton.setEnabled(false);
+			BoardJPanel.listeners = true;
+			BoardJPanel.humanVShuman = true;
+		// Else AI vs human
 		} else {
 			BoardJPanel.boundsSelectionMode = false;
 	        BoardJPanel.boundsCheck = true;
 			BoardJPanel.AIvsAI = false;
+			BoardJPanel.humanVShuman = false;
 			GraphicalUI.changeMode(true);
 			GraphicalUI.aiMoveButton.setEnabled(false);
 			BoardJPanel.listeners = true;

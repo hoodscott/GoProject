@@ -23,7 +23,7 @@ public class BoardJPanel extends JPanel {
 	public static int colour = 1;
 	public static GameEngine gameE;
 	public int numStones = 0;
-	static boolean listeners, AIvsAI, boundsCheck, boundsSelectionMode;
+	static boolean listeners, AIvsAI, humanVShuman, boundsCheck, boundsSelectionMode;
 	private static boolean updated;
 
 	// Board constructor
@@ -103,7 +103,7 @@ public class BoardJPanel extends JPanel {
 				}
 
 				// Let AI move and repaint if selected
-				if (updated && listeners) {
+				if (updated && listeners && !humanVShuman) {
 					GUIAIMove();
 				}
 
