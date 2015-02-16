@@ -4,12 +4,12 @@ import java.util.Arrays;
 
 public class Board {
 
-    private final int[][] boardRep;
+    private final byte[][] boardRep;
     private static final int DEF_DIMENSION = 9; //Default dimension for empty boards
-    public static final int EMPTY = 0;
-    public static final int BLACK = 1;
-    public static final int WHITE = 2;
-    public static final int EMPTY_AI = 3;
+    public static final byte EMPTY = 0;
+    public static final byte BLACK = 1;
+    public static final byte WHITE = 2;
+    public static final byte EMPTY_AI = 3;
     public static final char C_EMPTY = '.';
     public static final char C_EMPTY_AI = '-';
     public static final char C_BLACK = 'b';
@@ -20,17 +20,17 @@ public class Board {
 
     // Create empty board
     public Board() {
-        boardRep = new int[DEF_DIMENSION][DEF_DIMENSION];
+        boardRep = new byte[DEF_DIMENSION][DEF_DIMENSION];
     }
 
     // Create new board from given int array
-    public Board(int[][] board) {
+    public Board(byte[][] board) {
         boardRep = board;
     }
 
     //Create an empty board that takes in a pair of dimensions
     public Board(int width, int height) {
-        boardRep = new int[width][height];
+        boardRep = new byte[width][height];
     }
 
     // Get x and y dimensions of board
@@ -43,7 +43,7 @@ public class Board {
     }
 
     //Get raw representation of the board
-    public int[][] getRaw() {
+    public byte[][] getRaw() {
         return boardRep;
     }
 
@@ -53,7 +53,7 @@ public class Board {
     }
 
     // Set int representation of board position
-    public void set(int x, int y, int value) {
+    public void set(int x, int y, byte value) {
         boardRep[x][y] = value;
     }
 
@@ -62,7 +62,7 @@ public class Board {
         if (b == null) {
             return false;
         }
-        int[][] otherBoardRep = b.getRaw();
+        byte[][] otherBoardRep = b.getRaw();
         for (int i = 0; i < otherBoardRep.length; i++) {
             for (int j = 0; j < otherBoardRep[0].length; j++) {
                 int p1 = otherBoardRep[i][j];

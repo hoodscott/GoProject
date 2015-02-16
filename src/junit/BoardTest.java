@@ -44,7 +44,7 @@ public class BoardTest {
 
     @Test
     public void boardGivenArray() {
-        int b[][] = {{0, 0, 0, 0}, {0, 1, 1, 0}, {1, 2, 0, 1},
+        byte b[][] = {{0, 0, 0, 0}, {0, 1, 1, 0}, {1, 2, 0, 1},
         {0, 1, 1, 0}};
         Board board = new Board(b);
         boolean result = (Arrays.deepEquals(board.getRaw(), b));
@@ -54,7 +54,7 @@ public class BoardTest {
 
     @Test
     public void boardClone() {
-        int b[][] = {{0, 0, 0, 0}, {0, 1, 1, 0}, {1, 2, 0, 1},
+        byte b[][] = {{0, 0, 0, 0}, {0, 1, 1, 0}, {1, 2, 0, 1},
         {0, 1, 1, 0}};
         Board board = new Board(b);
         Board boardC = board.clone();
@@ -68,11 +68,11 @@ public class BoardTest {
         Board a = new Board(2, 2);
         Board b = new Board(2, 2);
         Board c = null;
-        int[][] raw = {{1, 0}, {0, 0}};
+        byte[][] raw = {{1, 0}, {0, 0}};
         Board d = new Board(raw);
 
         assertTrue(a.equals(b));
-        a.set(0, 0, 1);
+        a.set(0, 0, (byte)1);
 
         assertFalse(a.equals(b));
         assertTrue(a.equals(d));
@@ -82,8 +82,8 @@ public class BoardTest {
     @Test
     public void settingBoardPositions() {
         board = new Board();
-        board.set(1, 1, 1);
-        board.set(5, 7, 2);
+        board.set(1, 1, (byte)1);
+        board.set(5, 7, (byte)2);
         assertEquals(1, board.get(1, 1));
         assertEquals(2, board.get(5, 7));
     }

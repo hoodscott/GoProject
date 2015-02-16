@@ -20,7 +20,7 @@ public class BoardJPanel extends JPanel {
 	private static final int BOARD_LENGTH = 600;
 	private static int lines;
 	private Board board, greyCounters;
-	public static int colour = 1;
+	public static byte colour = 1;
 	public static GameEngine gameE;
 	public int numStones = 0;
 	static boolean listeners, AIvsAI, humanVShuman, boundsCheck, boundsSelectionMode;
@@ -80,13 +80,13 @@ public class BoardJPanel extends JPanel {
 					if (GraphicalUI.getDeleteStones()
 							&& !GraphicalUI.getCompetitive()) {
 						// remove selected stone from board
-						gameE.getCurrentBoard().set(xPos, yPos, 0);
+						gameE.getCurrentBoard().set(xPos, yPos, Board.EMPTY);
 						GraphicalUI.updateMessage("Stone removed from: " + xPos
 								+ ", " + yPos);
 						repaint();
 						// else add to bounds when wanted
 					} else if (BoardJPanel.boundsSelectionMode && !GraphicalUI.getCompetitive()) {
-						gameE.getCurrentBoard().set(xPos,yPos,3);
+						gameE.getCurrentBoard().set(xPos,yPos,Board.EMPTY_AI);
 						GraphicalUI.updateMessage("Bounds added at: " + xPos
 								+ ", " + yPos);
 						repaint();
@@ -149,13 +149,13 @@ public class BoardJPanel extends JPanel {
 						boolean[][] legalMoves = gameE.getLegalMoves(colour);
 						// show grey stones when deleting
 						if (GraphicalUI.getDeleteStones()) {
-							greyCounters.set(xPos, yPos, -1);
+							greyCounters.set(xPos, yPos, (byte)-1);
 						} // show colour of stone being placed
 						else if (legalMoves[xPos][yPos]) {
 							greyCounters.set(xPos, yPos, colour);
 						} // show red stones for illegal moves
 						else {
-							greyCounters.set(xPos, yPos, 3);
+							greyCounters.set(xPos, yPos, (byte)3);
 						}
 						repaint();
 					}
@@ -167,7 +167,7 @@ public class BoardJPanel extends JPanel {
 	// Draw counter onto position
 	public boolean updateBoard(int x, int y, int c) {
 
-		if (gameE.makeMove(new Coordinate(x, y), c)) {
+		if (gameE.makeMove(new Coordinate(x, y), c, !humanVShuman)) {
 			// move made, repaint board
 			repaint();
 

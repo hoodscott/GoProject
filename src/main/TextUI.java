@@ -225,7 +225,7 @@ public class TextUI {
                 throw new BadInputException("> The x and y positions need to be non-negative numbers within the board.");
             }
 
-            if (gameEngine.makeMove(new Coordinate(x, y), playerColour)) {
+            if (gameEngine.makeMove(new Coordinate(x, y), playerColour, false)) {
                 String message = "> Placed " + Translator.translateToString(playerColour) + " at (" + cmd[1] + "," + cmd[2] + ")";
                 addToLog(message);
                 System.out.println(message);
@@ -432,7 +432,7 @@ public class TextUI {
     //Prints game board.
     public void printGameBoard(boolean saveToLog) {
 
-        int[][] board = gameEngine.getCurrentBoard().getRaw();
+        byte[][] board = gameEngine.getCurrentBoard().getRaw();
         ArrayList<String> lines = new ArrayList<>();
 
         try {
@@ -455,7 +455,7 @@ public class TextUI {
         try {
             ArrayList<String> lines = new ArrayList<>();
             boolean[][] legalMoves = gameEngine.getLegalMoves(colour);
-            int[][] board = gameEngine.getCurrentBoard().getRaw();
+            byte[][] board = gameEngine.getCurrentBoard().getRaw();
 
             for (int i = 0; i < legalMoves[0].length; i++) {
                 String line = "";

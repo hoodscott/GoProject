@@ -43,7 +43,7 @@ public class GameEngine {
 
         for (int i = 0; i < xDim; i++) {
             for (int j = 0; j < yDim; j++) {
-                legalMoves[i][j] = moveChecker.checkMove(currentBoard, new Coordinate(i, j), colour);
+                legalMoves[i][j] = moveChecker.checkMove(currentBoard, new Coordinate(i, j), colour, false);
             }
         }
 
@@ -97,7 +97,7 @@ public class GameEngine {
         if (c.x == -1 && c.y == -1) {
             return "passes";
         } else {
-            makeMove(c, ai.getColour());
+            makeMove(c, ai.getColour(), true);
             return "moves to (" + c.x + "," + c.y + ")";
         }
     }
@@ -105,8 +105,8 @@ public class GameEngine {
     //Checks whether the move is legal and if so, place the piece and return true
     //if the move is illegal, return false    
 
-    public boolean makeMove(Coordinate coord, int colour) {
-        if (moveChecker.checkMove(currentBoard, coord, colour)) {
+    public boolean makeMove(Coordinate coord, int colour, boolean aiMove) {
+        if (moveChecker.checkMove(currentBoard, coord, colour, aiMove)) {
             moveChecker.addBoard(currentBoard);
             currentBoard = moveChecker.getLastLegal();
             return true;
@@ -135,8 +135,7 @@ public class GameEngine {
     }
     
     //Checks if the board has bounds
-    public boolean hasBounds()
-    {
+    public boolean hasBounds(){
        for(int x = 0; x < currentBoard.getWidth(); x++)
            for(int y = 0; y < currentBoard.getHeight(); y++)
                if(currentBoard.get(x, y) == Board.EMPTY_AI)

@@ -35,12 +35,12 @@ public class MiniMax extends AI {
         if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
             return new Coordinate(-1, -1);
         }
+        printGameBoard(b);
 
         for (int x = 0; x < b.getWidth(); x++) {
-            for (int y = b.getHeight(); y < b.getHeight(); y++) {
+            for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
-                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour)) {
-                    System.out.println("test");
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
                     int result = min(currentState, false);
@@ -68,7 +68,7 @@ public class MiniMax extends AI {
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
-                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour)) {
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
 
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
@@ -109,7 +109,7 @@ public class MiniMax extends AI {
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
-                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, opponent)) {
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, opponent, true)) {
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
                     int result = max(currentState, false);
@@ -142,7 +142,7 @@ public class MiniMax extends AI {
     //-----------------------------
     private void printGameBoard(Board b) {
 
-        int[][] board = b.getRaw();
+        byte[][] board = b.getRaw();
         ArrayList<String> lines = new ArrayList<>();
 
         try {

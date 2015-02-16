@@ -8,11 +8,11 @@ public class LegalMoveChecker implements Cloneable {
     private final ArrayList<Board> moveHistory; //= new ArrayList<int[][]>();
     private Board lastChecked;
     private int liberties;
-    private static final int EMPTY = Board.EMPTY;
-    private static final int BLACK = Board.BLACK;
-    private static final int WHITE = Board.WHITE;
-    private static final int EMPTY_AI = Board.EMPTY_AI;
-    private int REPLACEMENT;
+    private static final byte EMPTY = Board.EMPTY;
+    private static final byte BLACK = Board.BLACK;
+    private static final byte WHITE = Board.WHITE;
+    private static final byte EMPTY_AI = Board.EMPTY_AI;
+    private byte REPLACEMENT;
 
     //Constructor
     public LegalMoveChecker() {
@@ -35,7 +35,7 @@ public class LegalMoveChecker implements Cloneable {
         boolean[][] visited;
         lastChecked = null;
         
-        //When playing against at least one AI, the search scope is used.
+        //When playing against at least one AI, the search scope mutation is used.
         if(withAI)
             REPLACEMENT =  Board.EMPTY_AI;
         else
@@ -105,11 +105,9 @@ public class LegalMoveChecker implements Cloneable {
         if (liberties == 0) {
             return false;
         }
-
         //5. Tests for SuperKo; if yes - illegal
         for (Board b : moveHistory) {
             if (b.equals(bCopy)) {
-                System.out.println("Super Ko");
                 return false;
             }
         }

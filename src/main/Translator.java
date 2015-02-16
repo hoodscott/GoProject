@@ -98,7 +98,7 @@ public class Translator {
 
     //Checks the integrity of an inputted board data and translates it to a Board object. Throws an exception when encountering an error.
     public static Board translateToBoard(ArrayList<String> raw) throws BoardFormatException, NumberFormatException {
-        int[][] rawBoard;
+        byte[][] rawBoard;
         int w, h;
 
         if (raw.size() < 2) {
@@ -128,7 +128,7 @@ public class Translator {
             }
         }
 
-        rawBoard = new int[w][h];
+        rawBoard = new byte[w][h];
         for (int i = 0; i < h; i++) {
             String row = raw.remove(0);
             for (int j = 0; j < w; j++) {
@@ -196,7 +196,7 @@ public class Translator {
      }
      */
     // Method for translation of char positions to int values
-    public static int translateToInt(char value) throws BoardFormatException {
+    public static byte translateToInt(char value) throws BoardFormatException {
         switch (value) {
             case Board.C_EMPTY:
                 return Board.EMPTY;

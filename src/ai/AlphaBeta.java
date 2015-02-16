@@ -43,7 +43,7 @@ public class AlphaBeta extends AI {
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
-                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour)) {
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
 
@@ -110,7 +110,7 @@ public class AlphaBeta extends AI {
             for (int x = 0; x < currentBoard.getWidth(); x++) {
                 for (int y = 0; y < currentBoard.getHeight(); y++) {
                     Coordinate currentCoord = new Coordinate(x, y);
-                    if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, colour)) {
+                    if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, colour, true)) {
                         Board currentState = lmc.getLastLegal();
                         lmc.addBoard(currentState);
                         // get response to current move from other player
@@ -130,7 +130,7 @@ public class AlphaBeta extends AI {
             for (int x = 0; x < currentBoard.getWidth(); x++) {
                 for (int y = 0; y < currentBoard.getHeight(); y++) {
                     Coordinate currentCoord = new Coordinate(x, y);
-                    if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, opponent)) {
+                    if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, opponent, true)) {
                         Board currentState = lmc.getLastLegal();
                         lmc.addBoard(currentState);
                         // get response to current move from other player
@@ -152,7 +152,7 @@ public class AlphaBeta extends AI {
         for (int i = 0; i < b.getWidth(); i++) {
             for (int j = 0; j < b.getHeight(); j++) {
                 Coordinate c = new Coordinate(i, j);
-                if (lmc.checkMove(b, c, colour)) {
+                if (lmc.checkMove(b, c, colour, true)) {
                     return false;
                 }
             }
