@@ -28,6 +28,7 @@ public class MiniMax extends AI {
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) throws AIException {
         lmc = legalMoves.clone();
+        //printGameBoard(b);
 
         //Checks if objective for killing is already met and passes accordingly. 
         //For defending, all possible substates need to be checked.
@@ -35,10 +36,11 @@ public class MiniMax extends AI {
             return new Coordinate(-1, -1);
         }
 
-        for (int x = 0; x <= b.getWidth(); x++) {
-            for (int y = b.getHeight(); y <= b.getHeight(); y++) {
+        for (int x = 0; x < b.getWidth(); x++) {
+            for (int y = b.getHeight(); y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour)) {
+                    System.out.println("test");
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
                     int result = min(currentState, false);
@@ -63,11 +65,11 @@ public class MiniMax extends AI {
             return -1;
         }
 
-        for (int x = 0; x <= b.getWidth(); x++) {
-            for (int y = 0; y <= b.getHeight(); y++) {
+        for (int x = 0; x < b.getWidth(); x++) {
+            for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour)) {
-                    //moved = true;
+
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
                     int result = min(currentState, false);
@@ -104,8 +106,8 @@ public class MiniMax extends AI {
         }
 
         //Tries all legal moves in search scope
-        for (int x = 0; x <= b.getWidth(); x++) {
-            for (int y = 0; y <= b.getHeight(); y++) {
+        for (int x = 0; x < b.getWidth(); x++) {
+            for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, opponent)) {
                     Board currentState = lmc.getLastLegal();

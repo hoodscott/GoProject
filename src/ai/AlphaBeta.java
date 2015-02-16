@@ -40,8 +40,8 @@ public class AlphaBeta extends AI {
         int score = 0;
 
         // put a stone down for every legal move
-        for (int x = 0; x <= b.getWidth(); x++) {
-            for (int y = 0; y <= b.getHeight(); y++) {
+        for (int x = 0; x < b.getWidth(); x++) {
+            for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour)) {
                     Board currentState = lmc.getLastLegal();
@@ -107,8 +107,8 @@ public class AlphaBeta extends AI {
         // if maximizing player`s turn 
         if (player == colour) {
             int score = ALPHA;
-            for (int x = 0; x <= currentBoard.getWidth(); x++) {
-                for (int y = 0; y <= currentBoard.getHeight(); y++) {
+            for (int x = 0; x < currentBoard.getWidth(); x++) {
+                for (int y = 0; y < currentBoard.getHeight(); y++) {
                     Coordinate currentCoord = new Coordinate(x, y);
                     if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, colour)) {
                         Board currentState = lmc.getLastLegal();
@@ -127,8 +127,8 @@ public class AlphaBeta extends AI {
         } // if minimizing player`s turn
         else {
             int score = BETA;
-            for (int x = 0; x <= currentBoard.getWidth(); x++) {
-                for (int y = 0; y <= currentBoard.getHeight(); y++) {
+            for (int x = 0; x < currentBoard.getWidth(); x++) {
+                for (int y = 0; y < currentBoard.getHeight(); y++) {
                     Coordinate currentCoord = new Coordinate(x, y);
                     if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, opponent)) {
                         Board currentState = lmc.getLastLegal();
@@ -149,8 +149,8 @@ public class AlphaBeta extends AI {
 
     // checks if there are not legal moves
     public boolean noMoreLegalMoves(Board b, int colour) {
-        for (int i = 0; i <= b.getWidth(); i++) {
-            for (int j = 0; j <= b.getHeight(); j++) {
+        for (int i = 0; i < b.getWidth(); i++) {
+            for (int j = 0; j < b.getHeight(); j++) {
                 Coordinate c = new Coordinate(i, j);
                 if (lmc.checkMove(b, c, colour)) {
                     return false;

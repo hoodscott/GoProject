@@ -37,6 +37,7 @@ public class TextUI {
         Scanner sc = new Scanner(System.in);
         System.out.println("--Go Game TextUI - v0.987654321--");
         System.out.println("> Type \"help\" for commands.");
+        System.out.println("WARNING: The following UI is old and out-dated and partially non-functional. Please use the GUI");
 
         //Main while-loop
         while (!exit) {

@@ -12,6 +12,7 @@ public class LegalMoveChecker implements Cloneable {
     private static final int BLACK = Board.BLACK;
     private static final int WHITE = Board.WHITE;
     private static final int EMPTY_AI = Board.EMPTY_AI;
+    private int REPLACEMENT;
 
     //Constructor
     public LegalMoveChecker() {
@@ -24,7 +25,7 @@ public class LegalMoveChecker implements Cloneable {
     }
 
     //Main MoveChecking method.
-    public boolean checkMove(Board board, Coordinate coord, int colour) {
+    public boolean checkMove(Board board, Coordinate coord, int colour, boolean withAI) {
 
         int x = coord.x;
         int y = coord.y;
@@ -33,6 +34,12 @@ public class LegalMoveChecker implements Cloneable {
         int defender;
         boolean[][] visited;
         lastChecked = null;
+        
+        //When playing against at least one AI, the search scope is used.
+        if(withAI)
+            REPLACEMENT =  Board.EMPTY_AI;
+        else
+            REPLACEMENT = Board.EMPTY;
 
         //1. if there is a stone already - illegal
         if (bCopy.get(x, y) != EMPTY && bCopy.get(x, y) != EMPTY_AI) {
@@ -82,7 +89,7 @@ public class LegalMoveChecker implements Cloneable {
                 for (int column = 0; column < bCopy.getWidth(); column++) {
                     for (int row = 0; row < bCopy.getHeight(); row++) {
                         if (visited[column][row]) {
-                            bCopy.set(column, row, EMPTY);
+                            bCopy.set(column, row, REPLACEMENT);
                         }
                     }
                 }
@@ -102,6 +109,7 @@ public class LegalMoveChecker implements Cloneable {
         //5. Tests for SuperKo; if yes - illegal
         for (Board b : moveHistory) {
             if (b.equals(bCopy)) {
+                System.out.println("Super Ko");
                 return false;
             }
         }
@@ -149,7 +157,7 @@ public class LegalMoveChecker implements Cloneable {
         if (visited[c.x][c.y] || board.get(c.x, c.y) == otherPlayer || liberties > 0) {
             return;
         }
-        if (board.get(c.x, c.y) == EMPTY) {
+        if (board.get(c.x, c.y) == EMPTY || board.get(c.x, c.y) == EMPTY_AI) {
             liberties++;
             return;
         }
