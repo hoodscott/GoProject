@@ -33,6 +33,7 @@ public class GraphicalUI {
     // private static instance variables
     private static GameEngine gameEngine;
     static String saveName;
+    static String saveLocation;
     private static ArrayList<String> messages;
 
     // private instance variables for swing
@@ -64,8 +65,6 @@ public class GraphicalUI {
     static JToggleButton creationButton, competitiveButton, boundsButton;
     static JButton aiMoveButton;
     static String aiType;
-
-    ;
 
     /**
      * Start the gui.

@@ -21,7 +21,7 @@ public class FileMenuListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Component pane = null;
-        // load specified board
+        
         String defaultDir = System.getProperty("user.dir")
                     + "\\saveData\\boards";
 
@@ -36,6 +36,7 @@ public class FileMenuListener implements ActionListener {
         }
         System.out.println(defaultDir);
         
+        // load specified board
         if (e.getActionCommand().equals("Load Problem")) {
 
 
@@ -46,6 +47,8 @@ public class FileMenuListener implements ActionListener {
                     // set save name on title bar
                     GraphicalUI.saveName = loadBoard.getSelectedFile()
                             .getName();
+                    GraphicalUI.saveLocation = loadBoard.getSelectedFile().getAbsolutePath();
+                    System.out.println(GraphicalUI.saveLocation);
                     GraphicalUI.setFrameTitle(GraphicalUI.saveName);
                     // load board
                     GraphicalUI.setGameEngine(FileIO.readBoard(loadBoard
@@ -111,7 +114,7 @@ public class FileMenuListener implements ActionListener {
                 }
             } else {
                 try {
-                    FileIO.writeBoard(GraphicalUI.getGameEngine(), defaultDir + "\\" + GraphicalUI.saveName);
+                    FileIO.writeBoard(GraphicalUI.getGameEngine(), GraphicalUI.saveLocation);
                     GraphicalUI.updateMessage("Problem saved");
                 } catch (BoardFormatException bfe) {
                     GraphicalUI.updateMessage(bfe.getMsg());
