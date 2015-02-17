@@ -81,6 +81,7 @@ public class FileMenuListener implements ActionListener {
                         GraphicalUI.objective
                                 .setText(localObjective.toString());
                     }
+                    GraphicalUI.turnOffBounds();
                     GraphicalUI.updateMessage("Board loaded");
 
                 } catch (BoardFormatException bfe) {

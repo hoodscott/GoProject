@@ -638,5 +638,11 @@ public class GraphicalUI {
     public static void updateBoundsButton(boolean b) {
         boundsButton.setEnabled(b);
     }
+    
+    public static void turnOffBounds(){
+    	if (boundsButton.getText().equals("Hide Bounds")){
+    		boundsButton.doClick();
+    	}
+    }
 
 }

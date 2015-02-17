@@ -17,12 +17,6 @@ public class NewMenuListener implements ActionListener {
         if (e.getActionCommand().equals("Default (9x9)")) {
             // default 9x9
             GraphicalUI.setGameEngine(new GameEngine(new Board()));
-            BoardJPanel.setPlayer("black");
-            GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-            GraphicalUI.updateMessage("New board created");
-            GraphicalUI.objective.setText("No set objective");
-            GraphicalUI.setProblemSettings(false);
-            GraphicalUI.updateBoundsButton(false);
         } else {
             // load specified board
             Object[] sizes = {"9", "13", "19"};
@@ -35,14 +29,17 @@ public class NewMenuListener implements ActionListener {
                 int length = Integer.parseInt(s);
                 GraphicalUI.setGameEngine(new GameEngine(new Board(length, length)));
                 // set player to back then draw the new board
-                BoardJPanel.setPlayer("black");
-                GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                GraphicalUI.updateMessage("New board created");
-                GraphicalUI.objective.setText("No set objective");
-                GraphicalUI.setProblemSettings(false);
-                GraphicalUI.updateBoundsButton(false);
+               
             }
         }
+        // set gui settings
+        GraphicalUI.turnOffBounds();
+        BoardJPanel.setPlayer("black");
+        GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+        GraphicalUI.updateMessage("New board created");
+        GraphicalUI.objective.setText("No set objective");
+        GraphicalUI.setProblemSettings(false);
+        GraphicalUI.updateBoundsButton(false);
         GraphicalUI.saveName = "Untitled";
         GraphicalUI.setFrameTitle(GraphicalUI.saveName);
     }
