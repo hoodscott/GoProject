@@ -72,6 +72,7 @@ public class FileMenuListener implements ActionListener {
                     } else {
                         GraphicalUI.setProblemSettings(true);
                         GraphicalUI.updateBoundsButton(true);
+                        GraphicalUI.changeMode(false);
                     }
                     if (localObjective == null) {
                         GraphicalUI.objective.setText("Not specified");
