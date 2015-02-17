@@ -5,7 +5,10 @@ public enum Rating {
 
     //E.G HALF_EYE(1000)
 
-    SOME_VALUE(1000);
+    SOME_VALUE(1000), COMPLETES_A_SECOND_EYE(Integer.MAX_VALUE), 
+    COMPLETES_AN_EYE(100);
+      
+	 
 
     //Used to access/create ratings.
     private final int rating;
