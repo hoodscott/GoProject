@@ -268,6 +268,14 @@ public class GraphicalUI {
                 "Allow user to specify board objective and bounds");
         menuItem.addActionListener(new ProblemSettingsListener());
         creationFileMenu.add(menuItem);
+        
+        menuItem = new JMenuItem("Alter Bounds", KeyEvent.VK_E);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
+                ActionEvent.CTRL_MASK));
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Allow user to alter board objective");
+        menuItem.addActionListener(new ProblemSettingsListener());
+        creationFileMenu.add(menuItem);
 
         creationFileMenu.addSeparator();
 

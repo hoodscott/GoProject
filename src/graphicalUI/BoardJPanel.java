@@ -86,10 +86,22 @@ public class BoardJPanel extends JPanel {
 						repaint();
 						// else add to bounds when wanted
 					} else if (BoardJPanel.boundsSelectionMode && !GraphicalUI.getCompetitive()) {
-						gameE.getCurrentBoard().set(xPos,yPos,Board.EMPTY_AI);
-						GraphicalUI.updateMessage("Bounds added at: " + xPos
-								+ ", " + yPos);
-						repaint();
+						// if there are no bounds, then add them
+						if (gameE.getCurrentBoard().get(xPos, yPos)==(Board.EMPTY)){
+							gameE.getCurrentBoard().set(xPos, yPos,
+									Board.EMPTY_AI);
+							GraphicalUI.updateMessage("Bounds added at: "
+									+ xPos + ", " + yPos);
+							repaint();
+						}
+						// if there are bounds, then remove them
+						else if (gameE.getCurrentBoard().get(xPos, yPos)==(Board.EMPTY_AI)){
+							gameE.getCurrentBoard().set(xPos, yPos,
+									Board.EMPTY);
+							GraphicalUI.updateMessage("Bounds removed from: "
+									+ xPos + ", " + yPos);
+							repaint();
+						}
 						// else add stone to board
 					} else {
 						updated = updateBoard(xPos, yPos, colour); // SET TO
