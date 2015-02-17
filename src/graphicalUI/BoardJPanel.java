@@ -419,12 +419,12 @@ public class BoardJPanel extends JPanel {
 				g.setFont(new Font("Ariel", Font.BOLD, 14));
 				// skip 0 so numbers look more presentable
 				g.drawString(Integer.toString(i - 1), i * squareSize - 4,
-						squareSize - 4);
+						(squareSize - 4)/2);
 			}
 			// print column nums
 			for (int j = 1; j <= lines; j++) {
 				g.setColor(new Color(0, 0, 0, 255));
-				g.drawString(Integer.toString(j - 1), squareSize - 18, j
+				g.drawString(Integer.toString(j - 1), (squareSize - 18)/5, j
 						* squareSize);
 			}
 		}
