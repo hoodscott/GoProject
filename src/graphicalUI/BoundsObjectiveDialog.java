@@ -65,10 +65,11 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
             }
             // set action
             if (obj.getOriginalAction().equals("kill")) {
-                coloursBox.setSelectedIndex(0);
+                actionsBox.setSelectedIndex(0);
             } else if (obj.getOriginalAction().equals("defend")) {
-                coloursBox.setSelectedIndex(1);
+                actionsBox.setSelectedIndex(1);
             }
+            System.out.println(obj.getOriginalAction());
             // set coordinates
             coord1.setSelectedIndex(obj.getPosition().x);
             coord2.setSelectedIndex(obj.getPosition().y);
