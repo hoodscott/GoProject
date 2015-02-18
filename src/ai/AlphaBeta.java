@@ -48,8 +48,8 @@ public class AlphaBeta extends AI {
         }
 
         int score = 0;
-        // want to call the heuristic after the 8th move if no winner by then
-        int depth = 2;
+        // want to call a heuristic after the 8th move if no winner by then
+        int depth = 8;
         
         // put a stone down for every legal move
         for (int x = 0; x < b.getWidth(); x++) {
