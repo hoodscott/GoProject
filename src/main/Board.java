@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Board {
@@ -48,7 +49,7 @@ public class Board {
     }
 
     // Get int representation of board position
-    public int get(int x, int y) {
+    public byte get(int x, int y) {
         return boardRep[x][y];
     }
 
