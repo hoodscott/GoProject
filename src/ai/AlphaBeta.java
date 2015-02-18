@@ -4,20 +4,28 @@ import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
+import ai.libertyCounterHeuristic;
 
 public class AlphaBeta extends AI {
 
     private Objective evaluator;
     private LegalMoveChecker lmc;
+    private libertyCounterHeuristic lcheuristic;
     // 
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
-    //
+
+    //add total considered moves counter
+    //private int movesConsidered = 0;
+    
     int opponent;
     Action abAction;
     Action opponentAction;
-
+    
+    //save the initial board as a global variable
+    private Board initialBoard;
+    
     // constructor
     public AlphaBeta(Objective objective, int c) {
         evaluator = objective;
@@ -31,14 +39,18 @@ public class AlphaBeta extends AI {
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
         this.lmc = legalMoves.clone();
         Coordinate bestMove = null;
-
+        // save the initial board to use during heurisic evaluation
+        initialBoard = b.clone();
+        
         // if objective is initially met pass
         if (abAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
             return new Coordinate(-1, -1);
         }
 
         int score = 0;
-
+        // want to call the heuristic after the 8th move if no winner by then
+        int depth = 2;
+        
         // put a stone down for every legal move
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {
@@ -53,7 +65,7 @@ public class AlphaBeta extends AI {
                     }
 
                     // continue to opponent`s best reaction to this particular move
-                    score = alphaBeta(currentState, ALPHA, BETA, opponent);
+                    score = alphaBeta(currentState, ALPHA, BETA, opponent,depth-1);
                     lmc.removeLast();
 
                     // compare the scores of all initial moves
@@ -73,7 +85,7 @@ public class AlphaBeta extends AI {
     }
 
     // recursive alphaBeta pruning  
-    public int alphaBeta(Board currentBoard, int alpha, int beta, int player) {
+    public int alphaBeta(Board currentBoard, int alpha, int beta, int player, int depth) {
     	///////////////////////////////////////////////////////////////////////////
         // check for terminal position
         // if killing objective is completed at this stage
@@ -101,8 +113,19 @@ public class AlphaBeta extends AI {
                 }
             }
         }
+        
         ///////////////////////////////////////////////////////////////////////////
-
+        // heuristic call
+        /*
+        if (depth == 0) {
+        	System.out.println("enter heuristics");
+        	int r = lcheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
+        	System.out.println(r);
+        	return r;
+        }*/
+        //
+        //////////////////////////////////////////////////////////////////////////
+        
         // if none of the conditions above is met then:
         // if maximizing player`s turn 
         if (player == colour) {
@@ -114,7 +137,7 @@ public class AlphaBeta extends AI {
                         Board currentState = lmc.getLastLegal();
                         lmc.addBoard(currentState);
                         // get response to current move from other player
-                        score = Math.max(score, alphaBeta(currentState, alpha, beta, opponent));
+                        score = Math.max(score, alphaBeta(currentState, alpha, beta, opponent, depth-1));
                         lmc.removeLast();
                         alpha = Math.max(alpha, score);
                         if (beta <= alpha) {
@@ -134,7 +157,7 @@ public class AlphaBeta extends AI {
                         Board currentState = lmc.getLastLegal();
                         lmc.addBoard(currentState);
                         // get response to current move from other player
-                        score = Math.min(score, alphaBeta(currentState, alpha, beta, colour));
+                        score = Math.min(score, alphaBeta(currentState, alpha, beta, colour, depth-1));
                         lmc.removeLast();
                         beta = Math.min(beta, score);
                         if (beta <= alpha) {

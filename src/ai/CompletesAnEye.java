@@ -14,7 +14,7 @@ public class CompletesAnEye implements Heuristic{
 	/// gives a board a move, obj and player to move 
 	// should return COMPLETES_AN_EYE if a move
 	// is found to return an eye else 0
-	public int assess(Board b, LegalMoveChecker lmc, Objective obj, int colourAI) {
+	public int assess(Board initialBoard, Board b, LegalMoveChecker lmc, Objective obj, int colourAI) {
 		
 		int x_limit = b.getWidth();
 		int y_limit = b.getHeight();
