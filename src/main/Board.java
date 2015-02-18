@@ -49,7 +49,7 @@ public class Board {
     }
 
     // Get int representation of board position
-    public byte get(int x, int y) {
+    public int get(int x, int y) {
         return boardRep[x][y];
     }
 
