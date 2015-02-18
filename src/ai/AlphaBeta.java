@@ -4,13 +4,13 @@ import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
-import ai.libertyCounterHeuristic;
+//import ai.libertyCounterHeuristic;
 
 public class AlphaBeta extends AI {
 
     private Objective evaluator;
     private LegalMoveChecker lmc;
-    private libertyCounterHeuristic lcheuristic;
+    private libertyCounterHeuristic lcheuristic = new libertyCounterHeuristic();
     // 
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
@@ -116,13 +116,13 @@ public class AlphaBeta extends AI {
         
         ///////////////////////////////////////////////////////////////////////////
         // heuristic call
-        /*
+        
         if (depth == 0) {
-        	System.out.println("enter heuristics");
+        	//System.out.println("enter heuristics");
         	int r = lcheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
-        	System.out.println(r);
+        	//System.out.println(r);
         	return r;
-        }*/
+        }
         //
         //////////////////////////////////////////////////////////////////////////
         
