@@ -15,9 +15,9 @@ import java.awt.event.*;
 public class BoundsObjectiveDialog extends JDialog implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-    private JPanel objectiveChoice, boundsChoice, finishButtons;
+    private JPanel objectiveChoice, finishButtons;
     @SuppressWarnings("rawtypes")
-    private JComboBox actionsBox, coloursBox, coord1, coord2, bc1, bc2, bc3, bc4;
+    private JComboBox actionsBox, coloursBox, coord1, coord2;
     private JButton OKButton, cancelButton;
     public static boolean cancelled;
 
@@ -45,10 +45,6 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
         // Create combo boxes
         coord1 = new JComboBox(positions);
         coord2 = new JComboBox(positions);
-        bc1 = new JComboBox(positions);
-        bc2 = new JComboBox(positions);
-        bc3 = new JComboBox(positions);
-        bc4 = new JComboBox(positions);
 
         // Buttons for user selection
         OKButton = new JButton("OK");
