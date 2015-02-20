@@ -126,7 +126,7 @@ public class CompletesAnEye implements Heuristic{
 		// check [0,0]
 		
 		
-		if (isAlmostEye){
+		if (isAlmostEye || isAlmostEdgeEye){
 		return Rating.COMPLETES_AN_EYE.getValue();
 		}else{
 			return 0;
