@@ -25,7 +25,9 @@ public class HasAnEye implements Heuristic{
 		int eye_counter = 0;
 		int edgeEye_counter = 0;
 		int cornerEye_counter = 0;
+		int twoEye_counter = 0;
 		
+		boolean hasTwoEyes = false;
 		boolean isEye = false;
 		boolean isEdgeEye = false;
 		boolean isCornerEye = false;
@@ -46,8 +48,12 @@ public class HasAnEye implements Heuristic{
 					eye_counter++;
 				if(board_to_assess[x][y-1] == colourAI )
 					eye_counter++;
+				
 				if (eye_counter == 4)
 					isEye = true;
+				    eye_counter = 0;
+				    twoEye_counter++;
+				
 			}
 		}
 		
@@ -69,6 +75,7 @@ public class HasAnEye implements Heuristic{
 			}
 			if (edgeEye_counter == 3)
 				isEdgeEye = true;
+			    twoEye_counter++;
 		}
 		
 		// search [x,0]
@@ -86,6 +93,7 @@ public class HasAnEye implements Heuristic{
 			}
 			if (edgeEye_counter == 3)
 				isEdgeEye = true;
+				twoEye_counter++;
 		}
 		
 		//search [x,y_limit-1]
@@ -103,6 +111,7 @@ public class HasAnEye implements Heuristic{
 			}
 			if (edgeEye_counter == 3)
 				isEdgeEye = true;
+				twoEye_counter++;
 		}
 		
 		//search [x_limit -1,y]
@@ -120,17 +129,25 @@ public class HasAnEye implements Heuristic{
 					}
 					if (edgeEye_counter == 3)
 						isEdgeEye = true;
+						twoEye_counter++;
 				}
 				
 		// now check the 4 corner points
 		// check [0,0]
 		
+		if (twoEye_counter >= 2){
+			return Rating.HAS_A_SECOND_EYE.getValue();
+		}else{
 		
 		if (isEye || isEdgeEye){
 		return Rating.HAS_AN_EYE.getValue();
 		}else{
 			return 0;
 		}
+		
+		}
+		
+		
 	}
 	
 }
