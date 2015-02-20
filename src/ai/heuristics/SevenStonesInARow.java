@@ -1,11 +1,7 @@
-package ai;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
+package ai.heuristics;
+import ai.Objective;
 import main.Board;
 import main.LegalMoveChecker;
-import ai.Rating;
 //SIX DIE, EIGHT LIVE HUERISTIC
 // Determines whether a move will make 8 in a row
 public class SevenStonesInARow implements Heuristic{

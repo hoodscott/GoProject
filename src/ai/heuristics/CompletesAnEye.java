@@ -1,11 +1,13 @@
-package ai;
+package ai.heuristics;
 
+import ai.Objective;
+import ai.heuristics.Heuristic;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import main.Board;
 import main.LegalMoveChecker;
-import ai.Rating;
+import ai.heuristics.Rating;
 //create a first heuristic to detect eyes and 
 // return appropriate value
 public class CompletesAnEye implements Heuristic{

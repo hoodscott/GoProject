@@ -1,5 +1,6 @@
-package ai;
+package ai.heuristics;
 
+import ai.Objective;
 import main.Board;
 import main.LegalMoveChecker;
 

@@ -1,5 +1,6 @@
 package ai;
 
+import ai.heuristics.libertyCounterHeuristic;
 import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;

@@ -1,5 +1,6 @@
-package ai;
+package ai.heuristics;
 
+import ai.Objective;
 import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
@@ -45,12 +46,12 @@ public class libertyCounterHeuristic implements Heuristic{
 		// if the action is KILL a move is good if the current liberties of the targeted group are less
 		// if the returned number is negative the move is bad
 		if(aiAction == Action.KILL){
-			return (libertiesInitial - libertiesCurrent)*100;		 
+			return (libertiesInitial - libertiesCurrent)* Rating.LIBERTY.getValue();		 
 		}
 		
 		// if action is DEFEND a move is good if the current liberties of the targeted group are more
 		// if the returned number is negative the move is bad
-		else return (libertiesCurrent - libertiesInitial) * 100;
+		else return (libertiesCurrent - libertiesInitial) * Rating.LIBERTY.getValue();
 	}
 
 	
