@@ -4,10 +4,10 @@ package ai.heuristics;
 public enum Rating {
 
     //Jamie's Heuristics   
-    COMPLETES_A_SECOND_EYE(Integer.MAX_VALUE), 
-    COMPLETES_AN_EYE(800), 
-    MAKES_EIGHT_IN_A_ROW(1200), 
-    MAKES_SIX_IN_A_ROW(1200),
+    HAS_A_SECOND_EYE(Integer.MAX_VALUE), 
+    HAS_AN_EYE(800), 
+    HAS_EIGHT_IN_A_ROW(1200), 
+    HAS_SIX_IN_A_ROW(1200),
     
     //Kiril's Heuristics
     LIBERTY(100);
