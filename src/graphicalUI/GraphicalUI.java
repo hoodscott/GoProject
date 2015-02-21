@@ -323,13 +323,22 @@ public class GraphicalUI {
                 .setAccessibleDescription(
                         "This menu does nothing but could be used for debugging the program");
         menuBar.add(fileMenu);
+        
+        // menu item for a debug command
+        menuItem = new JMenuItem("Choose Heuristics", KeyEvent.VK_H);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,
+                ActionEvent.ALT_MASK));
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "Select heuristics");
+        menuItem.addActionListener(new DebugMenuListener());
+        fileMenu.add(menuItem);
 
         // menu item for a debug command
         menuItem = new JMenuItem("Toggle Row Numbers", KeyEvent.VK_A);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
                 ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
-                "Shows the keyboard commands");
+                "Toggle coordinates");
         menuItem.addActionListener(new DebugMenuListener());
         fileMenu.add(menuItem);
 
