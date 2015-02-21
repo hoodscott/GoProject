@@ -53,7 +53,7 @@ public class GraphicalUI {
     private static boolean rowNumbers;
 
     private static JMenu competitiveFileMenu, creationFileMenu;
-    private static JLabel aiLabel;
+    public static JLabel aiLabel;
     public static JLabel feedback;
 
     // public static instance variables for swing

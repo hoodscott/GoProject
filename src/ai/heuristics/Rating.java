@@ -10,10 +10,10 @@ public enum Rating {
     HAS_SIX_IN_A_ROW(1200),
     
     //Kiril's Heuristics
-    LIBERTY(100);
+    LIBERTY(100),
     
-      
-	 
+    // Eilidh's Heuristics
+    UNSETTLED_THREE(300);
 
     //Used to access/create ratings.
     private final int rating;

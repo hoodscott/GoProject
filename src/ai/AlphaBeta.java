@@ -18,7 +18,7 @@ public class AlphaBeta extends AI {
     private static final int BETA = Integer.MAX_VALUE;
 
     //add total considered moves counter
-    private int movesConsidered;
+    private static int movesConsidered;
     
     int opponent;
     Action abAction;
@@ -37,7 +37,7 @@ public class AlphaBeta extends AI {
     }
 
     // get the number of boards evaluated
-    public int getNumberOfMovesConsidered(){
+    public static int getNumberOfMovesConsidered(){
     	return movesConsidered;
     }
     

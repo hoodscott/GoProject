@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import main.Board;
 import main.Coordinate;
 import main.GameEngine;
+import ai.AlphaBeta;
 import ai.Objective;
 import ai.AIException;
 
@@ -226,7 +227,15 @@ public class BoardJPanel extends JPanel {
 			} catch (AIException e) {
 				move = e.getMsg();
 			}
-			GraphicalUI.updateMessage("AI move: " + move);
+			if (GraphicalUI.aiType.equals("AlphaBeta")) {
+				GraphicalUI.updateMessage("AI move: " + move);
+				GraphicalUI.aiLabel.setText("AlphaBeta's Considered Moves: ");
+				GraphicalUI.currentAILabel.setText(Integer.toString(AlphaBeta.getNumberOfMovesConsidered()));
+			} else {
+				GraphicalUI.updateMessage("AI move: " + move);
+				GraphicalUI.aiLabel.setText("AI Type: ");
+				GraphicalUI.currentAILabel.setText("Minimax");
+			}
 			System.out.println(move);
 			changePlayer();
 
