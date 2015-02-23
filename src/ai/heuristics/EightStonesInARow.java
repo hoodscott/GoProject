@@ -8,7 +8,7 @@ public class EightStonesInARow implements Heuristic{
 	
 	@Override
 	/// gives a board a move, obj and player to move 
-	// should return MAKES_EIGHT_IN_A_ROW if a move
+	// should return HAS_EIGHT_IN_A_ROW if a move
 	// is found to return an eye else 0
 	public int assess(Board initialBoard, Board b, LegalMoveChecker lmc, Objective obj, int colourAI) {
 		
@@ -72,7 +72,7 @@ public class EightStonesInARow implements Heuristic{
 		
 		
 		
-		// search for 5 stones in the corners
+		// search for 6 stones in the corners
 		
 		// search [1,y] corners
 					
