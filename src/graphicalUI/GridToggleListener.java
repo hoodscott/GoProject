@@ -19,6 +19,7 @@ public class GridToggleListener implements ActionListener {
 					GraphicalUI.updateMessage("Bounds updated and shown");
 					GraphicalUI.setBounds(true);
 					GraphicalUI.boardJP.repaint();
+					button.setSelected(true);
 					button.setText("Hide Bounds");
 					
 		            // Tell GUI that user has set bounds/objectives
@@ -38,11 +39,13 @@ public class GridToggleListener implements ActionListener {
 			} else if (!BoardJPanel.boundsSelectionMode && !GraphicalUI.getBounds()) {
 				GraphicalUI.setBounds(true);
 				GraphicalUI.boardJP.repaint();
+				button.setSelected(true);
 				GraphicalUI.updateMessage("Bounds shown");
 				button.setText("Hide Bounds");
 			} else {
 				GraphicalUI.setBounds(false);
 				GraphicalUI.boardJP.repaint();
+				button.setSelected(false);
 				GraphicalUI.updateMessage("Bounds hidden");
 				button.setText("Show Bounds");
 			}
