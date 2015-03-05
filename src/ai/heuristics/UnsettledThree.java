@@ -11,7 +11,7 @@ public class UnsettledThree implements Heuristic {
 	Coordinate middleCoord;
 	int liberties;
 
-	// Finds unsettled three case where opponent group is surrounding 
+	// Finds unsettled three case where opponent group is surrounding
 	// to enable stopping opponent creating 2 eyes
 	@Override
 	public int assess(Board initialBoard, Board currentBoard,
@@ -25,78 +25,99 @@ public class UnsettledThree implements Heuristic {
 			opponent = 1;
 
 		// Check original board for unsettled three pattern - return 0 if not
-		for (int x = 0; x < currentBoard.getHeight() - 1; x++) {
-			for (int y = 0; y < currentBoard.getHeight() - 1; y++) {
+		for (int x = 0; x < currentBoard.getHeight(); x++) {
+			for (int y = 0; y < currentBoard.getHeight(); y++) {
 
 				// Look for unsettled three within bounds
 				if (initialBoard.get(x, y) == Board.EMPTY_AI) {
-
 					// Check for 2 liberties in surrounding stones
-					// Case: When NOT on edge/corner
-					if ((x != 0 && x != currentBoard.getHeight() - 1)
-							&& (y != 0 && y != currentBoard.getHeight())) {
-						if (initialBoard.get(x + 1, y) == Board.EMPTY_AI)
-							liberties++;
-						if (initialBoard.get(x + 1, y - 1) == Board.EMPTY_AI)
-							liberties++;
-						if (initialBoard.get(x + 1, y + 1) == Board.EMPTY_AI)
-							liberties++;
-						if (initialBoard.get(x, y - 1) == Board.EMPTY_AI)
-							liberties++;
-						if (initialBoard.get(x, y + 1) == Board.EMPTY_AI)
-							liberties++;
-						if (initialBoard.get(x - 1, y) == Board.EMPTY_AI)
-							liberties++;
-						if (initialBoard.get(x - 1, y - 1) == Board.EMPTY_AI)
-							liberties++;
-						if (initialBoard.get(x - 1, y + 1) == Board.EMPTY_AI)
-							liberties++;
-					}
-
-					// TODO: Add edge/corner cases
+					// Use try/catches for corner and edge cases
+					try { if (initialBoard.get(x + 1, y) == Board.EMPTY_AI)
+						liberties++;
+					} catch (Exception e) {}
+					try { if (initialBoard.get(x + 1, y - 1) == Board.EMPTY_AI)
+						liberties++;
+					} catch (Exception e) {}
+					try { if (initialBoard.get(x + 1, y + 1) == Board.EMPTY_AI)
+						liberties++;
+					} catch (Exception e) {}
+					try { if (initialBoard.get(x, y - 1) == Board.EMPTY_AI)
+						liberties++;
+					} catch (Exception e) {}
+					try { if (initialBoard.get(x, y + 1) == Board.EMPTY_AI)
+						liberties++;
+					} catch (Exception e) {}
+					try { if (initialBoard.get(x - 1, y) == Board.EMPTY_AI)
+						liberties++;
+					} catch (Exception e) {}
+					try { if (initialBoard.get(x - 1, y - 1) == Board.EMPTY_AI)
+						liberties++;
+					} catch (Exception e) {}
+					try { if (initialBoard.get(x - 1, y + 1) == Board.EMPTY_AI)
+						liberties++;
+					} catch (Exception e) {}
 
 					if (liberties == 2) {
 						// Check group is opponent
-						unsettledThreeCheck = true;
-						if (initialBoard.get(x + 1, y) != Board.EMPTY_AI
-								|| initialBoard.get(x + 1, y) != opponent)
-							unsettledThreeCheck = false;
-						if (initialBoard.get(x + 1, y - 1) != Board.EMPTY_AI
-								|| initialBoard.get(x + 1, y - 1) != opponent)
-							unsettledThreeCheck = false;
-						if (initialBoard.get(x + 1, y + 1) != Board.EMPTY_AI
-								|| initialBoard.get(x + 1, y + 1) != opponent)
-							unsettledThreeCheck = false;
-						if (initialBoard.get(x, y - 1) != Board.EMPTY_AI
-								|| initialBoard.get(x, y - 1) != opponent)
-							unsettledThreeCheck = false;
-						if (initialBoard.get(x, y + 1) != Board.EMPTY_AI
-								|| initialBoard.get(x, y + 1) != opponent)
-							unsettledThreeCheck = false;
-						if (initialBoard.get(x - 1, y) != Board.EMPTY_AI
-								|| initialBoard.get(x - 1, y) != opponent)
-							unsettledThreeCheck = false;
-						if (initialBoard.get(x - 1, y - 1) != Board.EMPTY_AI
-								|| initialBoard.get(x - 1, y - 1) != opponent)
-							unsettledThreeCheck = false;
-						if (initialBoard.get(x - 1, y + 1) != Board.EMPTY_AI
-								|| initialBoard.get(x - 1, y + 1) != opponent)
-							unsettledThreeCheck = false;
+						// Use try/catches for edge and corner case
+						unsettledThreeCheck = false;
+						try { if (initialBoard.get(x + 1, y) == Board.EMPTY_AI
+								|| initialBoard.get(x + 1, y) == opponent) {
+							unsettledThreeCheck = true;
+						}
+						} catch (Exception e) {}
+						try { if (initialBoard.get(x + 1, y - 1) == Board.EMPTY_AI
+								|| initialBoard.get(x + 1, y - 1) == opponent) {
+							unsettledThreeCheck = true;
+						}
+						} catch (Exception e) {}
+						try { if (initialBoard.get(x + 1, y + 1) == Board.EMPTY_AI
+								|| initialBoard.get(x + 1, y + 1) == opponent) {
+							unsettledThreeCheck = true;
+						}
+						} catch (Exception e) {}
+						try { if (initialBoard.get(x, y - 1) == Board.EMPTY_AI
+								|| initialBoard.get(x, y - 1) == opponent){
+							unsettledThreeCheck = true;
+						}
+						} catch (Exception e) {}
+						try { if (initialBoard.get(x, y + 1) == Board.EMPTY_AI
+								|| initialBoard.get(x, y + 1) == opponent){
+							unsettledThreeCheck = true;
+						}
+						} catch (Exception e) {}
+						try { if (initialBoard.get(x - 1, y) == Board.EMPTY_AI
+								|| initialBoard.get(x - 1, y) == opponent){
+							unsettledThreeCheck = true;
+						}
+						} catch (Exception e) {}
+						try { if (initialBoard.get(x - 1, y - 1) == Board.EMPTY_AI
+								|| initialBoard.get(x - 1, y - 1) == opponent){
+							unsettledThreeCheck = true;
+						}
+						} catch (Exception e) {}
+						try { if (initialBoard.get(x - 1, y + 1) == Board.EMPTY_AI
+								|| initialBoard.get(x - 1, y + 1) == opponent){
+							unsettledThreeCheck = true;
+						}
+						} catch (Exception e) {}
 					}
-
+					
 					if (unsettledThreeCheck)
 						middleCoord = new Coordinate(x, y);
+					
+					// Check current board for AI move in middle of unsettled three
+					if (unsettledThreeCheck
+							&& (currentBoard.get(middleCoord.x, middleCoord.y) == colourAI)) {
+						return Rating.UNSETTLED_THREE.getValue();
+					}
 
 					liberties = 0;
 				}
 			}
 		}
-
-		// Check current board for AI move in middle of unsettled three
-		if (currentBoard.get(middleCoord.x, middleCoord.y) == colourAI) {
-			return Rating.UNSETTLED_THREE.getValue();
-		}
-
+		
+		// Else no solution
 		return 0;
 	}
 

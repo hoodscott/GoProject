@@ -1,5 +1,6 @@
 package ai;
 
+import ai.heuristics.UnsettledThree;
 import ai.heuristics.libertyCounterHeuristic;
 import main.Board;
 import main.Coordinate;
@@ -12,6 +13,7 @@ public class AlphaBeta extends AI {
     private Objective evaluator;
     private LegalMoveChecker lmc;
     private libertyCounterHeuristic lcheuristic = new libertyCounterHeuristic();
+    private UnsettledThree utheuristic = new UnsettledThree();
     // 
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
@@ -129,10 +131,12 @@ public class AlphaBeta extends AI {
         // heuristic call
         
         if (depth == 0) {
-        	//System.out.println("enter heuristics");
+        	System.out.println("enter heuristics");
         	int r = lcheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
+        	int s = utheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
         	//System.out.println(r);
-        	return r;
+        	if (s > r) return s;
+        	else return r;
         }
         //
         //////////////////////////////////////////////////////////////////////////
