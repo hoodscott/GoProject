@@ -13,7 +13,7 @@ public enum Rating {
     LIBERTY(100),
     
     // Eilidh's Heuristics
-    UNSETTLED_THREE(300);
+    UNSETTLED_THREE(700);
 
     //Used to access/create ratings.
     private final int rating;

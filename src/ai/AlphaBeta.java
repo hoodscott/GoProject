@@ -89,6 +89,8 @@ public class AlphaBeta extends AI {
                 }
             }
         }
+        
+        System.out.println(globalScore);
 
         // pass if no move will improve the situation 
         if (bestMove == null) {
@@ -130,13 +132,13 @@ public class AlphaBeta extends AI {
         ///////////////////////////////////////////////////////////////////////////
         // heuristic call
         
-        if (depth == 0) {
-        	System.out.println("enter heuristics");
+        if (true) {
+        	//System.out.println("enter heuristics");
         	int r = lcheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
         	int s = utheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
         	//System.out.println(r);
-        	if (s > r) return s;
-        	else return r;
+        	if (s > r && s > 0) return s;
+        	else if (r > 0) return r;
         }
         //
         //////////////////////////////////////////////////////////////////////////
