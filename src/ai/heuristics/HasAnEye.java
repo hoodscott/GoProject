@@ -27,7 +27,9 @@ public class HasAnEye implements Heuristic{
 		int cornerEye_counter = 0;
 		int twoEye_counter = 0;
 		
+		boolean is2pointEdgeEye = false;
 		boolean hasTwoEyes = false;
+		boolean is2pointEye = false;
 		boolean isEye = false;
 		boolean isEdgeEye = false;
 		boolean isCornerEye = false;
@@ -36,9 +38,9 @@ public class HasAnEye implements Heuristic{
 		
 		
 		//iterate over the board excluding the edges
-		for (int x = 1; x < (x_limit - 2);x++){
+		for (int x = 1; x <= (x_limit - 2);x++){
 			eye_counter = 0;
-			for (int y = 1; y < (y_limit - 2); y++){
+			for (int y = 1; y <= (y_limit - 2); y++){
 				
 				if(board_to_assess[x+1][y] == colourAI )
 					eye_counter++;
@@ -62,7 +64,7 @@ public class HasAnEye implements Heuristic{
 		
 		//search [0,y]
 		edgeEye_counter = 0;
-		for (int y = 1; y < (y_limit - 2); y++){
+		for (int y = 1; y <= (y_limit - 2); y++){
 			
 			if(board_to_assess[0][y-1] == colourAI )
 				edgeEye_counter++;
@@ -80,7 +82,7 @@ public class HasAnEye implements Heuristic{
 		
 		// search [x,0]
 		edgeEye_counter = 0;
-		for (int x = 1; x < (x_limit - 2); x++){
+		for (int x = 1; x <= (x_limit - 2); x++){
 			
 			if(board_to_assess[x-1][0] == colourAI )
 				edgeEye_counter++;
@@ -98,7 +100,7 @@ public class HasAnEye implements Heuristic{
 		
 		//search [x,y_limit-1]
 		edgeEye_counter = 0;
-		for (int x = 1; x < (x_limit - 2); x++){
+		for (int x = 1; x <= (x_limit - 2); x++){
 			
 			if(board_to_assess[x-1][y_limit-1] == colourAI )
 				edgeEye_counter++;
@@ -116,7 +118,7 @@ public class HasAnEye implements Heuristic{
 		
 		//search [x_limit -1,y]
 				edgeEye_counter = 0;
-				for (int y = 1; y < (y_limit - 2); y++){
+				for (int y = 1; y <= (y_limit - 2); y++){
 					
 					if(board_to_assess[x_limit-1][y-1] == colourAI )
 						edgeEye_counter++;
@@ -135,12 +137,138 @@ public class HasAnEye implements Heuristic{
 		// now check the 4 corner points
 		// check [0,0]
 		
+				
+		////////////////////////////////////////////////////////////////////////////////		
+		// check for 2 point eyes
+		//iterate over the board excluding the edges
+		for (int x = 1, x1 = 2; x <= (x_limit - 2) && x1 < (x_limit - 2);x++){
+			eye_counter = 0;
+			for (int y = 1, y1 = 1; y <= (y_limit - 2) && y1 < (y_limit - 2); y++){
+						
+				if(board_to_assess[x][y-1] == colourAI )
+					eye_counter++;
+				if(board_to_assess[x-1][y] == colourAI )
+					eye_counter++;
+				if(board_to_assess[x][y+1] == colourAI )
+					eye_counter++;
+				if(board_to_assess[x1][y1-1] == colourAI )
+					eye_counter++;
+				if(board_to_assess[x1][y1+1] == colourAI )
+					eye_counter++;
+				if(board_to_assess[x1 + 1][y1] == colourAI )
+					eye_counter++;
+						
+				if (eye_counter == 6)
+					is2pointEye = true;
+				    eye_counter = 0;
+				    twoEye_counter++;
+						
+			}
+		}
+				
+		//check edges i.e. [0,y], [x,0], [x_limit - 1,y], [x,y_limit -1]
+				// omitting corner points
+				
+				//search [0,y]
+				edgeEye_counter = 0;
+				for (int y = 1, y1 = 2; y1 <= (y_limit - 2); y++){
+					
+					if(board_to_assess[0][y-1] == colourAI )
+						edgeEye_counter++;
+					if(board_to_assess[1][y] == colourAI )
+						edgeEye_counter++;
+					if(board_to_assess[1][y1] == colourAI ){
+						edgeEye_counter++;
+					if(board_to_assess[0][y1+1] == colourAI ){
+						edgeEye_counter++;
+					}else{
+						edgeEye_counter = 0;
+					}
+					
+					if (edgeEye_counter == 4)
+						is2pointEdgeEye = true;
+					    twoEye_counter++;
+				    }			
+				
+				}
+				
+				// search [x,0]
+				edgeEye_counter = 0;
+				for (int x = 1, x1 = 2; x1 <= (x_limit - 2); x++){
+					
+					if(board_to_assess[x-1][0] == colourAI )
+						edgeEye_counter++;
+					if(board_to_assess[x][1] == colourAI )
+						edgeEye_counter++;
+					if(board_to_assess[x1][1] == colourAI ){
+						edgeEye_counter++;
+					if(board_to_assess[x1+1][0] == colourAI ){
+						edgeEye_counter++;
+					}else{
+						edgeEye_counter = 0;
+					}
+					if (edgeEye_counter == 4)
+						is2pointEdgeEye = true;
+						twoEye_counter++;
+					}
+				}	
+				
+			    //search [x,y_limit-1]
+				edgeEye_counter = 0;
+				for (int x = 1, x1 = 2; x <= (x_limit - 2); x++){
+						
+					if(board_to_assess[x-1][y_limit-1] == colourAI )
+						edgeEye_counter++;
+					if(board_to_assess[x][y_limit-2] == colourAI )
+						edgeEye_counter++;
+					if(board_to_assess[x1][y_limit-2] == colourAI ){
+						edgeEye_counter++;
+					if(board_to_assess[x1+1][y_limit-1] == colourAI ){
+						edgeEye_counter++;
+					}else{
+						edgeEye_counter = 0;
+					}
+					if (edgeEye_counter == 4)
+						is2pointEdgeEye = true;
+						twoEye_counter++;
+					}
+				}
+					
+				//search [x_limit -1,y]
+				edgeEye_counter = 0;
+				for (int y = 1, y1 = 2; y <= (y_limit - 2); y++){
+					
+					if(board_to_assess[x_limit-1][y-1] == colourAI )
+						edgeEye_counter++;
+					if(board_to_assess[x_limit-2][y] == colourAI )
+						edgeEye_counter++;
+					if(board_to_assess[x_limit-2][y1] == colourAI ){
+						edgeEye_counter++;
+					if(board_to_assess[x_limit-1][y1+1] == colourAI ){
+						edgeEye_counter++;
+					}else{
+						edgeEye_counter = 0;
+					}
+					if (edgeEye_counter == 4)
+						is2pointEdgeEye = true;
+						twoEye_counter++;
+					}	
+				}
+				
+				
+				
+				
+				
+				
+				
 		if (twoEye_counter >= 2){
 			return Rating.HAS_A_SECOND_EYE.getValue();
 		}else{
 		
-		if (isEye || isEdgeEye){
+		if (isEye || isEdgeEye ){
 		return Rating.HAS_AN_EYE.getValue();
+		}else if (is2pointEye || is2pointEdgeEye){
+			return Rating.HAS_AN_2_POINT_EYE.getValue();
 		}else{
 			return 0;
 		}
