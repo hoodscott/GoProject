@@ -60,8 +60,12 @@ public class FileMenuListener implements ActionListener {
                     	BoardJPanel.boundsCheck = true;
                     }
                     // set initial player
+                    try {
                     BoardJPanel.setPlayerInt(GraphicalUI.getGameEngine()
                             .getObjective().getStartingColour());
+                    } catch (Exception obj) {
+                    	System.out.println("No objective specified in opened file.");
+                    }
                     GraphicalUI.player.setText(BoardJPanel.getPlayer()
                             + " to move");
 					// TODO maybe check the objective and bounds are in the

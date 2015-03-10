@@ -1,5 +1,6 @@
 package ai;
 
+import ai.heuristics.UnsettledThree;
 import ai.heuristics.libertyCounterHeuristic;
 import main.Board;
 import main.Coordinate;
@@ -12,13 +13,14 @@ public class AlphaBeta extends AI {
     private Objective evaluator;
     private LegalMoveChecker lmc;
     private libertyCounterHeuristic lcheuristic = new libertyCounterHeuristic();
+    private UnsettledThree utheuristic = new UnsettledThree();
     // 
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
 
     //add total considered moves counter
-    //private int movesConsidered = 0;
+    private static int movesConsidered;
     
     int opponent;
     Action abAction;
@@ -36,9 +38,17 @@ public class AlphaBeta extends AI {
         opponentAction = evaluator.getAction(opponent);
     }
 
+    // get the number of boards evaluated
+    public static int getNumberOfMovesConsidered(){
+    	return movesConsidered;
+    }
+    
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
-        this.lmc = legalMoves.clone();
+        // reset the number of moves considered  
+    	movesConsidered = 0;
+    	
+    	this.lmc = legalMoves.clone();
         Coordinate bestMove = null;
         // save the initial board to use during heurisic evaluation
         initialBoard = b.clone();
@@ -59,7 +69,9 @@ public class AlphaBeta extends AI {
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
-
+                    
+                    movesConsidered++;
+                    
                     // check the possibility of only one move needed
                     if (abAction == Action.KILL && evaluator.checkSucceeded(currentState, colour)) {
                         return currentCoord;
@@ -77,6 +89,8 @@ public class AlphaBeta extends AI {
                 }
             }
         }
+        
+        System.out.println(globalScore);
 
         // pass if no move will improve the situation 
         if (bestMove == null) {
@@ -118,11 +132,13 @@ public class AlphaBeta extends AI {
         ///////////////////////////////////////////////////////////////////////////
         // heuristic call
         
-        if (depth == 0) {
+        if (true) {
         	//System.out.println("enter heuristics");
         	int r = lcheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
+        	int s = utheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
         	//System.out.println(r);
-        	return r;
+        	if (s > r && s > 0) return s;
+        	else if (r > 0) return r;
         }
         //
         //////////////////////////////////////////////////////////////////////////
@@ -137,6 +153,9 @@ public class AlphaBeta extends AI {
                     if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, colour, true)) {
                         Board currentState = lmc.getLastLegal();
                         lmc.addBoard(currentState);
+                        
+                        movesConsidered++;
+                        
                         // get response to current move from other player
                         score = Math.max(score, alphaBeta(currentState, alpha, beta, opponent, depth-1));
                         lmc.removeLast();
@@ -157,6 +176,9 @@ public class AlphaBeta extends AI {
                     if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, opponent, true)) {
                         Board currentState = lmc.getLastLegal();
                         lmc.addBoard(currentState);
+                        
+                        movesConsidered++;
+                        
                         // get response to current move from other player
                         score = Math.min(score, alphaBeta(currentState, alpha, beta, colour, depth-1));
                         lmc.removeLast();

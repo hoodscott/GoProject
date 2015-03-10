@@ -10,7 +10,7 @@ import main.LegalMoveChecker;
 import ai.heuristics.Rating;
 //create a first heuristic to detect eyes and 
 // return appropriate value
-public class CompletesAnEye implements Heuristic{
+public class HasAnEye implements Heuristic{
 	
 	@Override
 	/// gives a board a move, obj and player to move 
@@ -25,10 +25,12 @@ public class CompletesAnEye implements Heuristic{
 		int eye_counter = 0;
 		int edgeEye_counter = 0;
 		int cornerEye_counter = 0;
+		int twoEye_counter = 0;
 		
-		boolean isAlmostEye = false;
-		boolean isAlmostEdgeEye = false;
-		boolean isAlmostCornerEye = false;
+		boolean hasTwoEyes = false;
+		boolean isEye = false;
+		boolean isEdgeEye = false;
+		boolean isCornerEye = false;
 		byte[][] board_to_assess = b.getRaw();
 ;
 		
@@ -46,8 +48,12 @@ public class CompletesAnEye implements Heuristic{
 					eye_counter++;
 				if(board_to_assess[x][y-1] == colourAI )
 					eye_counter++;
-				if (eye_counter == 3)
-					isAlmostEye = true;
+				
+				if (eye_counter == 4)
+					isEye = true;
+				    eye_counter = 0;
+				    twoEye_counter++;
+				
 			}
 		}
 		
@@ -67,8 +73,9 @@ public class CompletesAnEye implements Heuristic{
 			}else{
 				edgeEye_counter = 0;
 			}
-			if (edgeEye_counter == 2)
-				isAlmostEdgeEye = true;
+			if (edgeEye_counter == 3)
+				isEdgeEye = true;
+			    twoEye_counter++;
 		}
 		
 		// search [x,0]
@@ -84,8 +91,9 @@ public class CompletesAnEye implements Heuristic{
 			}else{
 				edgeEye_counter = 0;
 			}
-			if (edgeEye_counter == 2)
-				isAlmostEdgeEye = true;
+			if (edgeEye_counter == 3)
+				isEdgeEye = true;
+				twoEye_counter++;
 		}
 		
 		//search [x,y_limit-1]
@@ -101,8 +109,9 @@ public class CompletesAnEye implements Heuristic{
 			}else{
 				edgeEye_counter = 0;
 			}
-			if (edgeEye_counter == 2)
-				isAlmostEdgeEye = true;
+			if (edgeEye_counter == 3)
+				isEdgeEye = true;
+				twoEye_counter++;
 		}
 		
 		//search [x_limit -1,y]
@@ -118,19 +127,27 @@ public class CompletesAnEye implements Heuristic{
 					}else{
 						edgeEye_counter = 0;
 					}
-					if (edgeEye_counter == 2)
-						isAlmostEdgeEye = true;
+					if (edgeEye_counter == 3)
+						isEdgeEye = true;
+						twoEye_counter++;
 				}
 				
 		// now check the 4 corner points
 		// check [0,0]
 		
+		if (twoEye_counter >= 2){
+			return Rating.HAS_A_SECOND_EYE.getValue();
+		}else{
 		
-		if (isAlmostEye){
-		return Rating.COMPLETES_AN_EYE.getValue();
+		if (isEye || isEdgeEye){
+		return Rating.HAS_AN_EYE.getValue();
 		}else{
 			return 0;
 		}
+		
+		}
+		
+		
 	}
 	
 }
