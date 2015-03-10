@@ -175,9 +175,9 @@ public class EightStonesInARow implements Heuristic{
 								}
 				
 					
-	if (isSixInARow)
+	if (isEightInARow)
 		return Rating.HAS_EIGHT_IN_A_ROW.getValue();
-	if(isEightInARow){
+	if(isSixInARow){
 		return Rating.HAS_SIX_IN_A_ROW.getValue();
 	}else{
 		return 0;
