@@ -51,7 +51,7 @@ public class GameEngine {
     }
 
     // Returns the current board to the caller 
-    public Board getCurrentBoard() {
+    public Board getCurrentBoard() {                
         return currentBoard;
     }
 
