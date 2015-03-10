@@ -52,6 +52,14 @@ public class GameEngine {
 
     // Returns the current board to the caller 
     public Board getCurrentBoard() {
+        byte[][] values = currentBoard.getRaw();
+        for(int i = 0; i < values[0].length; i++){
+            for(int j = 0; j < values.length; j++)
+                System.out.print(" "+values[j][i]);
+            System.out.println();
+        }
+        System.out.println();
+                
         return currentBoard;
     }
 
