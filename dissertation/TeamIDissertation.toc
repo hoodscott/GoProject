@@ -1,0 +1,30 @@
+\contentsline {chapter}{\numberline {1}Introduction}{4}{chapter.1}
+\contentsline {chapter}{\numberline {2}Background}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Go Background}{7}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Go Terms Relevant For Life And Death Problems}{8}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.2}Go Problems}{9}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Why Life And Death?}{9}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Common Life And Death Problems}{9}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Unsettled Three}{9}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Six Die, Eight Live}{10}{subsection.2.2.4}
+\contentsline {chapter}{\numberline {3}Design And Implementation}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Requirements Gathering}{11}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Interview Questions}{11}{subsection.3.1.1}
+\contentsline {section}{\numberline {3.2}Requirements Specification And Organization}{13}{section.3.2}
+\contentsline {section}{\numberline {3.3}Game Engine Design And Implementation}{14}{section.3.3}
+\contentsline {section}{\numberline {3.4}Graphical User Interface Design And Implementation}{14}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Initial Design}{14}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Visual Implementation}{15}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Player Modes}{17}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Finalised Graphical User Interface}{20}{subsection.3.4.4}
+\contentsline {section}{\numberline {3.5}Artificial Intelligence Design And Implementation}{21}{section.3.5}
+\contentsline {section}{\numberline {3.6}Heuristics Design And Implementation}{21}{section.3.6}
+\contentsline {section}{\numberline {3.7}Integration And Implementation Reflection}{21}{section.3.7}
+\contentsline {chapter}{\numberline {4}Evaluation}{22}{chapter.4}
+\contentsline {section}{\numberline {4.1}Solvable Problems}{22}{section.4.1}
+\contentsline {section}{\numberline {4.2}Subject Testing}{22}{section.4.2}
+\contentsline {section}{\numberline {4.3}Other Testing}{22}{section.4.3}
+\contentsline {section}{\numberline {4.4}Testing Reflection}{22}{section.4.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{23}{chapter.5}
+\contentsline {chapter}{\numberline {6}Bibliography}{24}{chapter.6}
+\contentsline {chapter}{\numberline {7}Appendix}{25}{chapter.7}

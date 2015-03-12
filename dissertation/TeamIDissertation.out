@@ -1,0 +1,30 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Go Background}{chapter.2}% 3
+\BOOKMARK [2][-]{subsection.2.1.1}{Go Terms Relevant For Life And Death Problems}{section.2.1}% 4
+\BOOKMARK [1][-]{section.2.2}{Go Problems}{chapter.2}% 5
+\BOOKMARK [2][-]{subsection.2.2.1}{Why Life And Death?}{section.2.2}% 6
+\BOOKMARK [2][-]{subsection.2.2.2}{Common Life And Death Problems}{section.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.2.3}{Unsettled Three}{section.2.2}% 8
+\BOOKMARK [2][-]{subsection.2.2.4}{Six Die, Eight Live}{section.2.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Design And Implementation}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Requirements Gathering}{chapter.3}% 11
+\BOOKMARK [2][-]{subsection.3.1.1}{Interview Questions}{section.3.1}% 12
+\BOOKMARK [1][-]{section.3.2}{Requirements Specification And Organization}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.3}{Game Engine Design And Implementation}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.4}{Graphical User Interface Design And Implementation}{chapter.3}% 15
+\BOOKMARK [2][-]{subsection.3.4.1}{Initial Design}{section.3.4}% 16
+\BOOKMARK [2][-]{subsection.3.4.2}{Visual Implementation}{section.3.4}% 17
+\BOOKMARK [2][-]{subsection.3.4.3}{Player Modes}{section.3.4}% 18
+\BOOKMARK [2][-]{subsection.3.4.4}{Finalised Graphical User Interface}{section.3.4}% 19
+\BOOKMARK [1][-]{section.3.5}{Artificial Intelligence Design And Implementation}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.6}{Heuristics Design And Implementation}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.7}{Integration And Implementation Reflection}{chapter.3}% 22
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 23
+\BOOKMARK [1][-]{section.4.1}{Solvable Problems}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.2}{Subject Testing}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.3}{Other Testing}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.4}{Testing Reflection}{chapter.4}% 27
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 28
+\BOOKMARK [0][-]{chapter.6}{Bibliography}{}% 29
+\BOOKMARK [0][-]{chapter.7}{Appendix}{}% 30
