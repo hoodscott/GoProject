@@ -230,7 +230,7 @@ public class BoardJPanel extends JPanel {
 			if (GraphicalUI.aiType.equals("AlphaBeta")) {
 				GraphicalUI.updateMessage("AI move: " + move);
 				GraphicalUI.aiLabel.setText("AlphaBeta's Considered Moves: ");
-				GraphicalUI.currentAILabel.setText(Integer.toString(AlphaBeta.getNumberOfMovesConsidered()));
+				GraphicalUI.currentAILabel.setText(Integer.toString(gameE.getAI().getNumberOfMovesConsidered()));
 			} else {
 				GraphicalUI.updateMessage("AI move: " + move);
 				GraphicalUI.aiLabel.setText("AI Type: ");

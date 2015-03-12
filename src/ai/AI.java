@@ -8,6 +8,7 @@ import main.LegalMoveChecker;
 public abstract class AI {
 
     protected String thoughts;
+    protected int movesConsidered;
 
     //Colour of the AI
     protected int colour;
@@ -18,5 +19,11 @@ public abstract class AI {
     //Returns AI's colour
     public int getColour() {
         return this.colour;
+    }
+    
+    //Returns moves considered by a nextMove call.
+    //This counter needs to be set/incremented explicitly in the implementation.
+    public int getNumberOfMovesConsidered(){
+    	return movesConsidered;
     }
 }

@@ -16,10 +16,8 @@ public class AlphaBeta extends AI {
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
+    private int moveDepth = 7;
 
-    //add total considered moves counter
-    private static int movesConsidered;
-    
     int opponent;
     Action abAction;
     Action opponentAction;
@@ -54,9 +52,7 @@ public class AlphaBeta extends AI {
     }
     
     // get the number of boards evaluated
-    public static int getNumberOfMovesConsidered(){
-    	return movesConsidered;
-    }
+
     
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
@@ -65,6 +61,7 @@ public class AlphaBeta extends AI {
     	
     	this.lmc = legalMoves.clone();
         Coordinate bestMove = null;
+        
         // save the initial board to use during heurisic evaluation
         initialBoard = b.clone();
         
@@ -75,7 +72,6 @@ public class AlphaBeta extends AI {
 
         int score = 0;
         // want to call a heuristic after the 8th move if no winner by then
-        int depth = 8;
         
         // put a stone down for every legal move
         for (int x = 0; x < b.getWidth(); x++) {
@@ -93,7 +89,7 @@ public class AlphaBeta extends AI {
                     }
 
                     // continue to opponent`s best reaction to this particular move
-                    score = alphaBeta(currentState, ALPHA, BETA, opponent,depth-1);
+                    score = alphaBeta(currentState, ALPHA, BETA, opponent,moveDepth-1);
                     lmc.removeLast();
 
                     // compare the scores of all initial moves
@@ -147,7 +143,7 @@ public class AlphaBeta extends AI {
         ///////////////////////////////////////////////////////////////////////////
         // heuristic call
         
-        if (true) {
+        if (depth  == 0) {
         	//System.out.println("enter heuristics");
         	int r = lcheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
         	int s = utheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
@@ -219,5 +215,10 @@ public class AlphaBeta extends AI {
             }
         }
         return true;
+    }
+    
+    //calculates score from heuristic
+    private int getHeuristicScores(){
+        
     }
 }
