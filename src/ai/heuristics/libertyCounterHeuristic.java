@@ -6,7 +6,7 @@ import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
 
-public class libertyCounterHeuristic implements Heuristic{
+public class LibertyCounterHeuristic implements Heuristic{
 
 	// !! not sure if "." is to be counted as liberty
 	// also not sure if this algorithm

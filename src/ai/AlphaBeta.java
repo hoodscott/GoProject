@@ -1,20 +1,18 @@
 package ai;
 
-import ai.heuristics.UnsettledThree;
-import ai.heuristics.libertyCounterHeuristic;
+import ai.heuristics.*;
 import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
-//import ai.libertyCounterHeuristic;
+import java.util.ArrayList;
 
 public class AlphaBeta extends AI {
 
     private Objective evaluator;
     private LegalMoveChecker lmc;
-    private libertyCounterHeuristic lcheuristic = new libertyCounterHeuristic();
-    private UnsettledThree utheuristic = new UnsettledThree();
-    // 
+    
+    ArrayList<Heuristic> heuristics = new ArrayList();
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
@@ -37,7 +35,24 @@ public class AlphaBeta extends AI {
         abAction = evaluator.getAction(colour);
         opponentAction = evaluator.getAction(opponent);
     }
-
+    
+    //Method for setting heuristics
+    public void setHeuristics(ArrayList<String> names){
+        heuristics = new ArrayList();
+        for(String name : names)
+            addHeuristic(name);
+    }
+    
+    public void addHeuristic(String heuristicName){
+        switch(heuristicName){
+            case "EightStonesInARow": heuristics.add(new EightStonesInARow()); break;
+            case "HasAnEye": heuristics.add(new HasAnEye()); break;
+            case "UnsettledThree": heuristics.add(new UnsettledThree()); break;
+            case "libertyCounterHeuristic": heuristics.add(new LibertyCounterHeuristic()); break;
+            default: System.err.println("WARNING: heuristic \'"+heuristicName+"\' could not be found.");
+        }
+    }
+    
     // get the number of boards evaluated
     public static int getNumberOfMovesConsidered(){
     	return movesConsidered;
