@@ -12,7 +12,7 @@ public enum Rating {
     
     //Kiril's Heuristics
     LIBERTY(100),
-    
+    LIVINGSPACE(200),
     // Eilidh's Heuristics
     UNSETTLED_THREE(700);
 

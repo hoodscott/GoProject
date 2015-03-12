@@ -147,7 +147,7 @@ public class AlphaBeta extends AI {
         ///////////////////////////////////////////////////////////////////////////
         // heuristic call
         
-        if (true) {
+        if (depth==0) {
         	//System.out.println("enter heuristics");
         	int r = lcheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
         	int s = utheuristic.assess(initialBoard, currentBoard, lmc, evaluator, colour); 
