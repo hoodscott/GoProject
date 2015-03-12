@@ -39,8 +39,8 @@ public class DebugMenuListener implements ActionListener {
 			if (!HeuristicChooseDialog.cancelled) {
 				// TODO: Set heuristic options
 				try {
-					int[] heuristics = hcd.getSelectedHeuristics();
-					for (int i: heuristics) System.out.println(i);
+					GraphicalUI.heuristics = hcd.getSelectedHeuristics();
+					//for (int i: heuristics) System.out.println(i);
 				} catch (Exception NullPointer) {
 					//
 				}

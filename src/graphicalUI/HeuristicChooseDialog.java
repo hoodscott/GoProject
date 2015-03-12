@@ -17,9 +17,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import main.Coordinate;
-import ai.Objective;
-
 public class HeuristicChooseDialog extends JDialog implements ActionListener, ListSelectionListener {
 
     private static final long serialVersionUID = 1L;
@@ -28,8 +25,10 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
 	private JList hList;
     @SuppressWarnings("rawtypes")
     private JButton OKButton, cancelButton;
-    public int[] selectedHeuristics;
+    private int[] selectedHeuristicsIndices;
+    private String[] selectedHeuristics; 
     public static boolean cancelled;
+    private String[] heuristics = {"EightStonesInARow","HasAnEye","LibertyCounter","LivingSpace","UnsettledThree"};
 
     // Constructor
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -41,12 +40,12 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
         setTitle("Choose Heuristics");
 
         // Create components for heuristic selection
-        Object[] heuristics = {"Heuristic 1","Heuristic 2","Remove Specified Heuristics"};
         hList = new JList(heuristics);
         hList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         hList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         hList.setVisibleRowCount(-1);
         JScrollPane listScroller = new JScrollPane(hList);
+        listScroller.setViewportView(hList);
 
         // Buttons for user selection
         OKButton = new JButton("OK");
@@ -77,9 +76,14 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "OK") {
             // Set heuristic choice
-        	int index = hList.getSelectedIndex();
-        	System.out.println(index);
-            
+            selectedHeuristicsIndices = hList.getSelectedIndices();
+            selectedHeuristics = new String[selectedHeuristicsIndices.length];
+            //int index = hList.getSelectedIndex();
+            //System.out.println(index);
+            for(int i = 0; i < selectedHeuristicsIndices.length; i++){
+                selectedHeuristics[i] = heuristics[selectedHeuristicsIndices[i]];
+                System.out.println(selectedHeuristics[i]);
+            }
             cancelled = false;
             setVisible(false);
         } else {
@@ -96,12 +100,12 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
 	        if (hList.getSelectedIndex() == -1) {
 	        	return;
 	        } else {
-	        	selectedHeuristics = hList.getSelectedIndices();
+	        	selectedHeuristicsIndices = hList.getSelectedIndices();
 	        	}
 	        }
 	    }
 	
-	public int[] getSelectedHeuristics() {
+	public String[] getSelectedHeuristics() {
 		return this.selectedHeuristics;
 	}
 }

@@ -6,7 +6,7 @@ import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
 
-public class livingSpace implements Heuristic{
+public class LivingSpace implements Heuristic{
 
 	private int livingSpaceInitial = 0;
 	private int livingSpaceCurrent = 0;

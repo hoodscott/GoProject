@@ -35,6 +35,7 @@ public class GraphicalUI {
     static String saveName;
     static String saveLocation;
     private static ArrayList<String> messages;
+    static String[] heuristics;
 
     // private instance variables for swing
     private JMenuBar menuBar;
@@ -65,6 +66,7 @@ public class GraphicalUI {
     static JToggleButton creationButton, competitiveButton, boundsButton;
     static JButton aiMoveButton;
     static String aiType;
+    
 
     /**
      * Start the gui.

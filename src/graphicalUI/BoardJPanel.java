@@ -210,15 +210,12 @@ public class BoardJPanel extends JPanel {
 			switch (GraphicalUI.aiType) {
 			case "MiniMax":
 				gameE.setMiniMax(colour);
-				;
 				break;
 			case "AlphaBeta":
-				gameE.setAlphaBeta(colour);
-				;
+				gameE.setAlphaBeta(colour, GraphicalUI.heuristics);
 				break;
 			default:
 				gameE.setMiniMax(colour);
-				;
 				break;
 			}
 			String move;

@@ -5,6 +5,7 @@ import ai.AI;
 import ai.Objective;
 import ai.AlphaBeta;
 import ai.AIException;
+import java.util.ArrayList;
 
 public class GameEngine {
   //* Class to keep track of the current game of Go and make moves on the board 
@@ -87,8 +88,9 @@ public class GameEngine {
     }
 
     // Sets the AI to be an alpha beta algorithm
-    public void setAlphaBeta(int colour) {
-        ai = new AlphaBeta(objective, colour);
+    public void setAlphaBeta(int colour, String[] heuristicNames) {
+        ai = new AlphaBeta(objective, colour, heuristicNames);
+        
     }
 
     //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
