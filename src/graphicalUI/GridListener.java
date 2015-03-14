@@ -31,7 +31,7 @@ public class GridListener implements ActionListener {
         if (button.getText().equals("Pass")) {
             // TODO create pass function in gameEngine
             if (true) {
-                if (GraphicalUI.getCompetitive()) {
+                if (GraphicalUI.getCompetitive() && !BoardJPanel.humanVShuman) {
                     GraphicalUI.updateMessage(BoardJPanel.getPlayer() + " passes");
                     GraphicalUI.boardJP.changePlayer();
                     GraphicalUI.boardJP.GUIAIMove();
