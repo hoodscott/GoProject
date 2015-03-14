@@ -1,0 +1,35 @@
+JAVA REFERENCES
+
+http://docs.oracle.com/javase/6/docs/technotes/guides/2d/ (2D API)
+
+ORACLE. (2011) Java 2D Graphics and Imaging. [Online] Available from: http://docs.oracle.com/javase/6/docs/technotes/guides/2d/ [Accessed: November 26th 2014]
+
+http://docs.oracle.com/javase/7/docs/api/java/awt/Graphics.html (Graphics object)
+
+ORACLE. (2014) Graphics (Java Platform SE 7) [Online] Available from: http://docs.oracle.com/javase/7/docs/api/java/awt/Graphics.html [Accessed: November 26th 2014]
+
+http://docs.oracle.com/javase/8/docs/technotes/guides/swing/ (Java Swing)
+
+ORACLE. (2015) Swing APIs and Developer Guides [Online] Available from: http://docs.oracle.com/javase/8/docs/technotes/guides/swing/ [Accessed: November 26th 2014]
+
+*fyi - access dates = first commit I could find for board painting*
+
+GO REFERENCES
+
+https://docs.google.com/file/d/0Bx26SObN0bbkbzR4V09uMWlhT3c/edit
+
+YOSHINORI, K. (1985) Graded Go Problems For Beginners. Volume Two: 25 Kyu To 20 Kyu Elementary Problems. Tokyo: Nihon Ki-in.
+
+https://docs.google.com/file/d/0BxMjtjfLOLnnQ0FrWkhxWGkwelU/edit
+
+Life And Death, James Davies, Elementary Go Series Vol. 4, ed. 2, 2014, Kiseido Publishing Company
+
+ALGORTIHMIC REFERENCES
+
+http://51lica.com/wp-content/uploads/2012/05/Artificial-Intelligence-A-Modern-Approach-3rd-Edition.pdf (Minimax and Alpha-Beta)
+
+RUSSELL, S. and NORVIG, P. (2010) Artificial Intelligence: A Modern Approach. 3rd Ed. New Jersey: Pearson Education.
+
+http://www.ideanest.com/vegos/MonteCarloGo.pdf (Monte Carlo/Go program)
+
+BRUGMANN, B. (1993) Monte Carlo Go. Munchen: Max-Planck-Institute of Physics.

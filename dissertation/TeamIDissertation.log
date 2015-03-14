@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.10)  11 MAR 2015 13:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.10)  14 MAR 2015 22:31
 entering extended mode
 **C:/Users/Eilidh/Documents/University/Team*Project*3/LatexDissertation/TeamIDi
 ssertation.tex
@@ -385,7 +385,7 @@ ssertation.out")
 \@outlinefile=\write3
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
- <images/CompSci_mono.pdf, id=123, 340.27126pt x 49.18375pt>
+ <images/CompSci_mono.pdf, id=119, 340.27126pt x 49.18375pt>
 File: images/CompSci_mono.pdf Graphic file (type pdf)
 
 <use images/CompSci_mono.pdf>
@@ -614,7 +614,7 @@ Missing character: There is no ù in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
- [13] <Images/GanntChart.png, id=228, 819.06pt x 242.9075pt>
+ [13] <Images/GanntChart.png, id=223, 819.06pt x 242.9075pt>
 File: Images/GanntChart.png Graphic file (type png)
 
 <use Images/GanntChart.png>
@@ -622,13 +622,13 @@ Package pdftex.def Info: Images/GanntChart.png used on input line 181.
 (pdftex.def)             Requested size: 409.52899pt x 121.45345pt.
  [14 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GanntChart.png>]
-<Images/GUI-1-PP.png, id=236, 742.775pt x 525.965pt>
+<Images/GUI-1-PP.png, id=231, 742.775pt x 525.965pt>
 File: Images/GUI-1-PP.png Graphic file (type png)
  <use Images/GUI-1-PP.png>
 Package pdftex.def Info: Images/GUI-1-PP.png used on input line 197.
 (pdftex.def)             Requested size: 297.10474pt x 210.38226pt.
 
-<Images/GUI-2-PP.png, id=237, 696.6025pt x 527.9725pt>
+<Images/GUI-2-PP.png, id=232, 696.6025pt x 527.9725pt>
 File: Images/GUI-2-PP.png Graphic file (type png)
 
 <use Images/GUI-2-PP.png>
@@ -637,7 +637,7 @@ Package pdftex.def Info: Images/GUI-2-PP.png used on input line 203.
  [15 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GUI-1-PP.png (PNG copy)> <C:/Users/Eilidh/Documents/University/Team Project
  3/LatexDissertation/Images/GUI-2-PP.png (PNG copy)>]
-<Images/GUI-3-CountersCoords.png, id=244, 462.97969pt x 459.96844pt>
+<Images/GUI-3-CountersCoords.png, id=239, 462.97969pt x 459.96844pt>
 File: Images/GUI-3-CountersCoords.png Graphic file (type png)
 
 <use Images/GUI-3-CountersCoords.png>
@@ -645,7 +645,7 @@ Package pdftex.def Info: Images/GUI-3-CountersCoords.png used on input line 213
 .
 (pdftex.def)             Requested size: 231.48927pt x 229.98366pt.
 
-<Images/GUI-4-Transparent.png, id=245, 548.80031pt x 179.16937pt>
+<Images/GUI-4-Transparent.png, id=240, 548.80031pt x 179.16937pt>
 File: Images/GUI-4-Transparent.png Graphic file (type png)
 
 <use Images/GUI-4-Transparent.png>
@@ -653,7 +653,7 @@ Package pdftex.def Info: Images/GUI-4-Transparent.png used on input line 221.
 (pdftex.def)             Requested size: 384.15758pt x 125.4177pt.
  [16 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GUI-3-CountersCoords.png>]
-<Images/GUI-5-Bounds.png, id=251, 210.7875pt x 215.30438pt>
+<Images/GUI-5-Bounds.png, id=246, 210.7875pt x 215.30438pt>
 File: Images/GUI-5-Bounds.png Graphic file (type png)
 
 <use Images/GUI-5-Bounds.png>
@@ -662,7 +662,7 @@ Package pdftex.def Info: Images/GUI-5-Bounds.png used on input line 229.
  [17 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GUI-4-Transparent.png> <C:/Users/Eilidh/Documents/University/Team Project 3
 /LatexDissertation/Images/GUI-5-Bounds.png>]
-<Images/GUI-6-PCMenu.png, id=260, 99.37125pt x 97.86563pt>
+<Images/GUI-6-PCMenu.png, id=255, 99.37125pt x 97.86563pt>
 File: Images/GUI-6-PCMenu.png Graphic file (type png)
 
 <use Images/GUI-6-PCMenu.png>
@@ -673,7 +673,7 @@ Overfull \hbox (12.91833pt too wide) in paragraph at lines 240--241
 [][] 
  []
 
-<Images/GUI-7-Objective.png, id=261, 247.67531pt x 173.14688pt>
+<Images/GUI-7-Objective.png, id=256, 247.67531pt x 173.14688pt>
 File: Images/GUI-7-Objective.png Graphic file (type png)
 
 <use Images/GUI-7-Objective.png>
@@ -687,14 +687,14 @@ Overfull \hbox (117.99239pt too wide) in paragraph at lines 245--246
 [18 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Imag
 es/GUI-6-PCMenu.png> <C:/Users/Eilidh/Documents/University/Team Project 3/Latex
 Dissertation/Images/GUI-7-Objective.png>]
-<Images/GUI-8-PlayerChoice.png, id=269, 155.07938pt x 138.5175pt>
+<Images/GUI-8-PlayerChoice.png, id=264, 155.07938pt x 138.5175pt>
 File: Images/GUI-8-PlayerChoice.png Graphic file (type png)
 
 <use Images/GUI-8-PlayerChoice.png>
 Package pdftex.def Info: Images/GUI-8-PlayerChoice.png used on input line 255.
 (pdftex.def)             Requested size: 155.07898pt x 138.51715pt.
 
-<Images/GUI-9-AIMove1.png, id=270, 919.93687pt x 460.72125pt>
+<Images/GUI-9-AIMove1.png, id=265, 919.93687pt x 460.72125pt>
 File: Images/GUI-9-AIMove1.png Graphic file (type png)
 
 <use Images/GUI-9-AIMove1.png>
@@ -705,7 +705,7 @@ Overfull \hbox (27.69733pt too wide) in paragraph at lines 261--262
  [][] 
  []
 
-<Images/GUI-11-AIMove3Feedback.png, id=271, 305.64188pt x 185.19188pt>
+<Images/GUI-11-AIMove3Feedback.png, id=266, 305.64188pt x 185.19188pt>
 File: Images/GUI-11-AIMove3Feedback.png Graphic file (type png)
 
 <use Images/GUI-11-AIMove3Feedback.png>
@@ -715,7 +715,7 @@ Package pdftex.def Info: Images/GUI-11-AIMove3Feedback.png used on input line 2
  [19 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GUI-8-PlayerChoice.png> <C:/Users/Eilidh/Documents/University/Team Project 
 3/LatexDissertation/Images/GUI-9-AIMove1.png>] <Images/GUI-13-FullView.png, id=
-280, 902.6222pt x 508.14844pt>
+275, 902.6222pt x 508.14844pt>
 File: Images/GUI-13-FullView.png Graphic file (type png)
 
 <use Images/GUI-13-FullView.png>
@@ -734,105 +734,123 @@ Chapter 4.
 
 ]
 Chapter 5.
-[23
+
+("C:\Users\Eilidh\Documents\University\Team Project 3\LatexDissertation\TeamIDi
+ssertation.bbl" [23
+
+]
+Overfull \hbox (15.74332pt too wide) in paragraph at lines 14--17
+[]\OT1/ptm/m/n/10.95 Oracle.  \OT1/ptm/m/it/10.95 Java 2D Graph-ics and Imag-in
+g\OT1/ptm/m/n/10.95 .  http://docs.oracle.com/javase/6/docs/technotes/guides/2d
+/,
+ []
+
+
+Overfull \hbox (41.65019pt too wide) in paragraph at lines 19--23
+[]\OT1/ptm/m/n/10.95 Oracle.  \OT1/ptm/m/it/10.95 Graph-ics (Java Plat-form SE 
+7)\OT1/ptm/m/n/10.95 .  http://docs.oracle.com/javase/7/docs/api/java/awt/Graph
+ics.html,
+ []
+
+
+Overfull \hbox (47.87042pt too wide) in paragraph at lines 25--28
+[]\OT1/ptm/m/n/10.95 Oracle.  \OT1/ptm/m/it/10.95 Swing APIs and De-vel-oper Gu
+ides\OT1/ptm/m/n/10.95 .  http://docs.oracle.com/javase/8/docs/technotes/guides
+/swing/l,
+ []
+
+) [24
 
 ]
 Chapter 6.
-[24
+<Appendix/projects-form.pdf, id=315, 597.55246pt x 845.07718pt>
+File: Appendix/projects-form.pdf Graphic file (type pdf)
 
-]
-Chapter 7.
-<Files/Appendix/projects-form.pdf, id=305, 597.55246pt x 845.07718pt>
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
-
-<use Files/Appendix/projects-form.pdf>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf used on input line 31
-1.
+<use Appendix/projects-form.pdf>
+Package pdftex.def Info: Appendix/projects-form.pdf used on input line 314.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
- <use Files/Appendix/projects-form.pdf>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf used on input line 31
-1.
+File: Appendix/projects-form.pdf Graphic file (type pdf)
+ <use Appendix/projects-form.pdf>
+Package pdftex.def Info: Appendix/projects-form.pdf used on input line 314.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
+File: Appendix/projects-form.pdf Graphic file (type pdf)
 
-<use Files/Appendix/projects-form.pdf>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf used on input line 31
-1.
+<use Appendix/projects-form.pdf>
+Package pdftex.def Info: Appendix/projects-form.pdf used on input line 314.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
  [25
 
 ]
-<Files/Appendix/projects-form.pdf, id=313, page=1, 597.55246pt x 845.07718pt>
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
+<Appendix/projects-form.pdf, id=323, page=1, 597.55246pt x 845.07718pt>
+File: Appendix/projects-form.pdf Graphic file (type pdf)
 
-<use Files/Appendix/projects-form.pdf, page 1>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf, page1 used on input 
-line 311.
+<use Appendix/projects-form.pdf, page 1>
+Package pdftex.def Info: Appendix/projects-form.pdf, page1 used on input line 3
+14.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
+File: Appendix/projects-form.pdf Graphic file (type pdf)
 
-<use Files/Appendix/projects-form.pdf, page 1>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf, page1 used on input 
-line 311.
+<use Appendix/projects-form.pdf, page 1>
+Package pdftex.def Info: Appendix/projects-form.pdf, page1 used on input line 3
+14.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
+File: Appendix/projects-form.pdf Graphic file (type pdf)
 
-<use Files/Appendix/projects-form.pdf, page 1>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf, page1 used on input 
-line 311.
+<use Appendix/projects-form.pdf, page 1>
+Package pdftex.def Info: Appendix/projects-form.pdf, page1 used on input line 3
+14.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
+File: Appendix/projects-form.pdf Graphic file (type pdf)
 
-<use Files/Appendix/projects-form.pdf, page 1>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf, page1 used on input 
-line 311.
+<use Appendix/projects-form.pdf, page 1>
+Package pdftex.def Info: Appendix/projects-form.pdf, page1 used on input line 3
+14.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
+File: Appendix/projects-form.pdf Graphic file (type pdf)
 
-<use Files/Appendix/projects-form.pdf, page 1>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf, page1 used on input 
-line 311.
+<use Appendix/projects-form.pdf, page 1>
+Package pdftex.def Info: Appendix/projects-form.pdf, page1 used on input line 3
+14.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
- [26 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Fil
-es/Appendix/projects-form.pdf>]
-<Files/Appendix/projects-form.pdf, id=343, page=2, 597.55246pt x 845.07718pt>
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
+ [26 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/App
+endix/projects-form.pdf>]
+<Appendix/projects-form.pdf, id=353, page=2, 597.55246pt x 845.07718pt>
+File: Appendix/projects-form.pdf Graphic file (type pdf)
 
-<use Files/Appendix/projects-form.pdf, page 2>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf, page2 used on input 
-line 311.
+<use Appendix/projects-form.pdf, page 2>
+Package pdftex.def Info: Appendix/projects-form.pdf, page2 used on input line 3
+14.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
+File: Appendix/projects-form.pdf Graphic file (type pdf)
 
-<use Files/Appendix/projects-form.pdf, page 2>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf, page2 used on input 
-line 311.
+<use Appendix/projects-form.pdf, page 2>
+Package pdftex.def Info: Appendix/projects-form.pdf, page2 used on input line 3
+14.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-File: Files/Appendix/projects-form.pdf Graphic file (type pdf)
+File: Appendix/projects-form.pdf Graphic file (type pdf)
 
-<use Files/Appendix/projects-form.pdf, page 2>
-Package pdftex.def Info: Files/Appendix/projects-form.pdf, page2 used on input 
-line 311.
+<use Appendix/projects-form.pdf, page 2>
+Package pdftex.def Info: Appendix/projects-form.pdf, page2 used on input line 3
+14.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
- [27 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Fil
-es/Appendix/projects-form.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
+ [27 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/App
+endix/projects-form.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 316.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 316.
 
 ("C:\Users\Eilidh\Documents\University\Team Project 3\LatexDissertation\TeamIDi
 ssertation.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 313.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 313.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 316.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 316.
 Package rerunfilecheck Info: File `TeamIDissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 3C1AD9BF108BFBCBA059A729AC13B3AE;2104.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 313.
+(rerunfilecheck)             Checksum: AEC21B908A24B39C3F232D89CD68F82E;2055.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 316.
  ) 
 Here is how much of TeX's memory you used:
- 8052 strings out of 493921
- 122016 string characters out of 3144873
+ 8067 strings out of 493921
+ 122242 string characters out of 3144873
  214581 words of memory out of 3000000
- 11166 multiletter control sequences out of 15000+200000
+ 11171 multiletter control sequences out of 15000+200000
  26943 words of font info for 54 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,18n,43p,1930b,466s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -843,9 +861,9 @@ iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files
 x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX
  2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on TeamIDissertation.pdf (29 pages, 1788915 bytes).
+Output written on TeamIDissertation.pdf (29 pages, 1793728 bytes).
 PDF statistics:
- 397 PDF objects out of 1000 (max. 8388607)
- 73 named destinations out of 1000 (max. 500000)
- 336 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 408 PDF objects out of 1000 (max. 8388607)
+ 80 named destinations out of 1000 (max. 500000)
+ 328 words of extra memory for PDF output out of 10000 (max. 10000000)
 
