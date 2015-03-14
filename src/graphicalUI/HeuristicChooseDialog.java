@@ -1,13 +1,12 @@
 package graphicalUI;
 
-import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -23,7 +22,6 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
     private JPanel heuristicsChoice, finishButtons;
     @SuppressWarnings("rawtypes")
 	private JList hList;
-    @SuppressWarnings("rawtypes")
     private JButton OKButton, cancelButton;
     private int[] selectedHeuristicsIndices;
     private String[] selectedHeuristics; 
@@ -35,7 +33,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
     public HeuristicChooseDialog(Frame GUIFrame) {
         super(GUIFrame, true);
 
-        this.setLayout(new GridLayout(0, 1));
+        this.setLayout(new BoxLayout(getContentPane(),BoxLayout.PAGE_AXIS));
 
         setTitle("Choose Heuristics");
 
