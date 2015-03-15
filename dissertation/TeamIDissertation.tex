@@ -184,6 +184,50 @@ After the GameEngine was implemented, the team was split into two: Eilidh, Jamie
 
 \section{Game Engine Design And Implementation}
 
+Upon having established the requirements the first development step was the representation of a board and being able to make exclusively legal moves on it. Further, for the sake of easier interaction, testing and future development, a board loading/saving mechanism and a command-line based UI were also included. This lead to the following basic interaction structure:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Images/S33Diagram.png}
+\caption{Basic program class structure.}
+\end{figure}
+
+Notably, each of these was implemented as a Java class, designed to function as fairly independent components. Their respective details will be discussed henceforth.
+
+\subsection{Main}
+
+This class mainly serves as a runner and was incorporated as it was considered that some initial settings may have to be set prior to launching the UI. It for example, allows one to choose between the TextUI and later developed GUI. Additional settings were considered, but were added elsewhere later on.
+
+\subsection{Board}
+
+The Board class holds the main representation of the board, which is essentially a 2D integer array (type was later adjusted for memory reasons). As each intersection could either be empty or hold a black or white stone, these states could effectively be represented numerically as 0, 1 and 2. Here is an example of this representation:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Images/GE-BoardRep.png}
+\caption{Board representation: GUI and TextUI.}
+\end{figure}
+
+Notably, a special empty space type (set to 3) was added later on to allow AIs to better determine relevant search areas (See Section 3.5 – Search Scope). The major functions of the board are the setting/getting of intersections, testing for board equality and producing deep copies (clones) upon request. 
+
+\subsection{FileIO}
+
+The FileIO is responsible for reading/writing board states for later usage/testing. Reading in a board state involves verifying its integrity and producing the resulting Board objects, whereas writing converts Boards into writable strings. The file representation of a board does not use integers, but rather characters for the benefit of manual editing (which was necessary prior to the GUI). Accordingly, black, white and empty were represented as ‘b’, ‘w’, ‘.’. Here the previous example:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{Images/GE-BoardSave.png}
+\caption{Board file representation.}
+\end{figure}
+
+The two initial numbers at the start denote the dimensions of the board. This mechanism was further enhanced as the program grew, having files hold further details such as AI search spaces (denoted by ‘-‘) as well as game objectives (E.g “White to kill 2 7”) that instruct the AI as to what group is relevant. Due to the increasing growth, the translation/integrity verification was later moved to a separate translating class.
+
+\subsection{GameEngine}
+
+The GameEngine was designed to be the heart of the program, holding the current Board representation and allowing players to make legal moves on it. In order to check the legality it holds an instance of the LegalMoveChecker that it asks to analyse each move attempted and will only modify the board when said test returns true. Other functions entail undoing moves, restarting the board and other user-oriented features. A further addition that was made later in the project is the addition of AI play and representation. 
+
+\subsection{LegalMoveChecker}
+
 \section{Graphical User Interface Design And Implementation}
 
 To create a fully-fledged Go Problem solver allowing the user to interact with life and death problems, a graphical user interface had to be designed and implemented to allow for communication between the user, GameEngine and artificial intelligence. The finished GUI was created using Java Swing [reference here] and the Graphics package [reference here]. The user interface provides a wide range of functionalities through graphical board representation and the implementation of interactions such as placing stones and saving board states. Hence the final design of the GUI successfully allows the user to create and play life and death problems as specified within the requirements.
@@ -284,20 +328,100 @@ Through the evidence given prior, it is clear that a user interface was complete
 
 \section{Artificial Intelligence Design And Implementation}
 
+The aim of our program is to play interactively with the user through a solution of a given life and death problem. In order to do that, the program needs to be capable of solving the problem by itself. Accomplishing this required an artificial intelligence, which can make humanlike moves, to be created.
+ 
+Typical life and death problem involves a board position and an objective to be achieved. The aim of the artificial intelligence is to find a sequence of moves in the given situation that satisfy this objective. This gives the program the ability to respond properly to any move made by the user (or by the program itself in AI vs AI game mode). Therefore, developing such artificial intelligence was of major importance. There are several ways it could be implemented by and one of them relies on using a tree search algorithm like Minimax or Alpha-Beta.
+ 
+A tree search algorithm considers each possible action at a given moment alongside with each of the subsequent possible actions and so on until a state is found that satisfy a given goal. This allows for brute-forcing of life and death problems in attempt to find a winning sequence of moves. When the search reaches a state where the objective is completed or where there is no chance to complete it anymore the corresponding result is returned and the move with highest score is picked. Since all possible moves are considered, the larger the number of possible moves, the slower the response time of the AI. Therefore, to get a decent result in reasonable time the program should not deal with problems involving considering too many legal moves.
+
+\subsection{Minimax: Design And Implementation}
+
+In games like Go where two players are involved the search tree algorithms become more complicated. They have to take into account the assumption that the opponent also chooses the move that gets the best result. That is the case with the Minimax search, where there are two types of nodes – a max and a min node. The max node is where the player tries to maximize his score and the min one is where the opponent attempts to minimize his. The leaf nodes are the terminal positions of each sequence and contain a value illustrating the result of the particular sequence. Starting from there and going up the tree the max nodes get the maximum value of its children and the min nodes – the minimum of its children nodes. At the end the root stores the value of the best move at that moment.  
+
+Our implementation of the Minimax follows the stated description, but the actual tree is not constructed. Instead, each move is created recursively. The type of the AI (either Minimax or Alpha-Beta) is chosen from the GUI by the user. If the Minimax is selected it is instantiated and gets a stone colour as well as the objective for the current problem.  
+On every move that the computer has to make it gets the current board and runs a recursive function for every legal move it finds with the help of the Legal move checker. The next step of the recursion is to consider every legal response that the opponent could perform and so on until a terminal state is found where either the computer wins, loses or just can not improve the situation by placing stones and has to pass. The values of the outcomes are then passed back and the results of all the initial moves are compared. The move with the highest result is chosen as a reply and its board coordinates are given to the game engine to actually perform the move.
+
+A significant improvement was made during the implementation of the algorithm. Initially in the design on every recursive move generated a separate function had to create all the possible boards, which was found inefficient. It was replaced by a loop which iterates over the board and when a legal move is found the recursive function is called for that move.
+
+
+\subsection{AlphaBeta: Design And Implementation}
+
+Alpha-Beta search is almost similar to the Minimax. In fact they are guaranteed to always give the same result, but Alpha-Beta has better performance, since some of the branches are not investigated. The algorithm maintains two values, alpha and beta, which represent the maximum score that the maximizing player is assured of and the minimum score that the minimizing player is assured of respectively. Initially both players start with their worst possible score - alpha is negative infinity and beta is positive infinity. It can happen that when choosing a certain branch of a certain node the minimum score that the minimizing player is assured of becomes less than the maximum score that the maximizing player is assured of (beta<=alpha). In that case, the parent node should not choose this node, because it will make the score for the parent node worse. Therefore, the other branches of the node do not have to be explored. This property of the algorithm decreases significantly the time needed to find a good move when brute-forcing life and death problems.
+
+Our implementation of the Alphabeta does not differ much to the one of the Minimax. Again the actual tree is not constructed. The values of alpha and beta are maintained in order to break a particular recursion if the situation described in the previous paragraph occurs – beta becomes less or equal to alpha. The connection of the Alpha-Beta with the other components in the program is the same as for the Minimax.
+
 \section{Heuristics Design And Implementation}
 
 \section{Integration And Implementation Reflection}
+
+As described previously, the finished Go problem solver is made up of a series of components - namely the GameEngine, GUI, AI and heuristics. Each of these components had to be integrated together and given communication abilities to create the finalised program. Once integration had occurred, a simple reflection was carried out, allowing insight into any design or implementation changes that would have been made given more preparation time.
+
+Before the implementation of heuristics; the GUI, AI and GameEngine were created separately and then integrated together. The GameEngine easily interacts with the AI through the use of a private AI variable, allowing the GameEngine to access AI search space, the AI type and AI move selection. The more difficult integration was matching the GUI against the GameEngine and hence allowing it to communicate with the artificial intelligence. Despite the difficulties, this was achieved effectively before heuristics were implemented. The integration was carried out by matching GameEngine methods to GUI buttons and several methods were also added to the GameEngine to allow the GUI to directly interact with the AI instance. After integration, a range of bug fixing occurred and the visual representation of the artificial intelligence within the GUI made it easier to identify problems. Heuristics were then added to the AI later and integration was relatively simple in this respect. Figure 1 shows the interaction between the finalised components and the success of integration can be seen clearly.
+
+*TBA: ADD FIGURE 1 (UML Diagram of finished implementation/integration)*
+
+Looking back upon design, implementation and integration there are several design choices and processes that may have been different with more time availabilty. For example, if this were a long-running Go project several more heuristics would have been design and coded to allow for a more strategic artificial intelligence. Such heuristics include *ADD HEURISTICS/EXPLANATION* Also, in terms of board representation the choice of a 2D array was probably not the wisest design choice and a data structure such as a hash map may have allowed for a faster running program and less confusion about the laying out of coordinates within the array. Other design choices that can be reflected upon also include more features within the GUI, such as a more realistic board which could have been created using web-coding, for example HTML [reference here], or a different Java package that was not Java 2D [reference here]. Another GUI feature that could have been added include allowing the AI to run against itself automatically without being prompted against the user. *ADD AI EVALUATION HERE* Hence, there were several design and implementation choices identified after integration that could have been benefitted from a different approach and these were expanded on during the evaluation process (see \textit{Section 5}).
 
 \chapter{Evaluation}
 \label{evaluation}
 
 \section{Solvable Problems}
 
+To determine the level of quality of the final Go problem solver created, a series of evaluation techniques were carried out. As the original requirements required a problem solver that can solve life and death problems, the most deterministic approach of measuring the success of implementation was through finding life and death problems that the finalized program could successfully complete. Also found were several unsolvable problems that the program could be extended to solve in future through added heuristics. Both types of problems identified during evaluation have been included in "\textit{Solvable Problems}" and "\textit{Unsolvable Problems}" directories that come with the problem solver. These directories are automatically displayed when the "\textit{Load Problem}" option is chosen under the file menu, hence allowing user access to the problems found during evaluation.
+
+\subsection{Solvable Problems With Brute Force}
+
+Using brute force alone, several life and death problems were able to be solved by the problem solver.
+
+Add examples of solvable brute force problems (Include difficulty estimates/time to solve)
+
+\subsection{Solvable Problems With Heuristics}
+
+Once brute force was extended through the use of heuristics, as described in \textit{Section 3.6}, the program was able to solve several new, more specialised problems.
+
+Add examples of solvable heuristic problems (Include difficulty estimates/time to solve)
+
+\subsection{Not Yet Solvable Problems}
+
+Aside from solvable problems, there are also an array of unsolvable problems that the problem solver could be extended to be able to solve in future. \textit{Section 3.7} describes several heuristics that could be added with further development, and the following unsolvable problems relate to these specific heuristics.
+
+Add examples of not yet solvable problems (Include difficulty estimates)
+
+The original requirements (detailed in \textit{Section 3.2}) desired a problem solver which could solve 15 Kyu problems, being of around a median difficulty, and a success rate of 80% in dealing with this problems. The collection of solvable problems found of varying difficulty prove the success of these requirements. Whilst it is hard to determine the percentage of the program's success rate, as the number of life and death problems is virtually endless, the large collection of solvable problems found does prove that the combination of artificial intelligence and heuristics has enabled the creation of a capable problem solver which will allow human players to work upon their strategy and play through life and death problems outwith a full game of Go.
+
 \section{Subject Testing}
+
+Whilst evaluation through the finding of solvable problems was carried out by the team itself, testing using subjects outwith the team was also performed and provided valuable feedback. A testing document was prepared (see Appendix [insert number here]) and was given to participating test subjects. The document asked the tester to input a set problem given, or their own problem, into the program and attempt to run it in a mode of their choice: AI vs. human, AI vs. AI or human vs. human. Following this, the testers were asked to write down their feedback on the general problem solver, as well at its two modes: problem creation and competitive play. Before beginning testing, participant's consent was acquired, they were given the team's contact details and they were also informed them they could withdraw at any point during testing. Once testing was complete, the testers participated in a discussion focused on the evaluation. Hence, subject testing was carried out as required by ethics procedures.
+
+\subsection{General Interface Testing}
+
+Through the evaluation conducted by real life subjects, a wide range of feedback was supplied concerning the general interface of the problem solver itself, including graphical representation and layout.
+
+Insert interface feedback/evaluation
+
+\subsection{Problem Creation Mode Testing}
+
+As described above, participants were asked to create a problem within the problem solver during problem creation mode. The problem itself was simple and required a range of white and black stones, as well as user set objective and bounds. User attempts at problem creation provided a wide range of feedback relating to the creation of problems within the problem solver.
+
+Insert problem creation mode feedback/evaluation
+
+\subsection{Competitive Play Mode Testing}
+
+The testing subjects were also asked to play through the problem they had previously created using competitive play mode. They were asked to use any specific mode they wished (human vs. human, AI vs. human, etc.) and provide written feedback on their selection and thoughts on play through following their use of competitive mode.
+
+Insert competitive mode feedback/evaluation
 
 \section{Other Testing}
 
-\section{Testing Reflection}
+The most valuable evaluation feedback for the Go problem solver was provided through the finding of solvable problems and user testing, as described above, but other miscellaneous testing also helped to prove the program's degree of success as well as improve it during actual implementation.
+
+Insert description of JUnit tests/attempted bug finding, etc.
+
+\section{Testing Overview}
+
+Overall, a wide variation of testing procedures were carried out using the program, both during development and following its completed implementation.
+
+Describe outcome of solvable problems (number of found problems)/highlight recurring user feedback/reiteration of other testing
 
 \chapter{Conclusion}
 \label{conclusion}
