@@ -30,7 +30,7 @@ public class AlphaBeta extends AI {
         opponent = evaluator.getOtherColour(colour);
         abAction = evaluator.getAction(colour);
         opponentAction = evaluator.getAction(opponent);
-        setHeuristics(heuristics);
+        if (heuristics != null) setHeuristics(heuristics);
     }
     
     //Method for setting heuristics
@@ -42,6 +42,7 @@ public class AlphaBeta extends AI {
     
     public void addHeuristic(String heuristicName){
         switch(heuristicName){
+        	case "Hane": heuristics.add(new Hane()); break;
             case "EightStonesInARow": heuristics.add(new EightStonesInARow()); break;
             case "HasAnEye": heuristics.add(new HasAnEye()); break;
             case "UnsettledThree": heuristics.add(new UnsettledThree()); break;

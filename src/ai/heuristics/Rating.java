@@ -13,8 +13,10 @@ public enum Rating {
     //Kiril's Heuristics
     LIBERTY(100),
     LIVINGSPACE(200),
+    
     // Eilidh's Heuristics
-    UNSETTLED_THREE(700);
+    UNSETTLED_THREE(700),
+    HANE(800);
 
     //Used to access/create ratings.
     private final int rating;
