@@ -46,6 +46,7 @@ public class AlphaBeta extends AI {
             case "EightStonesInARow": heuristics.add(new EightStonesInARow()); break;
             case "HasAnEye": heuristics.add(new HasAnEye()); break;
             case "UnsettledThree": heuristics.add(new UnsettledThree()); break;
+            case "ThreeLiberties": heuristics.add(new ThreeLiberties()); break;
             case "LibertyCounter": heuristics.add(new LibertyCounter()); break;
             case "LivingSpace": heuristics.add(new LivingSpace()); break;
             default: System.err.println("WARNING: heuristic \'"+heuristicName+"\' could not be found."); return;

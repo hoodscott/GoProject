@@ -26,7 +26,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
     private int[] selectedHeuristicsIndices;
     private String[] selectedHeuristics; 
     public static boolean cancelled;
-    private String[] heuristics = {"Hane","EightStonesInARow","HasAnEye","LibertyCounter","LivingSpace","UnsettledThree"};
+    private String[] heuristics = {"EightStonesInARow","HasAnEye","Hane","LibertyCounter","LivingSpace","ThreeLiberties","UnsettledThree"};
 
     // Constructor
     @SuppressWarnings({"unchecked", "rawtypes"})
