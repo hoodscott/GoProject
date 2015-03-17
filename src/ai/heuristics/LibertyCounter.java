@@ -8,8 +8,6 @@ import ai.Objective.Action;
 
 public class LibertyCounter implements Heuristic {
 
-    // !! not sure if "." is to be counted as liberty
-    // also not sure if this algorithm
     private int libertiesInitial = 0;
     private int libertiesCurrent = 0;
 

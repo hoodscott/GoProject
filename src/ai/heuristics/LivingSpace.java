@@ -6,6 +6,7 @@ import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
 
+//Counts possible living space for defending group.
 public class LivingSpace implements Heuristic {
 
     private int livingSpaceInitial;
