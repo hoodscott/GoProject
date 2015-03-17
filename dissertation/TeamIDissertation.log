@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.10)  15 MAR 2015 09:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.10)  17 MAR 2015 20:43
 entering extended mode
 **C:/Users/Eilidh/Documents/University/Team*Project*3/LatexDissertation/TeamIDi
 ssertation.tex
@@ -813,21 +813,27 @@ Chapter 5.
 ssertation.bbl" [30
 
 ]
-Overfull \hbox (15.74332pt too wide) in paragraph at lines 14--17
+Underfull \hbox (badness 4846) in paragraph at lines 14--17
+[]\OT1/ptm/m/n/10.95 Mozilla.  \OT1/ptm/m/it/10.95 HTML (Hy-per-Text Markup Lan
+-guage)\OT1/ptm/m/n/10.95 .  https://developer.mozilla.org/en-
+ []
+
+
+Overfull \hbox (15.74332pt too wide) in paragraph at lines 19--22
 []\OT1/ptm/m/n/10.95 Oracle.  \OT1/ptm/m/it/10.95 Java 2D Graph-ics and Imag-in
 g\OT1/ptm/m/n/10.95 .  http://docs.oracle.com/javase/6/docs/technotes/guides/2d
 /,
  []
 
 
-Overfull \hbox (41.65019pt too wide) in paragraph at lines 19--23
+Overfull \hbox (41.65019pt too wide) in paragraph at lines 24--28
 []\OT1/ptm/m/n/10.95 Oracle.  \OT1/ptm/m/it/10.95 Graph-ics (Java Plat-form SE 
 7)\OT1/ptm/m/n/10.95 .  http://docs.oracle.com/javase/7/docs/api/java/awt/Graph
 ics.html,
  []
 
 
-Overfull \hbox (47.87042pt too wide) in paragraph at lines 25--28
+Overfull \hbox (47.87042pt too wide) in paragraph at lines 30--33
 []\OT1/ptm/m/n/10.95 Oracle.  \OT1/ptm/m/it/10.95 Swing APIs and De-vel-oper Gu
 ides\OT1/ptm/m/n/10.95 .  http://docs.oracle.com/javase/8/docs/technotes/guides
 /swing/l,
@@ -837,7 +843,7 @@ ides\OT1/ptm/m/n/10.95 .  http://docs.oracle.com/javase/8/docs/technotes/guides
 
 ]
 Chapter 6.
-<Appendix/projects-form.pdf, id=418, 597.55246pt x 845.07718pt>
+<Appendix/projects-form.pdf, id=420, 597.55246pt x 845.07718pt>
 File: Appendix/projects-form.pdf Graphic file (type pdf)
 
 <use Appendix/projects-form.pdf>
@@ -855,7 +861,7 @@ Package pdftex.def Info: Appendix/projects-form.pdf used on input line 438.
  [32
 
 ]
-<Appendix/projects-form.pdf, id=426, page=1, 597.55246pt x 845.07718pt>
+<Appendix/projects-form.pdf, id=428, page=1, 597.55246pt x 845.07718pt>
 File: Appendix/projects-form.pdf Graphic file (type pdf)
 
 <use Appendix/projects-form.pdf, page 1>
@@ -888,7 +894,7 @@ Package pdftex.def Info: Appendix/projects-form.pdf, page1 used on input line 4
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
  [33 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/App
 endix/projects-form.pdf>]
-<Appendix/projects-form.pdf, id=456, page=2, 597.55246pt x 845.07718pt>
+<Appendix/projects-form.pdf, id=458, page=2, 597.55246pt x 845.07718pt>
 File: Appendix/projects-form.pdf Graphic file (type pdf)
 
 <use Appendix/projects-form.pdf, page 2>
@@ -921,10 +927,10 @@ Package rerunfilecheck Info: File `TeamIDissertation.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 440.
  ) 
 Here is how much of TeX's memory you used:
- 8118 strings out of 493921
- 123150 string characters out of 3144873
+ 8120 strings out of 493921
+ 123171 string characters out of 3144873
  214581 words of memory out of 3000000
- 11196 multiletter control sequences out of 15000+200000
+ 11197 multiletter control sequences out of 15000+200000
  26943 words of font info for 54 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,18n,43p,1930b,466s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -935,9 +941,9 @@ iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files
 x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX
  2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on TeamIDissertation.pdf (36 pages, 1900668 bytes).
+Output written on TeamIDissertation.pdf (36 pages, 1901452 bytes).
 PDF statistics:
- 515 PDF objects out of 1000 (max. 8388607)
- 103 named destinations out of 1000 (max. 500000)
+ 517 PDF objects out of 1000 (max. 8388607)
+ 104 named destinations out of 1000 (max. 500000)
  447 words of extra memory for PDF output out of 10000 (max. 10000000)
 
