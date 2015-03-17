@@ -63,11 +63,10 @@ public class AlphaBeta extends AI {
     	movesConsidered = 0;
         
         //Checks number of heuristics in use
-    	if(heuristics.isEmpty()){
-            System.out.println("WARNING: No heuristic selected, alpha-beta passes.");
-            return new Coordinate(-1,-1);
-        }
-    	this.lmc = legalMoves.clone();
+    	if(heuristics.isEmpty())
+            System.out.println("WARNING: No heuristic selected for alpha-beta.");
+        
+        this.lmc = legalMoves.clone();
         Coordinate bestMove = null;
         
         // save the initial board to use during heurisic evaluation
