@@ -237,8 +237,8 @@ public class BoardJPanel extends JPanel {
 						.getAI().getNumberOfMovesConsidered()));
 			} else {
 				GraphicalUI.updateMessage("AI move: " + move);
-				GraphicalUI.aiLabel.setText("AI Type: ");
-				GraphicalUI.currentAILabel.setText("Minimax");
+				GraphicalUI.aiLabel.setText("Minimax's Considered Moves: ");
+				GraphicalUI.currentAILabel.setText(Integer.toString(gameE.getAI().getNumberOfMovesConsidered()));
 			}
 			System.out.println(move);
 			changePlayer();

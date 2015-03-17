@@ -28,6 +28,7 @@ public class MiniMax extends AI {
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) throws AIException {
         lmc = legalMoves.clone();
+        movesConsidered = 0;
         //printGameBoard(b);
 
         //Checks if objective for killing is already met and passes accordingly. 
@@ -60,7 +61,8 @@ public class MiniMax extends AI {
 
     //Occurs after opponent move
     public int max(Board b, boolean passed) {
-
+        
+        movesConsidered++;
         //If the defended group has been killed, return failure.
         if (opponentAction == Action.KILL && evaluator.checkSucceeded(b, opponent)) {
             return -1;
@@ -100,7 +102,9 @@ public class MiniMax extends AI {
 
     //Occurs after AI move
     public int min(Board b, boolean passed) {
-
+        
+        movesConsidered++;
+        
         //If the AI has captured the opposing group
         if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
             return 1;
