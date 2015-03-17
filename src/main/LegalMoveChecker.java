@@ -34,12 +34,13 @@ public class LegalMoveChecker implements Cloneable {
         int defender;
         boolean[][] visited;
         lastChecked = null;
-        
+
         //When playing against at least one AI, the search scope mutation is used.
-        if(withAI)
-            REPLACEMENT =  Board.EMPTY_AI;
-        else
+        if (withAI) {
+            REPLACEMENT = Board.EMPTY_AI;
+        } else {
             REPLACEMENT = Board.EMPTY;
+        }
 
         //1. if there is a stone already - illegal
         if (bCopy.get(x, y) != EMPTY && bCopy.get(x, y) != EMPTY_AI) {

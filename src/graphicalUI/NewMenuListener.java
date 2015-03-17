@@ -29,7 +29,7 @@ public class NewMenuListener implements ActionListener {
                 int length = Integer.parseInt(s);
                 GraphicalUI.setGameEngine(new GameEngine(new Board(length, length)));
                 // set player to back then draw the new board
-               
+
             }
         }
         // set gui settings

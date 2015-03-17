@@ -1,189 +1,189 @@
 <project
-	name="GoProblemSolver"
-	basedir="."
-	xmlns:ivy="antlib:org.apache.ivy.ant"
-	default="jar"
+    name="GoProblemSolver"
+    basedir="."
+    xmlns:ivy="antlib:org.apache.ivy.ant"
+    default="jar"
 
 	
 >
 	
-	<!-- Setting pathname properties -->
+    <!-- Setting pathname properties -->
 	
-	<property name="src.dir"     		value="src"/>
-	<property name="bin.dir"   		value="bin"/>
-	<property name="lib.dir"		value="lib"/>
-	<property name="classes.dir" 		value="${bin.dir}/classes"/>
-	<property name="jar.dir"     		value="${bin.dir}/jar"/>
-	<property name="main-class"  		value="Main"/>
-	<property name="ant.project.name"	value="GoProblemSolver"/>
-	<property name="report.dir"		value="${bin.dir}/junitreport"/>
-	<property name="test.dir"		value="${src.dir}/junit"/>
-	<property name="depr.dir" 		value="deprecated"/>
-	<property name="notintr.dir" 		value="notIntegrated"/>
-	<property name="info.dir" 		value="info"/>
-	<property name="saves.dir" 		value="saveData"/>	
+    <property name="src.dir"     		value="src"/>
+    <property name="bin.dir"   		value="bin"/>
+    <property name="lib.dir"		value="lib"/>
+    <property name="classes.dir" 		value="${bin.dir}/classes"/>
+    <property name="jar.dir"     		value="${bin.dir}/jar"/>
+    <property name="main-class"  		value="Main"/>
+    <property name="ant.project.name"	value="GoProblemSolver"/>
+    <property name="report.dir"		value="${bin.dir}/junitreport"/>
+    <property name="test.dir"		value="${src.dir}/junit"/>
+    <property name="depr.dir" 		value="deprecated"/>
+    <property name="notintr.dir" 		value="notIntegrated"/>
+    <property name="info.dir" 		value="info"/>
+    <property name="saves.dir" 		value="saveData"/>	
 	
-	<!-- Setting paths -->
+    <!-- Setting paths -->
 	
-	<path
-		id="ant.classpath">
-		<fileset
-			dir="${lib.dir}"
-			includes="**/*.jar"
-		/>
-		<pathelement location="${lib}/**"/>
-    	</path>
+    <path
+        id="ant.classpath">
+        <fileset
+            dir="${lib.dir}"
+            includes="**/*.jar"
+        />
+        <pathelement location="${lib}/**"/>
+    </path>
 	
-	<path
-		id="junit.classpath">
-		<fileset
-			dir="${lib.dir}"
-			includes="**/*.jar"
-		/>
-		<pathelement location="${src.dir}"/>
-	</path>
+    <path
+        id="junit.classpath">
+        <fileset
+            dir="${lib.dir}"
+            includes="**/*.jar"
+        />
+        <pathelement location="${src.dir}"/>
+    </path>
 	
-	<path 
-		id="application"
-		location="${jar.dir}/${ant.project.name}.jar"
-	/>
+    <path 
+        id="application"
+        location="${jar.dir}/${ant.project.name}.jar"
+    />
     	
-    	<!-- Initialising and generating class files -->
+    <!-- Initialising and generating class files -->
 	
-	<target
-		name="init"
-		description="Initialises directories"
-	>
-		<mkdir dir="${lib.dir}"/>
-		<mkdir dir="${classes.dir}"/>
-		<mkdir dir="${jar.dir}"/>
-		<mkdir dir="${report.dir}"/>
-		<copy todir="${jar.dir}">
-			<fileset dir="${src.dir}">
-				<include name="${info.dir}/**"/>
-				<include name="${saves.dir}/**"/>
-			</fileset>
-		</copy>
-	</target>
+    <target
+        name="init"
+        description="Initialises directories"
+    >
+        <mkdir dir="${lib.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${jar.dir}"/>
+        <mkdir dir="${report.dir}"/>
+        <copy todir="${jar.dir}">
+            <fileset dir="${src.dir}">
+                <include name="${info.dir}/**"/>
+                <include name="${saves.dir}/**"/>
+            </fileset>
+        </copy>
+    </target>
 	
-	<target
-		name="resolve"
-		depends="init"
-		description="Retrieves necessary dependencies for this project."
-	>
-		<ivy:retrieve/>
-	</target>
+    <target
+        name="resolve"
+        depends="init"
+        description="Retrieves necessary dependencies for this project."
+    >
+        <ivy:retrieve/>
+    </target>
 	
-    	<target
-		name="compile"
-		depends="resolve"
-		description="Compiles all java class files."
-	>
-       		<javac
-			srcdir="${src.dir}"
-			destdir="${classes.dir}"
-			includeantruntime="false"
-			debuglevel="lines,vars,source"
-			classpathref="junit.classpath"
-		>
-		</javac>
-	</target>
+    <target
+        name="compile"
+        depends="resolve"
+        description="Compiles all java class files."
+    >
+        <javac
+            srcdir="${src.dir}"
+            destdir="${classes.dir}"
+            includeantruntime="false"
+            debuglevel="lines,vars,source"
+            classpathref="junit.classpath"
+        >
+        </javac>
+    </target>
 	
-	<target
-		name="compileWithoutIvy"
-		depends="resolve"
-		description="Used by eclipse to compile all java class files."
-	>
-        	<javac
-			srcdir="${src.dir}"
-			destdir="${classes.dir}"
-			includeantruntime="false"
-			debuglevel="lines,vars,source"
-		>
-		</javac>
-	</target>
+    <target
+        name="compileWithoutIvy"
+        depends="resolve"
+        description="Used by eclipse to compile all java class files."
+    >
+        <javac
+            srcdir="${src.dir}"
+            destdir="${classes.dir}"
+            includeantruntime="false"
+            debuglevel="lines,vars,source"
+        >
+        </javac>
+    </target>
 
-	<target
-		name="jar"
-		depends="compile"
-		description="Creates a jar from the java class files."
-	>
-	        <jar
-			destfile="${jar.dir}/${ant.project.name}.jar"
-			basedir="${classes.dir}"
-		>
-		<manifest>
-	                <attribute
-				name="Main-Class"
-				value="main.${main-class}"
-			/>
-	            </manifest>
-	        </jar>
-	</target>
+    <target
+        name="jar"
+        depends="compile"
+        description="Creates a jar from the java class files."
+    >
+        <jar
+            destfile="${jar.dir}/${ant.project.name}.jar"
+            basedir="${classes.dir}"
+        >
+            <manifest>
+                <attribute
+                    name="Main-Class"
+                    value="main.${main-class}"
+                />
+            </manifest>
+        </jar>
+    </target>
     
-	<!-- Cleaning directories of generated files -->
+    <!-- Cleaning directories of generated files -->
 	
-	<target
-		name="clean"
-		description="Deletes all intermediate files."
-	>
-        	<delete dir="${bin.dir}"/>
-    	</target>
+    <target
+        name="clean"
+        description="Deletes all intermediate files."
+    >
+        <delete dir="${bin.dir}"/>
+    </target>
 	
-	<target
-		name="cleanall"
-		description="Deletes all files not included in the distribution."
-		depends="clean"	
-	>
-		<delete dir="${lib.dir}"/>
-		<ivy:cleancache/>
-    	</target>
+    <target
+        name="cleanall"
+        description="Deletes all files not included in the distribution."
+        depends="clean"	
+    >
+        <delete dir="${lib.dir}"/>
+        <ivy:cleancache/>
+    </target>
     	
-    	<target
-		name="cleanbuild"
-		depends="clean,jar"
-		description="Deletes the bin directory, then recompiles the jar."
-	/>
+    <target
+        name="cleanbuild"
+        depends="clean,jar"
+        description="Deletes the bin directory, then recompiles the jar."
+    />
 	
-	<!-- Tests -->
+    <!-- Tests -->
 	
-	<target
-		name="junit"
-		depends="jar"
-		description="Runs the JUnit test cases,"
-	>
-        	<junit printsummary="yes">
-			<classpath>
-				<path refid="junit.classpath"/>
-				<path refid="application"/>
-				<path refid="ant.classpath"/>
-			</classpath>
-			<formatter type="xml"/>
-			<batchtest fork="yes" todir="${report.dir}">
-				<fileset dir="${classes.dir}" includes="**/*Test.class"/>
-			</batchtest>
-		</junit>
-	</target>
+    <target
+        name="junit"
+        depends="jar"
+        description="Runs the JUnit test cases,"
+    >
+        <junit printsummary="yes">
+            <classpath>
+                <path refid="junit.classpath"/>
+                <path refid="application"/>
+                <path refid="ant.classpath"/>
+            </classpath>
+            <formatter type="xml"/>
+            <batchtest fork="yes" todir="${report.dir}">
+                <fileset dir="${classes.dir}" includes="**/*Test.class"/>
+            </batchtest>
+        </junit>
+    </target>
     
-	<target
-		name="junitreport"
-		depends="junit"
-		description="Compiles the JUnit test reports into a readable index.html file."
-	>
-	        <junitreport todir="${report.dir}">
-			<fileset
-				dir="${report.dir}"
-				includes="TEST-*.xml"
-			/>
-			<report todir="${report.dir}"/>
-		</junitreport>
-	</target>
+    <target
+        name="junitreport"
+        depends="junit"
+        description="Compiles the JUnit test reports into a readable index.html file."
+    >
+        <junitreport todir="${report.dir}">
+            <fileset
+                dir="${report.dir}"
+                includes="TEST-*.xml"
+            />
+            <report todir="${report.dir}"/>
+        </junitreport>
+    </target>
 
-	<!-- Runs Project -->
-	<target 
-		name="run"
-		depends="jar"
-		description="Runs the application">
+    <!-- Runs Project -->
+    <target 
+        name="run"
+        depends="jar"
+        description="Runs the application">
 
         <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
     </target>

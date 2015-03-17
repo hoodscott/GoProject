@@ -20,10 +20,10 @@ public abstract class AI {
     public int getColour() {
         return this.colour;
     }
-    
+
     //Returns moves considered by a nextMove call.
     //This counter needs to be set/incremented explicitly in the implementation.
-    public int getNumberOfMovesConsidered(){
-    	return movesConsidered;
+    public int getNumberOfMovesConsidered() {
+        return movesConsidered;
     }
 }

@@ -99,11 +99,11 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
                 GraphicalUI.currentAILabel.setText(blackPlayer);
                 AIvsAI = true;
             }
-            
+
             // else Human vs Human mode
             if ((blackPlayer.equals("Human")) && whitePlayer.equals("Human")) {
-            	GraphicalUI.currentAILabel.setText(blackPlayer);
-            	humanVShuman = true;
+                GraphicalUI.currentAILabel.setText(blackPlayer);
+                humanVShuman = true;
             }
 
             cancelled = false;

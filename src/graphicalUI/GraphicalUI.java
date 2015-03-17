@@ -36,6 +36,7 @@ public class GraphicalUI {
     static String saveLocation;
     private static ArrayList<String> messages;
     static String[] heuristics;
+    static int[] heuristicIndices;
 
     // private instance variables for swing
     private JMenuBar menuBar;
@@ -66,7 +67,6 @@ public class GraphicalUI {
     static JToggleButton creationButton, competitiveButton, boundsButton;
     static JButton aiMoveButton;
     static String aiType;
-    
 
     /**
      * Start the gui.
@@ -269,7 +269,7 @@ public class GraphicalUI {
                 "Allow user to specify board objective and bounds");
         menuItem.addActionListener(new ProblemSettingsListener());
         creationFileMenu.add(menuItem);
-        
+
         menuItem = new JMenuItem("Alter Bounds", KeyEvent.VK_E);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
                 ActionEvent.CTRL_MASK));
@@ -277,9 +277,9 @@ public class GraphicalUI {
                 "Allow user to alter board objective");
         menuItem.addActionListener(new ProblemSettingsListener());
         creationFileMenu.add(menuItem);
-        
+
         creationFileMenu.addSeparator();
-        
+
         // menu item for heuristic chooser
         menuItem = new JMenuItem("Choose Heuristics", KeyEvent.VK_H);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,
@@ -630,7 +630,7 @@ public class GraphicalUI {
     public static void updateMessage(String s) {
         messages.add(s);
         int l = messages.size();
-		// html in a swing label...
+        // html in a swing label...
         // TODO find a nice way to show previous moves
         // feedback.setText("<html>"+messages.get(l-1)+"<br>"+messages.get(l-2)+"<br>"+messages.get(l-3)+"</html>");
         feedback.setText(messages.get(l - 1));
@@ -651,11 +651,11 @@ public class GraphicalUI {
     public static void updateBoundsButton(boolean b) {
         boundsButton.setEnabled(b);
     }
-    
-    public static void turnOffBounds(){
-    	if (boundsButton.getText().equals("Hide Bounds")){
-    		boundsButton.doClick();
-    	}
+
+    public static void turnOffBounds() {
+        if (boundsButton.getText().equals("Hide Bounds")) {
+            boundsButton.doClick();
+        }
     }
 
 }

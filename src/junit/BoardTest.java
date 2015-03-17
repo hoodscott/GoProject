@@ -72,7 +72,7 @@ public class BoardTest {
         Board d = new Board(raw);
 
         assertTrue(a.equals(b));
-        a.set(0, 0, (byte)1);
+        a.set(0, 0, (byte) 1);
 
         assertFalse(a.equals(b));
         assertTrue(a.equals(d));
@@ -82,8 +82,8 @@ public class BoardTest {
     @Test
     public void settingBoardPositions() {
         board = new Board();
-        board.set(1, 1, (byte)1);
-        board.set(5, 7, (byte)2);
+        board.set(1, 1, (byte) 1);
+        board.set(5, 7, (byte) 2);
         assertEquals(1, board.get(1, 1));
         assertEquals(2, board.get(5, 7));
     }

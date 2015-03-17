@@ -79,7 +79,7 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
         objectiveChoice.add(coord1);
         objectiveChoice.add(coord2);
         this.add(objectiveChoice);
-        
+
         // Create panel for OK/Cancel
         finishButtons = new JPanel();
         finishButtons.add(OKButton);
@@ -106,7 +106,7 @@ public class BoundsObjectiveDialog extends JDialog implements ActionListener {
             GraphicalUI.updateMessage("Objective updated");
             GraphicalUI.objective.setText(GraphicalUI.getGameEngine()
                     .getObjective().toString());
-            
+
             cancelled = false;
             setVisible(false);
         } else {

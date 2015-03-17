@@ -103,15 +103,13 @@ public final class FileIO {
         try {
             File file = new File(p);
             /**
-            if (file.exists()) {
-
-                System.err.println("WARNING: file already exists.");
-                while (file.exists()) {
-
-                    p = adjustPath(p);
-                    file = new File(p);
-                }
-            }*/
+             * if (file.exists()) {
+             *
+             * System.err.println("WARNING: file already exists."); while
+             * (file.exists()) {
+             *
+             * p = adjustPath(p); file = new File(p); } }
+             */
 
             file.createNewFile();
             System.out.println("NOTE: Writing file to " + p);
@@ -131,32 +129,24 @@ public final class FileIO {
             }
         }
     }
+
     /**
-    //Fancy method that adds a number to a path.
-    public static String adjustPath(String original) {
-
-        String numbers = "";
-        boolean isDigit = true;
-
-        for (int i = original.length() - 1; i >= 0 && isDigit; i--) {
-
-            if (Character.isDigit(original.charAt(i))) {
-                numbers = original.charAt(i) + numbers;
-            } else {
-                isDigit = false;
-            }
-        }
-
-        if (numbers.length() == 0) {
-            return original + "1";
-        } else {
-
-            int count = Integer.parseInt(numbers) + 1;
-            String sub = original.substring(0, original.length() - numbers.length());
-            return sub + Integer.toString(count);
-        }
-    }*/
-
+     * //Fancy method that adds a number to a path. public static String
+     * adjustPath(String original) {
+     *
+     * String numbers = ""; boolean isDigit = true;
+     *
+     * for (int i = original.length() - 1; i >= 0 && isDigit; i--) {
+     *
+     * if (Character.isDigit(original.charAt(i))) { numbers = original.charAt(i)
+     * + numbers; } else { isDigit = false; } }
+     *
+     * if (numbers.length() == 0) { return original + "1"; } else {
+     *
+     * int count = Integer.parseInt(numbers) + 1; String sub =
+     * original.substring(0, original.length() - numbers.length()); return sub +
+     * Integer.toString(count); } }
+     */
     //Adjusts Paths for Unix/Linux or Windows
     public static String pathOS(String path) {
 

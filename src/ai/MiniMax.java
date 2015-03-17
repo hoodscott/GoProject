@@ -36,8 +36,7 @@ public class MiniMax extends AI {
             return new Coordinate(-1, -1);
         }
         printGameBoard(b);
-        
-        
+
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
@@ -54,7 +53,7 @@ public class MiniMax extends AI {
                 }
             }
         }
-        
+
         //If no move improves the situation (result is 0 or -1), pass.
         return new Coordinate(-1, -1);
     }

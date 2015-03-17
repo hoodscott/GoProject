@@ -58,7 +58,7 @@ public class ObjectiveTest {
         boolean killed = objective.checkSucceeded(board, 1);
         assertEquals(true, killed);
 
-        board.set(2, 4, (byte)2);
+        board.set(2, 4, (byte) 2);
         boolean alive = objective.checkSucceeded(board, 1);
         assertEquals(false, alive);
     }

@@ -21,9 +21,9 @@ public class FileMenuListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Component pane = null;
-        
+
         String defaultDir = System.getProperty("user.dir")
-                    + "\\saveData\\boards";
+                + "\\saveData\\boards";
 
         // convert path to match system
         defaultDir = FileIO.pathOS(defaultDir);
@@ -31,14 +31,13 @@ public class FileMenuListener implements ActionListener {
         // Minor hotfix for Nik's shoddy buildpath
         if (Files.notExists(Paths.get(defaultDir))) {
             defaultDir = System.getProperty("user.dir")
-                    + "\\src\\saveData\\boards";    
+                    + "\\src\\saveData\\boards";
             defaultDir = FileIO.pathOS(defaultDir);
         }
         System.out.println(defaultDir);
-        
+
         // load specified board
         if (e.getActionCommand().equals("Load Problem")) {
-
 
             JFileChooser loadBoard = new JFileChooser(defaultDir);
             int command = loadBoard.showOpenDialog(pane);
@@ -57,18 +56,18 @@ public class FileMenuListener implements ActionListener {
                     Objective localObjective = GraphicalUI.getGameEngine()
                             .getObjective();
                     if (GraphicalUI.boardJP.getGE().hasBounds()) {
-                    	BoardJPanel.boundsCheck = true;
+                        BoardJPanel.boundsCheck = true;
                     }
                     // set initial player
                     try {
-                    BoardJPanel.setPlayerInt(GraphicalUI.getGameEngine()
-                            .getObjective().getStartingColour());
+                        BoardJPanel.setPlayerInt(GraphicalUI.getGameEngine()
+                                .getObjective().getStartingColour());
                     } catch (Exception obj) {
-                    	System.out.println("No objective specified in opened file.");
+                        System.out.println("No objective specified in opened file.");
                     }
                     GraphicalUI.player.setText(BoardJPanel.getPlayer()
                             + " to move");
-					// TODO maybe check the objective and bounds are in the
+                    // TODO maybe check the objective and bounds are in the
                     // correct form
                     // this assumes the board is saved in the correct format
                     if (!BoardJPanel.boundsCheck) {

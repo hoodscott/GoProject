@@ -29,7 +29,6 @@ public class GameEngine {
     }
 
     //Initialises GameEngine with Board, Objective.
-
     public GameEngine(Board board, Objective objective) {
         currentBoard = initialBoard = board;
         this.objective = objective;
@@ -52,7 +51,7 @@ public class GameEngine {
     }
 
     // Returns the current board to the caller 
-    public Board getCurrentBoard() {                
+    public Board getCurrentBoard() {
         return currentBoard;
     }
 
@@ -90,7 +89,7 @@ public class GameEngine {
     // Sets the AI to be an alpha beta algorithm
     public void setAlphaBeta(int colour, String[] heuristicNames) {
         ai = new AlphaBeta(objective, colour, heuristicNames);
-        
+
     }
 
     //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
@@ -106,7 +105,6 @@ public class GameEngine {
 
     //Checks whether the move is legal and if so, place the piece and return true
     //if the move is illegal, return false    
-
     public boolean makeMove(Coordinate coord, int colour, boolean aiMove) {
         if (moveChecker.checkMove(currentBoard, coord, colour, aiMove)) {
             moveChecker.addBoard(currentBoard);
@@ -135,13 +133,16 @@ public class GameEngine {
         moveChecker = new LegalMoveChecker();
         return true;
     }
-    
+
     //Checks if the board has bounds
-    public boolean hasBounds(){
-       for(int x = 0; x < currentBoard.getWidth(); x++)
-           for(int y = 0; y < currentBoard.getHeight(); y++)
-               if(currentBoard.get(x, y) == Board.EMPTY_AI)
-                   return true;
-       return false;
+    public boolean hasBounds() {
+        for (int x = 0; x < currentBoard.getWidth(); x++) {
+            for (int y = 0; y < currentBoard.getHeight(); y++) {
+                if (currentBoard.get(x, y) == Board.EMPTY_AI) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

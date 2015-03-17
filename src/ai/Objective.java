@@ -49,7 +49,6 @@ public class Objective {
     }
 
     //Returns position to be defended
-
     public Coordinate getPosition() {
         return position;
     }

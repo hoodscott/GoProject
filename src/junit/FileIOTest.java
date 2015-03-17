@@ -14,7 +14,7 @@ import org.junit.Test;
 
 public class FileIOTest {
 
-	//private variables
+    //private variables
     //Disabled until FileIO is adjusted for M2.
         /*
      @Before
