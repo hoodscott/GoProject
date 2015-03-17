@@ -148,11 +148,11 @@ How complex (number of moves) will the solved problems be expected to be?
 
 How long should the AI have to respond?
 \begin{itemize}
-\item The program should have no time limit to solve, but it should be reasonable. ie. making a move in a few seconds or minutes compared to days and weeks.  The interface should have a way for the user to define how long the AI has to take a turn.  Thirty minute turns are too long in practice.  To control time, a difficulty chooser could be implemented that would set time limits for turns or set depth limit for move searches.  This should be a rough guide and not a set limit ie. if the time limit is set to 30 seconds, the AI can take from 10 - 60 seconds. As long as the times are reasonably similar.
+\item The program should have no time limit to solve, it should not matter whether it takes a few seconds or minutes compared to days and weeks.  However, the interface should have a way for the user to define how long the AI has to take a turn as thirty minute turns may be too long in some instances.  To control time, a difficulty chooser could be implemented that would set time limits for turns or set depth limit for move searches.  This should be a rough guide and not a set limit ie. if the time limit is set to 30 seconds, the AI can take from 10 - 60 seconds.  As long as the times are reasonably similar.
 \end{itemize}
 Whom should the AI be able to play against?
 \begin{itemize}
-\item It should be able to play against itself or against humans.
+\item The program should facilitate many different forms of play; allowing two users to play against each other, the AI to play against itself, or for a human player to play against the AI.  In all of these instances, the either player should be able to play as either colour of stone.
 \end{itemize}
 What minimum success rate should the AI have?
 \begin{itemize}
@@ -178,17 +178,23 @@ Also, after a discussion with Dr. John O’Donnell, it was decided that the prog
 
 \section{Requirements Specification And Organization}
 
-From the initial product specification and the requirements and refinements gathered in the interview, the identified ambiguities were removed to create a more descriptive requirements specification:  “The resulting program of this project should be able to solve Life-and-Death Go problems. This should be done either independently by an AI and/or with user interaction via a GUI that shows the board and allows legal moves to be made. The AI should be able to be given an objective such as “defend group A” or “take group B” for either colour and be able act accordingly. The problem difficulty for the AI to solve should be 15 Kyu (on a range from 30 Kyu - 9 Dan) and it should solve the problem correctly with a success rate of at least 80%. This will be assessed by using an unspoiled testing set that meets these requirements.”
+From the initial product specification and the requirements and refinements gathered in the interview, the identified ambiguities were removed to create a more descriptive requirements specification:  “The resulting program of this project should be able to solve Life-and-Death Go problems. This should be done either independently by an AI and/or with user interaction via a GUI that shows the board and allows legal moves to be made. The AI should be able to be given an objective such as “defend group A” or “take group B” for either colour and be able act accordingly. The problem difficulty for the AI to solve should be as high as possible (on a range from 30 Kyu - 9 Dan) and it should solve the problem correctly with a reasonable rate of success. This will be assessed by using an unspoiled testing set that meets these requirements.”  The decision to focus on Life and Death problems was explained in section 2.2.
 
-Using this new specification, the planning of the program began.  First, the GameEngine, the GUI, and the AI were identified as the three main components of the program.  As the GUI and AI could not work without the underlying GameEngine, the GameEngine was the first milestone.  The GameEngine was split up between all members of the team, where each person then had a section to implement.  This first milestone was completed in November when a text based UI was also created so that it was possible to interact with the program before the GUI was implemented.
+Using this new specification, the planning of the program began.  First, the GameEngine, the GUI, and the AI were identified as the three main components of the program.  As the GUI and AI could not work without the underlying GameEngine, implementing the GameEngine was to be the first milestone. The AI was identified to us by Dr. John O’Donnell as being the bulk of the work in this project, so the GUI was planned to be finished by January in the second milstone.  Due to the work needed to implement the AI, the basic functionality of the AI was also planned to be completed in this second milestone.  Once the GUI and basic AI functionality was implemented, the final section of the program was to implement heuristics for the AI to use to solve many different types of problems.  This was planned as the third and final milestone.
 
-After the GameEngine was implemented, the team was split into two: Eilidh, Jamie, and Scott began working on the GUI; and Kiril and Niklas began working on the AI.  The AI was identified to us by Dr. John O’Donnell as being the bulk of the work in this project, so the GUI was planned to be finished in January, so that the GUI team would be able to join Kiril and Niklas in working on the AI from January until the end of this project in March.
+In the first milestone, the GameEngine was split up between all members of the team, where each person then had a section to implement.  This milestone was completed in November when a text based UI was also created so that it was possible to interact with the program before the GUI was implemented.  At this point some basic tests were implemented by everyone in the team on the underlying GameEngine to ensure that the base of the program was robust.
+
+After the GameEngine was implemented, for milestone two, the team was split into two: Eilidh, Jamie, and Scott began working on the GUI; and Kiril and Niklas began working on the basic AI functionality.  A working GUI and the MiniMax and AlphaBeta algorithms were completed in January after which some tests were again implemented to guarantee the program was working as intended.
+
+For milestone three, the GUI team joined Kiril and Niklas in working on the AI until the end of this project in March.  For this milestone, everyone began work on implementing heuristics for the AlphaBeta algorithm to use to solve different types of problems and evaluating the ability of the program.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{Images/GanntChart.png}
 \caption{Gannt chart showing organization timeline.}
 \end{figure}
+
+Throughout the project agile software process were used...
 
 \section{Game Engine Design And Implementation}
 
