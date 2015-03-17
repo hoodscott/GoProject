@@ -30,24 +30,6 @@ public class DebugMenuListener implements ActionListener {
 			logFrame.pack();
 			logFrame.setVisible(true);
 			GraphicalUI.updateMessage("Displayed Log");
-		} else if (e.getActionCommand().equals("Choose Heuristics")) {
-			HeuristicChooseDialog hcd = new HeuristicChooseDialog(
-					GraphicalUI.frame);
-			hcd.pack();
-			hcd.setLocationRelativeTo(GraphicalUI.frame);
-			hcd.setVisible(true);
-			if (!HeuristicChooseDialog.cancelled) {
-				// TODO: Set heuristic options
-				try {
-					GraphicalUI.heuristics = hcd.getSelectedHeuristics();
-					//for (int i: heuristics) System.out.println(i);
-				} catch (Exception NullPointer) {
-					//
-				}
-			} else {
-				JOptionPane.showMessageDialog(GraphicalUI.frame,
-						"No heuristics were chosen.");
-			}
 		}
 	}
 }

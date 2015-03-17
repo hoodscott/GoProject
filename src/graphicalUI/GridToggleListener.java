@@ -22,7 +22,7 @@ public class GridToggleListener implements ActionListener {
 					button.setSelected(true);
 					button.setText("Hide Bounds");
 					
-		            // Tell GUI that user has set bounds/objectives
+					// Tell GUI that user has set bounds/objectives/heuristics
 		            GraphicalUI.setProblemSettings(true);
 				} else {
 					BoardJPanel.boundsSelectionMode = false;

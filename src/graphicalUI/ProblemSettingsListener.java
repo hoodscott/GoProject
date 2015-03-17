@@ -11,9 +11,10 @@ public class ProblemSettingsListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Objective & Bounds")) {
 			selectionBox();
-		}
-		else if (e.getActionCommand().equals("Alter Bounds")){
+		} else if (e.getActionCommand().equals("Alter Bounds")){
 			boundsBox();
+		} else if (e.getActionCommand().equals("Choose Heuristics")) {
+			heuristicsBox();
 		}
     }
 
@@ -37,5 +38,25 @@ public class ProblemSettingsListener implements ActionListener {
         BoardJPanel.boundsSelectionMode = true;
         GraphicalUI.updateBoundsButton(true);
 		GraphicalUI.setBounds(true);
+    }
+    
+    // Method to choose the problems heuristics
+    public static void heuristicsBox(){
+    	HeuristicChooseDialog hcd = new HeuristicChooseDialog(
+				GraphicalUI.frame);
+		hcd.pack();
+		hcd.setLocationRelativeTo(GraphicalUI.frame);
+		hcd.setVisible(true);
+		if (!HeuristicChooseDialog.cancelled) {
+			try {
+	            // Input specified heuristics
+				GraphicalUI.heuristics = hcd.getSelectedHeuristics();
+			} catch (Exception NullPointer) {
+				//
+			}
+		} else {
+			JOptionPane.showMessageDialog(GraphicalUI.frame,
+					"No heuristics were chosen.");
+		}
     }
 }
