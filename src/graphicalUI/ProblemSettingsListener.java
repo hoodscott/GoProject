@@ -2,6 +2,7 @@ package graphicalUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 
@@ -51,6 +52,7 @@ public class ProblemSettingsListener implements ActionListener {
             try {
                 // Input specified heuristics
                 GraphicalUI.heuristics = hcd.getSelectedHeuristics();
+                GraphicalUI.heuristicIndices = hcd.getSelectedHeuristicsIndices();
             } catch (Exception NullPointer) {
                 //
             }

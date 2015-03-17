@@ -43,6 +43,8 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
         hList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         hList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         hList.setVisibleRowCount(-1);
+        if(GraphicalUI.heuristicIndices != null)
+            hList.setSelectedIndices(GraphicalUI.heuristicIndices);
         JScrollPane listScroller = new JScrollPane(hList);
         listScroller.setViewportView(hList);
 
