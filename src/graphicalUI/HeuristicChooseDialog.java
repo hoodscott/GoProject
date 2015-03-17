@@ -75,7 +75,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
     @Override
     // React to OK or cancel buttons
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand() == "OK") {
+        if ("OK".equals(e.getActionCommand())) {
             // Set heuristic choice
             selectedHeuristicsIndices = hList.getSelectedIndices();
             selectedHeuristics = new String[selectedHeuristicsIndices.length];

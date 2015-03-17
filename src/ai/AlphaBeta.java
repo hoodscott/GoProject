@@ -16,7 +16,7 @@ public class AlphaBeta extends AI {
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
-    private int moveDepth = 3;
+    private int moveDepth = 30;
 
     int opponent;
     Action abAction;
@@ -42,7 +42,7 @@ public class AlphaBeta extends AI {
     
     public void addHeuristic(String heuristicName){
         switch(heuristicName){
-        	case "Hane": heuristics.add(new Hane()); break;
+            case "Hane": heuristics.add(new Hane()); break;
             case "EightStonesInARow": heuristics.add(new EightStonesInARow()); break;
             case "HasAnEye": heuristics.add(new HasAnEye()); break;
             case "UnsettledThree": heuristics.add(new UnsettledThree()); break;
@@ -87,8 +87,7 @@ public class AlphaBeta extends AI {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
                     Board currentState = lmc.getLastLegal();
-                    
-                    
+                            
                     movesConsidered++;
                     
                     // check the possibility of only one move needed
