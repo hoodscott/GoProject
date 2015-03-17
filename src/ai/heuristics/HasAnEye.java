@@ -189,7 +189,7 @@ public class HasAnEye implements Heuristic{
 						edgeEye_counter++;
 					if(board_to_assess[1][y] == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[1][y1] == colourAI ){
+					if(board_to_assess[1][y1] == colourAI )
 						edgeEye_counter++;
 					if(board_to_assess[0][y1+1] == colourAI ){
 						edgeEye_counter++;
@@ -197,7 +197,7 @@ public class HasAnEye implements Heuristic{
 						edgeEye_counter = 0;
 					}
 					
-					if (edgeEye_counter == 4)
+					if (edgeEye_counter == 4){
 						is2pointEdgeEye = true;
 					    twoEye_counter++;
 				    }			
