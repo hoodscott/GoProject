@@ -11,18 +11,18 @@ public class AlphaBeta extends AI {
 
     private Objective evaluator;
     private LegalMoveChecker lmc;
-
+    
     ArrayList<Heuristic> heuristics = new ArrayList();
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
-    private int moveDepth = 8;
+    private int moveDepth = 3;
 
     int opponent;
     Action abAction;
     Action opponentAction;
     Board initialBoard;
-
+    
     // constructor
     public AlphaBeta(Objective objective, int c, String[] heuristics) {
         evaluator = objective;
@@ -30,66 +30,49 @@ public class AlphaBeta extends AI {
         opponent = evaluator.getOtherColour(colour);
         abAction = evaluator.getAction(colour);
         opponentAction = evaluator.getAction(opponent);
-        if (heuristics != null) {
-            setHeuristics(heuristics);
-        }
+        if (heuristics != null) setHeuristics(heuristics);
     }
-
+    
     //Method for setting heuristics
-    public void setHeuristics(String[] names) {
+    public void setHeuristics(String[] names){
         heuristics = new ArrayList();
-        for (String name : names) {
+        for(String name : names)
             addHeuristic(name);
-        }
     }
-
-    public void addHeuristic(String heuristicName) {
-        switch (heuristicName) {
-            case "Hane":
-                heuristics.add(new Hane());
-                break;
-            case "EightStonesInARow":
-                heuristics.add(new EightStonesInARow());
-                break;
-            case "HasAnEye":
-                heuristics.add(new HasAnEye());
-                break;
-            case "UnsettledThree":
-                heuristics.add(new UnsettledThree());
-                break;
-            case "ThreeLiberties":
-                heuristics.add(new ThreeLiberties());
-                break;
-            case "LibertyCounter":
-                heuristics.add(new LibertyCounter());
-                break;
-            case "LivingSpace":
-                heuristics.add(new LivingSpace());
-                break;
-            default:
-                System.err.println("WARNING: heuristic \'" + heuristicName + "\' could not be found.");
-                return;
+    
+    public void addHeuristic(String heuristicName){
+        switch(heuristicName){
+        	case "Hane": heuristics.add(new Hane()); break;
+            case "EightStonesInARow": heuristics.add(new EightStonesInARow()); break;
+            case "HasAnEye": heuristics.add(new HasAnEye()); break;
+            case "UnsettledThree": heuristics.add(new UnsettledThree()); break;
+            case "ThreeLiberties": heuristics.add(new ThreeLiberties()); break;
+            case "LibertyCounter": heuristics.add(new LibertyCounter()); break;
+            case "LivingSpace": heuristics.add(new LivingSpace()); break;
+            case "EyeCreator": heuristics.add(new EyeCreator()); break;
+            default: System.err.println("WARNING: heuristic \'"+heuristicName+"\' could not be found."); return;
         }
-        System.out.println("Added heuristic: " + heuristicName);
+        System.out.println("Added heuristic: "+heuristicName);
     }
-
+    
     // get the number of boards evaluated
+
+    
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
         // reset the number of moves considered  
-        movesConsidered = 0;
-
+    	movesConsidered = 0;
+        
         //Checks number of heuristics in use
-        if (heuristics.isEmpty()) {
+    	if(heuristics.isEmpty())
             System.out.println("WARNING: No heuristic selected for alpha-beta.");
-        }
-
+        
         this.lmc = legalMoves.clone();
         Coordinate bestMove = null;
-
+        
         // save the initial board to use during heurisic evaluation
         initialBoard = b.clone();
-
+        
         // if objective is initially met pass
         if (abAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
             return new Coordinate(-1, -1);
@@ -97,23 +80,24 @@ public class AlphaBeta extends AI {
 
         int score = 0;
         // want to call a heuristic after the 8th move if no winner by then
-
+        
         // put a stone down for every legal move
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
                     Board currentState = lmc.getLastLegal();
-
+                    
+                    
                     movesConsidered++;
-
+                    
                     // check the possibility of only one move needed
                     if (abAction == Action.KILL && evaluator.checkSucceeded(currentState, colour)) {
                         return currentCoord;
                     }
                     lmc.addBoard(currentState);
                     // continue to opponent`s best reaction to this particular move
-                    score = alphaBeta(currentState, ALPHA, BETA, opponent, moveDepth - 1);
+                    score = alphaBeta(currentState, ALPHA, BETA, opponent,moveDepth-1);
                     lmc.removeLast();
 
                     // compare the scores of all initial moves
@@ -124,7 +108,7 @@ public class AlphaBeta extends AI {
                 }
             }
         }
-
+        
         System.out.println(globalScore);
 
         // pass if no move will improve the situation 
@@ -136,7 +120,7 @@ public class AlphaBeta extends AI {
 
     // recursive alphaBeta pruning  
     public int alphaBeta(Board currentBoard, int alpha, int beta, int player, int depth) {
-        ///////////////////////////////////////////////////////////////////////////
+    	///////////////////////////////////////////////////////////////////////////
         // check for terminal position
         // if killing objective is completed at this stage
         if (abAction == Action.KILL && evaluator.checkSucceeded(currentBoard, colour)) {
@@ -163,14 +147,14 @@ public class AlphaBeta extends AI {
                 }
             }
         }
-
+        
         ///////////////////////////////////////////////////////////////////////////
         // heuristic call
-        if (depth == 0) {
+        
+        if (depth  == 0)
             return getHeuristicScores(currentBoard);
-        }
         //////////////////////////////////////////////////////////////////////////
-
+        
         // if none of the conditions above is met then:
         // if maximizing player`s turn 
         if (player == colour) {
@@ -181,11 +165,11 @@ public class AlphaBeta extends AI {
                     if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, colour, true)) {
                         Board currentState = lmc.getLastLegal();
                         lmc.addBoard(currentState);
-
+                        
                         movesConsidered++;
-
+                        
                         // get response to current move from other player
-                        score = Math.max(score, alphaBeta(currentState, alpha, beta, opponent, depth - 1));
+                        score = Math.max(score, alphaBeta(currentState, alpha, beta, opponent, depth-1));
                         lmc.removeLast();
                         alpha = Math.max(alpha, score);
                         if (beta <= alpha) {
@@ -204,11 +188,11 @@ public class AlphaBeta extends AI {
                     if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, opponent, true)) {
                         Board currentState = lmc.getLastLegal();
                         lmc.addBoard(currentState);
-
+                        
                         movesConsidered++;
-
+                        
                         // get response to current move from other player
-                        score = Math.min(score, alphaBeta(currentState, alpha, beta, colour, depth - 1));
+                        score = Math.min(score, alphaBeta(currentState, alpha, beta, colour, depth-1));
                         lmc.removeLast();
                         beta = Math.min(beta, score);
                         if (beta <= alpha) {
@@ -233,14 +217,13 @@ public class AlphaBeta extends AI {
         }
         return true;
     }
-
+    
     //calculates score from heuristic
-    private int getHeuristicScores(Board currentBoard) {
+    private int getHeuristicScores(Board currentBoard){
         int sum = 0;
-        for (Heuristic h : heuristics) {
+        for(Heuristic h : heuristics)
             sum += h.assess(initialBoard, currentBoard, lmc, evaluator, colour);
-        }
-
+        
         return sum;
     }
 }
