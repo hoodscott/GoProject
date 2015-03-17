@@ -16,7 +16,7 @@ public class AlphaBeta extends AI {
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
-    private int moveDepth = 7;
+    private int moveDepth = 3;
 
     int opponent;
     Action abAction;
@@ -49,6 +49,7 @@ public class AlphaBeta extends AI {
             case "ThreeLiberties": heuristics.add(new ThreeLiberties()); break;
             case "LibertyCounter": heuristics.add(new LibertyCounter()); break;
             case "LivingSpace": heuristics.add(new LivingSpace()); break;
+            case "EyeCreator": heuristics.add(new EyeCreator()); break;
             default: System.err.println("WARNING: heuristic \'"+heuristicName+"\' could not be found."); return;
         }
         System.out.println("Added heuristic: "+heuristicName);

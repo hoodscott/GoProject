@@ -1,11 +1,14 @@
 package ai.heuristics;
 
 import ai.Objective;
+import ai.Objective.Action;
 import ai.heuristics.Heuristic;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import main.Board;
+import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.heuristics.Rating;
 //create a first heuristic to detect eyes and 
@@ -34,7 +37,7 @@ public class HasAnEye implements Heuristic{
 		boolean isEdgeEye = false;
 		boolean isCornerEye = false;
 		byte[][] board_to_assess = b.getRaw();
-;
+		
 		
 		
 		//iterate over the board excluding the edges
