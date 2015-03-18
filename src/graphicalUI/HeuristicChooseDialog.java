@@ -83,7 +83,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
             //System.out.println(index);
             for (int i = 0; i < selectedHeuristicsIndices.length; i++) {
                 selectedHeuristics[i] = heuristics[selectedHeuristicsIndices[i]];
-                System.out.println(selectedHeuristics[i]);
+                //System.out.println(selectedHeuristics[i]);
             }
             cancelled = false;
             setVisible(false);
