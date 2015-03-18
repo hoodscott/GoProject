@@ -36,7 +36,7 @@ public class HasAnEye implements Heuristic{
 		boolean isEye = false;
 		boolean isEdgeEye = false;
 		boolean isCornerEye = false;
-		byte[][] board_to_assess = b.getRaw();
+		
 		
 		
 		
@@ -45,13 +45,13 @@ public class HasAnEye implements Heuristic{
 			eye_counter = 0;
 			for (int y = 1; y <= (y_limit - 2); y++){
 				
-				if(board_to_assess[x+1][y] == colourAI )
+				if(initialBoard.get( x+1, y) == colourAI )
 					eye_counter++;
-				if(board_to_assess[x-1][y] == colourAI )
+				if(initialBoard.get(x-1,y) == colourAI )
 					eye_counter++;
-				if(board_to_assess[x][y+1] == colourAI )
+				if(initialBoard.get(x, y+1) == colourAI )
 					eye_counter++;
-				if(board_to_assess[x][y-1] == colourAI )
+				if(initialBoard.get(x, y-1) == colourAI )
 					eye_counter++;
 				
 				if (eye_counter == 4)
@@ -69,11 +69,11 @@ public class HasAnEye implements Heuristic{
 		edgeEye_counter = 0;
 		for (int y = 1; y <= (y_limit - 2); y++){
 			
-			if(board_to_assess[0][y-1] == colourAI )
+			if(initialBoard.get(0,y-1) == colourAI )
 				edgeEye_counter++;
-			if(board_to_assess[1][y] == colourAI )
+			if(initialBoard.get(1,y) == colourAI )
 				edgeEye_counter++;
-			if(board_to_assess[0][y+1] == colourAI ){
+			if(initialBoard.get(0,y+1) == colourAI ){
 				edgeEye_counter++;
 			}else{
 				edgeEye_counter = 0;
@@ -87,11 +87,11 @@ public class HasAnEye implements Heuristic{
 		edgeEye_counter = 0;
 		for (int x = 1; x <= (x_limit - 2); x++){
 			
-			if(board_to_assess[x-1][0] == colourAI )
+			if(initialBoard.get(x-1,0) == colourAI )
 				edgeEye_counter++;
-			if(board_to_assess[x][1] == colourAI )
+			if(initialBoard.get(x,1) == colourAI )
 				edgeEye_counter++;
-			if(board_to_assess[x+1][0] == colourAI ){
+			if(initialBoard.get(x+1,0) == colourAI ){
 				edgeEye_counter++;
 			}else{
 				edgeEye_counter = 0;
@@ -105,11 +105,11 @@ public class HasAnEye implements Heuristic{
 		edgeEye_counter = 0;
 		for (int x = 1; x <= (x_limit - 2); x++){
 			
-			if(board_to_assess[x-1][y_limit-1] == colourAI )
+			if(initialBoard.get(x-1,y_limit-1) == colourAI )
 				edgeEye_counter++;
-			if(board_to_assess[x][y_limit-2] == colourAI )
+			if(initialBoard.get(x, y_limit-2) == colourAI )
 				edgeEye_counter++;
-			if(board_to_assess[x+1][y_limit-1] == colourAI ){
+			if(initialBoard.get(x+1, y_limit-1) == colourAI ){
 				edgeEye_counter++;
 			}else{
 				edgeEye_counter = 0;
@@ -123,11 +123,11 @@ public class HasAnEye implements Heuristic{
 				edgeEye_counter = 0;
 				for (int y = 1; y <= (y_limit - 2); y++){
 					
-					if(board_to_assess[x_limit-1][y-1] == colourAI )
+					if(initialBoard.get(x_limit-1, y-1) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[x_limit-2][y] == colourAI )
+					if(initialBoard.get(x_limit-2,y) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[x_limit-1][y+1] == colourAI ){
+					if(initialBoard.get(x_limit-1, y+1) == colourAI ){
 						edgeEye_counter++;
 					}else{
 						edgeEye_counter = 0;
@@ -139,16 +139,16 @@ public class HasAnEye implements Heuristic{
 				
 		// now check the 4 corner points
 		
-		if (board_to_assess[0][1] == colourAI && board_to_assess[1][0] == colourAI ){
+		if (initialBoard.get(0,1) == colourAI && initialBoard.get(1,0) == colourAI ){
 			isCornerEye = true;
 		}
-		if (board_to_assess[0][y_limit -2] == colourAI && board_to_assess[1][y_limit - 1] == colourAI ){
+		if (initialBoard.get(0, y_limit-2) == colourAI && initialBoard.get(1, y_limit-1) == colourAI ){
 			isCornerEye = true;
 		}
-		if (board_to_assess[x_limit -2][0] == colourAI && board_to_assess[x_limit -1 ][1] == colourAI ){
+		if (initialBoard.get(x_limit-2, 0) == colourAI && initialBoard.get(x_limit-1,1) == colourAI ){
 			isCornerEye = true;
 		}
-		if (board_to_assess[x_limit -1][y_limit -2] == colourAI && board_to_assess[x_limit - 2][y_limit - 1] == colourAI ){
+		if (initialBoard.get(x_limit-1, y_limit-2) == colourAI && initialBoard.get(x_limit-2, y_limit-1) == colourAI ){
 			isCornerEye = true;
 		}
 		
@@ -160,17 +160,17 @@ public class HasAnEye implements Heuristic{
 			eye_counter = 0;
 			for (int y = 1, y1 = 1; y <= (y_limit - 2) && y1 < (y_limit - 2); y++){
 						
-				if(board_to_assess[x][y-1] == colourAI )
+				if(initialBoard.get(x,y-1) == colourAI )
 					eye_counter++;
-				if(board_to_assess[x-1][y] == colourAI )
+				if(initialBoard.get(x-1,y) == colourAI )
 					eye_counter++;
-				if(board_to_assess[x][y+1] == colourAI )
+				if(initialBoard.get(x,y+1) == colourAI )
 					eye_counter++;
-				if(board_to_assess[x1][y1-1] == colourAI )
+				if(initialBoard.get(x1,y1-1) == colourAI )
 					eye_counter++;
-				if(board_to_assess[x1][y1+1] == colourAI )
+				if(initialBoard.get(x1,y1+1) == colourAI )
 					eye_counter++;
-				if(board_to_assess[x1 + 1][y1] == colourAI )
+				if(initialBoard.get(x1+1, y1) == colourAI )
 					eye_counter++;
 						
 				if (eye_counter == 6)
@@ -188,13 +188,13 @@ public class HasAnEye implements Heuristic{
 				edgeEye_counter = 0;
 				for (int y = 1, y1 = 2; y1 <= (y_limit - 2); y++){
 					
-					if(board_to_assess[0][y-1] == colourAI )
+					if(initialBoard.get(0,y-1) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[1][y] == colourAI )
+					if(initialBoard.get(1,y) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[1][y1] == colourAI )
+					if(initialBoard.get(1,y1) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[0][y1+1] == colourAI ){
+					if(initialBoard.get(0,y1+1) == colourAI ){
 						edgeEye_counter++;
 					}else{
 						edgeEye_counter = 0;
@@ -211,13 +211,13 @@ public class HasAnEye implements Heuristic{
 				edgeEye_counter = 0;
 				for (int x = 1, x1 = 2; x1 <= (x_limit - 2); x++){
 					
-					if(board_to_assess[x-1][0] == colourAI )
+					if(initialBoard.get(x-1,0) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[x][1] == colourAI )
+					if(initialBoard.get(x,1) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[x1][1] == colourAI ){
+					if(initialBoard.get(x1,1) == colourAI ){
 						edgeEye_counter++;
-					if(board_to_assess[x1+1][0] == colourAI ){
+					if(initialBoard.get(x+1,0) == colourAI ){
 						edgeEye_counter++;
 					}else{
 						edgeEye_counter = 0;
@@ -232,13 +232,13 @@ public class HasAnEye implements Heuristic{
 				edgeEye_counter = 0;
 				for (int x = 1, x1 = 2; x <= (x_limit - 2); x++){
 						
-					if(board_to_assess[x-1][y_limit-1] == colourAI )
+					if(initialBoard.get(x-1, y_limit-1) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[x][y_limit-2] == colourAI )
+					if(initialBoard.get(x, y_limit-2) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[x1][y_limit-2] == colourAI ){
+					if(initialBoard.get(x1, y_limit-2) == colourAI ){
 						edgeEye_counter++;
-					if(board_to_assess[x1+1][y_limit-1] == colourAI ){
+					if(initialBoard.get(x1+1, y_limit-1) == colourAI ){
 						edgeEye_counter++;
 					}else{
 						edgeEye_counter = 0;
@@ -253,13 +253,13 @@ public class HasAnEye implements Heuristic{
 				edgeEye_counter = 0;
 				for (int y = 1, y1 = 2; y <= (y_limit - 2); y++){
 					
-					if(board_to_assess[x_limit-1][y-1] == colourAI )
+					if(initialBoard.get(x_limit-1,y-1) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[x_limit-2][y] == colourAI )
+					if(initialBoard.get(x_limit-2,y) == colourAI )
 						edgeEye_counter++;
-					if(board_to_assess[x_limit-2][y1] == colourAI ){
+					if(initialBoard.get(x_limit-2,y1) == colourAI ){
 						edgeEye_counter++;
-					if(board_to_assess[x_limit-1][y1+1] == colourAI ){
+					if(initialBoard.get(x_limit-1,y1+1) == colourAI ){
 						edgeEye_counter++;
 					}else{
 						edgeEye_counter = 0;

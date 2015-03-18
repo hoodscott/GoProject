@@ -10,6 +10,11 @@ James Davies.
 \newblock {\em Life And Death. Volume Four: Elementary Go Series.}
 \newblock Kiseido Publishing Company, 2nd edition, 2014.
 
+\bibitem{HTMLRef}
+Mozilla.
+\newblock {\em HTML (HyperText Markup Language)}.
+\newblock https://developer.mozilla.org/en-US/docs/Web/HTML, 2015.
+
 \bibitem{2DAPI}
 Oracle.
 \newblock {\em Java 2D Graphics and Imaging}.
