@@ -16,8 +16,7 @@ public class AlphaBeta extends AI {
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
-    private int moveDepth = 30;
-    private boolean heuristicCall = true;
+    private int moveDepth = 7;
 
     int opponent;
     Action abAction;
@@ -91,10 +90,6 @@ public class AlphaBeta extends AI {
                             
                     movesConsidered++;
                     
-                    // check the possibility of only one move needed
-                    if (abAction == Action.KILL && evaluator.checkSucceeded(currentState, colour)) {
-                        return currentCoord;
-                    }
                     lmc.addBoard(currentState);
                     // continue to opponent`s best reaction to this particular move
                     score = alphaBeta(currentState, ALPHA, BETA, opponent,moveDepth-1);
@@ -106,7 +101,6 @@ public class AlphaBeta extends AI {
                         bestMove = currentCoord;
                     }
                 }
-                heuristicCall = true; // call heuristics on next first move
             }
         }
         
@@ -153,8 +147,9 @@ public class AlphaBeta extends AI {
         // heuristic call
         // only call heuristics on first move being evaluated and don't return if less than 0
         
-        if (heuristicCall) {
-        	heuristicCall = false;
+        if (depth == 0) return 0;
+        
+        if (depth == moveDepth-1) {
             int heuristics = getHeuristicScores(currentBoard);
             if (heuristics > 0) {
             	return heuristics;
