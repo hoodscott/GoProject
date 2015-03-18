@@ -398,6 +398,12 @@ Our implementation of the Alphabeta does not differ much to the one of the Minim
 
 \section{Heuristics Design And Implementation}
 
+Move selection through minimax and alpha-beta allows for a variety of problems to be solved when making use of brute force alone. However, the more complicated life and death problems take a huge amount of time due to the number of exhaustive moves considered and there is no real strategy used by the program when choosing moves in the brute force case. Hence, to improve the performance of the problem solver, a wide range of heuristics were also implemented to be used in conjuction with alpha-beta. Heuristics were used to provide the artifical intelligence with game strategies and are fundamental to the creation of a problem solver which is more able to mimic a human player's thought process during play. They allow the AI to quickly pick out moves through the implementing of evaluation functions which recognize specific patterns and highlight strong moves algorithmically. In effect, this enables the artificial intelligence to play more effectively against a human with previous knowledge of life and death problems tactics.
+
+\subsection{General Heuristics}
+
+\subsection{Specific Problem Heuristics}
+
 \section{Integration And Implementation Reflection}
 
 As described previously, the finished Go problem solver is made up of a series of components - namely the GameEngine, GUI, AI and heuristics. Each of these components had to be integrated together and given communication abilities to create the finalised program. Once integration had occurred, a simple reflection was carried out, allowing insight into any design or implementation changes that would have been made given more preparation time.
@@ -481,6 +487,6 @@ Describe outcome of solvable problems (number of found problems)/highlight recur
 \chapter{Appendix}
 \label{appendix}
 
-\includepdf[pages={1,2}]{Appendix/projects-form.pdf}
+\includepdf[pages={1,2,3,4}]{Appendix/TestingDocumentPDF.pdf}
 
 \end{document}
