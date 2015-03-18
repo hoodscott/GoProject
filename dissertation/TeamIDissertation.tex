@@ -68,28 +68,64 @@ Go is a two player board game that originated in China more than 2,500 years ago
 
 \textbf{Eye:} Eyes can be described as internal liberties of a group of stones that, like external liberties, prevent the group's capture but are much harder for an opponent to fill in. Eyes are very significant for life and death problems as the existence or non-existence of eyes in a group determine whether that group is alive or dead. A group with no eyes or one eye will die unless its holder can develop them into two eyes. A group with two or more eyes will live because it is impossible to remove all liberties of the group in one move by the attacker. In figure 2.1.3 all internal liberties with a red circle can be described as eyes.
 
-*INSERT EYE PICTURE*
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/eyes.png}
+\caption{Figure 2.1.1 eyes}
+\end{figure}
 
 \textbf{Atari:} Atari is a term used in Go for a situation where a stone or group of stones only has one liberty and can be captured on the next move unless the defending player places a stone on the liberty, thus giving the group more liberties and at least temporarily taking the group out of Atari. In figure 2.1.1 above if black places a stone at any of the liberties with a red circle then black will capture the white stone. In figure 2.1.2 if white places a stone at either the liberty at “a” or the liberty with a red circle then the black stones will be captured.
 
-*INSERT ATARI PICTURES*
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/singlestonesinatari.png}
+\caption{Figure 2.1.2 single stones in atari}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/groupsofstonesinatari.png}
+\caption{Figure 2.1.3 groups of stones in atari}
+\end{figure}
 
 \textbf{Hane:} A hane is either a move that wraps around an opposing player's stone or group of stones and doesn’t touch any of the player’s stones or a diagonal move played in contact with an enemy stone. There are many positions where a hane is considered a good move [*find a position where a hane would be a good move - six die 8 live ?*]. In figure 2.1.4 the stone labelled with a one is a hane as it wraps around the black stone and isn’t adjacent to another white stone.
 
-*INSERT HANE PICTURE*
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/ahane.png}
+\caption{Figure 2.1.4 a hane}
+\end{figure}
 
 \textbf{Ko:} Ko describes a situation where two alternating single stone captures would repeat the original board position. These alternating captures could repeat indefinitely creating an infinite loop in the game. The Ko rule stops this infinite loop from occurring: If one player captures the Ko, the opponent is prohibited from recapturing the Ko immediately. In figure 2.1.5 above black can capture the white stone with the red circle by a play at “a”. The resulting position is shown on the right. Without a Ko rule, in this position White could recapture the black stone with the red circle by playing at “b”, which would return the board to the position on the left and then Black could also recapture creating an infinite loop. So, if in the left position of the diagram above Black captures at “a”, White may not play at “b” for his first move after the black capture. Instead White has to play elsewhere. After that Black can choose either to win the Ko by playing at “b” in the right position in the diagram, or to play elsewhere as well. Playing elsewhere however would allow White to take the Ko back, since the recapture restriction is only valid for the next turn.
 
-*INSERT KO PICTURE*
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/korule2.png}
+\caption{Figure 2.1.5 the ko rule part 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/korule1.png}
+\caption{Figure 2.1.6 the ko rule part 2}
+\end{figure}
 
 \textbf{Miai:} Miai can be defined as a pair of empty points that have the same value. For example if black plays at A, white can play at B and suffer no disadvantage from the exchange. Equivalence is an important aspect of miai, in the sense that the two options allow the same objective to be achieved more or less. For example, miai in a life and death context might mean the existence of two different moves resulting in the same outcome of a group living or being killed. In figure 2.1.6 above both point “a” and point “b” have the same value in terms of the life and death of the group if black plays at “a” then white plays at “b” and vice versa. If white places a stone at either “a” or “b” he creates a second eye for the group and thus keeps it alive.
 
-*INSERT MIAI PICTURE*
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/miai.png}
+\caption{Figure 2.1.7 miai}
+\end{figure}
 
 \textbf{Seki:} The term Seki translated into English means mutual life, this situation occurs when two live groups share liberties which neither of them can fill without dying so neither player will.
  In figure 2.1.7 above the white group of stones and black group of stones with red circles share two liberties “a” and “b”. If either player plays into one of these points the opposing player with play into the other and capture the opposing player’s stone so neither player will. [*maybe include another seki example where the group has eyes*] .
 
-*INSERT SEKI PICTURE*
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/seki.png}
+\caption{Figure 2.1.3 seki}
+\end{figure}
 
 \section{Go Problems}
 
