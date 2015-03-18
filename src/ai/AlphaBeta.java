@@ -17,6 +17,7 @@ public class AlphaBeta extends AI {
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
     private int moveDepth = 30;
+    private boolean heuristicCall = true;
 
     int opponent;
     Action abAction;
@@ -105,6 +106,7 @@ public class AlphaBeta extends AI {
                         bestMove = currentCoord;
                     }
                 }
+                heuristicCall = true; // call heuristics on next first move
             }
         }
         
@@ -149,9 +151,15 @@ public class AlphaBeta extends AI {
         
         ///////////////////////////////////////////////////////////////////////////
         // heuristic call
+        // only call heuristics on first move being evaluated and don't return if less than 0
         
-        if (depth  == 0)
-            return getHeuristicScores(currentBoard);
+        if (heuristicCall) {
+        	heuristicCall = false;
+            int heuristics = getHeuristicScores(currentBoard);
+            if (heuristics > 0) {
+            	return heuristics;
+            }
+        }
         //////////////////////////////////////////////////////////////////////////
         
         // if none of the conditions above is met then:
