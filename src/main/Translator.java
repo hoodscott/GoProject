@@ -242,4 +242,83 @@ public class Translator {
                 throw new BoardFormatException("ERROR: The board value to translate contains illegal integer " + i + ".");
         }
     }
+    //Methods for printing the Board to the console.
+    private void printGameBoard(Board b) {
+
+        byte[][] board = b.getRaw();
+        ArrayList<String> lines = new ArrayList<>();
+
+        try {
+            for (int i = 0; i < board[0].length; i++) {
+                lines.add("");
+                int p = lines.size() - 1;
+                for (int j = 0; j < board.length; j++) {
+                    lines.set(p, lines.get(p) + Translator.translateToChar(board[j][i]));
+                }
+            }
+            printBoard(lines);
+        } catch (BoardFormatException bad) {
+            System.err.println(bad.getMsg() + "\n> The board could not be printed");
+        }
+    }
+
+    //Prints general boards.
+    private void printBoard(ArrayList<String> lines) {
+
+        System.out.println();
+        lines = addBoardDetails(lines);
+
+        for (String s : lines) {
+            System.out.println(s);
+        }
+
+        System.out.println();
+
+    }
+
+    //Adds details to a board view. Currently just board indexing.
+    private ArrayList<String> addBoardDetails(ArrayList<String> board) {
+
+        //indices
+        int width = board.get(0).length();
+        int height = board.size();
+        int wLength = String.valueOf(width).length(); //Digit length for buffering.
+        int hLength = String.valueOf(height).length();
+
+        ArrayList<String> detailedBoard = new ArrayList<>();
+
+        //Row indices
+        for (int i = 0; i < height; i++) {
+
+            String spacing = "";
+            int buffer = String.valueOf(i).length();
+
+            while (buffer++ < hLength) {
+                spacing += ' ';
+            }
+
+            spacing += Integer.toString(i) + ' ';
+            detailedBoard.add(spacing + board.get(i));
+        }
+
+        detailedBoard.add("");
+
+        //Column indices
+        for (int i = 0; i < wLength; i++) {
+
+            String line = "";
+            for (int j = 0; j < width; j++) {
+                if (String.valueOf(j).length() > i) {
+                    line += Integer.toString(j).charAt(i);
+                } else {
+                    line += ' ';
+                }
+            }
+            for (int j = 0; j < hLength; j++) {
+                line = ' ' + line;
+            }
+            detailedBoard.add(' ' + line);
+        }
+        return detailedBoard;
+    }
 }

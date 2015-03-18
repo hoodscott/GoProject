@@ -6,6 +6,7 @@ import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
 import java.util.ArrayList;
+import main.Translator;
 
 public class AlphaBeta extends AI {
 
@@ -17,6 +18,7 @@ public class AlphaBeta extends AI {
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
     private int moveDepth = 30;
+    private final boolean heuristicsFirst = true;
 
     int opponent;
     Action abAction;
@@ -66,6 +68,8 @@ public class AlphaBeta extends AI {
         //Checks number of heuristics in use
     	if(heuristics.isEmpty())
             System.out.println("WARNING: No heuristic selected for alpha-beta.");
+        if(heuristicsFirst)
+            System.out.println("Heuristics set to trigger at first depth.");
         
         this.lmc = legalMoves.clone();
         Coordinate bestMove = null;
@@ -104,7 +108,7 @@ public class AlphaBeta extends AI {
             }
         }
         
-        System.out.println(globalScore);
+        System.out.println("Score: "+globalScore);
 
         // pass if no move will improve the situation 
         if (bestMove == null) {
@@ -147,14 +151,18 @@ public class AlphaBeta extends AI {
         // heuristic call
         // only call heuristics on first move being evaluated and don't return if less than 0
         
-        if (depth == 0) return 0;
         
-        if (depth == moveDepth-1) {
-            int heuristics = getHeuristicScores(currentBoard);
-            if (heuristics > 0) {
-            	return heuristics;
+        
+        if (heuristicsFirst && depth == moveDepth -1) {
+            if (depth == 0) return 0;
+            int heuristicScore = getHeuristicScores(currentBoard);
+            if (heuristicScore > 0) {
+            	return heuristicScore;
             }
         }
+        else
+            if(depth == 0)
+                return getHeuristicScores(currentBoard);
         //////////////////////////////////////////////////////////////////////////
         
         // if none of the conditions above is met then:
