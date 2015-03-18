@@ -16,7 +16,7 @@ public class AlphaBeta extends AI {
     private int globalScore = Integer.MIN_VALUE;
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
-    private int moveDepth = 7;
+    private int moveDepth = 30;
 
     int opponent;
     Action abAction;
