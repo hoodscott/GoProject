@@ -430,9 +430,9 @@ A tree search algorithm considers each possible action at a given moment alongsi
 
 \subsection{Search Scope And Objective}\label{search_scope_objective}
 
-As described previously, as all possible moves are considered during brute forcing of problems, the larger the number of possible moves, the slower the response time of the artificial intelligence.Therefore, to get a decent result in reasonable time, the program should not deal with problems that involve considering a large number of legal moves.
+As described previously, as all possible moves are considered during brute forcing of problems, the larger the number of possible moves, the slower the response time of the artificial intelligence.Therefore, to get a decent result in reasonable time, the program should not deal with problems that involve considering a large number of legal moves. To solve that problem and to avoid considering irrelevant empty intersections the implemented search algorithms take into account for possible response only those legal moves that are marked as bounds during the GUI`s problem creation mode. If capturing occurs during the solution the corresponding empty intersections are as well later considered in the computation of the response, as they are relevant to the problem.
 
-*describe search scope used to fix this problem + layout of objectives + evaluator of objectives: how do the algorithms really tell they have succeeded*
+To actually know when to stop searching the algorithm needs something to tell it that it has completed the goal or that it failed to do it. This is achieved with the help of the Objective class. It stores the coordinate and the color of a stone, which is part of the group to be captured or defended, and the action that the AI has to perform – either “kill” or “defend”. Every state founded by the tree search algorithms is then evaluated using the Objective to determine if it is terminal or not. If the action is “kill”, the Objective checks if the stone is on the board. If it is not it has been captured, the goal is met and a winning sequence is found. This is clearly a terminal state, which is assigned with the highest score. Another terminal state for action “kill” is the case when the stone is on the board and there are no more legal moves. This means that the goal is no longer achievable and the state is assigned with the lowest score. Similar checks are performed for action “defend”.
 
 \subsection{Minimax: Design And Implementation}
 
@@ -447,6 +447,32 @@ A significant improvement was made during the implementation of the algorithm. I
 Alpha-Beta search is similar to the MiniMax tree search. In fact they are guaranteed to always give the same result, but Alpha-Beta has better performance, since some of the branches of possible future moves are not investigated. The algorithm maintains two values, alpha and beta, which represent the maximum score that the maximizing player is assured of and the minimum score that the minimizing player is assured of, respectively. Initially both players start with their worst possible score - alpha is negative infinity and beta is positive infinity. It can happen that when choosing a certain branch of a certain node the minimum score that the minimizing player is assured of becomes less than the maximum score that the maximizing player is assured of (beta<=alpha). In that case, the parent node should not choose this node, because it will make the score for the parent node worse. Therefore, the other branches of the node do not have to be explored. This property of the algorithm decreases significantly the time needed to find a good move when brute-forcing life and death problems.
 
 Within the program, the implementation of Alpha-Beta does not differ much to the one of the MiniMax and again the actual tree is not constructed. The values of alpha and beta are maintained in order to break a particular recursion if the situation described previously occurs – where beta becomes less than or equal to alpha. The connection of the Alpha-Beta with the other components in the program is the same as it was for the Minimax, allowing easy selection of either artificial intelligence by the user.
+
+\subsection{Performance Comparison}
+
+Both MiniMax and Alpha-Beta are implemented to count the number of moves considered during the computation of each move the AI has to make. This feature allows for performance comparison between the two algorithms. The major performance advantage of the Alpha-Beta is illustrated when the program solves “Seeing under the stones” life and death problem.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/UnderTheStones.png}
+\caption{Seeing under the stones Go problem.}
+\end{figure}
+
+As can be seen from the figures below, to find the correct initial move here (2,1) in order to defend the white group, Alpha-Beta considers 43803 and MiniMax – 60467605 moves. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/UnderTheStones_Alphabeta.png}
+\caption{Alpha-Beta initial move to Seeing under the stones Go problem.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/UnderTheStones_Minimax.png}
+\caption{MiniMax initial move to Seeing under the stones Go problem.}
+\end{figure}
+
+Being able to solve this problem and many others during the implementation and evaluation states of the project, suggest that we successfully managed to implement two functioning tree-searching algorithms for move selection. 
 
 \section{Heuristics Design And Implementation}
 

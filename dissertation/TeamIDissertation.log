@@ -1,29 +1,25 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.1.28)  19 MAR 2015 19:56
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.19)  19 MAR 2015 20:13
 entering extended mode
 **TeamIDissertation.tex
-
-(D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
-TeamIDissertation.tex
+(C:\Users\Kiril\Desktop\GoProject\dissertation\TeamIDissertation.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
 croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
-lician, german, german-x-2013-05-26, greek, gujarati, hindi, hungarian, iceland
-ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
- lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
-german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
-ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
-an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
-ishmax, welsh, loaded.
-
-(D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
-l3proj.cls
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+(C:\Users\Kiril\Desktop\GoProject\dissertation\l3proj.cls
 Document Class: l3proj 2009/01/09 Colin Perkins <csp@dcs.gla.ac.uk>.2009/09/16 
 Modified by Tim Storer <tws@dcs.gla.ac.uk> to support non pdf modes.2011/02/23 
 Modified by Jeremy.Singer@glasgow.ac.uk to use hyperref.
-(D:\MainPrograms\LateX\tex\latex\base\report.cls
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
-(D:\MainPrograms\LateX\tex\latex\base\size11.clo
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
 File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -39,35 +35,35 @@ File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(D:\MainPrograms\LateX\tex\generic\oberdiek\ifpdf.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-(D:\MainPrograms\LateX\tex\latex\graphics\graphicx.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(D:\MainPrograms\LateX\tex\latex\graphics\keyval.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(D:\MainPrograms\LateX\tex\latex\graphics\graphics.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(D:\MainPrograms\LateX\tex\latex\graphics\trig.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(D:\MainPrograms\LateX\tex\latex\00miktex\graphics.cfg
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(D:\MainPrograms\LateX\tex\latex\pdftex-def\pdftex.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(D:\MainPrograms\LateX\tex\generic\oberdiek\infwarerr.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(D:\MainPrograms\LateX\tex\generic\oberdiek\ltxcmds.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count88
@@ -75,17 +71,17 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(D:\MainPrograms\LateX\tex\latex\psnfss\times.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\times.sty"
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
-(D:\MainPrograms\LateX\tex\latex\hyperref\hyperref.sty
-Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2012/05/13 v6.82q Hypertext links for LaTeX
 
-(D:\MainPrograms\LateX\tex\generic\oberdiek\hobsub-hyperref.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
 Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
 
 
-(D:\MainPrograms\LateX\tex\generic\oberdiek\hobsub-generic.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
 Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
 Package hobsub Info: Skipping package `infwarerr' (already loaded).
@@ -125,55 +121,51 @@ Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 )
-(D:\MainPrograms\LateX\tex\generic\ifxetex\ifxetex.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-(D:\MainPrograms\LateX\tex\latex\oberdiek\auxhook.sty
-Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
-)
-(D:\MainPrograms\LateX\tex\latex\oberdiek\kvoptions.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen105
 \Hy@linkcounter=\count89
 \Hy@pagecounter=\count90
 
-(D:\MainPrograms\LateX\tex\latex\hyperref\pd1enc.def
-File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
 )
 \Hy@SavedSpaceFactor=\count91
 
-(D:\MainPrograms\LateX\tex\latex\00miktex\hyperref.cfg
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 4319.
-Package hyperref Info: Hyper figures OFF on input line 4443.
-Package hyperref Info: Link nesting OFF on input line 4448.
-Package hyperref Info: Hyper index ON on input line 4451.
-Package hyperref Info: Plain pages OFF on input line 4458.
-Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Option `colorlinks' set `true' on input line 3941.
+Package hyperref Info: Hyper figures OFF on input line 4062.
+Package hyperref Info: Link nesting OFF on input line 4067.
+Package hyperref Info: Hyper index ON on input line 4070.
+Package hyperref Info: Plain pages OFF on input line 4077.
+Package hyperref Info: Backreferencing OFF on input line 4082.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4688.
+Package hyperref Info: Bookmarks ON on input line 4300.
 \c@Hy@tempcnt=\count92
 
-(D:\MainPrograms\LateX\tex\latex\url\url.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\url.sty"
 \Urlmuskip=\muskip10
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen106
+LaTeX Info: Redefining \url on input line 4653.
 \Fld@menulength=\count93
-\Field@Width=\dimen107
-\Fld@charsize=\dimen108
-Package hyperref Info: Hyper figures OFF on input line 6295.
-Package hyperref Info: Link nesting OFF on input line 6300.
-Package hyperref Info: Hyper index ON on input line 6303.
-Package hyperref Info: backreferencing OFF on input line 6310.
-Package hyperref Info: Link coloring ON on input line 6313.
-Package hyperref Info: Link coloring with OCG OFF on input line 6320.
-Package hyperref Info: PDF/A mode OFF on input line 6325.
-LaTeX Info: Redefining \ref on input line 6365.
-LaTeX Info: Redefining \pageref on input line 6369.
+\Field@Width=\dimen106
+\Fld@charsize=\dimen107
+Package hyperref Info: Hyper figures OFF on input line 5773.
+Package hyperref Info: Link nesting OFF on input line 5778.
+Package hyperref Info: Hyper index ON on input line 5781.
+Package hyperref Info: backreferencing OFF on input line 5788.
+Package hyperref Info: Link coloring ON on input line 5791.
+Package hyperref Info: Link coloring with OCG OFF on input line 5798.
+Package hyperref Info: PDF/A mode OFF on input line 5803.
+LaTeX Info: Redefining \ref on input line 5843.
+LaTeX Info: Redefining \pageref on input line 5847.
 \Hy@abspage=\count94
 \c@Item=\count95
 \c@Hfootnote=\count96
@@ -181,30 +173,30 @@ LaTeX Info: Redefining \pageref on input line 6369.
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
-(D:\MainPrograms\LateX\tex\latex\hyperref\hpdftex.def
-File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
+File: hpdftex.def 2012/05/13 v6.82q Hyperref driver for pdfTeX
 \Fld@listcount=\count97
 \c@bookmark@seq@number=\count98
 
-(D:\MainPrograms\LateX\tex\latex\oberdiek\rerunfilecheck.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip43
 ))
-(D:\MainPrograms\LateX\tex\latex\pdfpages\pdfpages.sty
-Package: pdfpages 2013/08/25 v0.4v Insert pages of external PDF documents (AM)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pdfpages.sty"
+Package: pdfpages 2012/04/03 v0.4s Insert pages of external PDF documents (AM)
 
-(D:\MainPrograms\LateX\tex\latex\base\ifthen.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(D:\MainPrograms\LateX\tex\latex\tools\calc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count99
 \calc@Bcount=\count100
-\calc@Adimen=\dimen109
-\calc@Bdimen=\dimen110
+\calc@Adimen=\dimen108
+\calc@Bdimen=\dimen109
 \calc@Askip=\skip44
 \calc@Bskip=\skip45
 LaTeX Info: Redefining \setlength on input line 76.
@@ -212,13 +204,13 @@ LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count101
 \calc@Cskip=\skip46
 )
-(D:\MainPrograms\LateX\tex\latex\eso-pic\eso-pic.sty
-Package: eso-pic 2013/10/06 v2.0d eso-pic (RN)
+("C:\Program Files\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
+Package: eso-pic 2010/10/06 v2.0c eso-pic (RN)
 
-(D:\MainPrograms\LateX\tex\latex\xcolor\xcolor.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
-(D:\MainPrograms\LateX\tex\latex\00miktex\color.cfg
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -232,49 +224,49 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 ))
-(D:\MainPrograms\LateX\tex\latex\pdfpages\pppdftex.def
-File: pppdftex.def 2013/08/25 v0.4v Pdfpages driver for pdfTeX (AM)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def"
+File: pppdftex.def 2012/04/03 v0.4s Pdfpages driver for pdfTeX (AM)
 )
 \AM@pagebox=\box26
 \AM@toc@title=\toks15
 \c@AM@survey=\count102
 \AM@templatesizebox=\box27
 )
-(D:\MainPrograms\LateX\tex\latex\amsmath\amsmath.sty
-Package: amsmath 2013/01/14 v2.14 AMS math features
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
+Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip47
 
 For additional information on amsmath, use the `?' option.
-(D:\MainPrograms\LateX\tex\latex\amsmath\amstext.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amstext.sty"
 Package: amstext 2000/06/29 v2.01
 
-(D:\MainPrograms\LateX\tex\latex\amsmath\amsgen.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks16
-\ex@=\dimen111
+\ex@=\dimen110
 ))
-(D:\MainPrograms\LateX\tex\latex\amsmath\amsbsy.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsbsy.sty"
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen112
+\pmbraise@=\dimen111
 )
-(D:\MainPrograms\LateX\tex\latex\amsmath\amsopn.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsopn.sty"
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count103
-LaTeX Info: Redefining \frac on input line 210.
+LaTeX Info: Redefining \frac on input line 211.
 \uproot@=\count104
 \leftroot@=\count105
-LaTeX Info: Redefining \overline on input line 306.
+LaTeX Info: Redefining \overline on input line 307.
 \classnum@=\count106
 \DOTSCASE@=\count107
-LaTeX Info: Redefining \ldots on input line 378.
-LaTeX Info: Redefining \dots on input line 381.
-LaTeX Info: Redefining \cdots on input line 466.
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
 \Mathstrutbox@=\box28
 \strutbox@=\box29
-\big@size=\dimen113
-LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\big@size=\dimen112
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \macc@depth=\count108
 \c@MaxMatrixCols=\count109
 \dotsspace@=\muskip11
@@ -285,20 +277,20 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \column@=\count113
 \maxfields@=\count114
 \andhelp@=\toks18
-\eqnshift@=\dimen114
-\alignsep@=\dimen115
-\tagshift@=\dimen116
-\tagwidth@=\dimen117
-\totwidth@=\dimen118
-\lineht@=\dimen119
+\eqnshift@=\dimen113
+\alignsep@=\dimen114
+\tagshift@=\dimen115
+\tagwidth@=\dimen116
+\totwidth@=\dimen117
+\lineht@=\dimen118
 \@envbody=\toks19
 \multlinegap=\skip48
 \multlinetaggap=\skip49
 \mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2665.
-LaTeX Info: Redefining \] on input line 2666.
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
 )
-(D:\MainPrograms\LateX\tex\latex\float\float.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count115
 \float@exts=\toks21
@@ -306,22 +298,20 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks22
 \@floatcapt=\box31
 )
-(D:\MainPrograms\LateX\tex\latex\caption\subcaption.sty
-Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty"
+Package: subcaption 2012/01/12 v1.1d Sub-captions (AR)
 
-(D:\MainPrograms\LateX\tex\latex\caption\caption.sty
-Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
+Package: caption 2012/02/19 v3.2f Customizing captions (AR)
 
-(D:\MainPrograms\LateX\tex\latex\caption\caption3.sty
-Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen120
-\captionmargin@=\dimen121
-\captionwidth=\dimen122
-\caption@tempdima=\dimen123
-\caption@indent=\dimen124
-\caption@parindent=\dimen125
-\caption@hangindent=\dimen126
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2012/01/12 v1.4b caption3 kernel (AR)
+\captionmargin=\dimen119
+\captionmargin@=\dimen120
+\captionwidth=\dimen121
+\caption@indent=\dimen122
+\caption@parindent=\dimen123
+\caption@hangindent=\dimen124
 )
 \c@ContinuedFloat=\count116
 Package caption Info: float package is loaded.
@@ -330,8 +320,7 @@ Package caption Info: hyperref package is loaded.
 \c@subfigure=\count117
 \c@subtable=\count118
 )
-(D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
-TeamIDissertation.aux)
+(C:\Users\Kiril\Desktop\GoProject\dissertation\TeamIDissertation.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
@@ -347,29 +336,30 @@ LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 9.
- (D:\MainPrograms\LateX\tex\latex\psnfss\ot1ptm.fd
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-(D:\MainPrograms\LateX\tex\context\base\supp-pdf.mkii
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count119
-\scratchdimen=\dimen127
+\scratchdimen=\dimen125
 \scratchbox=\box32
 \nofMPsegments=\count120
 \nofMParguments=\count121
 \everyMPshowfont=\toks23
 \MPscratchCnt=\count122
-\MPscratchDim=\dimen128
+\MPscratchDim=\dimen126
 \MPnumerator=\count123
 \makeMPintoPDFobject=\count124
 \everyMPtoPDFconversion=\toks24
 )
 \AtBeginShipoutBox=\box33
 Package hyperref Info: Link coloring ON on input line 9.
- (D:\MainPrograms\LateX\tex\latex\hyperref\nameref.sty
-Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
-(D:\MainPrograms\LateX\tex\generic\oberdiek\gettitlestring.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count125
@@ -378,15 +368,13 @@ LaTeX Info: Redefining \ref on input line 9.
 LaTeX Info: Redefining \pageref on input line 9.
 LaTeX Info: Redefining \nameref on input line 9.
 
-(D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
-TeamIDissertation.out)
-(D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
-TeamIDissertation.out)
+(C:\Users\Kiril\Desktop\GoProject\dissertation\TeamIDissertation.out)
+(C:\Users\Kiril\Desktop\GoProject\dissertation\TeamIDissertation.out)
 \@outlinefile=\write3
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
-<images/CompSci_mono.pdf, id=183, 340.27126pt x 49.18375pt>
+<images/CompSci_mono.pdf, id=187, 340.27126pt x 49.18375pt>
 File: images/CompSci_mono.pdf Graphic file (type pdf)
 
 <use images/CompSci_mono.pdf>
@@ -394,9 +382,8 @@ Package pdftex.def Info: images/CompSci_mono.pdf used on input line 17.
 (pdftex.def)             Requested size: 300.43684pt x 9.35004pt.
  [1
 
-{C:/Users/Niklas/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <D:/niklasz
-/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertation/images/Comp
-Sci_mono.pdf>]
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/Kiril/Desktop/Go
+Project/dissertation/images/CompSci_mono.pdf>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 18.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
@@ -416,12 +403,12 @@ l.26 \tableofcontents
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 26.
 
-(D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
-TeamIDissertation.toc [2
+(C:\Users\Kiril\Desktop\GoProject\dissertation\TeamIDissertation.toc [2
 
 ])
 \tf@toc=\write4
- [3]
+
+[3]
 Chapter 1.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20.74> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
@@ -430,7 +417,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20.74> not available
 ] [5] [6]
 Chapter 2.
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 54.
-(D:\MainPrograms\LateX\tex\latex\psnfss\omsptm.fd
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
@@ -440,13 +427,13 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
  [7
 
 ]
-<Images/eyes.png, id=282, 347.79938pt x 390.70969pt>
+<Images/eyes.png, id=287, 347.79938pt x 390.70969pt>
 File: Images/eyes.png Graphic file (type png)
  <use Images/eyes.png>
 Package pdftex.def Info: Images/eyes.png used on input line 86.
 (pdftex.def)             Requested size: 173.89926pt x 195.35435pt.
 
-[8] <Images/foureyespace.png, id=288, 346.29375pt x 170.88844pt>
+[8] <Images/foureyespace.png, id=293, 346.29375pt x 170.88844pt>
 File: Images/foureyespace.png Graphic file (type png)
 
 <use Images/foureyespace.png>
@@ -456,17 +443,16 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ú in font ptmr7t!
 
-<Images/singlestonesinatari.png, id=289, 380.17032pt x 300.3722pt>
+<Images/singlestonesinatari.png, id=294, 380.17032pt x 300.3722pt>
 File: Images/singlestonesinatari.png Graphic file (type png)
 
 <use Images/singlestonesinatari.png>
 Package pdftex.def Info: Images/singlestonesinatari.png used on input line 102.
 
 (pdftex.def)             Requested size: 190.08469pt x 150.18571pt.
- [9 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertat
-ion/Images/eyes.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/Go
-Project/dissertation/Images/foureyespace.png>] <Images/groupsofstonesinatari.pn
-g, id=298, 479.54156pt x 456.95718pt>
+ [9 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/eyes.png> <C:/Users/K
+iril/Desktop/GoProject/dissertation/Images/foureyespace.png>]
+<Images/groupsofstonesinatari.png, id=303, 479.54156pt x 456.95718pt>
 File: Images/groupsofstonesinatari.png Graphic file (type png)
 
 <use Images/groupsofstonesinatari.png>
@@ -483,15 +469,15 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
 
-<Images/ahane.png, id=299, 117.43875pt x 211.54031pt>
+<Images/ahane.png, id=304, 117.43875pt x 211.54031pt>
 File: Images/ahane.png Graphic file (type png)
  <use Images/ahane.png>
 Package pdftex.def Info: Images/ahane.png used on input line 116.
 (pdftex.def)             Requested size: 58.71922pt x 105.76988pt.
 
-[10 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertat
-ion/Images/singlestonesinatari.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3
-/TeamProject/GoProject/dissertation/Images/groupsofstonesinatari.png>]
+[10 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/singlestonesinatari.p
+ng> <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/groupsofstonesinatari
+.png>]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ú in font ptmr7t!
@@ -522,15 +508,14 @@ Missing character: There is no ú in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
-
-<Images/korule2.png, id=308, 243.91125pt x 238.64156pt>
+ <Images/korule2.png, id=313, 243.91125pt x 238.64156pt>
 File: Images/korule2.png Graphic file (type png)
 
 <use Images/korule2.png>
 Package pdftex.def Info: Images/korule2.png used on input line 124.
 (pdftex.def)             Requested size: 121.95532pt x 119.32048pt.
 
-<Images/korule1.png, id=309, 246.9225pt x 235.63031pt>
+<Images/korule1.png, id=314, 246.9225pt x 235.63031pt>
 File: Images/korule1.png Graphic file (type png)
 
 <use Images/korule1.png>
@@ -572,14 +557,12 @@ Missing character: There is no ú in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
- [11 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Images/ahane.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/
-GoProject/dissertation/Images/korule2.png> <D:/niklasz/Desktop/GlasgowUniversit
-y/Year3/TeamProject/GoProject/dissertation/Images/korule1.png>] <Images/miai.pn
-g, id=321, 264.23718pt x 272.51813pt>
+ [11 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/ahane.png> <C:/Users
+/Kiril/Desktop/GoProject/dissertation/Images/korule2.png> <C:/Users/Kiril/Deskt
+op/GoProject/dissertation/Images/korule1.png>]
+<Images/miai.png, id=326, 264.23718pt x 272.51813pt>
 File: Images/miai.png Graphic file (type png)
-
-<use Images/miai.png>
+ <use Images/miai.png>
 Package pdftex.def Info: Images/miai.png used on input line 138.
 (pdftex.def)             Requested size: 132.11826pt x 136.25873pt.
 Missing character: There is no ‚ in font ptmr7t!
@@ -597,55 +580,52 @@ Missing character: There is no ù in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
- <Images/seki.png, id=322, 356.83313pt x 353.82187pt>
-File: Images/seki.png Graphic file (type png)
 
-<use Images/seki.png>
+<Images/seki.png, id=327, 356.83313pt x 353.82187pt>
+File: Images/seki.png Graphic file (type png)
+ <use Images/seki.png>
 Package pdftex.def Info: Images/seki.png used on input line 147.
 (pdftex.def)             Requested size: 178.41612pt x 176.91049pt.
- [12 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Images/miai.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/G
-oProject/dissertation/Images/seki.png>]
-<Images/unsettled3.png, id=331, 365.11406pt x 221.32687pt>
+
+[12 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/miai.png> <C:/Users/K
+iril/Desktop/GoProject/dissertation/Images/seki.png>]
+<Images/unsettled3.png, id=336, 365.11406pt x 221.32687pt>
 File: Images/unsettled3.png Graphic file (type png)
 
 <use Images/unsettled3.png>
 Package pdftex.def Info: Images/unsettled3.png used on input line 161.
 (pdftex.def)             Requested size: 182.55658pt x 110.66315pt.
 
-<Images/eightlive.png, id=332, 408.77719pt x 148.30406pt>
+<Images/eightlive.png, id=337, 408.77719pt x 148.30406pt>
 File: Images/eightlive.png Graphic file (type png)
 
 <use Images/eightlive.png>
 Package pdftex.def Info: Images/eightlive.png used on input line 169.
 (pdftex.def)             Requested size: 204.38809pt x 74.15184pt.
 
-<Images/sevenunsettled.png, id=333, 403.5075pt x 138.5175pt>
+<Images/sevenunsettled.png, id=338, 403.5075pt x 138.5175pt>
 File: Images/sevenunsettled.png Graphic file (type png)
 
 <use Images/sevenunsettled.png>
 Package pdftex.def Info: Images/sevenunsettled.png used on input line 175.
 (pdftex.def)             Requested size: 201.75325pt x 69.25858pt.
 
-<Images/sixdie.png, id=334, 418.56375pt x 138.5175pt>
+<Images/sixdie.png, id=339, 418.56375pt x 138.5175pt>
 File: Images/sixdie.png Graphic file (type png)
  <use Images/sixdie.png>
 Package pdftex.def Info: Images/sixdie.png used on input line 181.
 (pdftex.def)             Requested size: 209.28136pt x 69.25858pt.
 
-[13 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertat
-ion/Images/unsettled3.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProj
-ect/GoProject/dissertation/Images/eightlive.png> <D:/niklasz/Desktop/GlasgowUni
-versity/Year3/TeamProject/GoProject/dissertation/Images/sevenunsettled.png>]
+[13 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/unsettled3.png> <C:/U
+sers/Kiril/Desktop/GoProject/dissertation/Images/eightlive.png> <C:/Users/Kiril
+/Desktop/GoProject/dissertation/Images/sevenunsettled.png>]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ò in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
-
-[14 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertat
-ion/Images/sixdie.png>]
+ [14 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/sixdie.png>]
 Chapter 3.
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
@@ -714,15 +694,14 @@ Missing character: There is no ù in font ptmri7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
- [17] <Images/GanntChart.png, id=364, 819.06pt x 242.9075pt>
+ [17] <Images/GanntChart.png, id=369, 819.06pt x 242.9075pt>
 File: Images/GanntChart.png Graphic file (type png)
 
 <use Images/GanntChart.png>
 Package pdftex.def Info: Images/GanntChart.png used on input line 267.
 (pdftex.def)             Requested size: 409.52899pt x 121.45345pt.
- [18 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Images/GanntChart.png>]
-<Images/S33Diagram.png, id=372, 478.03593pt x 253.69781pt>
+ [18 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GanntChart.png>]
+<Images/S33Diagram.png, id=377, 478.03593pt x 253.69781pt>
 File: Images/S33Diagram.png Graphic file (type png)
 
 <use Images/S33Diagram.png>
@@ -735,10 +714,10 @@ Overfull \hbox (45.76477pt too wide) in paragraph at lines 279--280
 
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 286.
 
-(D:\MainPrograms\LateX\tex\latex\psnfss\ot1pcr.fd
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<Images/S33Board_Rep_Example.png, id=374, 453.94594pt x 451.6875pt>
+<Images/S33Board_Rep_Example.png, id=379, 453.94594pt x 451.6875pt>
 File: Images/S33Board_Rep_Example.png Graphic file (type png)
 
 <use Images/S33Board_Rep_Example.png>
@@ -746,15 +725,14 @@ Package pdftex.def Info: Images/S33Board_Rep_Example.png used on input line 291
 .
 (pdftex.def)             Requested size: 172.90535pt x 172.04277pt.
 
-<Images/S33Board_Rep_Example_text.png, id=375, 260.47313pt x 250.68657pt>
+<Images/S33Board_Rep_Example_text.png, id=380, 260.47313pt x 250.68657pt>
 File: Images/S33Board_Rep_Example_text.png Graphic file (type png)
 
 <use Images/S33Board_Rep_Example_text.png>
 Package pdftex.def Info: Images/S33Board_Rep_Example_text.png used on input lin
 e 294.
 (pdftex.def)             Requested size: 172.90535pt x 166.40993pt.
- [19 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Images/S33Diagram.png>]
+ [19 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/S33Diagram.png>]
 File: Images/S33Board_Rep_Example_text.png Graphic file (type png)
 
 <use Images/S33Board_Rep_Example_text.png>
@@ -762,34 +740,33 @@ Package pdftex.def Info: Images/S33Board_Rep_Example_text.png used on input lin
 e 309.
 (pdftex.def)             Requested size: 172.90535pt x 166.40993pt.
 
-<Images/S33Board_Rep_Example_file.png, id=386, 315.42844pt x 282.30469pt>
+<Images/S33Board_Rep_Example_file.png, id=391, 315.42844pt x 282.30469pt>
 File: Images/S33Board_Rep_Example_file.png Graphic file (type png)
 
 <use Images/S33Board_Rep_Example_file.png>
 Package pdftex.def Info: Images/S33Board_Rep_Example_file.png used on input lin
 e 312.
 (pdftex.def)             Requested size: 172.90535pt x 154.74683pt.
- [20 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Images/S33Board_Rep_Example.png> <D:/niklasz/Desktop/GlasgowUniversity/Yea
-r3/TeamProject/GoProject/dissertation/Images/S33Board_Rep_Example_text.png> <D:
-/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertation/Ima
-ges/S33Board_Rep_Example_file.png>]
-<Images/GUI-1-PP.png, id=392, 742.775pt x 525.965pt>
+ [20 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/S33Board_Rep_Example
+.png> <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/S33Board_Rep_Exampl
+e_text.png> <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/S33Board_Rep_
+Example_file.png>]
+<Images/GUI-1-PP.png, id=397, 742.775pt x 525.965pt>
 File: Images/GUI-1-PP.png Graphic file (type png)
  <use Images/GUI-1-PP.png>
 Package pdftex.def Info: Images/GUI-1-PP.png used on input line 337.
 (pdftex.def)             Requested size: 297.10474pt x 210.38226pt.
 
-[21] <Images/GUI-2-PP.png, id=397, 696.6025pt x 527.9725pt>
+[21] <Images/GUI-2-PP.png, id=402, 696.6025pt x 527.9725pt>
 File: Images/GUI-2-PP.png Graphic file (type png)
 
 <use Images/GUI-2-PP.png>
 Package pdftex.def Info: Images/GUI-2-PP.png used on input line 343.
 (pdftex.def)             Requested size: 278.63606pt x 211.18526pt.
- [22 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Images/GUI-1-PP.png (PNG copy)> <D:/niklasz/Desktop/GlasgowUniversity/Year
-3/TeamProject/GoProject/dissertation/Images/GUI-2-PP.png (PNG copy)>]
-<Images/GUI-3-CountersCoords.png, id=404, 462.97969pt x 459.96844pt>
+ [22 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-1-PP.png (PNG co
+py)> <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-2-PP.png (PNG co
+py)>]
+<Images/GUI-3-CountersCoords.png, id=409, 462.97969pt x 459.96844pt>
 File: Images/GUI-3-CountersCoords.png Graphic file (type png)
 
 <use Images/GUI-3-CountersCoords.png>
@@ -797,24 +774,23 @@ Package pdftex.def Info: Images/GUI-3-CountersCoords.png used on input line 353
 .
 (pdftex.def)             Requested size: 231.48927pt x 229.98366pt.
 
-<Images/GUI-4-Transparent.png, id=405, 548.80031pt x 179.16937pt>
+<Images/GUI-4-Transparent.png, id=410, 548.80031pt x 179.16937pt>
 File: Images/GUI-4-Transparent.png Graphic file (type png)
 
 <use Images/GUI-4-Transparent.png>
 Package pdftex.def Info: Images/GUI-4-Transparent.png used on input line 361.
 (pdftex.def)             Requested size: 384.15758pt x 125.4177pt.
- [23 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Images/GUI-3-CountersCoords.png>]
-<Images/GUI-5-Bounds.png, id=412, 210.7875pt x 215.30438pt>
+ [23 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-3-CountersCoords
+.png>]
+<Images/GUI-5-Bounds.png, id=417, 210.7875pt x 215.30438pt>
 File: Images/GUI-5-Bounds.png Graphic file (type png)
 
 <use Images/GUI-5-Bounds.png>
 Package pdftex.def Info: Images/GUI-5-Bounds.png used on input line 369.
 (pdftex.def)             Requested size: 210.78699pt x 215.30385pt.
- [24 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Images/GUI-4-Transparent.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3/
-TeamProject/GoProject/dissertation/Images/GUI-5-Bounds.png>] <Images/GUI-6-PCMe
-nu.png, id=420, 99.37125pt x 97.86563pt>
+ [24 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-4-Transparent.pn
+g> <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-5-Bounds.png>]
+<Images/GUI-6-PCMenu.png, id=425, 99.37125pt x 97.86563pt>
 File: Images/GUI-6-PCMenu.png Graphic file (type png)
 
 <use Images/GUI-6-PCMenu.png>
@@ -825,7 +801,7 @@ Overfull \hbox (12.91833pt too wide) in paragraph at lines 380--381
 [][] 
  []
 
-<Images/GUI-7-Objective.png, id=421, 247.67531pt x 173.14688pt>
+<Images/GUI-7-Objective.png, id=426, 247.67531pt x 173.14688pt>
 File: Images/GUI-7-Objective.png Graphic file (type png)
 
 <use Images/GUI-7-Objective.png>
@@ -836,17 +812,16 @@ Overfull \hbox (117.99239pt too wide) in paragraph at lines 385--386
 [][] 
  []
 
-[25 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertat
-ion/Images/GUI-6-PCMenu.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamPr
-oject/GoProject/dissertation/Images/GUI-7-Objective.png>]
-<Images/GUI-8-PlayerChoice.png, id=429, 155.07938pt x 138.5175pt>
+[25 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-6-PCMenu.png> <C:
+/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-7-Objective.png>]
+<Images/GUI-8-PlayerChoice.png, id=434, 155.07938pt x 138.5175pt>
 File: Images/GUI-8-PlayerChoice.png Graphic file (type png)
 
 <use Images/GUI-8-PlayerChoice.png>
 Package pdftex.def Info: Images/GUI-8-PlayerChoice.png used on input line 397.
 (pdftex.def)             Requested size: 155.07898pt x 138.51715pt.
 
-<Images/GUI-9-AIMove1.png, id=430, 919.93687pt x 460.72125pt>
+<Images/GUI-9-AIMove1.png, id=435, 919.93687pt x 460.72125pt>
 File: Images/GUI-9-AIMove1.png Graphic file (type png)
 
 <use Images/GUI-9-AIMove1.png>
@@ -857,17 +832,16 @@ Overfull \hbox (27.69733pt too wide) in paragraph at lines 403--404
  [][] 
  []
 
-<Images/GUI-11-AIMove3Feedback.png, id=431, 305.64188pt x 185.19188pt>
+<Images/GUI-11-AIMove3Feedback.png, id=436, 305.64188pt x 185.19188pt>
 File: Images/GUI-11-AIMove3Feedback.png Graphic file (type png)
 
 <use Images/GUI-11-AIMove3Feedback.png>
 Package pdftex.def Info: Images/GUI-11-AIMove3Feedback.png used on input line 4
 09.
 (pdftex.def)             Requested size: 305.64111pt x 185.1914pt.
- [26 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Images/GUI-8-PlayerChoice.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3
-/TeamProject/GoProject/dissertation/Images/GUI-9-AIMove1.png>]
-<Images/GUI-13-FullView.png, id=440, 902.6222pt x 508.14844pt>
+ [26 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-8-PlayerChoice.p
+ng> <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-9-AIMove1.png>]
+<Images/GUI-13-FullView.png, id=445, 902.6222pt x 508.14844pt>
 File: Images/GUI-13-FullView.png Graphic file (type png)
 
 <use Images/GUI-13-FullView.png>
@@ -878,26 +852,100 @@ Overfull \hbox (19.04001pt too wide) in paragraph at lines 421--422
  [][] 
  []
 
-[27 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertat
-ion/Images/GUI-11-AIMove3Feedback.png>] [28 <D:/niklasz/Desktop/GlasgowUniversi
-ty/Year3/TeamProject/GoProject/dissertation/Images/GUI-13-FullView.png>]
+[27 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-11-AIMove3Feedbac
+k.png>] [28 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/GUI-13-FullVi
+ew.png>]
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ì in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ú in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ú in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ú in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ú in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ú in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ì in font ptmr7t!
+ [29]
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ì in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ú in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+ <Images/UnderTheStones.png, id=462, 452.4403pt x 454.69875pt>
+File: Images/UnderTheStones.png Graphic file (type png)
+
+<use Images/UnderTheStones.png>
+Package pdftex.def Info: Images/UnderTheStones.png used on input line 457.
+(pdftex.def)             Requested size: 226.2196pt x 227.34882pt.
+ [30]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ì in font ptmr7t!
 
-[29]
-Missing character: There is no ‚ in font ptmr7t!
-Missing character: There is no Ä in font ptmr7t!
-Missing character: There is no ì in font ptmr7t!
- [30] [31] [32] [33]
+<Images/UnderTheStones_Alphabeta.png, id=467, 901.86937pt x 505.89pt>
+File: Images/UnderTheStones_Alphabeta.png Graphic file (type png)
+
+<use Images/UnderTheStones_Alphabeta.png>
+Package pdftex.def Info: Images/UnderTheStones_Alphabeta.png used on input line
+ 465.
+(pdftex.def)             Requested size: 450.93358pt x 252.94437pt.
+
+Overfull \hbox (18.66359pt too wide) in paragraph at lines 465--466
+ [][] 
+ []
+
+<Images/UnderTheStones_Minimax.png, id=468, 902.6222pt x 508.14844pt>
+File: Images/UnderTheStones_Minimax.png Graphic file (type png)
+
+<use Images/UnderTheStones_Minimax.png>
+Package pdftex.def Info: Images/UnderTheStones_Minimax.png used on input line 4
+71.
+(pdftex.def)             Requested size: 451.31pt x 254.0736pt.
+
+Overfull \hbox (19.04001pt too wide) in paragraph at lines 471--472
+ [][] 
+ []
+
+[31 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/UnderTheStones.png> <
+C:/Users/Kiril/Desktop/GoProject/dissertation/Images/UnderTheStones_Alphabeta.p
+ng>] [32 <C:/Users/Kiril/Desktop/GoProject/dissertation/Images/UnderTheStones_M
+inimax.png>] [33] [34] [35]
 Chapter 4.
-[34
+[36
 
-] [35] [36]
+] [37] [38]
 Chapter 5.
-
-(D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
-TeamIDissertation.bbl [37
+(C:\Users\Kiril\Desktop\GoProject\dissertation\TeamIDissertation.bbl [39
 
 ]
 Underfull \hbox (badness 3568) in paragraph at lines 14--17
@@ -926,174 +974,137 @@ ides\OT1/ptm/m/n/10.95 .  http://docs.oracle.com/javase/8/docs/technotes/guides
 /swing/l,
  []
 
-) [38
+) [40
 
 ]
 Chapter 6.
-<Appendix/TestingDocumentPDF.pdf, id=512, 597.55246pt x 845.07718pt>
-File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
-
-<use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 570
-.
-(pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
- <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 570
-.
-(pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
-
-<use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 570
-.
-(pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
- <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 570
-.
-(pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
-
-<use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 570
-.
-(pdftex.def)             Requested size: 597.551pt x 845.07512pt.
- [39
+[41
 
 ]
-<Appendix/TestingDocumentPDF.pdf, id=522, page=1, 597.55246pt x 845.07718pt>
+<Appendix/TestingDocumentPDF.pdf, id=541, page=1, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
- [40 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Appendix/TestingDocumentPDF.pdf>]
-<Appendix/TestingDocumentPDF.pdf, id=542, page=2, 597.55246pt x 845.07718pt>
+ [42 <C:/Users/Kiril/Desktop/GoProject/dissertation/Appendix/TestingDocumentPDF
+.pdf>]
+<Appendix/TestingDocumentPDF.pdf, id=561, page=2, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 2>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
-ine 570.
-(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
-
-<use Appendix/TestingDocumentPDF.pdf, page 2>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 2>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
- [41 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Appendix/TestingDocumentPDF.pdf>]
-<Appendix/TestingDocumentPDF.pdf, id=549, page=3, 597.55246pt x 845.07718pt>
+File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
+
+<use Appendix/TestingDocumentPDF.pdf, page 2>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
+ine 596.
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+ [43 <C:/Users/Kiril/Desktop/GoProject/dissertation/Appendix/TestingDocumentPDF
+.pdf>]
+<Appendix/TestingDocumentPDF.pdf, id=567, page=3, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 3>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 3>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 3>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
- [42 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Appendix/TestingDocumentPDF.pdf>]
-<Appendix/TestingDocumentPDF.pdf, id=555, page=4, 597.55246pt x 845.07718pt>
+ [44 <C:/Users/Kiril/Desktop/GoProject/dissertation/Appendix/TestingDocumentPDF
+.pdf>]
+<Appendix/TestingDocumentPDF.pdf, id=573, page=4, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 4>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
-ine 570.
-(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
-
-<use Appendix/TestingDocumentPDF.pdf, page 4>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 4>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
-ine 570.
+ine 596.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
- [43 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Appendix/TestingDocumentPDF.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 572.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 572.
+File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
-(D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
-TeamIDissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 572.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 572.
+<use Appendix/TestingDocumentPDF.pdf, page 4>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
+ine 596.
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+ [45 <C:/Users/Kiril/Desktop/GoProject/dissertation/Appendix/TestingDocumentPDF
+.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 598.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 598.
 
-
-Package rerunfilecheck Warning: File `TeamIDissertation.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `TeamIDissertation.out':
-(rerunfilecheck)             Before: 541028C0611DB0E8E6F20B73DDED44E9;3316
-(rerunfilecheck)             After:  2F01D955A764AEB152A5E2399D18FFC2;3316.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 572.
+(C:\Users\Kiril\Desktop\GoProject\dissertation\TeamIDissertation.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 598.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 598.
+Package rerunfilecheck Info: File `TeamIDissertation.out' has not changed.
+(rerunfilecheck)             Checksum: 9E99C48ABA0297CC05B025297C2CB81F;3393.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 598.
  ) 
 Here is how much of TeX's memory you used:
- 8268 strings out of 493921
- 125174 string characters out of 3149685
- 214581 words of memory out of 3000000
- 11299 multiletter control sequences out of 15000+200000
+ 8139 strings out of 494045
+ 123145 string characters out of 3148386
+ 216252 words of memory out of 3000000
+ 11163 multiletter control sequences out of 15000+200000
  27458 words of font info for 56 fonts, out of 3000000 for 9000
- 841 hyphenation exceptions out of 8191
- 42i,18n,43p,1856b,468s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/MainPrograms/LateX/fonts/enc/dvips/fontname/8r.enc}<D:/MainPrograms/LateX
-/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MainPrograms/LateX/fonts/type1/pu
-blic/amsfonts/cm/cmr8.pfb><D:/MainPrograms/LateX/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb><D:/MainPrograms/LateX/fonts/type1/urw/courier/ucrr8a.pfb><D:/MainP
-rograms/LateX/fonts/type1/urw/times/utmb8a.pfb><D:/MainPrograms/LateX/fonts/typ
-e1/urw/times/utmr8a.pfb><D:/MainPrograms/LateX/fonts/type1/urw/times/utmri8a.pf
-b>
-Output written on TeamIDissertation.pdf (45 pages, 2121210 bytes).
+ 715 hyphenation exceptions out of 8191
+ 42i,18n,43p,1856b,460s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/ur
+w/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on TeamIDissertation.pdf (47 pages, 2173368 bytes).
 PDF statistics:
- 616 PDF objects out of 1000 (max. 8388607)
- 131 named destinations out of 1000 (max. 500000)
- 561 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 635 PDF objects out of 1000 (max. 8388607)
+ 137 named destinations out of 1000 (max. 500000)
+ 579 words of extra memory for PDF output out of 10000 (max. 10000000)
 
