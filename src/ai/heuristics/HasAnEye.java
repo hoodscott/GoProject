@@ -295,14 +295,12 @@ public class HasAnEye implements Heuristic{
 			return 0;
 		}
 		
+
 		}
-<<<<<<< HEAD
-	}
-		
-=======
-		
 		return 0;
->>>>>>> a058c9fe1d6241eb1b12f3b09109de48d5566ab5
+		
+
 	}
+}
 	
 	
