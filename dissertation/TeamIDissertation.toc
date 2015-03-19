@@ -12,25 +12,24 @@
 \contentsline {section}{\numberline {3.1}Requirements Gathering}{15}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Interview Questions}{15}{subsection.3.1.1}
 \contentsline {section}{\numberline {3.2}Requirements Specification And Organization}{17}{section.3.2}
-\contentsline {section}{\numberline {3.3}Representing Basic Play}{19}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Main}{19}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Board}{20}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}FileIO}{20}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}GameEngine}{21}{subsection.3.3.4}
-\contentsline {subsection}{\numberline {3.3.5}LegalMoveChecker}{21}{subsection.3.3.5}
+\contentsline {section}{\numberline {3.3}Design \& Implementation of Basic Play}{19}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Board Representation}{19}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}FileIO}{20}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}GameEngine}{21}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}LegalMoveChecker}{21}{subsection.3.3.4}
 \contentsline {section}{\numberline {3.4}Graphical User Interface Design And Implementation}{21}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Initial Design}{22}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Visual Implementation}{23}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Player Modes}{25}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Finalised Graphical User Interface}{28}{subsection.3.4.4}
-\contentsline {section}{\numberline {3.5}Artificial Intelligence Design And Implementation}{29}{section.3.5}
+\contentsline {subsection}{\numberline {3.4.1}Initial Design}{21}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Visual Implementation}{22}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Player Modes}{24}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Finalised Graphical User Interface}{27}{subsection.3.4.4}
+\contentsline {section}{\numberline {3.5}Artificial Intelligence Design And Implementation}{28}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}Search Scope And Objective}{29}{subsection.3.5.1}
 \contentsline {subsection}{\numberline {3.5.2}Minimax: Design And Implementation}{29}{subsection.3.5.2}
-\contentsline {subsection}{\numberline {3.5.3}AlphaBeta: Design And Implementation}{30}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.3}AlphaBeta: Design And Implementation}{29}{subsection.3.5.3}
 \contentsline {section}{\numberline {3.6}Heuristics Design And Implementation}{30}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}General Heuristics}{31}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Specific Problem Heuristics}{32}{subsection.3.6.2}
-\contentsline {section}{\numberline {3.7}Integration And Implementation Reflection}{33}{section.3.7}
+\contentsline {subsection}{\numberline {3.6.1}General Heuristics}{30}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Specific Problem Heuristics}{31}{subsection.3.6.2}
+\contentsline {section}{\numberline {3.7}Integration And Implementation Reflection}{32}{section.3.7}
 \contentsline {chapter}{\numberline {4}Evaluation}{34}{chapter.4}
 \contentsline {section}{\numberline {4.1}Solvable Problems}{34}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Solvable Problems With Brute Force}{34}{subsection.4.1.1}

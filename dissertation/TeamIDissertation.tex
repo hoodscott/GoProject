@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{float}
 \usepackage{subcaption}
+\usepackage{graphicx}
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
 \begin{document}
@@ -269,47 +270,59 @@ The organisational structure of the team evolved and developed throughout the pr
 
 The process of the project was a flexible one. Whilst milestones and deadlines were structured out, the revisiting of previously made components and improvements were made frequently. This agile approach to the design and implementation of the problem solver allowed for a final program which is both user-friendly and includes an artificial intelligence that plays well, meeting the initially specified requirements.
 
-\section{Representing Basic Play}
+\section{Design \& Implementation of Basic Play}
 
-Upon having established the requirements, the first developmental step towards a final problem solver was enabling the representation of a board and the ability to make exclusively legal moves on it. Further, a board loading and saving mechanism, as well as a command-line based UI, were also created during the first stage of design and implementation. These components allowed for easier interaction, testing and future development. Following the implementation of each of these features, the basic interaction structure of the program can be seen in \textit{Figure  \ref{fig:basic_program}}. Notably, each of these features were implemented as a Java class, designed to function as fairly independent components.
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Images/S33Diagram.png}
-\caption{Basic program class structure.} \label{fig:basic_program}
-\end{figure}
-
-\subsection{Main}
-
-This class serves as a runner and was incorporated as it was considered that some initial settings may have to be set prior to launching the user interface. It for example, allows one to choose between the TextUI and the later developed GUI. Additional settings were considered, but were added elsewhere later on.
-
-\subsection{Board}
-
-The Board class holds the main representation of the board, which is essentially a 2D integer array although the type itself is a byte array to allow for less memory usage. As each intersection of the board can either be empty or hold a black or white stone, these states could be represented numerically as 0, 1 and 2 effectively. Figure 3.2 shows a representation of the board within the array. Notably, a special empty space type (set to 3) was added later on to allow the artificial intelligence to better determine relevant search areas (See Section 3.5 – Search Scope). The major functions of the board itself are the retrieve or setting of intersection values, testing for board equality and producing deep copies of the board upon request. 
+Upon having established the requirements, the first development step towards a problem solver was representing a board and the being able to make exclusively legal moves on it. Further, a board loading and saving mechanism as well as a command-line based UI were also created during the first stage of design and implementation. These components allowed for easier interaction, testing and future development. The basic interaction structure of the program can be seen in \textit{Figure  \ref{fig:basic_program}}. Notably, each of these features were implemented as a Java class, designed to function as fairly independent components.
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Images/GE-BoardRep.png}
-\caption{Board representation: GUI and TextUI.}
+	\centering
+	\includegraphics[scale=1]{Images/S33Diagram.png}
+	\caption{Basic program class structure.} 
+	\label{fig:basic_program}
 \end{figure}
+
+\subsection{Board Representation}
+
+The Go game board was represented by the \texttt{Board} class, holding the main representation of the board, which is essentially a \texttt{byte[][]} of the board intersections. As each intersection of the board can either be empty or hold a black or white stone, these states could be represented numerically as 0, 1 and 2 effectively. An example of this can be seen in  \textit{Figure  \ref{board_representation}}.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{Images/S33Board_Rep_Example}
+	\end{subfigure}\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{Images/S33Board_Rep_Example_text}
+	\end{subfigure}
+\caption{Board-Array Representation}
+\label{board_representation}
+\end{figure}
+
+Notably, a special empty space type (set to 3) was added later on to allow the artificial intelligence to better determine relevant search areas (See \textit{Section  \ref{search_scope_objective}}). Other functions of the \texttt{Board} class itself are the getting or setting of intersection values, testing for board equality and producing deep copies of the board upon request. 
 
 \subsection{FileIO}
 
-The FileIO is responsible for reading and writing board states for later usage or testing by the user. Reading in a board state involves verifying its integrity and producing the resulting Board objects, whereas writing converts Boards into writable strings. The file representation of a board does not use integers, but rather characters for the benefit of manual editing, which was necessary prior to the GUI. Accordingly, black, white and empty were represented as ‘b’, ‘w’, ‘.’. Figure 3.3 shows the previous board array from Figure 3.2 instead as a editable board file.
+The \texttt{FileIO} was responsible for reading and writing board states in order to create, store and load libraries of life \& death problems. A board could be loaded from a file as a String, parsed into a usable board, modified via a UI and stored again. As the boards were initially shown via a \texttt{TextUI} and edited manually, the \texttt{FileIO} represented black, white and empty as `b', `w' and `.'. The \textit{Figure  \ref{board_file_representation}} shows this format with the previous example.
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Images/GE-BoardSave.png}
-\caption{Board file representation.}
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{Images/S33Board_Rep_Example_text}
+	\end{subfigure}\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{Images/S33Board_Rep_Example_file}
+	\end{subfigure}\hfill
+\caption{Array-File Representation}
+\label{board_file_representation}
 \end{figure}
 
-The two initial numbers at the start of the board file denote the dimensions of the board. This mechanism was further enhanced as the program grew, having files hold further details such as AI search spaces, being denoted by ‘-‘, as well as game objectives, e.g “White to kill 2 7”. These user chosen objectives instruct the AI as to what group is relevant during gameplay. Originally, the translation and integrity verification of board files was contained within the FileIO. However, due to the increasing complexity of save files, it was later moved to a separate translating class.
+The two initial integers at the start of the board file denote the dimensions of the board. This mechanism was further enhanced as the program grew, having files hold further details such as AI search spaces, being denoted by `-', as well as game objectives, e.g ``White to kill 2 7". These user chosen objectives instruct the AI as to what group of stones is relevant during gameplay. 
+
+\subsection{LegalMoveChecker}
+The \texttt{LegalMoveChecker} was designed to 
 
 \subsection{GameEngine}
 
-The GameEngine was designed to be the heart of the program, holding the current Board representation and allowing players to make legal moves on it. In order to check the legality it holds an instance of the LegalMoveChecker that it asks to analyse each move attempted and will only modify the board when said test returns true. Other functions entail undoing moves, restarting the board and other user-oriented features. A further addition that was made later in the project is the addition of AI play and representation. 
-
-\subsection{LegalMoveChecker}
+The \texttt{GameEngine} was designed to be the heart of the program, holding the current \texttt{Board} representation and allowing players to make legal moves on it. In order to check the legality it holds an instance of the \texttt{LegalMoveChecker} that it asks to analyse each move attempted and will only modify the board when said test returns true. Other functions entail undoing moves, restarting the board and other user-oriented features. The respective calls to the AI were also later done through this entity.
 
 \section{Graphical User Interface Design And Implementation}
 
@@ -415,7 +428,7 @@ The aim of our program is to play interactively with the user through a solution
  
 A tree search algorithm considers each possible action at a given moment alongside each of the subsequent possible actions. It continues this action search until a state is found that satisfies a given goal. This allows for brute-forcing of life and death problems in an attempt to find a winning sequence of moves. When the search reaches a state where the objective is completed or where there is no chance to complete it in future, the corresponding result is returned and the move with highest score is picked. By integrating this brute forcing functionality into the problem solver, it can successfully brute force and solve user defined problems.
 
-\subsection{Search Scope And Objective}
+\subsection{Search Scope And Objective}\label{search_scope_objective}
 
 As described previously, as all possible moves are considered during brute forcing of problems, the larger the number of possible moves, the slower the response time of the artificial intelligence.Therefore, to get a decent result in reasonable time, the program should not deal with problems that involve considering a large number of legal moves.
 
