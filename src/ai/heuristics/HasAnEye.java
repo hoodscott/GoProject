@@ -284,20 +284,25 @@ public class HasAnEye implements Heuristic{
 		
 				
 		if (twoEye_counter >= 2){
-			return Rating.HAS_A_SECOND_EYE.getValue();
+			//return Rating.HAS_A_SECOND_EYE.getValue();
 		}else{
 		
 		if (isEye || isEdgeEye || isCornerEye){
-		return Rating.HAS_AN_EYE.getValue();
+		//return Rating.HAS_AN_EYE.getValue();
 		}else if (is2pointEye || is2pointEdgeEye){
-			return Rating.HAS_AN_2_POINT_EYE.getValue();
+			//return Rating.HAS_AN_2_POINT_EYE.getValue();
 		}else{
 			return 0;
 		}
 		
 		}
+<<<<<<< HEAD
 	}
 		
+=======
+		
+		return 0;
+>>>>>>> a058c9fe1d6241eb1b12f3b09109de48d5566ab5
 	}
 	
 	
