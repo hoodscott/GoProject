@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.1.28)  19 MAR 2015 19:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.1.28)  19 MAR 2015 21:10
 entering extended mode
 **TeamIDissertation.tex
 
@@ -330,53 +330,104 @@ Package caption Info: hyperref package is loaded.
 \c@subfigure=\count117
 \c@subtable=\count118
 )
+(D:\MainPrograms\LateX\tex\latex\algorithm2e\algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count119
+
+(D:\MainPrograms\LateX\tex\latex\tools\xspace.sty
+Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+)
+(D:\MainPrograms\LateX\tex\latex\ltxmisc\relsize.sty
+Package: relsize 2003/07/04 ver 3.1
+)
+********************************************************
+Package `algorithm2e' Release 5.0 -- january 06 2013 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (cfiorio@um2.fr)
+********************************************************
+\skiptotal=\skip50
+\skiplinenumber=\skip51
+\skiprule=\skip52
+\skiphlne=\skip53
+\skiptext=\skip54
+\skiplength=\skip55
+\algomargin=\skip56
+\skipalgocfslide=\skip57
+\algowidth=\dimen127
+\inoutsize=\dimen128
+\inoutindent=\dimen129
+\interspacetitleruled=\dimen130
+\interspacealgoruled=\dimen131
+\interspacetitleboxruled=\dimen132
+\algocf@inoutbox=\box32
+\algocf@inputbox=\box33
+\AlCapSkip=\skip58
+\AlCapHSkip=\skip59
+\algoskipindent=\skip60
+\algocf@nlbox=\box34
+\algocf@hangingbox=\box35
+\algocf@untilbox=\box36
+\algocf@skipuntil=\skip61
+\algocf@capbox=\box37
+\algoheightruledefault=\skip62
+\algoheightrule=\skip63
+\algotitleheightruledefault=\skip64
+\algotitleheightrule=\skip65
+\c@algocfline=\count120
+\c@algocfproc=\count121
+\c@algocf=\count122
+\algocf@algoframe=\box38
+\algocf@algobox=\box39
+)
 (D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
 TeamIDissertation.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 13.
  (D:\MainPrograms\LateX\tex\latex\psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (D:\MainPrograms\LateX\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count119
-\scratchdimen=\dimen127
-\scratchbox=\box32
-\nofMPsegments=\count120
-\nofMParguments=\count121
+\scratchcounter=\count123
+\scratchdimen=\dimen133
+\scratchbox=\box40
+\nofMPsegments=\count124
+\nofMParguments=\count125
 \everyMPshowfont=\toks23
-\MPscratchCnt=\count122
-\MPscratchDim=\dimen128
-\MPnumerator=\count123
-\makeMPintoPDFobject=\count124
+\MPscratchCnt=\count126
+\MPscratchDim=\dimen134
+\MPnumerator=\count127
+\makeMPintoPDFobject=\count128
 \everyMPtoPDFconversion=\toks24
 )
-\AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring ON on input line 9.
+\AtBeginShipoutBox=\box41
+Package hyperref Info: Link coloring ON on input line 13.
  (D:\MainPrograms\LateX\tex\latex\hyperref\nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (D:\MainPrograms\LateX\tex\generic\oberdiek\gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count125
+\c@section@level=\count129
 )
-LaTeX Info: Redefining \ref on input line 9.
-LaTeX Info: Redefining \pageref on input line 9.
-LaTeX Info: Redefining \nameref on input line 9.
+LaTeX Info: Redefining \ref on input line 13.
+LaTeX Info: Redefining \pageref on input line 13.
+LaTeX Info: Redefining \nameref on input line 13.
 
 (D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
 TeamIDissertation.out)
@@ -390,7 +441,7 @@ Package caption Info: End \AtBeginDocument code.
 File: images/CompSci_mono.pdf Graphic file (type pdf)
 
 <use images/CompSci_mono.pdf>
-Package pdftex.def Info: images/CompSci_mono.pdf used on input line 17.
+Package pdftex.def Info: images/CompSci_mono.pdf used on input line 21.
 (pdftex.def)             Requested size: 300.43684pt x 9.35004pt.
  [1
 
@@ -398,23 +449,23 @@ Package pdftex.def Info: images/CompSci_mono.pdf used on input line 17.
 /Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertation/images/Comp
 Sci_mono.pdf>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 18.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 22.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.23 \end{abstract}
+l.27 \end{abstract}
                     [1]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 24.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.26 \tableofcontents
+l.30 \tableofcontents
                       [1]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 26.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 30.
 
 (D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
 TeamIDissertation.toc [2
@@ -424,33 +475,33 @@ TeamIDissertation.toc [2
  [3]
 Chapter 1.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20.74> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
 [4
 
 ] [5] [6]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 54.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 58.
 (D:\MainPrograms\LateX\tex\latex\psnfss\omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 54.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 58.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 66.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 70.
  [7
 
 ]
 <Images/eyes.png, id=282, 347.79938pt x 390.70969pt>
 File: Images/eyes.png Graphic file (type png)
  <use Images/eyes.png>
-Package pdftex.def Info: Images/eyes.png used on input line 86.
+Package pdftex.def Info: Images/eyes.png used on input line 90.
 (pdftex.def)             Requested size: 173.89926pt x 195.35435pt.
 
 [8] <Images/foureyespace.png, id=288, 346.29375pt x 170.88844pt>
 File: Images/foureyespace.png Graphic file (type png)
 
 <use Images/foureyespace.png>
-Package pdftex.def Info: Images/foureyespace.png used on input line 94.
+Package pdftex.def Info: Images/foureyespace.png used on input line 98.
 (pdftex.def)             Requested size: 173.14644pt x 85.444pt.
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
@@ -460,7 +511,7 @@ Missing character: There is no œ in font ptmr7t!
 File: Images/singlestonesinatari.png Graphic file (type png)
 
 <use Images/singlestonesinatari.png>
-Package pdftex.def Info: Images/singlestonesinatari.png used on input line 102.
+Package pdftex.def Info: Images/singlestonesinatari.png used on input line 106.
 
 (pdftex.def)             Requested size: 190.08469pt x 150.18571pt.
  [9 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertat
@@ -470,8 +521,8 @@ g, id=298, 479.54156pt x 456.95718pt>
 File: Images/groupsofstonesinatari.png Graphic file (type png)
 
 <use Images/groupsofstonesinatari.png>
-Package pdftex.def Info: Images/groupsofstonesinatari.png used on input line 10
-8.
+Package pdftex.def Info: Images/groupsofstonesinatari.png used on input line 11
+2.
 (pdftex.def)             Requested size: 239.77019pt x 228.47803pt.
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
@@ -486,7 +537,7 @@ Missing character: There is no ™ in font ptmr7t!
 <Images/ahane.png, id=299, 117.43875pt x 211.54031pt>
 File: Images/ahane.png Graphic file (type png)
  <use Images/ahane.png>
-Package pdftex.def Info: Images/ahane.png used on input line 116.
+Package pdftex.def Info: Images/ahane.png used on input line 120.
 (pdftex.def)             Requested size: 58.71922pt x 105.76988pt.
 
 [10 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertat
@@ -527,14 +578,14 @@ Missing character: There is no  in font ptmr7t!
 File: Images/korule2.png Graphic file (type png)
 
 <use Images/korule2.png>
-Package pdftex.def Info: Images/korule2.png used on input line 124.
+Package pdftex.def Info: Images/korule2.png used on input line 128.
 (pdftex.def)             Requested size: 121.95532pt x 119.32048pt.
 
 <Images/korule1.png, id=309, 246.9225pt x 235.63031pt>
 File: Images/korule1.png Graphic file (type png)
 
 <use Images/korule1.png>
-Package pdftex.def Info: Images/korule1.png used on input line 130.
+Package pdftex.def Info: Images/korule1.png used on input line 134.
 (pdftex.def)             Requested size: 123.46094pt x 117.81487pt.
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
@@ -580,7 +631,7 @@ g, id=321, 264.23718pt x 272.51813pt>
 File: Images/miai.png Graphic file (type png)
 
 <use Images/miai.png>
-Package pdftex.def Info: Images/miai.png used on input line 138.
+Package pdftex.def Info: Images/miai.png used on input line 142.
 (pdftex.def)             Requested size: 132.11826pt x 136.25873pt.
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
@@ -601,7 +652,7 @@ Missing character: There is no ™ in font ptmr7t!
 File: Images/seki.png Graphic file (type png)
 
 <use Images/seki.png>
-Package pdftex.def Info: Images/seki.png used on input line 147.
+Package pdftex.def Info: Images/seki.png used on input line 151.
 (pdftex.def)             Requested size: 178.41612pt x 176.91049pt.
  [12 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Images/miai.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/G
@@ -610,27 +661,27 @@ oProject/dissertation/Images/seki.png>]
 File: Images/unsettled3.png Graphic file (type png)
 
 <use Images/unsettled3.png>
-Package pdftex.def Info: Images/unsettled3.png used on input line 161.
+Package pdftex.def Info: Images/unsettled3.png used on input line 165.
 (pdftex.def)             Requested size: 182.55658pt x 110.66315pt.
 
 <Images/eightlive.png, id=332, 408.77719pt x 148.30406pt>
 File: Images/eightlive.png Graphic file (type png)
 
 <use Images/eightlive.png>
-Package pdftex.def Info: Images/eightlive.png used on input line 169.
+Package pdftex.def Info: Images/eightlive.png used on input line 173.
 (pdftex.def)             Requested size: 204.38809pt x 74.15184pt.
 
 <Images/sevenunsettled.png, id=333, 403.5075pt x 138.5175pt>
 File: Images/sevenunsettled.png Graphic file (type png)
 
 <use Images/sevenunsettled.png>
-Package pdftex.def Info: Images/sevenunsettled.png used on input line 175.
+Package pdftex.def Info: Images/sevenunsettled.png used on input line 179.
 (pdftex.def)             Requested size: 201.75325pt x 69.25858pt.
 
 <Images/sixdie.png, id=334, 418.56375pt x 138.5175pt>
 File: Images/sixdie.png Graphic file (type png)
  <use Images/sixdie.png>
-Package pdftex.def Info: Images/sixdie.png used on input line 181.
+Package pdftex.def Info: Images/sixdie.png used on input line 185.
 (pdftex.def)             Requested size: 209.28136pt x 69.25858pt.
 
 [13 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertat
@@ -718,7 +769,7 @@ Missing character: There is no  in font ptmr7t!
 File: Images/GanntChart.png Graphic file (type png)
 
 <use Images/GanntChart.png>
-Package pdftex.def Info: Images/GanntChart.png used on input line 267.
+Package pdftex.def Info: Images/GanntChart.png used on input line 271.
 (pdftex.def)             Requested size: 409.52899pt x 121.45345pt.
  [18 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Images/GanntChart.png>]
@@ -726,23 +777,18 @@ tion/Images/GanntChart.png>]
 File: Images/S33Diagram.png Graphic file (type png)
 
 <use Images/S33Diagram.png>
-Package pdftex.def Info: Images/S33Diagram.png used on input line 279.
-(pdftex.def)             Requested size: 478.03476pt x 253.69719pt.
+Package pdftex.def Info: Images/S33Diagram.png used on input line 283.
+(pdftex.def)             Requested size: 432.26999pt x 229.40982pt.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 290.
 
-Overfull \hbox (45.76477pt too wide) in paragraph at lines 279--280
- [][] 
- []
-
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 286.
-
-(D:\MainPrograms\LateX\tex\latex\psnfss\ot1pcr.fd
+ (D:\MainPrograms\LateX\tex\latex\psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 <Images/S33Board_Rep_Example.png, id=374, 453.94594pt x 451.6875pt>
 File: Images/S33Board_Rep_Example.png Graphic file (type png)
 
 <use Images/S33Board_Rep_Example.png>
-Package pdftex.def Info: Images/S33Board_Rep_Example.png used on input line 291
+Package pdftex.def Info: Images/S33Board_Rep_Example.png used on input line 295
 .
 (pdftex.def)             Requested size: 172.90535pt x 172.04277pt.
 
@@ -751,7 +797,7 @@ File: Images/S33Board_Rep_Example_text.png Graphic file (type png)
 
 <use Images/S33Board_Rep_Example_text.png>
 Package pdftex.def Info: Images/S33Board_Rep_Example_text.png used on input lin
-e 294.
+e 298.
 (pdftex.def)             Requested size: 172.90535pt x 166.40993pt.
  [19 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Images/S33Diagram.png>]
@@ -759,7 +805,7 @@ File: Images/S33Board_Rep_Example_text.png Graphic file (type png)
 
 <use Images/S33Board_Rep_Example_text.png>
 Package pdftex.def Info: Images/S33Board_Rep_Example_text.png used on input lin
-e 309.
+e 313.
 (pdftex.def)             Requested size: 172.90535pt x 166.40993pt.
 
 <Images/S33Board_Rep_Example_file.png, id=386, 315.42844pt x 282.30469pt>
@@ -767,114 +813,115 @@ File: Images/S33Board_Rep_Example_file.png Graphic file (type png)
 
 <use Images/S33Board_Rep_Example_file.png>
 Package pdftex.def Info: Images/S33Board_Rep_Example_file.png used on input lin
-e 312.
+e 316.
 (pdftex.def)             Requested size: 172.90535pt x 154.74683pt.
  [20 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Images/S33Board_Rep_Example.png> <D:/niklasz/Desktop/GlasgowUniversity/Yea
 r3/TeamProject/GoProject/dissertation/Images/S33Board_Rep_Example_text.png> <D:
 /niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertation/Ima
 ges/S33Board_Rep_Example_file.png>]
-<Images/GUI-1-PP.png, id=392, 742.775pt x 525.965pt>
+[21] <Images/GUI-1-PP.png, id=397, 742.775pt x 525.965pt>
 File: Images/GUI-1-PP.png Graphic file (type png)
- <use Images/GUI-1-PP.png>
-Package pdftex.def Info: Images/GUI-1-PP.png used on input line 337.
+
+<use Images/GUI-1-PP.png>
+Package pdftex.def Info: Images/GUI-1-PP.png used on input line 350.
 (pdftex.def)             Requested size: 297.10474pt x 210.38226pt.
 
-[21] <Images/GUI-2-PP.png, id=397, 696.6025pt x 527.9725pt>
+<Images/GUI-2-PP.png, id=398, 696.6025pt x 527.9725pt>
 File: Images/GUI-2-PP.png Graphic file (type png)
 
 <use Images/GUI-2-PP.png>
-Package pdftex.def Info: Images/GUI-2-PP.png used on input line 343.
+Package pdftex.def Info: Images/GUI-2-PP.png used on input line 356.
 (pdftex.def)             Requested size: 278.63606pt x 211.18526pt.
  [22 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Images/GUI-1-PP.png (PNG copy)> <D:/niklasz/Desktop/GlasgowUniversity/Year
 3/TeamProject/GoProject/dissertation/Images/GUI-2-PP.png (PNG copy)>]
-<Images/GUI-3-CountersCoords.png, id=404, 462.97969pt x 459.96844pt>
+<Images/GUI-3-CountersCoords.png, id=405, 462.97969pt x 459.96844pt>
 File: Images/GUI-3-CountersCoords.png Graphic file (type png)
 
 <use Images/GUI-3-CountersCoords.png>
-Package pdftex.def Info: Images/GUI-3-CountersCoords.png used on input line 353
+Package pdftex.def Info: Images/GUI-3-CountersCoords.png used on input line 366
 .
 (pdftex.def)             Requested size: 231.48927pt x 229.98366pt.
-
-<Images/GUI-4-Transparent.png, id=405, 548.80031pt x 179.16937pt>
+ [23 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
+tion/Images/GUI-3-CountersCoords.png>]
+<Images/GUI-4-Transparent.png, id=412, 548.80031pt x 179.16937pt>
 File: Images/GUI-4-Transparent.png Graphic file (type png)
 
 <use Images/GUI-4-Transparent.png>
-Package pdftex.def Info: Images/GUI-4-Transparent.png used on input line 361.
+Package pdftex.def Info: Images/GUI-4-Transparent.png used on input line 374.
 (pdftex.def)             Requested size: 384.15758pt x 125.4177pt.
- [23 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
-tion/Images/GUI-3-CountersCoords.png>]
-<Images/GUI-5-Bounds.png, id=412, 210.7875pt x 215.30438pt>
+
+<Images/GUI-5-Bounds.png, id=413, 210.7875pt x 215.30438pt>
 File: Images/GUI-5-Bounds.png Graphic file (type png)
 
 <use Images/GUI-5-Bounds.png>
-Package pdftex.def Info: Images/GUI-5-Bounds.png used on input line 369.
+Package pdftex.def Info: Images/GUI-5-Bounds.png used on input line 382.
 (pdftex.def)             Requested size: 210.78699pt x 215.30385pt.
  [24 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Images/GUI-4-Transparent.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3/
 TeamProject/GoProject/dissertation/Images/GUI-5-Bounds.png>] <Images/GUI-6-PCMe
-nu.png, id=420, 99.37125pt x 97.86563pt>
+nu.png, id=421, 99.37125pt x 97.86563pt>
 File: Images/GUI-6-PCMenu.png Graphic file (type png)
 
 <use Images/GUI-6-PCMenu.png>
-Package pdftex.def Info: Images/GUI-6-PCMenu.png used on input line 380.
+Package pdftex.def Info: Images/GUI-6-PCMenu.png used on input line 393.
 (pdftex.def)             Requested size: 99.371pt x 97.86537pt.
 
-Overfull \hbox (12.91833pt too wide) in paragraph at lines 380--381
+Overfull \hbox (12.91833pt too wide) in paragraph at lines 393--394
 [][] 
  []
 
-<Images/GUI-7-Objective.png, id=421, 247.67531pt x 173.14688pt>
+<Images/GUI-7-Objective.png, id=422, 247.67531pt x 173.14688pt>
 File: Images/GUI-7-Objective.png Graphic file (type png)
 
 <use Images/GUI-7-Objective.png>
-Package pdftex.def Info: Images/GUI-7-Objective.png used on input line 385.
+Package pdftex.def Info: Images/GUI-7-Objective.png used on input line 398.
 (pdftex.def)             Requested size: 247.6747pt x 173.14645pt.
 
-Overfull \hbox (117.99239pt too wide) in paragraph at lines 385--386
+Overfull \hbox (117.99239pt too wide) in paragraph at lines 398--399
 [][] 
  []
 
 [25 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/dissertat
 ion/Images/GUI-6-PCMenu.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamPr
 oject/GoProject/dissertation/Images/GUI-7-Objective.png>]
-<Images/GUI-8-PlayerChoice.png, id=429, 155.07938pt x 138.5175pt>
+<Images/GUI-8-PlayerChoice.png, id=430, 155.07938pt x 138.5175pt>
 File: Images/GUI-8-PlayerChoice.png Graphic file (type png)
 
 <use Images/GUI-8-PlayerChoice.png>
-Package pdftex.def Info: Images/GUI-8-PlayerChoice.png used on input line 397.
+Package pdftex.def Info: Images/GUI-8-PlayerChoice.png used on input line 410.
 (pdftex.def)             Requested size: 155.07898pt x 138.51715pt.
 
-<Images/GUI-9-AIMove1.png, id=430, 919.93687pt x 460.72125pt>
+<Images/GUI-9-AIMove1.png, id=431, 919.93687pt x 460.72125pt>
 File: Images/GUI-9-AIMove1.png Graphic file (type png)
 
 <use Images/GUI-9-AIMove1.png>
-Package pdftex.def Info: Images/GUI-9-AIMove1.png used on input line 403.
+Package pdftex.def Info: Images/GUI-9-AIMove1.png used on input line 416.
 (pdftex.def)             Requested size: 459.96732pt x 230.36006pt.
 
-Overfull \hbox (27.69733pt too wide) in paragraph at lines 403--404
+Overfull \hbox (27.69733pt too wide) in paragraph at lines 416--417
  [][] 
  []
 
-<Images/GUI-11-AIMove3Feedback.png, id=431, 305.64188pt x 185.19188pt>
+<Images/GUI-11-AIMove3Feedback.png, id=432, 305.64188pt x 185.19188pt>
 File: Images/GUI-11-AIMove3Feedback.png Graphic file (type png)
 
 <use Images/GUI-11-AIMove3Feedback.png>
 Package pdftex.def Info: Images/GUI-11-AIMove3Feedback.png used on input line 4
-09.
+22.
 (pdftex.def)             Requested size: 305.64111pt x 185.1914pt.
  [26 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Images/GUI-8-PlayerChoice.png> <D:/niklasz/Desktop/GlasgowUniversity/Year3
 /TeamProject/GoProject/dissertation/Images/GUI-9-AIMove1.png>]
-<Images/GUI-13-FullView.png, id=440, 902.6222pt x 508.14844pt>
+<Images/GUI-13-FullView.png, id=441, 902.6222pt x 508.14844pt>
 File: Images/GUI-13-FullView.png Graphic file (type png)
 
 <use Images/GUI-13-FullView.png>
-Package pdftex.def Info: Images/GUI-13-FullView.png used on input line 421.
+Package pdftex.def Info: Images/GUI-13-FullView.png used on input line 434.
 (pdftex.def)             Requested size: 451.31pt x 254.0736pt.
 
-Overfull \hbox (19.04001pt too wide) in paragraph at lines 421--422
+Overfull \hbox (19.04001pt too wide) in paragraph at lines 434--435
  [][] 
  []
 
@@ -930,157 +977,150 @@ ides\OT1/ptm/m/n/10.95 .  http://docs.oracle.com/javase/8/docs/technotes/guides
 
 ]
 Chapter 6.
-<Appendix/TestingDocumentPDF.pdf, id=512, 597.55246pt x 845.07718pt>
+<Appendix/TestingDocumentPDF.pdf, id=513, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 570
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 583
 .
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
  <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 570
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 583
 .
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 570
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 583
 .
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
  <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 570
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 583
 .
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 570
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 583
 .
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
  [39
 
 ]
-<Appendix/TestingDocumentPDF.pdf, id=522, page=1, 597.55246pt x 845.07718pt>
+<Appendix/TestingDocumentPDF.pdf, id=523, page=1, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
  [40 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Appendix/TestingDocumentPDF.pdf>]
-<Appendix/TestingDocumentPDF.pdf, id=542, page=2, 597.55246pt x 845.07718pt>
+<Appendix/TestingDocumentPDF.pdf, id=543, page=2, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 2>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 2>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 2>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
  [41 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Appendix/TestingDocumentPDF.pdf>]
-<Appendix/TestingDocumentPDF.pdf, id=549, page=3, 597.55246pt x 845.07718pt>
+<Appendix/TestingDocumentPDF.pdf, id=550, page=3, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 3>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 3>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 3>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
  [42 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Appendix/TestingDocumentPDF.pdf>]
-<Appendix/TestingDocumentPDF.pdf, id=555, page=4, 597.55246pt x 845.07718pt>
+<Appendix/TestingDocumentPDF.pdf, id=556, page=4, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 4>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 4>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 4>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
-ine 570.
+ine 583.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
  [43 <D:/niklasz/Desktop/GlasgowUniversity/Year3/TeamProject/GoProject/disserta
 tion/Appendix/TestingDocumentPDF.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 572.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 572.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 585.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 585.
 
 (D:\niklasz\Desktop\GlasgowUniversity\Year3\TeamProject\GoProject\dissertation\
 TeamIDissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 572.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 572.
-
-
-Package rerunfilecheck Warning: File `TeamIDissertation.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `TeamIDissertation.out':
-(rerunfilecheck)             Before: 541028C0611DB0E8E6F20B73DDED44E9;3316
-(rerunfilecheck)             After:  2F01D955A764AEB152A5E2399D18FFC2;3316.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 572.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 585.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 585.
+Package rerunfilecheck Info: File `TeamIDissertation.out' has not changed.
+(rerunfilecheck)             Checksum: 2F01D955A764AEB152A5E2399D18FFC2;3316.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 585.
  ) 
 Here is how much of TeX's memory you used:
- 8268 strings out of 493921
- 125174 string characters out of 3149685
- 214581 words of memory out of 3000000
- 11299 multiletter control sequences out of 15000+200000
+ 9617 strings out of 493921
+ 144245 string characters out of 3149685
+ 254548 words of memory out of 3000000
+ 12638 multiletter control sequences out of 15000+200000
  27458 words of font info for 56 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,18n,43p,1856b,468s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1091,9 +1131,9 @@ blic/amsfonts/cm/cmr8.pfb><D:/MainPrograms/LateX/fonts/type1/public/amsfonts/cm
 rograms/LateX/fonts/type1/urw/times/utmb8a.pfb><D:/MainPrograms/LateX/fonts/typ
 e1/urw/times/utmr8a.pfb><D:/MainPrograms/LateX/fonts/type1/urw/times/utmri8a.pf
 b>
-Output written on TeamIDissertation.pdf (45 pages, 2121210 bytes).
+Output written on TeamIDissertation.pdf (45 pages, 2113418 bytes).
 PDF statistics:
- 616 PDF objects out of 1000 (max. 8388607)
- 131 named destinations out of 1000 (max. 500000)
+ 617 PDF objects out of 1000 (max. 8388607)
+ 132 named destinations out of 1000 (max. 500000)
  561 words of extra memory for PDF output out of 10000 (max. 10000000)
 

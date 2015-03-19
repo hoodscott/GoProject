@@ -4,8 +4,12 @@
 \usepackage{float}
 \usepackage{subcaption}
 \usepackage{graphicx}
+\usepackage[]{algorithm2e}
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
+%Environment for pseudo-code
+%\newenvironment{pseudo_code}{\fontfamily{pseudo_code}\selectfont}{\par}
+
 \begin{document}
 \title{Team I: Go Problem Solver With Alpha-Beta Tree Search}
 \author{Eilidh Anderson \\
@@ -276,7 +280,7 @@ Upon having established the requirements, the first development step towards a p
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=1]{Images/S33Diagram.png}
+	\includegraphics[width=\textwidth]{Images/S33Diagram.png}
 	\caption{Basic program class structure.} 
 	\label{fig:basic_program}
 \end{figure}
@@ -318,7 +322,16 @@ The \texttt{FileIO} was responsible for reading and writing board states in orde
 The two initial integers at the start of the board file denote the dimensions of the board. This mechanism was further enhanced as the program grew, having files hold further details such as AI search spaces, being denoted by `-', as well as game objectives, e.g ``White to kill 2 7". These user chosen objectives instruct the AI as to what group of stones is relevant during gameplay. 
 
 \subsection{LegalMoveChecker}
-The \texttt{LegalMoveChecker} was designed to 
+The \texttt{LegalMoveChecker} was designed to have a single algorithm that would determine whether a move is legal or not. As our project adheres to the Japanese style Go rules the legality primarily concerns itself with non-suicidal moves (stones cannot be placed only to be captured immediately) and Super Ko (no repetition of previous board states allowed). Accordingly, the following algorithm (and recursive sub-algorithm) was used to return true if the move was legal and false otherwise.
+
+WILL REPLACE THIS WITH LEGALMOVECHECKER PSEUDOCODE.\\
+boolean checkMove(colour \texttt{c}, intersection \texttt{i} board and \texttt{b}\\
+\begin{algorithm}[H]
+\SetAlFnt{\ttdefault}
+\While{bananas}{
+	\If{apples}{}
+}
+\end{algorithm}
 
 \subsection{GameEngine}
 

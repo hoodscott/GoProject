@@ -19,8 +19,8 @@
 \contentsline {subsection}{\numberline {3.3.4}GameEngine}{21}{subsection.3.3.4}
 \contentsline {section}{\numberline {3.4}Graphical User Interface Design And Implementation}{21}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Initial Design}{21}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Visual Implementation}{22}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Player Modes}{24}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.2}Visual Implementation}{23}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Player Modes}{25}{subsection.3.4.3}
 \contentsline {subsection}{\numberline {3.4.4}Finalised Graphical User Interface}{27}{subsection.3.4.4}
 \contentsline {section}{\numberline {3.5}Artificial Intelligence Design And Implementation}{28}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}Search Scope And Objective}{29}{subsection.3.5.1}
