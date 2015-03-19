@@ -240,8 +240,8 @@ public class BoardJPanel extends JPanel {
 				GraphicalUI.aiLabel.setText("Minimax's Considered Moves: ");
 				GraphicalUI.currentAILabel.setText(Integer.toString(gameE.getAI().getNumberOfMovesConsidered()));
 			}
-                        System.out.println(gameE.getAI().getNumberOfMovesConsidered());
-			System.out.println(move);
+                        //System.out.println(gameE.getAI().getNumberOfMovesConsidered());
+			//System.out.println(move);
 			changePlayer();
 
 			// Show AI's move without mouse movement

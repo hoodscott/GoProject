@@ -18,7 +18,7 @@ public class AlphaBeta extends AI {
     private static final int ALPHA = Integer.MIN_VALUE;
     private static final int BETA = Integer.MAX_VALUE;
     private int moveDepth = 30;
-    private final boolean heuristicsFirst = true;
+    private final boolean heuristicsFirst = false;
 
     int opponent;
     Action abAction;
@@ -122,11 +122,14 @@ public class AlphaBeta extends AI {
     	///////////////////////////////////////////////////////////////////////////
         // check for terminal position
         // if killing objective is completed at this stage
+        //Translator.printGameBoard(currentBoard);
         if (abAction == Action.KILL && evaluator.checkSucceeded(currentBoard, colour)) {
+            //System.out.println("Successfully captured target.");            
             return BETA;
         }
         // if AI failed to defend 
         if (opponentAction == Action.KILL && evaluator.checkSucceeded(currentBoard, opponent)) {
+            //System.out.println("Lost target.");
             return ALPHA;
         }
 
@@ -134,16 +137,26 @@ public class AlphaBeta extends AI {
         if (noMoreLegalMoves(currentBoard, player)) {
             if (player == colour) {
                 if (evaluator.checkSucceeded(currentBoard, colour)) {
+                    System.out.println("Successfully defended.");
                     return BETA;
-                } else {
+                }
+                
+                else {
+                    System.out.println("Test A");
                     return ALPHA;
                 }
+                
             } else {
                 if (evaluator.checkSucceeded(currentBoard, opponent)) {
+                    System.out.println("Opponent successfully defended.");
                     return ALPHA;
-                } else {
+                }
+                
+                else {
+                    System.out.println("Test B");
                     return BETA;
                 }
+                
             }
         }
         
@@ -161,8 +174,10 @@ public class AlphaBeta extends AI {
             }
         }
         else
-            if(depth == 0)
+            if(depth == 0){
+                System.out.println("Heuristics called.");
                 return getHeuristicScores(currentBoard);
+            }
         //////////////////////////////////////////////////////////////////////////
         
         // if none of the conditions above is met then:

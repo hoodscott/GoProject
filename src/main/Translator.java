@@ -243,7 +243,7 @@ public class Translator {
         }
     }
     //Methods for printing the Board to the console.
-    private void printGameBoard(Board b) {
+    public static void printGameBoard(Board b) {
 
         byte[][] board = b.getRaw();
         ArrayList<String> lines = new ArrayList<>();
@@ -263,7 +263,7 @@ public class Translator {
     }
 
     //Prints general boards.
-    private void printBoard(ArrayList<String> lines) {
+    private static void printBoard(ArrayList<String> lines) {
 
         System.out.println();
         lines = addBoardDetails(lines);
@@ -277,7 +277,7 @@ public class Translator {
     }
 
     //Adds details to a board view. Currently just board indexing.
-    private ArrayList<String> addBoardDetails(ArrayList<String> board) {
+    private static ArrayList<String> addBoardDetails(ArrayList<String> board) {
 
         //indices
         int width = board.get(0).length();
