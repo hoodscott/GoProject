@@ -30,17 +30,16 @@
 \contentsline {section}{\numberline {3.6}Heuristics Design And Implementation}{32}{section.3.6}
 \contentsline {subsection}{\numberline {3.6.1}General Heuristics}{33}{subsection.3.6.1}
 \contentsline {subsection}{\numberline {3.6.2}Specific Problem Heuristics}{34}{subsection.3.6.2}
-\contentsline {section}{\numberline {3.7}Integration And Implementation Reflection}{34}{section.3.7}
-\contentsline {chapter}{\numberline {4}Evaluation}{36}{chapter.4}
-\contentsline {section}{\numberline {4.1}Solvable Problems}{36}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Solvable Problems With Brute Force}{36}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Solvable Problems With Heuristics}{36}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Not Yet Solvable Problems}{37}{subsection.4.1.3}
-\contentsline {section}{\numberline {4.2}Subject Testing}{37}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}General Interface Testing}{37}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Problem Creation Mode Testing}{37}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Competitive Play Mode Testing}{38}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Other Testing}{38}{section.4.3}
-\contentsline {section}{\numberline {4.4}Testing Overview}{38}{section.4.4}
+\contentsline {chapter}{\numberline {4}Evaluation}{35}{chapter.4}
+\contentsline {section}{\numberline {4.1}Solvable Problems}{35}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Solvable Problems With Brute Force}{35}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Solvable Problems With Heuristics}{35}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Not Yet Solvable Problems}{36}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}Subject Testing}{36}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}General Interface Testing}{36}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Problem Creation Mode Testing}{36}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Competitive Play Mode Testing}{37}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Other Testing}{37}{section.4.3}
+\contentsline {section}{\numberline {4.4}Evaluation Overview}{37}{section.4.4}
 \contentsline {chapter}{\numberline {5}Conclusion}{39}{chapter.5}
 \contentsline {chapter}{\numberline {6}Appendix}{41}{chapter.6}
