@@ -74,59 +74,65 @@ Go is a two player board game that originated in China more than 2,500 years ago
 \caption{Figure 2.1.1 eyes}
 \end{figure}
 
-\textbf{Straight Four Eyespace:} A Straight eye of four liberties makes a group alive since white can always make two eyes.
+\textbf{Straight Four Eyespace:} A Straight eye of four liberties makes a group alive since white can always make two eyes. The two points labeled 'm' in figure 2.1.2 are miai if white plays one then the black plays the other creating two eyes.
 
-\textbf{Atari:} Atari is a term used in Go for a situation where a stone or group of stones only has one liberty and can be captured on the next move unless the defending player places a stone on the liberty, thus giving the group more liberties and at least temporarily taking the group out of Atari. In figure 2.1.2 above if black places a stone at any of the liberties with a red circle then black will capture the white stone. In figure 2.1.3 if white places a stone at either the liberty at “a” or the liberty with a red circle then the black stones will be captured.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/foureyespace.png}
+\caption{Figure 2.1.2 striaght four eye space}
+\end{figure}
+
+\textbf{Atari:} Atari is a term used in Go for a situation where a stone or group of stones only has one liberty and can be captured on the next move unless the defending player places a stone on the liberty, thus giving the group more liberties and at least temporarily taking the group out of Atari. In figure 2.1.3  if black places a stone at any of the liberties with a red circle then black will capture the white stone. In figure 2.1.4 if white places a stone at either the liberty at “a” or the liberty with a red circle then the black stones will be captured.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{Images/singlestonesinatari.png}
-\caption{Figure 2.1.2 single stones in atari}
+\caption{Figure 2.1.3 single stones in atari}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{Images/groupsofstonesinatari.png}
-\caption{Figure 2.1.3 groups of stones in atari}
+\caption{Figure 2.1.4 groups of stones in atari}
 \end{figure}
 
-\textbf{Hane:} A hane is either a move that wraps around an opposing player's stone or group of stones and doesn’t touch any of the player’s stones or a diagonal move played in contact with an enemy stone. There are many positions where a hane is considered a good move for example in the six die eight live group of problems which with be detailed later in the chapter. In figure 2.1.4 the stone labelled with a red circle is a hane as it wraps around the black stone and isn’t adjacent to another white stone.
+\textbf{Hane:} A hane is either a move that wraps around an opposing player's stone or group of stones and doesn’t touch any of the player’s stones or a diagonal move played in contact with an enemy stone. There are many positions where a hane is considered a good move for example in the six die eight live group of problems which with be detailed later in the chapter. In figure 2.1.5 the stone labelled with a red circle is a hane as it wraps around the black stone and isn’t adjacent to another white stone.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{Images/ahane.png}
-\caption{Figure 2.1.4 a hane}
+\caption{Figure 2.1.5 a hane}
 \end{figure}
 
-\textbf{Ko:} Ko describes a situation where two alternating single stone captures would repeat the original board position. These alternating captures could repeat indefinitely creating an infinite loop in the game. The Ko rule stops this infinite loop from occurring: If one player captures the Ko, the opponent is prohibited from recapturing the Ko immediately. In figure 2.1.5 above black can capture the white stone with the red circle by a play at “a”. The resulting position is shown in figure 2.1.6. Without a Ko rule, in this position White could recapture the black stone with the red circle by playing at “b”, which would return the board to the position in 2.1.5 and then Black could also recapture creating an infinite loop. So, if in figure 2.1.5 Black captures at “a”, White may not play at “b” for his first move after the black capture. Instead White has to play elsewhere. After that Black can choose either to win the Ko by playing at “b” in figure 2.1.6, or to play elsewhere as well. Playing elsewhere however would allow White to take the Ko back, since the recapture restriction is only valid for the next turn.
+\textbf{Ko:} Ko describes a situation where two alternating single stone captures would repeat the original board position. These alternating captures could repeat indefinitely creating an infinite loop in the game. The Ko rule stops this infinite loop from occurring: If one player captures the Ko, the opponent is prohibited from recapturing the Ko immediately. In figure 2.1.6 above black can capture the white stone with the red circle by a play at “a”. The resulting position is shown in figure 2.1.7. Without a Ko rule, in this position White could recapture the black stone with the red circle by playing at “b”, which would return the board to the position in 2.1.6 and then Black could also recapture creating an infinite loop. So, if in figure 2.1.6 Black captures at “a”, White may not play at “b” for his first move after the black capture. Instead White has to play elsewhere. After that Black can choose either to win the Ko by playing at “b” in figure 2.1.6, or to play elsewhere as well. Playing elsewhere however would allow White to take the Ko back, since the recapture restriction is only valid for the next turn.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{Images/korule2.png}
-\caption{Figure 2.1.5 the ko rule part 1}
+\caption{Figure 2.1.6 the ko rule part 1}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{Images/korule1.png}
-\caption{Figure 2.1.6 the ko rule part 2}
+\caption{Figure 2.1.7 the ko rule part 2}
 \end{figure}
 
-\textbf{Miai:} Miai can be defined as a pair of empty points that have the same value. For example if black plays at A, white can play at B and suffer no disadvantage from the exchange. Equivalence is an important aspect of miai, in the sense that the two options allow the same objective to be achieved more or less. For example, miai in a life and death context might mean the existence of two different moves resulting in the same outcome of a group living or being killed. In figure 2.1.7 both point “a” and point “b” have the same value in terms of the life and death of the group if black plays at “a” then white plays at “b” and vice versa. If white places a stone at either “a” or “b” he creates a second eye for the group and thus keeps it alive.
+\textbf{Miai:} Miai can be defined as a pair of empty points that have the same value. For example if black plays at A, white can play at B and suffer no disadvantage from the exchange. Equivalence is an important aspect of miai, in the sense that the two options allow the same objective to be achieved more or less. For example, miai in a life and death context might mean the existence of two different moves resulting in the same outcome of a group living or being killed. In figure 2.1.8 both point “a” and point “b” have the same value in terms of the life and death of the group if black plays at “a” then white plays at “b” and vice versa. If white places a stone at either “a” or “b” he creates a second eye for the group and thus keeps it alive.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{Images/miai.png}
-\caption{Figure 2.1.7 miai}
+\caption{Figure 2.1.8 miai}
 \end{figure}
 
 \textbf{Seki:} The term Seki translated into English means mutual life, this situation occurs when two live groups share liberties which neither of them can fill without dying so neither player will.
- In figure 2.1.8 the white group of stones and black group of stones with red circles share two liberties “a” and “b”. If either player plays into one of these points the opposing player with play into the other and capture the opposing player’s stone so neither player will. [*maybe include another seki example where the group has eyes*] .
+ In figure 2.1.9 the white group of stones and black group of stones with red circles share two liberties “a” and “b”. If either player plays into one of these points the opposing player with play into the other and capture the opposing player’s stone so neither player will. [*maybe include another seki example where the group has eyes*] .
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{Images/seki.png}
-\caption{Figure 2.1.8 seki}
+\caption{Figure 2.1.9 seki}
 \end{figure}
 
 \section{Go Problems}
