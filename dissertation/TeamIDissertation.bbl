@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{MCG}
 Bernd Brugmann.
@@ -35,6 +35,18 @@ Oracle.
 Stuart Russell and Peter Norvig.
 \newblock {\em Artificial Intelligence: A Modern Approach.}
 \newblock Pearson Education, 3rd edition, 2010.
+
+\bibitem{Shannon_1988}
+C.~E. Shannon.
+\newblock Computer chess compendium.
+\newblock chapter Programming a Computer for Playing Chess, pages 2--13.
+  Springer-Verlag New York, Inc., New York, NY, USA, 1988.
+
+\bibitem{Tromp_2006}
+John Tromp and Gunnar Farneb\"{a}ck.
+\newblock Combinatorics of go.
+\newblock In {\em Proceedings of the 5th International Conference on Computers
+  and Games}, CG'06, pages 84--99, Berlin, Heidelberg, 2007. Springer-Verlag.
 
 \bibitem{BeginnerGo}
 Kano Yoshinori.

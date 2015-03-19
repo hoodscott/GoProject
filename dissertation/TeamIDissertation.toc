@@ -12,7 +12,7 @@
 \contentsline {section}{\numberline {3.1}Requirements Gathering}{15}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Interview Questions}{15}{subsection.3.1.1}
 \contentsline {section}{\numberline {3.2}Requirements Specification And Organization}{17}{section.3.2}
-\contentsline {section}{\numberline {3.3}Game Engine Design And Implementation}{19}{section.3.3}
+\contentsline {section}{\numberline {3.3}Representing Basic Play}{19}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Main}{19}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Board}{20}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}FileIO}{20}{subsection.3.3.3}
