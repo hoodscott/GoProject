@@ -25,7 +25,7 @@
 \contentsline {section}{\numberline {3.5}Artificial Intelligence Design And Implementation}{28}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}Search Scope And Objective}{29}{subsection.3.5.1}
 \contentsline {subsection}{\numberline {3.5.2}Minimax: Design And Implementation}{29}{subsection.3.5.2}
-\contentsline {subsection}{\numberline {3.5.3}AlphaBeta: Design And Implementation}{30}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.3}Alpha-Beta: Design And Implementation}{30}{subsection.3.5.3}
 \contentsline {subsection}{\numberline {3.5.4}Performance Comparison}{30}{subsection.3.5.4}
 \contentsline {section}{\numberline {3.6}Heuristics Design And Implementation}{32}{section.3.6}
 \contentsline {subsection}{\numberline {3.6.1}General Heuristics}{33}{subsection.3.6.1}
