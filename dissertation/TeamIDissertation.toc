@@ -1,44 +1,46 @@
 \contentsline {chapter}{\numberline {1}Introduction}{4}{chapter.1}
 \contentsline {chapter}{\numberline {2}Background}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Go Background}{7}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Go Terms Relevant For Life And Death Problems}{8}{subsection.2.1.1}
-\contentsline {section}{\numberline {2.2}Go Problems}{12}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Why Life And Death?}{12}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Why Life And Death?}{8}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Related Work}{8}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Go Problems}{8}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Go Terms Relevant For Life And Death Problems}{8}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Common Life And Death Problems}{12}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Unsettled Three}{12}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.3}Unsettled Three}{13}{subsection.2.2.3}
 \contentsline {subsection}{\numberline {2.2.4}Six Die, Eight Live}{13}{subsection.2.2.4}
-\contentsline {chapter}{\numberline {3}Design And Implementation}{14}{chapter.3}
-\contentsline {section}{\numberline {3.1}Requirements Gathering}{14}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Interview Questions}{14}{subsection.3.1.1}
-\contentsline {section}{\numberline {3.2}Requirements Specification And Organization}{16}{section.3.2}
-\contentsline {section}{\numberline {3.3}Game Engine Design And Implementation}{18}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Main}{18}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Board}{18}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}FileIO}{19}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}GameEngine}{20}{subsection.3.3.4}
-\contentsline {subsection}{\numberline {3.3.5}LegalMoveChecker}{20}{subsection.3.3.5}
-\contentsline {section}{\numberline {3.4}Graphical User Interface Design And Implementation}{20}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Initial Design}{20}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Visual Implementation}{21}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Player Modes}{23}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Finalised Graphical User Interface}{26}{subsection.3.4.4}
-\contentsline {section}{\numberline {3.5}Artificial Intelligence Design And Implementation}{27}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Minimax: Design And Implementation}{28}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}AlphaBeta: Design And Implementation}{28}{subsection.3.5.2}
-\contentsline {section}{\numberline {3.6}Heuristics Design And Implementation}{29}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}General Heuristics}{29}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Specific Problem Heuristics}{30}{subsection.3.6.2}
-\contentsline {section}{\numberline {3.7}Integration And Implementation Reflection}{31}{section.3.7}
-\contentsline {chapter}{\numberline {4}Evaluation}{32}{chapter.4}
-\contentsline {section}{\numberline {4.1}Solvable Problems}{32}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Solvable Problems With Brute Force}{32}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Solvable Problems With Heuristics}{32}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Not Yet Solvable Problems}{33}{subsection.4.1.3}
-\contentsline {section}{\numberline {4.2}Subject Testing}{33}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}General Interface Testing}{33}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Problem Creation Mode Testing}{33}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Competitive Play Mode Testing}{34}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Other Testing}{34}{section.4.3}
-\contentsline {section}{\numberline {4.4}Testing Overview}{34}{section.4.4}
-\contentsline {chapter}{\numberline {5}Conclusion}{35}{chapter.5}
-\contentsline {chapter}{\numberline {6}Appendix}{37}{chapter.6}
+\contentsline {chapter}{\numberline {3}Design And Implementation}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}Requirements Gathering}{15}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Interview Questions}{15}{subsection.3.1.1}
+\contentsline {section}{\numberline {3.2}Requirements Specification And Organization}{17}{section.3.2}
+\contentsline {section}{\numberline {3.3}Game Engine Design And Implementation}{19}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Main}{19}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Board}{20}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}FileIO}{20}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}GameEngine}{21}{subsection.3.3.4}
+\contentsline {subsection}{\numberline {3.3.5}LegalMoveChecker}{21}{subsection.3.3.5}
+\contentsline {section}{\numberline {3.4}Graphical User Interface Design And Implementation}{21}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Initial Design}{22}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Visual Implementation}{23}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Player Modes}{25}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Finalised Graphical User Interface}{28}{subsection.3.4.4}
+\contentsline {section}{\numberline {3.5}Artificial Intelligence Design And Implementation}{29}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Search Scope And Objective}{29}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Minimax: Design And Implementation}{29}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}AlphaBeta: Design And Implementation}{30}{subsection.3.5.3}
+\contentsline {section}{\numberline {3.6}Heuristics Design And Implementation}{30}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}General Heuristics}{31}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Specific Problem Heuristics}{32}{subsection.3.6.2}
+\contentsline {section}{\numberline {3.7}Integration And Implementation Reflection}{33}{section.3.7}
+\contentsline {chapter}{\numberline {4}Evaluation}{34}{chapter.4}
+\contentsline {section}{\numberline {4.1}Solvable Problems}{34}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Solvable Problems With Brute Force}{34}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Solvable Problems With Heuristics}{34}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Not Yet Solvable Problems}{35}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}Subject Testing}{35}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}General Interface Testing}{35}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Problem Creation Mode Testing}{35}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Competitive Play Mode Testing}{36}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Other Testing}{36}{section.4.3}
+\contentsline {section}{\numberline {4.4}Testing Overview}{36}{section.4.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{37}{chapter.5}
+\contentsline {chapter}{\numberline {6}Appendix}{39}{chapter.6}
