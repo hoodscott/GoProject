@@ -2,7 +2,7 @@
 \usepackage{pdfpages}
 \usepackage{amsmath}
 \usepackage{float}
-\usepackage{subcaption} 
+\usepackage{subcaption}
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
 \begin{document}
@@ -155,7 +155,6 @@ This shape is concerned with when a group’s interior eye shape consists of thr
 \caption{Figure 2.2.1 eyes}
 \end{figure}
 
-
 \subsection{Six Die, Eight Live}
 
 \begin{figure}[H]
@@ -185,8 +184,6 @@ Figure 2.2.6 above shows sequence of moves in the unsettled case when black has 
 The case when black has seven stones and plays first is shown in Figure 2.2.7 above. After the first four moves black is still alive as it has created an enough space for two eyes but whites move at 5 kills black.
 
 Finally the instance of moves where black has six stones is shown in figure 2.28 above. Even if black goes first, after whites move at 4 he is dead as there is not enough space to create two eyes.
-
-
 
 \chapter{Design And Implementation}
 \label{design}
@@ -435,11 +432,39 @@ Our implementation of the Alphabeta does not differ much to the one of the Minim
 
 \section{Heuristics Design And Implementation}
 
-Move selection through minimax and alpha-beta allows for a variety of problems to be solved when making use of brute force alone. However, the more complicated life and death problems take a huge amount of time due to the number of exhaustive moves considered and there is no real strategy used by the program when choosing moves in the brute force case. Hence, to improve the performance of the problem solver, a wide range of heuristics were also implemented to be used in conjuction with alpha-beta. Heuristics were used to provide the artifical intelligence with game strategies and are fundamental to the creation of a problem solver which is more able to mimic a human player's thought process during play. They allow the AI to quickly pick out moves through the implementing of evaluation functions which recognize specific patterns and highlight strong moves algorithmically. In effect, this enables the artificial intelligence to play more effectively against a human with previous knowledge of life and death problems tactics.
+Move selection through minimax and alpha-beta allows for a variety of problems to be solved when making use of brute force alone. However, the more complicated life and death problems take a huge amount of time due to the number of exhaustive moves considered and there is no real strategy used by the program when choosing moves in the brute force case. Hence, to improve the performance of the problem solver, a wide range of heuristics were also implemented to be used in conjuction with alpha-beta. Heuristics are used to provide artifical intelligence with game strategies and are fundamental to the creation of a game playing program which is more able to mimic a human player's thought process during play. They allow the AI to quickly pick out moves through the implementing of evaluation functions which recognize specific patterns and highlight strong moves algorithmically. In effect, implentation of heuristics within this problem solver enables the artificial intelligence to play more effectively against a human with previous knowledge of life and death problems tactics.
+
+The heuristics added to the problem solver function by implementing a heuristic interface which provides one method to be overidden which generate an evaluation score. As parameters, the method takes both an initial board and a current board. The initial board is the board state before alpha-beta begins considering moves and the current board is a board state with possible future moves placed on it. From there, the heuristics also make use of the AI's colour, the problem's objective and an instance of the legal move checker. This allows each heuristic to generate a current score by comparing the initial board and alpha-beta's current board, returning a rating dependent on whether they evaluate alpha-beta's chosen moves to be productive towards the problem's objective in favour of the artifical intelligence.
 
 \subsection{General Heuristics}
 
+Several general heuristics were created, enabling the AI to choose advantageous moves across various problems. This means that even if alpha-beta were faced with a more free-style Go problem, as opposed to a life and death problem, it would still be able to play to a relatively strong level. Many of the heuristics specified below relate to moves and problems discussed in \textit{Chapter 2 - Go Background}.
+
+\textbf{Eye Creator}: A heuristic allowing for the creation of eyes with at least four stones surrounding one empty point. Hence, this also enables the problem solver to create multiple eyes next to each other and completly full eyes (e.g. one empty point with eight stones surrounding). As a group is alive when it has two eyes, this heuristic is key to many life and death problems.
+
+\textbf{Two Point Eye}: As well as eyes with one empty intersection in the center, the program also recognises eyes with two empty intersections and six surrounding stones. The heuristic allows for both vertical and horizontal two point eyes to be created by the problem solver.
+
+\textbf{Liberty Counter}: By comparing the initial board with alpha-beta's current board containing several future moves, the libery counter heuristic counts the number of liberties of the objective specified group on each board. Dependant on the objective, the difference between the number of liberties can be beneficial. For example, if the problem objective is for alpha-beta to defend one of its own group, if the number of liberties for this group has risen then the moves on the current board could be evaluated as posititve. Likewise, if the problem objective is to kill the opponent group, then a reduction of the number of liberties of that opponent group would again be beneficial to alpha-beta.
+
+\textbf{Living Space}:
+
+\textbf{Three Liberties}: The tactic of placing a stone in a relatively empty space upon the board is a strong move during play through, as it allows for the future creation of eyes and groups with many liberties. This heurstic checks for intersections on the board with at least three liberties and returns a posititve score when alpha-beta's future moves include stones placed upon these intersections.
+
+Several of the general heuristics, also allow for life and death problems to be successfully solved. For example, the three liberties heuristic allows for many Rabbity Six instances to be solved (see \textit{Chapter 4 - Evaluation}).
+
 \subsection{Specific Problem Heuristics}
+
+To allow the AI to successfully solve specific problems, a range of heuristics targeted at solving common life and death problems were also implemented.
+
+\textbf{Unsettled Three}: As described previously (see \textit{Chapter 2 - Go Background}), a set of three adjacent empty intersections surrounded by a group is the unsettled three. The key move is for either player to move into the middle of these intersections, either creating two eyes or disallowing their opponent to create two eyes. Both minimax and alpha-beta brute force successfully complete these problems except for when the pattern occurs corner position. This heuristic evaluates and returns a posititve score to alpha-beta when it's future moves include a placement on the key unsettled three intersection, including in corner positions.
+
+\textbf{Hane}: The hane move could be classed as both a general and specific heuristic, as it is a move which could be beneficial in many situations. However, this heuristic was specifically implemented with six die, eight live in mind.
+
+\textbf{Eight Stones In A Row}:
+
+\textbf{Six Stones In A Row}: This heuristic completes an initial board which already has five stones in a row and completes this to six stones. In the six die, eight live problems, a row of six stones is dead. However, if this row of six stones is on one of the second lines in from the edge of the board and at a corner, then the row of stones is alive - referred to as the four die, six live set of problems. This corner situation is the one which the heuristic specifically looks for and allows for alpha-beta to successfully make beneficial moves in yet another set of life and death problems.
+
+Hence, through the addition of heuristics, the skill level of the program was boosted immensely, allowing for alpha-beta to choose more resourceful moves. This implementation of strategy through evaluation functions allows the problem solver to play through problems more akin to a human player, as heuristics and brute force working together allow for suitable move look ahead as well as more comprehensive move evaluation.
 
 \section{Integration And Implementation Reflection}
 

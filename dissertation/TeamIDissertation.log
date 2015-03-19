@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.10)  18 MAR 2015 22:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.10)  19 MAR 2015 11:38
 entering extended mode
 **C:/Users/Eilidh/Documents/University/Team*Project*3/LatexDissertation/TeamIDi
 ssertation.tex
@@ -443,26 +443,34 @@ File: Images/eyes.png Graphic file (type png)
  <use Images/eyes.png>
 Package pdftex.def Info: Images/eyes.png used on input line 73.
 (pdftex.def)             Requested size: 173.89926pt x 195.35435pt.
+
+<Images/foureyespace.png, id=275, 346.29375pt x 170.88844pt>
+File: Images/foureyespace.png Graphic file (type png)
+
+<use Images/foureyespace.png>
+Package pdftex.def Info: Images/foureyespace.png used on input line 81.
+(pdftex.def)             Requested size: 173.14644pt x 85.444pt.
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ú in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
-
-<Images/singlestonesinatari.png, id=275, 380.17032pt x 300.3722pt>
+ [8 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Imag
+es/eyes.png> <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDisserta
+tion/Images/foureyespace.png>]
+<Images/singlestonesinatari.png, id=284, 380.17032pt x 300.3722pt>
 File: Images/singlestonesinatari.png Graphic file (type png)
 
 <use Images/singlestonesinatari.png>
-Package pdftex.def Info: Images/singlestonesinatari.png used on input line 81.
+Package pdftex.def Info: Images/singlestonesinatari.png used on input line 89.
 (pdftex.def)             Requested size: 190.08469pt x 150.18571pt.
- [8 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Imag
-es/eyes.png>]
-<Images/groupsofstonesinatari.png, id=282, 479.54156pt x 456.95718pt>
+
+<Images/groupsofstonesinatari.png, id=285, 479.54156pt x 456.95718pt>
 File: Images/groupsofstonesinatari.png Graphic file (type png)
 
 <use Images/groupsofstonesinatari.png>
-Package pdftex.def Info: Images/groupsofstonesinatari.png used on input line 87
+Package pdftex.def Info: Images/groupsofstonesinatari.png used on input line 95
 .
 (pdftex.def)             Requested size: 239.77019pt x 228.47803pt.
 Missing character: There is no ‚ in font ptmr7t!
@@ -475,10 +483,10 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
 
-<Images/ahane.png, id=283, 117.43875pt x 211.54031pt>
+<Images/ahane.png, id=286, 117.43875pt x 211.54031pt>
 File: Images/ahane.png Graphic file (type png)
  <use Images/ahane.png>
-Package pdftex.def Info: Images/ahane.png used on input line 95.
+Package pdftex.def Info: Images/ahane.png used on input line 103.
 (pdftex.def)             Requested size: 58.71922pt x 105.76988pt.
 
 [9 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Image
@@ -515,18 +523,18 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
 
-<Images/korule2.png, id=292, 243.91125pt x 238.64156pt>
+<Images/korule2.png, id=295, 243.91125pt x 238.64156pt>
 File: Images/korule2.png Graphic file (type png)
 
 <use Images/korule2.png>
-Package pdftex.def Info: Images/korule2.png used on input line 103.
+Package pdftex.def Info: Images/korule2.png used on input line 111.
 (pdftex.def)             Requested size: 121.95532pt x 119.32048pt.
 
-<Images/korule1.png, id=293, 246.9225pt x 235.63031pt>
+<Images/korule1.png, id=296, 246.9225pt x 235.63031pt>
 File: Images/korule1.png Graphic file (type png)
 
 <use Images/korule1.png>
-Package pdftex.def Info: Images/korule1.png used on input line 109.
+Package pdftex.def Info: Images/korule1.png used on input line 117.
 (pdftex.def)             Requested size: 123.46094pt x 117.81487pt.
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
@@ -568,10 +576,10 @@ Missing character: There is no ù in font ptmr7t!
 ges/ahane.png> <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDisser
 tation/Images/korule2.png> <C:/Users/Eilidh/Documents/University/Team Project 3
 /LatexDissertation/Images/korule1.png>]
-<Images/miai.png, id=304, 264.23718pt x 272.51813pt>
+<Images/miai.png, id=307, 264.23718pt x 272.51813pt>
 File: Images/miai.png Graphic file (type png)
  <use Images/miai.png>
-Package pdftex.def Info: Images/miai.png used on input line 117.
+Package pdftex.def Info: Images/miai.png used on input line 125.
 (pdftex.def)             Requested size: 132.11826pt x 136.25873pt.
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
@@ -589,10 +597,10 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
 
-<Images/seki.png, id=305, 356.83313pt x 353.82187pt>
+<Images/seki.png, id=308, 356.83313pt x 353.82187pt>
 File: Images/seki.png Graphic file (type png)
  <use Images/seki.png>
-Package pdftex.def Info: Images/seki.png used on input line 126.
+Package pdftex.def Info: Images/seki.png used on input line 134.
 (pdftex.def)             Requested size: 178.41612pt x 176.91049pt.
 
 [11 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Imag
@@ -601,7 +609,45 @@ tion/Images/seki.png>]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
- [12] [13]
+
+<Images/unsettled3.png, id=318, 365.11406pt x 221.32687pt>
+File: Images/unsettled3.png Graphic file (type png)
+
+<use Images/unsettled3.png>
+Package pdftex.def Info: Images/unsettled3.png used on input line 154.
+(pdftex.def)             Requested size: 182.55658pt x 110.66315pt.
+
+<Images/eightlive.png, id=319, 408.77719pt x 148.30406pt>
+File: Images/eightlive.png Graphic file (type png)
+
+<use Images/eightlive.png>
+Package pdftex.def Info: Images/eightlive.png used on input line 162.
+(pdftex.def)             Requested size: 204.38809pt x 74.15184pt.
+ [12 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
+ges/unsettled3.png>]
+<Images/sevenunsettled.png, id=326, 403.5075pt x 138.5175pt>
+File: Images/sevenunsettled.png Graphic file (type png)
+
+<use Images/sevenunsettled.png>
+Package pdftex.def Info: Images/sevenunsettled.png used on input line 168.
+(pdftex.def)             Requested size: 201.75325pt x 69.25858pt.
+
+<Images/sixdie.png, id=327, 418.56375pt x 138.5175pt>
+File: Images/sixdie.png Graphic file (type png)
+ <use Images/sixdie.png>
+Package pdftex.def Info: Images/sixdie.png used on input line 174.
+(pdftex.def)             Requested size: 209.28136pt x 69.25858pt.
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ò in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ô in font ptmr7t!
+
+[13 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Imag
+es/eightlive.png> <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDis
+sertation/Images/sevenunsettled.png> <C:/Users/Eilidh/Documents/University/Team
+ Project 3/LatexDissertation/Images/sixdie.png>]
 Chapter 3.
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
@@ -673,30 +719,30 @@ Missing character: There is no ù in font ptmri7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
- [16] <Images/GanntChart.png, id=335, 819.06pt x 242.9075pt>
+ [16] <Images/GanntChart.png, id=350, 819.06pt x 242.9075pt>
 File: Images/GanntChart.png Graphic file (type png)
 
 <use Images/GanntChart.png>
-Package pdftex.def Info: Images/GanntChart.png used on input line 225.
+Package pdftex.def Info: Images/GanntChart.png used on input line 259.
 (pdftex.def)             Requested size: 409.52899pt x 121.45345pt.
  [17 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GanntChart.png>]
-<Images/S33Diagram.png, id=343, 478.03593pt x 253.69781pt>
+<Images/S33Diagram.png, id=358, 478.03593pt x 253.69781pt>
 File: Images/S33Diagram.png Graphic file (type png)
 
 <use Images/S33Diagram.png>
-Package pdftex.def Info: Images/S33Diagram.png used on input line 237.
+Package pdftex.def Info: Images/S33Diagram.png used on input line 271.
 (pdftex.def)             Requested size: 478.03476pt x 253.69719pt.
 
-Overfull \hbox (45.76477pt too wide) in paragraph at lines 237--238
+Overfull \hbox (45.76477pt too wide) in paragraph at lines 271--272
  [][] 
  []
 
-<Images/GE-BoardRep.png, id=344, 417.05812pt x 176.91093pt>
+<Images/GE-BoardRep.png, id=359, 417.05812pt x 176.91093pt>
 File: Images/GE-BoardRep.png Graphic file (type png)
 
 <use Images/GE-BoardRep.png>
-Package pdftex.def Info: Images/GE-BoardRep.png used on input line 253.
+Package pdftex.def Info: Images/GE-BoardRep.png used on input line 287.
 (pdftex.def)             Requested size: 417.0571pt x 176.91049pt.
  [18 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/S33Diagram.png>]
@@ -722,11 +768,11 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
 
-<Images/GE-BoardSave.png, id=351, 374.14781pt x 160.34906pt>
+<Images/GE-BoardSave.png, id=366, 374.14781pt x 160.34906pt>
 File: Images/GE-BoardSave.png Graphic file (type png)
 
 <use Images/GE-BoardSave.png>
-Package pdftex.def Info: Images/GE-BoardSave.png used on input line 265.
+Package pdftex.def Info: Images/GE-BoardSave.png used on input line 299.
 (pdftex.def)             Requested size: 374.14688pt x 160.34866pt.
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
@@ -743,107 +789,107 @@ Missing character: There is no ù in font ptmr7t!
  [19 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GE-BoardRep.png> <C:/Users/Eilidh/Documents/University/Team Project 3/Latex
 Dissertation/Images/GE-BoardSave.png>]
-<Images/GUI-1-PP.png, id=360, 742.775pt x 525.965pt>
+<Images/GUI-1-PP.png, id=375, 742.775pt x 525.965pt>
 File: Images/GUI-1-PP.png Graphic file (type png)
  <use Images/GUI-1-PP.png>
-Package pdftex.def Info: Images/GUI-1-PP.png used on input line 287.
+Package pdftex.def Info: Images/GUI-1-PP.png used on input line 321.
 (pdftex.def)             Requested size: 297.10474pt x 210.38226pt.
 
-[20] <Images/GUI-2-PP.png, id=365, 696.6025pt x 527.9725pt>
+[20] <Images/GUI-2-PP.png, id=380, 696.6025pt x 527.9725pt>
 File: Images/GUI-2-PP.png Graphic file (type png)
 
 <use Images/GUI-2-PP.png>
-Package pdftex.def Info: Images/GUI-2-PP.png used on input line 293.
+Package pdftex.def Info: Images/GUI-2-PP.png used on input line 327.
 (pdftex.def)             Requested size: 278.63606pt x 211.18526pt.
  [21 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GUI-1-PP.png (PNG copy)> <C:/Users/Eilidh/Documents/University/Team Project
  3/LatexDissertation/Images/GUI-2-PP.png (PNG copy)>]
-<Images/GUI-3-CountersCoords.png, id=372, 462.97969pt x 459.96844pt>
+<Images/GUI-3-CountersCoords.png, id=387, 462.97969pt x 459.96844pt>
 File: Images/GUI-3-CountersCoords.png Graphic file (type png)
 
 <use Images/GUI-3-CountersCoords.png>
-Package pdftex.def Info: Images/GUI-3-CountersCoords.png used on input line 303
+Package pdftex.def Info: Images/GUI-3-CountersCoords.png used on input line 337
 .
 (pdftex.def)             Requested size: 231.48927pt x 229.98366pt.
 
-<Images/GUI-4-Transparent.png, id=373, 548.80031pt x 179.16937pt>
+<Images/GUI-4-Transparent.png, id=388, 548.80031pt x 179.16937pt>
 File: Images/GUI-4-Transparent.png Graphic file (type png)
 
 <use Images/GUI-4-Transparent.png>
-Package pdftex.def Info: Images/GUI-4-Transparent.png used on input line 311.
+Package pdftex.def Info: Images/GUI-4-Transparent.png used on input line 345.
 (pdftex.def)             Requested size: 384.15758pt x 125.4177pt.
  [22 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GUI-3-CountersCoords.png>]
-<Images/GUI-5-Bounds.png, id=379, 210.7875pt x 215.30438pt>
+<Images/GUI-5-Bounds.png, id=394, 210.7875pt x 215.30438pt>
 File: Images/GUI-5-Bounds.png Graphic file (type png)
 
 <use Images/GUI-5-Bounds.png>
-Package pdftex.def Info: Images/GUI-5-Bounds.png used on input line 319.
+Package pdftex.def Info: Images/GUI-5-Bounds.png used on input line 353.
 (pdftex.def)             Requested size: 210.78699pt x 215.30385pt.
  [23 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GUI-4-Transparent.png> <C:/Users/Eilidh/Documents/University/Team Project 3
 /LatexDissertation/Images/GUI-5-Bounds.png>]
-<Images/GUI-6-PCMenu.png, id=388, 99.37125pt x 97.86563pt>
+<Images/GUI-6-PCMenu.png, id=403, 99.37125pt x 97.86563pt>
 File: Images/GUI-6-PCMenu.png Graphic file (type png)
 
 <use Images/GUI-6-PCMenu.png>
-Package pdftex.def Info: Images/GUI-6-PCMenu.png used on input line 330.
+Package pdftex.def Info: Images/GUI-6-PCMenu.png used on input line 364.
 (pdftex.def)             Requested size: 99.371pt x 97.86537pt.
 
-Overfull \hbox (12.91833pt too wide) in paragraph at lines 330--331
+Overfull \hbox (12.91833pt too wide) in paragraph at lines 364--365
 [][] 
  []
 
-<Images/GUI-7-Objective.png, id=389, 247.67531pt x 173.14688pt>
+<Images/GUI-7-Objective.png, id=404, 247.67531pt x 173.14688pt>
 File: Images/GUI-7-Objective.png Graphic file (type png)
 
 <use Images/GUI-7-Objective.png>
-Package pdftex.def Info: Images/GUI-7-Objective.png used on input line 335.
+Package pdftex.def Info: Images/GUI-7-Objective.png used on input line 369.
 (pdftex.def)             Requested size: 247.6747pt x 173.14645pt.
 
-Overfull \hbox (117.99239pt too wide) in paragraph at lines 335--336
+Overfull \hbox (117.99239pt too wide) in paragraph at lines 369--370
 [][] 
  []
 
 [24 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Imag
 es/GUI-6-PCMenu.png> <C:/Users/Eilidh/Documents/University/Team Project 3/Latex
 Dissertation/Images/GUI-7-Objective.png>]
-<Images/GUI-8-PlayerChoice.png, id=397, 155.07938pt x 138.5175pt>
+<Images/GUI-8-PlayerChoice.png, id=412, 155.07938pt x 138.5175pt>
 File: Images/GUI-8-PlayerChoice.png Graphic file (type png)
 
 <use Images/GUI-8-PlayerChoice.png>
-Package pdftex.def Info: Images/GUI-8-PlayerChoice.png used on input line 345.
+Package pdftex.def Info: Images/GUI-8-PlayerChoice.png used on input line 379.
 (pdftex.def)             Requested size: 155.07898pt x 138.51715pt.
 
-<Images/GUI-9-AIMove1.png, id=398, 919.93687pt x 460.72125pt>
+<Images/GUI-9-AIMove1.png, id=413, 919.93687pt x 460.72125pt>
 File: Images/GUI-9-AIMove1.png Graphic file (type png)
 
 <use Images/GUI-9-AIMove1.png>
-Package pdftex.def Info: Images/GUI-9-AIMove1.png used on input line 351.
+Package pdftex.def Info: Images/GUI-9-AIMove1.png used on input line 385.
 (pdftex.def)             Requested size: 459.96732pt x 230.36006pt.
 
-Overfull \hbox (27.69733pt too wide) in paragraph at lines 351--352
+Overfull \hbox (27.69733pt too wide) in paragraph at lines 385--386
  [][] 
  []
 
-<Images/GUI-11-AIMove3Feedback.png, id=399, 305.64188pt x 185.19188pt>
+<Images/GUI-11-AIMove3Feedback.png, id=414, 305.64188pt x 185.19188pt>
 File: Images/GUI-11-AIMove3Feedback.png Graphic file (type png)
 
 <use Images/GUI-11-AIMove3Feedback.png>
 Package pdftex.def Info: Images/GUI-11-AIMove3Feedback.png used on input line 3
-57.
+91.
 (pdftex.def)             Requested size: 305.64111pt x 185.1914pt.
  [25 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/Ima
 ges/GUI-8-PlayerChoice.png> <C:/Users/Eilidh/Documents/University/Team Project 
 3/LatexDissertation/Images/GUI-9-AIMove1.png>] <Images/GUI-13-FullView.png, id=
-408, 902.6222pt x 508.14844pt>
+423, 902.6222pt x 508.14844pt>
 File: Images/GUI-13-FullView.png Graphic file (type png)
 
 <use Images/GUI-13-FullView.png>
-Package pdftex.def Info: Images/GUI-13-FullView.png used on input line 371.
+Package pdftex.def Info: Images/GUI-13-FullView.png used on input line 405.
 (pdftex.def)             Requested size: 451.31pt x 254.0736pt.
 
-Overfull \hbox (19.04001pt too wide) in paragraph at lines 371--372
+Overfull \hbox (19.04001pt too wide) in paragraph at lines 405--406
  [][] 
  []
 
@@ -858,14 +904,15 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ì in font ptmr7t!
  [28] [29] [30]
+[31]
 Chapter 4.
-[31
+[32
 
-] [32] [33]
+] [33] [34]
 Chapter 5.
 
 ("C:\Users\Eilidh\Documents\University\Team Project 3\LatexDissertation\TeamIDi
-ssertation.bbl" [34
+ssertation.bbl" [35
 
 ]
 Underfull \hbox (badness 4846) in paragraph at lines 14--17
@@ -894,154 +941,154 @@ ides\OT1/ptm/m/n/10.95 .  http://docs.oracle.com/javase/8/docs/technotes/guides
 /swing/l,
  []
 
-) [35
+) [36
 
 ]
 Chapter 6.
-<Appendix/TestingDocumentPDF.pdf, id=471, 597.55246pt x 845.07718pt>
+<Appendix/TestingDocumentPDF.pdf, id=490, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 490
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 552
 .
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
  <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 490
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 552
 .
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 490
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 552
 .
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
  <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 490
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 552
 .
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 490
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf used on input line 552
 .
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
- [36
+ [37
 
 ]
-<Appendix/TestingDocumentPDF.pdf, id=481, page=1, 597.55246pt x 845.07718pt>
+<Appendix/TestingDocumentPDF.pdf, id=500, page=1, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 490.
+ine 552.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 490.
+ine 552.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 490.
+ine 552.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 490.
+ine 552.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
 <use Appendix/TestingDocumentPDF.pdf, page 1>
 Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page1 used on input l
-ine 490.
-(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
- [37 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/App
-endix/TestingDocumentPDF.pdf>]
-<Appendix/TestingDocumentPDF.pdf, id=501, page=2, 597.55246pt x 845.07718pt>
-File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
-
-<use Appendix/TestingDocumentPDF.pdf, page 2>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
-ine 490.
-(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
-
-<use Appendix/TestingDocumentPDF.pdf, page 2>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
-ine 490.
-(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
-
-<use Appendix/TestingDocumentPDF.pdf, page 2>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
-ine 490.
+ine 552.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
  [38 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/App
 endix/TestingDocumentPDF.pdf>]
-<Appendix/TestingDocumentPDF.pdf, id=507, page=3, 597.55246pt x 845.07718pt>
+<Appendix/TestingDocumentPDF.pdf, id=520, page=2, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
-<use Appendix/TestingDocumentPDF.pdf, page 3>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
-ine 490.
+<use Appendix/TestingDocumentPDF.pdf, page 2>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
+ine 552.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
-<use Appendix/TestingDocumentPDF.pdf, page 3>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
-ine 490.
+<use Appendix/TestingDocumentPDF.pdf, page 2>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
+ine 552.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
-<use Appendix/TestingDocumentPDF.pdf, page 3>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
-ine 490.
+<use Appendix/TestingDocumentPDF.pdf, page 2>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page2 used on input l
+ine 552.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
  [39 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/App
 endix/TestingDocumentPDF.pdf>]
-<Appendix/TestingDocumentPDF.pdf, id=513, page=4, 597.55246pt x 845.07718pt>
+<Appendix/TestingDocumentPDF.pdf, id=526, page=3, 597.55246pt x 845.07718pt>
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
-<use Appendix/TestingDocumentPDF.pdf, page 4>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
-ine 490.
+<use Appendix/TestingDocumentPDF.pdf, page 3>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
+ine 552.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
-<use Appendix/TestingDocumentPDF.pdf, page 4>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
-ine 490.
+<use Appendix/TestingDocumentPDF.pdf, page 3>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
+ine 552.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
 File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
 
-<use Appendix/TestingDocumentPDF.pdf, page 4>
-Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
-ine 490.
+<use Appendix/TestingDocumentPDF.pdf, page 3>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page3 used on input l
+ine 552.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
  [40 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/App
 endix/TestingDocumentPDF.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 492.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 492.
+<Appendix/TestingDocumentPDF.pdf, id=532, page=4, 597.55246pt x 845.07718pt>
+File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
+
+<use Appendix/TestingDocumentPDF.pdf, page 4>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
+ine 552.
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
+
+<use Appendix/TestingDocumentPDF.pdf, page 4>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
+ine 552.
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+File: Appendix/TestingDocumentPDF.pdf Graphic file (type pdf)
+
+<use Appendix/TestingDocumentPDF.pdf, page 4>
+Package pdftex.def Info: Appendix/TestingDocumentPDF.pdf, page4 used on input l
+ine 552.
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+ [41 <C:/Users/Eilidh/Documents/University/Team Project 3/LatexDissertation/App
+endix/TestingDocumentPDF.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 554.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 554.
 
 ("C:\Users\Eilidh\Documents\University\Team Project 3\LatexDissertation\TeamIDi
 ssertation.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 492.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 492.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 554.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 554.
 Package rerunfilecheck Info: File `TeamIDissertation.out' has not changed.
 (rerunfilecheck)             Checksum: CAAF08AB6201BEB21E2127AE8D74C7FD;3209.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 492.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 554.
  ) 
 Here is how much of TeX's memory you used:
- 8184 strings out of 493921
- 124610 string characters out of 3144873
+ 8215 strings out of 493921
+ 125292 string characters out of 3144873
  214581 words of memory out of 3000000
- 11237 multiletter control sequences out of 15000+200000
+ 11257 multiletter control sequences out of 15000+200000
  26943 words of font info for 54 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,18n,43p,1930b,466s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1052,9 +1099,9 @@ iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files
 x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX
  2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on TeamIDissertation.pdf (42 pages, 2127118 bytes).
+Output written on TeamIDissertation.pdf (43 pages, 2165340 bytes).
 PDF statistics:
- 569 PDF objects out of 1000 (max. 8388607)
- 120 named destinations out of 1000 (max. 500000)
- 523 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 590 PDF objects out of 1000 (max. 8388607)
+ 126 named destinations out of 1000 (max. 500000)
+ 548 words of extra memory for PDF output out of 10000 (max. 10000000)
 
