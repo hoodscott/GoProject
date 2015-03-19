@@ -45,13 +45,15 @@ public class AlphaBeta extends AI {
     public void addHeuristic(String heuristicName){
         switch(heuristicName){
             case "Hane": heuristics.add(new Hane()); break;
+            // case "HasAnEye": heuristics.add(new HasAnEye()); break;
             case "EightStonesInARow": heuristics.add(new EightStonesInARow()); break;
-            case "HasAnEye": heuristics.add(new HasAnEye()); break;
+            case "TwoPointEye": heuristics.add(new TwoPointEye()); break;
             case "UnsettledThree": heuristics.add(new UnsettledThree()); break;
             case "ThreeLiberties": heuristics.add(new ThreeLiberties()); break;
             case "LibertyCounter": heuristics.add(new LibertyCounter()); break;
             case "LivingSpace": heuristics.add(new LivingSpace()); break;
             case "EyeCreator": heuristics.add(new EyeCreator()); break;
+            case "SixStonesInARow": heuristics.add(new SixStonesInARow()); break;
             default: System.err.println("WARNING: heuristic \'"+heuristicName+"\' could not be found."); return;
         }
         System.out.println("Added heuristic: "+heuristicName);
