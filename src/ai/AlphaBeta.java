@@ -140,9 +140,8 @@ public class AlphaBeta extends AI {
         }
         
         else
-            if(depth == 0){
-                
-                return 0;
+            if(usingHeuristics && depth == 0){
+                return getHeuristicScores(b);
             }
         
         //Initialises maximizer
@@ -203,8 +202,8 @@ public class AlphaBeta extends AI {
         }
         
         else
-            if(depth == 0){
-                return 0;
+            if(usingHeuristics && depth == 0){
+                return getHeuristicScores(b);
             }
         
         
