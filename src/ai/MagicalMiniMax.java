@@ -1,29 +1,27 @@
 package ai;
 
-import ai.heuristics.*;
 import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
+import java.util.Comparator;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.ArrayList;
 import main.BoardFormatException;
 import main.Translator;
 
-public class MagicalMiniMax extends AI {
+public class MagicalMiniMax extends HeuristicsAI {
 
     private Objective evaluator;
     private LegalMoveChecker lmc;
     
-    ArrayList<Heuristic> heuristics = new ArrayList();
-    private int globalScore = Integer.MIN_VALUE;
-    private static final int MINIMUM = Integer.MIN_VALUE;
-    private static final int MAXIMUM = Integer.MAX_VALUE;
-    private int moveDepth = 7;
     private final boolean heuristicsFirst = true;
     private boolean usingHeuristics = false;
 
     int opponent;
-    Action abAction;
+    Action miniAction;
     Action opponentAction;
     Board initialBoard;
     
@@ -32,354 +30,137 @@ public class MagicalMiniMax extends AI {
         evaluator = objective;
         colour = c;
         opponent = evaluator.getOtherColour(colour);
-        abAction = evaluator.getAction(colour);
+        miniAction = evaluator.getAction(colour);
         opponentAction = evaluator.getAction(opponent);
         if (heuristics != null){
             setHeuristics(heuristics);
             usingHeuristics = true;       
         } 
     }
-    
-    //Method for setting heuristics
-    public void setHeuristics(String[] names){
-        heuristics = new ArrayList();
-        for(String name : names)
-            addHeuristic(name);
-    }
-    
-    public void addHeuristic(String heuristicName){
-        switch(heuristicName){
-            case "Hane": heuristics.add(new Hane()); break;
-            // case "HasAnEye": heuristics.add(new HasAnEye()); break;
-            case "EightStonesInARow": heuristics.add(new EightStonesInARow()); break;
-            case "TwoPointEye": heuristics.add(new TwoPointEye()); break;
-            case "UnsettledThree": heuristics.add(new UnsettledThree()); break;
-            case "ThreeLiberties": heuristics.add(new ThreeLiberties()); break;
-            case "LibertyCounter": heuristics.add(new LibertyCounter()); break;
-            case "LivingSpace": heuristics.add(new LivingSpace()); break;
-            case "EyeCreator": heuristics.add(new EyeCreator()); break;
-            case "SixStonesInARow": heuristics.add(new SixStonesInARow()); break;
-            default: System.err.println("WARNING: heuristic \'"+heuristicName+"\' could not be found."); return;
-        }
-        System.out.println("Added heuristic: "+heuristicName);
-    }
-    
     @Override
-    public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
-        // reset the number of moves considered  
-    	movesConsidered = 0;
-        System.out.println("--ALPHA BETA--");
-        //Checks number of heuristics in use
-    	if(heuristics.isEmpty())
-            System.out.println("WARNING: No heuristic selected for alpha-beta.");
-        if(heuristicsFirst)
-            System.out.println("Heuristics set to trigger at first depth.");
-        
-        this.lmc = legalMoves.clone();
-        Coordinate bestMove = null;
-        
-        // save the initial board to use during heurisic evaluation
-        initialBoard = b.clone();
-        
-        // if objective is initially met pass
-        if (abAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
+    public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) throws AIException {
+        lmc = legalMoves.clone();
+        movesConsidered = 0;
+        //printGameBoard(b);
+
+        //Checks if objective for killing is already met and passes accordingly. 
+        //For defending, all possible substates need to be checked.
+        if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
             return new Coordinate(-1, -1);
         }
 
-        int score = 0;
-        Translator.printGameBoard(b);
-        // put a stone down for every legal move
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
                     Board currentState = lmc.getLastLegal();
-                    //try{System.out.println(Translator.translateToString(colour)+" made move "+x+" "+y);} catch(BoardFormatException e){}        
-                    //Translator.printGameBoard(currentState);
                     lmc.addBoard(currentState);
-                    // continue to opponent`s best reaction to this particular move
-                    //score = alphaBeta(currentState, MINIMUM, MAXIMUM, opponent,moveDepth-1);
-                    score = beta(currentState, MINIMUM, MAXIMUM, moveDepth-1, false);
+                    int result = min(currentState, false, moveDepth-1);
                     lmc.removeLast();
 
-                    // compare the scores of all initial moves
-                    if(score == MAXIMUM)
+                    //If success is guaranteed.
+                    if (result == 1) {
                         return currentCoord;
-                    if (score > globalScore && score > 0) {
-                        System.out.println("score: " + score);
-                    	globalScore = score;
-                        bestMove = currentCoord;
                     }
                 }
             }
         }
-        
-        System.out.println("Score: "+globalScore);
 
-        // pass if no move will improve the situation 
-        if (bestMove == null) {
-            return new Coordinate(-1, -1); // pass
-        }
-        return bestMove;
+        //If no move improves the situation (result is 0 or -1), pass.
+        return new Coordinate(-1, -1);
     }
-    
-    private int alpha(Board b, int alpha, int beta, int depth, boolean passed){
+
+    //Occurs after opponent move
+    public int max(Board b, boolean passed, int depth) {
+        
         movesConsidered++;
-        // If the opponent managed to capture the group.
+        //If the defended group has been killed, return failure.
         if (opponentAction == Action.KILL && evaluator.checkSucceeded(b, opponent)) {
-            //System.out.println("Lost target.");
-            return MINIMUM;
+            return -1;
         }
-        
-        if (heuristicsFirst && (depth == moveDepth -1)) {
-            if (depth == 0) return 0;
-            int heuristicScore = getHeuristicScores(b);
-            if (heuristicScore > 0) {
-            	return heuristicScore;
-            }
-        }
-        
-        else
-            if(usingHeuristics && depth == 0){
-                return getHeuristicScores(b);
-            }
-        
-        //Initialises maximizer
-        int score = MINIMUM;
-            for (int x = 0; x < b.getWidth(); x++) {
-                for (int y = 0; y < b.getHeight(); y++) {
-                    Coordinate currentCoord = new Coordinate(x, y);
-                    if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
-                        
-                        //try{System.out.println(Translator.translateToString(colour)+" made move "+x+" "+y);} catch(BoardFormatException e){}
-                        
-                        Board currentState = lmc.getLastLegal();
-                        //Translator.printGameBoard(currentState);
-                        lmc.addBoard(currentState);
-                        
-                        // get response to current move from other player
-                        score = Math.max(score, beta(currentState, alpha, beta, depth-1,false));
-                        lmc.removeLast();
-                        alpha = Math.max(alpha, score);
-                        if (beta <= alpha) {
-                            return score;          // beta cut-off
-                        }
+
+        for (int x = 0; x < b.getWidth(); x++) {
+            for (int y = 0; y < b.getHeight(); y++) {
+                Coordinate currentCoord = new Coordinate(x, y);
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
+
+                    Board currentState = lmc.getLastLegal();
+                    lmc.addBoard(currentState);
+                    int result = min(currentState, false, depth-1);
+                    lmc.removeLast();
+
+                    //If success is guaranteed.
+                    if (result == 1) {
+                        return result;
                     }
                 }
             }
+        }
+
         if (!passed) {
-            //try{System.out.println(Translator.translateToString(colour)+" passed.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
-            return beta(b, alpha, beta, depth-1, true);
+            //System.out.println("AI passed.");
+            return min(b, true, depth-1);
         }
 
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
-            //try{System.out.println(Translator.translateToString(opponent)+" successfully defended.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
-            return MINIMUM;
+            return -1;
         } //If there are no more legal moves and the AI's defended group still lives.
         else {
-            //try{System.out.println(Translator.translateToString(colour)+" successfully defended.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
-            return MAXIMUM;
+            return 1;
         }
     }
-    private int beta(Board b, int alpha, int beta, int depth, boolean passed){
-        movesConsidered++;
-        // If the AI managed to capture the group.
-        if (abAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
-            //System.out.println("Successfully captured target.");            
-            return MAXIMUM;
+
+    //Occurs after AI move
+    public int min(Board b, boolean passed, int depth) {
+        
+        movesConsidered++;      
+        //If the AI has captured the opposing group
+        if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
+            return 1;
         }
-        
-        if (heuristicsFirst && (depth == moveDepth -1)) {
-            if (depth == 0) return 0;
-            int heuristicScore = getHeuristicScores(b);
-            if (heuristicScore > 0) {
-            	return heuristicScore;
-            }
-        }
-        
-        else
-            if(usingHeuristics && depth == 0){
-                return getHeuristicScores(b);
-            }
-        
-        
-        //Initialises minimiser
-        int score = MAXIMUM;
-            for (int x = 0; x < b.getWidth(); x++) {
-                for (int y = 0; y < b.getHeight(); y++) {
-                    Coordinate currentCoord = new Coordinate(x, y);
-                    if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, opponent, true)) {          
-                        Board currentState = lmc.getLastLegal();
-                        lmc.addBoard(currentState);
-                        //try{System.out.println(Translator.translateToString(opponent)+" made move "+x+" "+y);} catch(BoardFormatException e){}
-                        //Translator.printGameBoard(currentState);                        
-                        
-                        // get response to current move from other player
-                        score = Math.min(score, alpha(currentState, alpha, beta, depth-1, false));
-                        lmc.removeLast();
-                        beta = Math.min(beta, score);
-                        if (beta <= alpha) {
-                            return score;          // alpha cut-off
-                        }
+
+        //Tries all legal moves in search scope
+        for (int x = 0; x < b.getWidth(); x++) {
+            for (int y = 0; y < b.getHeight(); y++) {
+                Coordinate currentCoord = new Coordinate(x, y);
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, opponent, true)) {
+                    Board currentState = lmc.getLastLegal();
+                    lmc.addBoard(currentState);
+                    int result = max(currentState, false, depth-1);
+                    lmc.removeLast();
+
+                    //If failure is guaranteed.
+                    if (result == -1) {
+                        return result;
                     }
                 }
             }
-            
+        }
+
+        //Passes and tests if the opponent still can/will make moves
         if (!passed) {
-            //try{System.out.println(Translator.translateToString(opponent)+" passed.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
-            return alpha(b, alpha, beta, depth-1, true);
+            return max(b, true, depth-1);
         }
 
         //If the AI's stone group can no longer be captured.
-        if (abAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
-            //try{System.out.println(Translator.translateToString(colour)+" successfully defended.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
-            return MAXIMUM;
-        } //If there are no more legal moves and the opponent's defended group still lives.
+        if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
+            return 1;
+        } //If there are no more legal moves and the AI's defended group still lives.
         else {
-            //try{System.out.println(Translator.translateToString(opponent)+" successfully defended.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
-            return MINIMUM;
+            return -1;
         }
     }
-/*
-    // recursive alphaBeta pruning  
-    private int alphaBeta(Board currentBoard, int alpha, int beta, int player, int depth) {
-    	///////////////////////////////////////////////////////////////////////////
-        // check for terminal position
-        // if killing objective is completed at this stage
-        //Translator.printGameBoard(currentBoard);
-        if (abAction == Action.KILL && evaluator.checkSucceeded(currentBoard, colour)) {
-            //System.out.println("Successfully captured target.");            
-            return MAXIMUM;
-        }
-        // if AI failed to defend 
-        if (opponentAction == Action.KILL && evaluator.checkSucceeded(currentBoard, opponent)) {
-            //System.out.println("Lost target.");
-            return MINIMUM;
-        }
-
-        // if no more valid moves evaluate the board
-        if (noMoreLegalMoves(currentBoard, player)) {
-            if (player == colour) {
-                if (evaluator.checkSucceeded(currentBoard, colour)) {
-                    System.out.println("Successfully defended.");
-                    return MAXIMUM;
-                }
-                
-                else {
-                    System.out.println("Test A");
-                    return MINIMUM;
-                }
-                
-            } else {
-                if (evaluator.checkSucceeded(currentBoard, opponent)) {
-                    System.out.println("Opponent successfully defended.");
-                    return MINIMUM;
-                }
-                
-                else {
-                    System.out.println("Test B");
-                    return MAXIMUM;
-                }
-                
-            }
-        }
+    
+    public int heuristicsMax(Board b, boolean passed){
         
-        ///////////////////////////////////////////////////////////////////////////
-        // heuristic call
-        // only call heuristics on first move being evaluated and don't return if less than 0
-        
-        
-        
-        if (heuristicsFirst && depth == moveDepth -1) {
-            if (depth == 0) return 0;
-            int heuristicScore = getHeuristicScores(currentBoard);
-            if (heuristicScore > 0) {
-            	return heuristicScore;
-            }
-        }
-        else
-            if(depth == 0){
-                System.out.println("Heuristics called.");
-                return getHeuristicScores(currentBoard);
-            }
-        //////////////////////////////////////////////////////////////////////////
-        
-        // if none of the conditions above is met then:
-        // if maximizing player`s turn 
-        if (player == colour) {
-            int score = MINIMUM;
-            for (int x = 0; x < currentBoard.getWidth(); x++) {
-                for (int y = 0; y < currentBoard.getHeight(); y++) {
-                    Coordinate currentCoord = new Coordinate(x, y);
-                    if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, colour, true)) {
-                        Board currentState = lmc.getLastLegal();
-                        lmc.addBoard(currentState);
-                        
-                        movesConsidered++;
-                        
-                        // get response to current move from other player
-                        score = Math.max(score, alphaBeta(currentState, alpha, beta, opponent, depth-1));
-                        lmc.removeLast();
-                        alpha = Math.max(alpha, score);
-                        if (beta <= alpha) {
-                            break;          // beta cut-off
-                        }
-                    }
-                }
-            }
-            return score;
-        } // if minimizing player`s turn
-        else {
-            int score = MAXIMUM;
-            for (int x = 0; x < currentBoard.getWidth(); x++) {
-                for (int y = 0; y < currentBoard.getHeight(); y++) {
-                    Coordinate currentCoord = new Coordinate(x, y);
-                    if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, opponent, true)) {
-                        Board currentState = lmc.getLastLegal();
-                        lmc.addBoard(currentState);
-                        
-                        movesConsidered++;
-                        
-                        // get response to current move from other player
-                        score = Math.min(score, alphaBeta(currentState, alpha, beta, colour, depth-1));
-                        lmc.removeLast();
-                        beta = Math.min(beta, score);
-                        if (beta <= alpha) {
-                            break;          // alpha cut-off
-                        }
-                    }
-                }
-            }
-            return score;
-        }
+        return -1111000;
     }
-
-    // checks if there are not legal moves
-    public boolean noMoreLegalMoves(Board b, int colour) {
-        for (int i = 0; i < b.getWidth(); i++) {
-            for (int j = 0; j < b.getHeight(); j++) {
-                Coordinate c = new Coordinate(i, j);
-                if (lmc.checkMove(b, c, colour, true)) {
-                    return false;
-                }
-            }
-        }
-        return true;
+    //Sorts list by integer.
+    public void numericSort(ArrayList <Entry<Integer, Board>> m){
+        Collections.sort(m, NUMERIC);
     }
-*/    
-    //calculates score from heuristic
-    private int getHeuristicScores(Board currentBoard){
-        int sum = 0;
-        for(Heuristic h : heuristics)
-            sum += h.assess(initialBoard, currentBoard, lmc, evaluator, colour);
-        
-        return sum;
-    }
+    
+    //Comparator to use by collections.sort
+    private static final Comparator<Entry<Integer,Board>> NUMERIC = (Entry<Integer, Board> e1, Entry<Integer, Board> e2) -> e2.getKey().compareTo(e1.getKey());	
 }

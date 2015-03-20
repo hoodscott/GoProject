@@ -1,6 +1,5 @@
 package ai;
 
-import ai.heuristics.*;
 import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
@@ -17,7 +16,6 @@ public class AlphaBeta extends HeuristicsAI {
     private int globalScore = Integer.MIN_VALUE;
     private static final int MINIMUM = Integer.MIN_VALUE;
     private static final int MAXIMUM = Integer.MAX_VALUE;
-    private int moveDepth = 7;
     private final boolean heuristicsFirst = true;
     private boolean usingHeuristics = false;
 

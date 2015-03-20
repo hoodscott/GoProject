@@ -9,6 +9,7 @@ import main.LegalMoveChecker;
 public abstract class HeuristicsAI extends AI{
     
     ArrayList<Heuristic> heuristics = new ArrayList();
+    protected int moveDepth = 7;
     
     //Method for setting heuristics
     public void setHeuristics(String[] names){

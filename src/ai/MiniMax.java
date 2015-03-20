@@ -12,7 +12,6 @@ public class MiniMax extends AI {
 
     private final Objective evaluator;
     private LegalMoveChecker lmc;
-    private static final int SEARCH_SPACE_MAXIMUM = 8; //RECOMMENDED MAXIMUM
     int opponent;
     Action miniAction;
     Action opponentAction;
