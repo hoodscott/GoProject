@@ -4,6 +4,7 @@ import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
+import java.util.AbstractMap;
 import java.util.Comparator;
 import java.util.Collections;
 import java.util.Iterator;
@@ -23,7 +24,6 @@ public class MagicalMiniMax extends HeuristicsAI {
     int opponent;
     Action miniAction;
     Action opponentAction;
-    Board initialBoard;
     
     // constructor
     public MagicalMiniMax(Objective objective, int c, String[] heuristics) {
@@ -40,6 +40,7 @@ public class MagicalMiniMax extends HeuristicsAI {
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) throws AIException {
         lmc = legalMoves.clone();
+        Board initialState = b.clone();
         movesConsidered = 0;
         //printGameBoard(b);
 
@@ -55,7 +56,7 @@ public class MagicalMiniMax extends HeuristicsAI {
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
-                    int result = min(currentState, false, moveDepth-1);
+                    int result = min(initialState, currentState, false, moveDepth-1);
                     lmc.removeLast();
 
                     //If success is guaranteed.
@@ -71,13 +72,16 @@ public class MagicalMiniMax extends HeuristicsAI {
     }
 
     //Occurs after opponent move
-    public int max(Board b, boolean passed, int depth) {
+    public int max(Board initialState, Board b, boolean passed, int depth) {
         
         movesConsidered++;
         //If the defended group has been killed, return failure.
         if (opponentAction == Action.KILL && evaluator.checkSucceeded(b, opponent)) {
             return -1;
         }
+        
+        if(depth == 0)
+            return heuristicsMin(initialState,  b,  passed);
 
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {
@@ -86,7 +90,7 @@ public class MagicalMiniMax extends HeuristicsAI {
 
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
-                    int result = min(currentState, false, depth-1);
+                    int result = min(initialState, currentState, false, depth-1);
                     lmc.removeLast();
 
                     //If success is guaranteed.
@@ -99,7 +103,7 @@ public class MagicalMiniMax extends HeuristicsAI {
 
         if (!passed) {
             //System.out.println("AI passed.");
-            return min(b, true, depth-1);
+            return min(initialState, b, true, depth-1);
         }
 
         //If the AI can no longer kill the opponent
@@ -112,13 +116,16 @@ public class MagicalMiniMax extends HeuristicsAI {
     }
 
     //Occurs after AI move
-    public int min(Board b, boolean passed, int depth) {
+    public int min(Board initialState, Board b, boolean passed, int depth) {
         
         movesConsidered++;      
         //If the AI has captured the opposing group
         if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
             return 1;
         }
+        
+        if(depth == 0)
+            return heuristicsMax(initialState,  b,  passed);
 
         //Tries all legal moves in search scope
         for (int x = 0; x < b.getWidth(); x++) {
@@ -127,7 +134,7 @@ public class MagicalMiniMax extends HeuristicsAI {
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, opponent, true)) {
                     Board currentState = lmc.getLastLegal();
                     lmc.addBoard(currentState);
-                    int result = max(currentState, false, depth-1);
+                    int result = max(initialState, currentState, false, depth-1);
                     lmc.removeLast();
 
                     //If failure is guaranteed.
@@ -140,7 +147,7 @@ public class MagicalMiniMax extends HeuristicsAI {
 
         //Passes and tests if the opponent still can/will make moves
         if (!passed) {
-            return max(b, true, depth-1);
+            return max(initialState, b, true, depth-1);
         }
 
         //If the AI's stone group can no longer be captured.
@@ -152,9 +159,92 @@ public class MagicalMiniMax extends HeuristicsAI {
         }
     }
     
-    public int heuristicsMax(Board b, boolean passed){
+    public int heuristicsMax(Board initialState, Board b, boolean passed){
+        ArrayList<Entry<Integer,Board>> boards = new ArrayList();
+        for (int x = 0; x < b.getWidth(); x++) {
+            for (int y = 0; y < b.getHeight(); y++) {
+                Coordinate currentCoord = new Coordinate(x, y);
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
+                    Board currentState = lmc.getLastLegal();
+                    Integer score = getHeuristicScores(initialState, b, lmc, evaluator);
+                    boards.add(new AbstractMap.SimpleEntry(score,currentState));
+                }
+            }
+        }
+        //Sorts by descending heuristic score.
+        numericSort(boards);
         
-        return -1111000;
+        Iterator<Entry<Integer,Board>> it = boards.iterator();
+        //Iterates over each board.
+        while(it.hasNext()){ 
+            Entry<Integer, Board> pair = (Entry<Integer,Board>)it.next();
+            Board currentState = pair.getValue();
+            lmc.addBoard(currentState);
+            int result = min(b, currentState, false, moveDepth-1);
+            lmc.removeLast();
+            
+            //If success is guaranteed.
+            if (result == 1) {
+                return result;
+            }
+        }
+        
+        if (!passed){
+            //System.out.println("AI passed.");
+            return min(initialState, b, true, moveDepth-1);
+        }
+
+        //If the AI can no longer kill the opponent
+        if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
+            return -1;
+        } //If there are no more legal moves and the AI's defended group still lives.
+        else {
+            return 1;
+        }
+    }
+    
+    public int heuristicsMin(Board initialState, Board b, boolean passed){
+        ArrayList<Entry<Integer,Board>> boards = new ArrayList();
+        for (int x = 0; x < b.getWidth(); x++) {
+            for (int y = 0; y < b.getHeight(); y++) {
+                Coordinate currentCoord = new Coordinate(x, y);
+                if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
+                    Board currentState = lmc.getLastLegal();
+                    Integer score = getHeuristicScores(initialState, b, lmc, evaluator);
+                    boards.add(new AbstractMap.SimpleEntry(score,currentState));
+                }
+            }
+        }
+        //Sorts by descending heuristic score.
+        numericSort(boards);
+        
+        Iterator<Entry<Integer,Board>> it = boards.iterator();
+        //Iterates over each board.
+        while(it.hasNext()){ 
+            Entry<Integer, Board> pair = (Entry<Integer,Board>)it.next();
+            Board currentState = pair.getValue();
+            lmc.addBoard(currentState);
+            int result = max(b, currentState, false, moveDepth-1);
+            lmc.removeLast();
+            
+            //If failure is guaranteed.
+            if (result == -1) {
+                return result;
+            }
+        }
+        
+        //Passes and tests if the opponent still can/will make moves
+        if (!passed) {
+            return max(initialState, b, true, moveDepth-1);
+        }
+
+        //If the AI's stone group can no longer be captured.
+        if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
+            return 1;
+        } //If there are no more legal moves and the AI's defended group still lives.
+        else {
+            return -1;
+        }
     }
     //Sorts list by integer.
     public void numericSort(ArrayList <Entry<Integer, Board>> m){
@@ -162,5 +252,6 @@ public class MagicalMiniMax extends HeuristicsAI {
     }
     
     //Comparator to use by collections.sort
+    //Sorts into descending order
     private static final Comparator<Entry<Integer,Board>> NUMERIC = (Entry<Integer, Board> e1, Entry<Integer, Board> e2) -> e2.getKey().compareTo(e1.getKey());	
 }
