@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import main.BoardFormatException;
 import main.Translator;
 
-public class AlphaBeta extends HeuristicsAI {
+public class MagicalMiniMax extends AI {
 
     private Objective evaluator;
     private LegalMoveChecker lmc;
     
+    ArrayList<Heuristic> heuristics = new ArrayList();
     private int globalScore = Integer.MIN_VALUE;
     private static final int MINIMUM = Integer.MIN_VALUE;
     private static final int MAXIMUM = Integer.MAX_VALUE;
@@ -27,7 +28,7 @@ public class AlphaBeta extends HeuristicsAI {
     Board initialBoard;
     
     // constructor
-    public AlphaBeta(Objective objective, int c, String[] heuristics) {
+    public MagicalMiniMax(Objective objective, int c, String[] heuristics) {
         evaluator = objective;
         colour = c;
         opponent = evaluator.getOtherColour(colour);
@@ -39,7 +40,29 @@ public class AlphaBeta extends HeuristicsAI {
         } 
     }
     
-
+    //Method for setting heuristics
+    public void setHeuristics(String[] names){
+        heuristics = new ArrayList();
+        for(String name : names)
+            addHeuristic(name);
+    }
+    
+    public void addHeuristic(String heuristicName){
+        switch(heuristicName){
+            case "Hane": heuristics.add(new Hane()); break;
+            // case "HasAnEye": heuristics.add(new HasAnEye()); break;
+            case "EightStonesInARow": heuristics.add(new EightStonesInARow()); break;
+            case "TwoPointEye": heuristics.add(new TwoPointEye()); break;
+            case "UnsettledThree": heuristics.add(new UnsettledThree()); break;
+            case "ThreeLiberties": heuristics.add(new ThreeLiberties()); break;
+            case "LibertyCounter": heuristics.add(new LibertyCounter()); break;
+            case "LivingSpace": heuristics.add(new LivingSpace()); break;
+            case "EyeCreator": heuristics.add(new EyeCreator()); break;
+            case "SixStonesInARow": heuristics.add(new SixStonesInARow()); break;
+            default: System.err.println("WARNING: heuristic \'"+heuristicName+"\' could not be found."); return;
+        }
+        System.out.println("Added heuristic: "+heuristicName);
+    }
     
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
@@ -110,7 +133,7 @@ public class AlphaBeta extends HeuristicsAI {
         
         if (heuristicsFirst && (depth == moveDepth -1)) {
             if (depth == 0) return 0;
-            int heuristicScore = getHeuristicScores(initialBoard, b,  lmc,  evaluator);
+            int heuristicScore = getHeuristicScores(b);
             if (heuristicScore > 0) {
             	return heuristicScore;
             }
@@ -118,7 +141,7 @@ public class AlphaBeta extends HeuristicsAI {
         
         else
             if(usingHeuristics && depth == 0){
-                return getHeuristicScores(initialBoard, b,  lmc,  evaluator);
+                return getHeuristicScores(b);
             }
         
         //Initialises maximizer
@@ -172,7 +195,7 @@ public class AlphaBeta extends HeuristicsAI {
         
         if (heuristicsFirst && (depth == moveDepth -1)) {
             if (depth == 0) return 0;
-            int heuristicScore = getHeuristicScores(initialBoard, b,  lmc,  evaluator);
+            int heuristicScore = getHeuristicScores(b);
             if (heuristicScore > 0) {
             	return heuristicScore;
             }
@@ -180,7 +203,7 @@ public class AlphaBeta extends HeuristicsAI {
         
         else
             if(usingHeuristics && depth == 0){
-                return getHeuristicScores(initialBoard, b,  lmc,  evaluator);
+                return getHeuristicScores(b);
             }
         
         
@@ -351,4 +374,12 @@ public class AlphaBeta extends HeuristicsAI {
         return true;
     }
 */    
+    //calculates score from heuristic
+    private int getHeuristicScores(Board currentBoard){
+        int sum = 0;
+        for(Heuristic h : heuristics)
+            sum += h.assess(initialBoard, currentBoard, lmc, evaluator, colour);
+        
+        return sum;
+    }
 }
