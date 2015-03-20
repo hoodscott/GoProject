@@ -18,8 +18,8 @@ public class AlphaBeta extends AI {
     private int globalScore = Integer.MIN_VALUE;
     private static final int MINIMUM = Integer.MIN_VALUE;
     private static final int MAXIMUM = Integer.MAX_VALUE;
-    private int moveDepth = 30;
-    private final boolean heuristicsFirst = false;
+    private int moveDepth = 7;
+    private final boolean heuristicsFirst = true;
     private boolean usingHeuristics = false;
 
     int opponent;
@@ -106,7 +106,8 @@ public class AlphaBeta extends AI {
                     if(score == MAXIMUM)
                         return currentCoord;
                     if (score > globalScore && score > 0) {
-                        globalScore = score;
+                        System.out.println("score: " + score);
+                    	globalScore = score;
                         bestMove = currentCoord;
                     }
                 }
@@ -129,6 +130,21 @@ public class AlphaBeta extends AI {
             //System.out.println("Lost target.");
             return MINIMUM;
         }
+        
+        if (heuristicsFirst && (depth == moveDepth -1)) {
+            if (depth == 0) return 0;
+            int heuristicScore = getHeuristicScores(b);
+            if (heuristicScore > 0) {
+            	return heuristicScore;
+            }
+        }
+        
+        else
+            if(depth == 0){
+                
+                return 0;
+            }
+        
         //Initialises maximizer
         int score = MINIMUM;
             for (int x = 0; x < b.getWidth(); x++) {
@@ -177,6 +193,21 @@ public class AlphaBeta extends AI {
             //System.out.println("Successfully captured target.");            
             return MAXIMUM;
         }
+        
+        if (heuristicsFirst && (depth == moveDepth -1)) {
+            if (depth == 0) return 0;
+            int heuristicScore = getHeuristicScores(b);
+            if (heuristicScore > 0) {
+            	return heuristicScore;
+            }
+        }
+        
+        else
+            if(depth == 0){
+                return 0;
+            }
+        
+        
         //Initialises minimiser
         int score = MAXIMUM;
             for (int x = 0; x < b.getWidth(); x++) {
@@ -192,7 +223,7 @@ public class AlphaBeta extends AI {
                         score = Math.min(score, alpha(currentState, alpha, beta, depth-1, false));
                         lmc.removeLast();
                         beta = Math.min(beta, score);
-                        if (score == MINIMUM && beta <= alpha) {
+                        if (beta <= alpha) {
                             return score;          // alpha cut-off
                         }
                     }
@@ -217,7 +248,7 @@ public class AlphaBeta extends AI {
             return MINIMUM;
         }
     }
-
+/*
     // recursive alphaBeta pruning  
     private int alphaBeta(Board currentBoard, int alpha, int beta, int player, int depth) {
     	///////////////////////////////////////////////////////////////////////////
@@ -343,7 +374,7 @@ public class AlphaBeta extends AI {
         }
         return true;
     }
-    
+*/    
     //calculates score from heuristic
     private int getHeuristicScores(Board currentBoard){
         int sum = 0;
