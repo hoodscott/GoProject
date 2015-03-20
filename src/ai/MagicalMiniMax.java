@@ -80,7 +80,7 @@ public class MagicalMiniMax extends HeuristicsAI {
             return -1;
         }
         
-        if(depth == 0)
+        if(depth == 0 && usingHeuristics)
             return heuristicsMin(initialState,  b,  passed);
 
         for (int x = 0; x < b.getWidth(); x++) {
@@ -124,7 +124,7 @@ public class MagicalMiniMax extends HeuristicsAI {
             return 1;
         }
         
-        if(depth == 0)
+        if(depth == 0 && usingHeuristics)
             return heuristicsMax(initialState,  b,  passed);
 
         //Tries all legal moves in search scope
@@ -160,6 +160,7 @@ public class MagicalMiniMax extends HeuristicsAI {
     }
     
     public int heuristicsMax(Board initialState, Board b, boolean passed){
+        System.out.println("Max heuristic called");
         ArrayList<Entry<Integer,Board>> boards = new ArrayList();
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {
@@ -204,6 +205,7 @@ public class MagicalMiniMax extends HeuristicsAI {
     }
     
     public int heuristicsMin(Board initialState, Board b, boolean passed){
+        System.out.println("Min heuristic called");
         ArrayList<Entry<Integer,Board>> boards = new ArrayList();
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {

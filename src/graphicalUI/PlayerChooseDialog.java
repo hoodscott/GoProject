@@ -31,9 +31,9 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
         setTitle("Choose Players");
 
         // Create components for objective selection
-        String[] playerOptionsWhite = {"Human", "MiniMax", "AlphaBeta"};
-        optionsWhiteBox = new JComboBox(playerOptionsWhite);
-        optionsBlackBox = new JComboBox(playerOptionsWhite);
+        String[] playerOptions = {"Human", "MiniMax", "AlphaBeta", "MagicalMiniMax"};
+        optionsWhiteBox = new JComboBox(playerOptions);
+        optionsBlackBox = new JComboBox(playerOptions);
 
         // Buttons for user selection
         OKButton = new JButton("OK");
@@ -65,14 +65,14 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
     @Override
     // React to OK or cancel buttons
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand() == "OK") {
+        if (e.getActionCommand().equals("OK")) {
             // get player choices
             String blackPlayer = (String) optionsBlackBox.getSelectedItem();
             String whitePlayer = (String) optionsWhiteBox.getSelectedItem();
 
             // assume human player will play first and swap accordingly
             String currentPlayer = BoardJPanel.getPlayer();
-            if (blackPlayer.equals("Human") && (whitePlayer.equals("AlphaBeta") || whitePlayer.equals("MiniMax"))) {
+            if (blackPlayer.equals("Human") && !whitePlayer.equals("Human")) {
                 if (currentPlayer.equals("White")) {
                     GraphicalUI.boardJP.changePlayer();
                 }
@@ -80,7 +80,7 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
                 GraphicalUI.updateMessage("AI type selected: " + whitePlayer);
                 AIvsAI = false;
                 GraphicalUI.currentAILabel.setText(whitePlayer);
-            } else if (whitePlayer.equals("Human") && (blackPlayer.equals("AlphaBeta") || blackPlayer.equals("MiniMax"))) {
+            } else if (whitePlayer.equals("Human") && !blackPlayer.equals("Human")) {
                 if (currentPlayer.equals("Black")) {
                     GraphicalUI.boardJP.changePlayer();
                 }
@@ -91,8 +91,7 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
             }
 
             // else AI vs AI mode
-            if ((blackPlayer.equals("AlphaBeta") || blackPlayer.equals("MiniMax"))
-                    && (whitePlayer.equals("AlphaBeta") || whitePlayer.equals("MiniMax"))) {
+            if (!blackPlayer.equals("Human") && !whitePlayer.equals("Human")) {
                 // TODO: Allow 2 separate AIs to play against each other?
                 GraphicalUI.aiType = blackPlayer;
                 GraphicalUI.updateMessage("AI type selected: " + blackPlayer);

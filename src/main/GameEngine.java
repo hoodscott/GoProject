@@ -5,7 +5,7 @@ import ai.AI;
 import ai.Objective;
 import ai.AlphaBeta;
 import ai.AIException;
-import java.util.ArrayList;
+import ai.MagicalMiniMax;
 
 public class GameEngine {
   //* Class to keep track of the current game of Go and make moves on the board 
@@ -85,11 +85,15 @@ public class GameEngine {
     public void setMiniMax(int colour) {
         ai = new MiniMax(objective, colour);
     }
+    
+    //Sets AI to be the heuristics using minimax algorithm.
+    public void setMagicalMiniMax(int colour, String[] heuristicNames){
+        ai = new MagicalMiniMax(objective, colour, heuristicNames);
+    }
 
     // Sets the AI to be an alpha beta algorithm
     public void setAlphaBeta(int colour, String[] heuristicNames) {
         ai = new AlphaBeta(objective, colour, heuristicNames);
-
     }
 
     //Places a piece at the co-ordinates (x,y) given a respective colour (black or white

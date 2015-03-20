@@ -215,14 +215,17 @@ public class BoardJPanel extends JPanel {
 			listeners = false;
 			switch (GraphicalUI.aiType) {
 			case "MiniMax":
-				gameE.setMiniMax(colour);
-				break;
+                            gameE.setMiniMax(colour);
+                            break;
 			case "AlphaBeta":
-				gameE.setAlphaBeta(colour, GraphicalUI.heuristics);
-				break;
+                            gameE.setAlphaBeta(colour, GraphicalUI.heuristics);
+                            break;
+                        case "MagicalMiniMax":
+                            gameE.setMagicalMiniMax(colour, GraphicalUI.heuristics);
+                            break;
 			default:
-				gameE.setMiniMax(colour);
-				break;
+                            gameE.setMiniMax(colour);
+                            break;
 			}
 			String move;
 			try {
@@ -230,6 +233,11 @@ public class BoardJPanel extends JPanel {
 			} catch (AIException e) {
 				move = e.getMsg();
 			}
+                        GraphicalUI.updateMessage("AI move: "+move);
+                        GraphicalUI.aiLabel.setText(GraphicalUI.aiType+"'s considered moves: ");
+                        GraphicalUI.currentAILabel.setText(Integer.toString(gameE
+						.getAI().getNumberOfMovesConsidered()));
+                        /*
 			if (GraphicalUI.aiType.equals("AlphaBeta")) {
 				GraphicalUI.updateMessage("AI move: " + move);
 				GraphicalUI.aiLabel.setText("AlphaBeta's Considered Moves: ");
@@ -240,8 +248,7 @@ public class BoardJPanel extends JPanel {
 				GraphicalUI.aiLabel.setText("Minimax's Considered Moves: ");
 				GraphicalUI.currentAILabel.setText(Integer.toString(gameE.getAI().getNumberOfMovesConsidered()));
 			}
-                        //System.out.println(gameE.getAI().getNumberOfMovesConsidered());
-			//System.out.println(move);
+                        */
 			changePlayer();
 
 			// Show AI's move without mouse movement
