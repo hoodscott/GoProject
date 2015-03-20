@@ -68,7 +68,7 @@ public class AlphaBeta extends AI {
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
         // reset the number of moves considered  
     	movesConsidered = 0;
-        
+        System.out.println("--ALPHA BETA--");
         //Checks number of heuristics in use
     	if(heuristics.isEmpty())
             System.out.println("WARNING: No heuristic selected for alpha-beta.");
@@ -94,9 +94,8 @@ public class AlphaBeta extends AI {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
                     Board currentState = lmc.getLastLegal();
-                    try{System.out.println(Translator.translateToString(colour)+" made move "+x+" "+y);} catch(BoardFormatException e){}        
-                    movesConsidered++;
-                    Translator.printGameBoard(currentState);
+                    //try{System.out.println(Translator.translateToString(colour)+" made move "+x+" "+y);} catch(BoardFormatException e){}        
+                    //Translator.printGameBoard(currentState);
                     lmc.addBoard(currentState);
                     // continue to opponent`s best reaction to this particular move
                     //score = alphaBeta(currentState, MINIMUM, MAXIMUM, opponent,moveDepth-1);
@@ -104,6 +103,8 @@ public class AlphaBeta extends AI {
                     lmc.removeLast();
 
                     // compare the scores of all initial moves
+                    if(score == MAXIMUM)
+                        return currentCoord;
                     if (score > globalScore && score > 0) {
                         globalScore = score;
                         bestMove = currentCoord;
@@ -151,9 +152,6 @@ public class AlphaBeta extends AI {
                     }
                 }
             }
-        if(score != MINIMUM)
-            return score;
-        
         if (!passed) {
             //try{System.out.println(Translator.translateToString(colour)+" passed.");} catch(BoardFormatException e){}
             //Translator.printGameBoard(b);
@@ -184,25 +182,22 @@ public class AlphaBeta extends AI {
             for (int x = 0; x < b.getWidth(); x++) {
                 for (int y = 0; y < b.getHeight(); y++) {
                     Coordinate currentCoord = new Coordinate(x, y);
-                    if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, opponent, true)) {
-                        //try{System.out.println(Translator.translateToString(opponent)+" made move "+x+" "+y);} catch(BoardFormatException e){}
+                    if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, opponent, true)) {          
                         Board currentState = lmc.getLastLegal();
                         lmc.addBoard(currentState);
+                        //try{System.out.println(Translator.translateToString(opponent)+" made move "+x+" "+y);} catch(BoardFormatException e){}
                         //Translator.printGameBoard(currentState);                        
-                        movesConsidered++;
                         
                         // get response to current move from other player
                         score = Math.min(score, alpha(currentState, alpha, beta, depth-1, false));
                         lmc.removeLast();
                         beta = Math.min(beta, score);
-                        if (beta <= alpha) {
-                            break;          // alpha cut-off
+                        if (score == MINIMUM && beta <= alpha) {
+                            return score;          // alpha cut-off
                         }
                     }
                 }
             }
-        if(score != MAXIMUM)
-            return score;
             
         if (!passed) {
             //try{System.out.println(Translator.translateToString(opponent)+" passed.");} catch(BoardFormatException e){}
