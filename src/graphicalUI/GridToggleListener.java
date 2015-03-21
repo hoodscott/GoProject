@@ -64,6 +64,7 @@ public class GridToggleListener implements ActionListener {
             }
         }
         if (button.getText().equals("Competitive Play Mode")) {
+        	GraphicalUI.setDeleteStones(false); // turn off delete stones if selected
             if (!GraphicalUI.getProblemSettings()) {
                 JOptionPane.showMessageDialog(GraphicalUI.frame,
                         "Please select your bounds and objectives first.");

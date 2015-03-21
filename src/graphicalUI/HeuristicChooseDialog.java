@@ -44,7 +44,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
         Arrays.sort(heuristics);
         this.setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
 
-        setTitle("Choose Heuristics");
+        setTitle("Heuristic Chooser");
 
         // Create components for heuristic selection
         hList = new JList(heuristics);
@@ -62,7 +62,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
 
         // Create panel for heuristic Choice
         heuristicsChoice = new JPanel();
-        heuristicsChoice.add(new JLabel("Choose A Heuristic: "));
+        heuristicsChoice.add(new JLabel("Choose Heuristic(s): "));
         heuristicsChoice.add(listScroller);
         this.add(heuristicsChoice);
         
