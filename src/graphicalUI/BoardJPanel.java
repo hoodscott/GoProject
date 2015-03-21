@@ -237,18 +237,6 @@ public class BoardJPanel extends JPanel {
                         GraphicalUI.aiLabel.setText(GraphicalUI.aiType+"'s considered moves: ");
                         GraphicalUI.currentAILabel.setText(Integer.toString(gameE
 						.getAI().getNumberOfMovesConsidered()));
-                        /*
-			if (GraphicalUI.aiType.equals("AlphaBeta")) {
-				GraphicalUI.updateMessage("AI move: " + move);
-				GraphicalUI.aiLabel.setText("AlphaBeta's Considered Moves: ");
-				GraphicalUI.currentAILabel.setText(Integer.toString(gameE
-						.getAI().getNumberOfMovesConsidered()));
-			} else {
-				GraphicalUI.updateMessage("AI move: " + move);
-				GraphicalUI.aiLabel.setText("Minimax's Considered Moves: ");
-				GraphicalUI.currentAILabel.setText(Integer.toString(gameE.getAI().getNumberOfMovesConsidered()));
-			}
-                        */
 			changePlayer();
 
 			// Show AI's move without mouse movement

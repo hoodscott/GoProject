@@ -1,8 +1,10 @@
-package ai.heuristics;
+package ai.heuristics.specific;
 
 import main.Board;
 import main.LegalMoveChecker;
 import ai.Objective;
+import ai.heuristics.Heuristic;
+import ai.heuristics.Rating;
 
 // Determines whether a move will give six stones in a row in the corners - useful for capturing
 public class SixStonesInARow implements Heuristic {

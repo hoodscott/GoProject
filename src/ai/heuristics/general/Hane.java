@@ -1,9 +1,11 @@
-package ai.heuristics;
+package ai.heuristics.general;
 
 import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective;
+import ai.heuristics.Heuristic;
+import ai.heuristics.Rating;
 
 public class Hane implements Heuristic {
 

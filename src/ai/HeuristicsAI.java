@@ -1,6 +1,15 @@
 package ai;
 
 //This is the abstract class for all AI heuristic types
+import ai.heuristics.general.Hane;
+import ai.heuristics.general.EyeCreator;
+import ai.heuristics.specific.EightStonesInARow;
+import ai.heuristics.general.LibertyCounter;
+import ai.heuristics.general.LivingSpace;
+import ai.heuristics.general.TwoPointEye;
+import ai.heuristics.general.ThreeLiberties;
+import ai.heuristics.specific.SixStonesInARow;
+import ai.heuristics.specific.UnsettledThree;
 import ai.heuristics.*;
 import java.util.ArrayList;
 import main.Board;

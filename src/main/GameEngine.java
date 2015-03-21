@@ -98,7 +98,7 @@ public class GameEngine {
 
     //Places a piece at the co-ordinates (x,y) given a respective colour (black or white
     public String aiMove() throws AIException {
-        Coordinate c = ai.nextMove(currentBoard, moveChecker);
+        Coordinate c = ai.nextTimedMove(currentBoard, moveChecker);
         if (c.x == -1 && c.y == -1) {
             return "passes";
         } else {

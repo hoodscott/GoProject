@@ -43,7 +43,6 @@ public class AlphaBeta extends HeuristicsAI {
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
         // reset the number of moves considered  
     	movesConsidered = 0;
-        System.out.println("--ALPHA BETA--");
         //Checks number of heuristics in use
     	if(heuristics.isEmpty())
             System.out.println("WARNING: No heuristic selected for alpha-beta.");

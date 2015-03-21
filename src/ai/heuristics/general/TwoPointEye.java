@@ -1,8 +1,9 @@
-package ai.heuristics;
+package ai.heuristics.general;
 
 import ai.Objective;
 import ai.Objective.Action;
 import ai.heuristics.Heuristic;
+import ai.heuristics.Rating;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +11,6 @@ import java.util.Arrays;
 import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
-import ai.heuristics.Rating;
 
 // heuristic to detect 2 point eyes instead of just 1 point
 public class TwoPointEye implements Heuristic {

@@ -1,7 +1,8 @@
-package ai.heuristics;
+package ai.heuristics.general;
 
 import ai.Objective;
 import ai.Objective.Action;
+import ai.heuristics.Heuristic;
 import ai.heuristics.Heuristic;
 
 import java.util.ArrayList;

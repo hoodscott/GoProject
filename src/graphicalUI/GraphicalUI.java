@@ -56,6 +56,7 @@ public class GraphicalUI {
 
     private static JMenu competitiveFileMenu, creationFileMenu;
     public static JLabel aiLabel;
+    public static JLabel aiTimeLabel;
     public static JLabel feedback;
 
     // public static instance variables for swing
