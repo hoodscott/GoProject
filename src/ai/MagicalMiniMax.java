@@ -279,5 +279,11 @@ public class MagicalMiniMax extends HeuristicsAI {
     
     //Comparator to use by collections.sort
     //Sorts into descending order
-    private static final Comparator<Entry<Integer,Board>> NUMERIC = (Entry<Integer, Board> e1, Entry<Integer, Board> e2) -> e2.getKey().compareTo(e1.getKey());	
+    private static final Comparator<Entry<Integer,Board>> NUMERIC = new Comparator<Entry<Integer,Board>>(){
+        
+        @Override
+        public int compare(Entry<Integer, Board> e1, Entry<Integer, Board> e2){
+            return e2.getKey().compareTo(e1.getKey());
+        }
+    };
 }
