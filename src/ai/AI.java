@@ -9,7 +9,7 @@ public abstract class AI {
 
     protected String thoughts;
     protected int movesConsidered;
-    protected static int moveDepth = 5;
+    protected static int moveDepth = 2;
 
     //Colour of the AI
     protected int colour;
