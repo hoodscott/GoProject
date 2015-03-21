@@ -9,6 +9,7 @@ public abstract class AI {
 
     protected String thoughts;
     protected int movesConsidered;
+    protected static int moveDepth = 5;
 
     //Colour of the AI
     protected int colour;
@@ -26,4 +27,7 @@ public abstract class AI {
     public int getNumberOfMovesConsidered() {
         return movesConsidered;
     }
+    
+    public static int getSearchDepth(){return moveDepth;}
+    public static void setSearchDepth(int i){moveDepth = i;}
 }

@@ -57,7 +57,7 @@ public class EyeCreator implements Heuristic {
 				
 				// Return eye if 3 AI stones surround and AI stone in empty space of current board
 				if (AIStones == 3 && eye.x != -1 && eye.y != -1 && (currentBoard.get(eye.x, eye.y) == colourAI)) {
-					return Rating.EYE_CREATOR.getValue();
+                                    return Rating.EYE_CREATOR.getValue();
 				}
 				
 				AIStones = 0;
@@ -67,7 +67,7 @@ public class EyeCreator implements Heuristic {
 			}
 		}
 
-		return 0;
+		return -Rating.EYE_CREATOR.getValue();
 	}
 
 }

@@ -4,11 +4,14 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.Arrays;
+import ai.AI;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -16,18 +19,23 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.NumberFormatter;
 
 public class HeuristicChooseDialog extends JDialog implements ActionListener, ListSelectionListener {
 
     private static final long serialVersionUID = 1L;
-    private JPanel heuristicsChoice, finishButtons;
+    private JPanel heuristicsChoice, finishButtons, depthPanel;
+    private JLabel depthLabel;
+    private JFormattedTextField depthField;
+    NumberFormatter depthFormat;
     @SuppressWarnings("rawtypes")
     private JList hList;
     private JButton OKButton, cancelButton;
     private int[] selectedHeuristicsIndices;
     private String[] selectedHeuristics;
     public static boolean cancelled;
-    private String[] heuristics = {"EightStonesInARow","EyeCreator","Hane","LibertyCounter","LivingSpace","SixStonesInARow","ThreeLiberties","TwoPointEye","UnsettledThree"};
+    private final String[] heuristics = {"EightStonesInARow","EyeCreator","Hane","LibertyCounter","LivingSpace","SixStonesInARow","ThreeLiberties","TwoPointEye","UnsettledThree"};
+    private static String searchDepthMessage = "Search Depth: ";
 
     // Constructor
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -57,6 +65,21 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
         heuristicsChoice.add(new JLabel("Choose A Heuristic: "));
         heuristicsChoice.add(listScroller);
         this.add(heuristicsChoice);
+        
+        //Create text field for editing search depth
+        depthFormat = new NumberFormatter();
+        depthFormat.setMinimum(1);
+        depthFormat.setMaximum(1000);
+        depthFormat.setValueClass(Integer.class);
+        depthField = new JFormattedTextField(depthFormat);
+        depthLabel = new JLabel(searchDepthMessage);
+        depthField.setColumns(3);
+        depthField.setEditable(true);
+        depthField.setValue(AI.getSearchDepth());
+        depthPanel = new JPanel();
+        depthPanel.add(depthLabel); 
+        depthPanel.add(depthField);
+        this.add(depthPanel);
 
         // Create panel for OK/Cancel
         finishButtons = new JPanel();
@@ -78,6 +101,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
         if ("OK".equals(e.getActionCommand())) {
             // Set heuristic choice
             selectedHeuristicsIndices = hList.getSelectedIndices();
+            AI.setSearchDepth((Integer)depthField.getValue());
             selectedHeuristics = new String[selectedHeuristicsIndices.length];
             //int index = hList.getSelectedIndex();
             //System.out.println(index);

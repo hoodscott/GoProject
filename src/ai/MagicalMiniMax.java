@@ -162,6 +162,7 @@ public class MagicalMiniMax extends HeuristicsAI {
     public int heuristicsMax(Board initialState, Board b, boolean passed){
         System.out.println("Max heuristic called");
         ArrayList<Entry<Integer,Board>> boards = new ArrayList();
+        
         for (int x = 0; x < b.getWidth(); x++) {
             for (int y = 0; y < b.getHeight(); y++) {
                 Coordinate currentCoord = new Coordinate(x, y);
@@ -180,6 +181,7 @@ public class MagicalMiniMax extends HeuristicsAI {
         while(it.hasNext()){ 
             Entry<Integer, Board> pair = (Entry<Integer,Board>)it.next();
             Board currentState = pair.getValue();
+            System.out.println("Score: "+pair.getKey());
             lmc.addBoard(currentState);
             int result = min(b, currentState, false, moveDepth-1);
             lmc.removeLast();
@@ -224,6 +226,7 @@ public class MagicalMiniMax extends HeuristicsAI {
         //Iterates over each board.
         while(it.hasNext()){ 
             Entry<Integer, Board> pair = (Entry<Integer,Board>)it.next();
+            System.out.println("Score: "+pair.getKey());
             Board currentState = pair.getValue();
             lmc.addBoard(currentState);
             int result = max(b, currentState, false, moveDepth-1);
