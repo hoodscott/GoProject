@@ -650,6 +650,8 @@ public class GraphicalUI {
     // method to enable/disable bounds button
     public static void updateBoundsButton(boolean b) {
         boundsButton.setEnabled(b);
+        boundsButton.setText("Show Bounds");
+        boundsButton.setSelected(false);
     }
 
     public static void turnOffBounds() {
