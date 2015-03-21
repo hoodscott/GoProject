@@ -220,10 +220,11 @@ public class BoardJPanel extends JPanel {
 			case "AlphaBeta":
                             gameE.setAlphaBeta(colour, GraphicalUI.heuristics);
                             break;
-                        case "MagicalMiniMax":
+                        case "HybridMiniMax":
                             gameE.setMagicalMiniMax(colour, GraphicalUI.heuristics);
                             break;
 			default:
+                            System.out.println("WARNING: AI not found. MiniMax selected by default.");
                             gameE.setMiniMax(colour);
                             break;
 			}
