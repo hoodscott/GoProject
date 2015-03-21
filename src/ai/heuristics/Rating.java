@@ -6,7 +6,7 @@ public enum Rating {
     //Jamie's Heuristics   
     HAS_EIGHT_IN_A_ROW(900),
     HAS_SIX_IN_A_ROW(500),
-    //Kiril's Heuristics
+    //Kiril's  & Niklas' Heuristics
     LIBERTY(100),
     LIVINGSPACE(200),
     // Eilidh's Heuristics

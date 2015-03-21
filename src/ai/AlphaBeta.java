@@ -16,7 +16,7 @@ public class AlphaBeta extends HeuristicsAI {
     private int globalScore = Integer.MIN_VALUE;
     private static final int MINIMUM = Integer.MIN_VALUE;
     private static final int MAXIMUM = Integer.MAX_VALUE;
-    private final boolean heuristicsFirst = true;
+    private final boolean heuristicsFirst = false;
     private boolean usingHeuristics = false;
 
     int opponent;
@@ -105,18 +105,16 @@ public class AlphaBeta extends HeuristicsAI {
             return MINIMUM;
         }
         
-        if (heuristicsFirst && (depth == moveDepth -1)) {
-            if (depth == 0) return 0;
-            int heuristicScore = getHeuristicScores(initialBoard, b,  lmc,  evaluator);
-            if (heuristicScore > 0) {
-            	return heuristicScore;
+        if(usingHeuristics){
+            if(heuristicsFirst && depth == moveDepth-1){
+                if (depth == 0) return 0;
+                    int heuristicScore = getHeuristicScores(initialBoard, b,  lmc,  evaluator);
+                    if (heuristicScore > 0)
+                        return heuristicScore;
             }
-        }
-        
-        else
-            if(usingHeuristics && depth == 0){
+            else if(depth == 0)
                 return getHeuristicScores(initialBoard, b,  lmc,  evaluator);
-            }
+        }
         
         //Initialises maximizer
         int score = MINIMUM;
@@ -167,18 +165,16 @@ public class AlphaBeta extends HeuristicsAI {
             return MAXIMUM;
         }
         
-        if (heuristicsFirst && (depth == moveDepth -1)) {
-            if (depth == 0) return 0;
-            int heuristicScore = getHeuristicScores(initialBoard, b,  lmc,  evaluator);
-            if (heuristicScore > 0) {
-            	return heuristicScore;
+        if(usingHeuristics){
+            if(heuristicsFirst && depth == moveDepth-1){
+                if (depth == 0) return 0;
+                    int heuristicScore = getHeuristicScores(initialBoard, b,  lmc,  evaluator);
+                    if (heuristicScore > 0)
+                        return heuristicScore;
             }
-        }
-        
-        else
-            if(usingHeuristics && depth == 0){
+            else if(depth == 0)
                 return getHeuristicScores(initialBoard, b,  lmc,  evaluator);
-            }
+        }
         
         
         //Initialises minimiser
