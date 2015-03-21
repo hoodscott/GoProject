@@ -19,7 +19,7 @@ public class CompetitiveMenuListener implements ActionListener {
         } else if (e.getActionCommand().equals("Make AI Move") && GraphicalUI.getCompetitive()) {
             GraphicalUI.boardJP.GUIAIMove();
         } else if (e.getActionCommand().equals("Select AI Type")) {
-            Object[] aiValues = {"MiniMax", "AlphaBeta","MagicalMiniMax"};
+            Object[] aiValues = {"MiniMax", "AlphaBeta","HybridMiniMax"};
             Component frame = null;
             String s = (String) JOptionPane.showInputDialog(frame,
                     "Select AI type to use...", "AI Type",

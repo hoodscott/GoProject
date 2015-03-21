@@ -31,7 +31,7 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
         setTitle("Choose Players");
 
         // Create components for objective selection
-        String[] playerOptions = {"Human", "MiniMax", "AlphaBeta", "MagicalMiniMax"};
+        String[] playerOptions = {"Human", "MiniMax", "AlphaBeta", "HybridMiniMax"};
         optionsWhiteBox = new JComboBox(playerOptions);
         optionsBlackBox = new JComboBox(playerOptions);
 

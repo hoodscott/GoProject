@@ -13,20 +13,17 @@ import java.util.ArrayList;
 import main.BoardFormatException;
 import main.Translator;
 
-public class MagicalMiniMax extends HeuristicsAI {
+public class HybridMinimax extends HeuristicsAI {
 
     private Objective evaluator;
     private LegalMoveChecker lmc;
-    
-    private final boolean heuristicsFirst = true;
-    private boolean usingHeuristics = false;
 
     int opponent;
     Action miniAction;
     Action opponentAction;
     
     // constructor
-    public MagicalMiniMax(Objective objective, int c, String[] heuristics) {
+    public HybridMinimax(Objective objective, int c, String[] heuristics) {
         evaluator = objective;
         colour = c;
         opponent = evaluator.getOtherColour(colour);
@@ -271,9 +268,9 @@ public class MagicalMiniMax extends HeuristicsAI {
             //try{System.out.println(Translator.translateToString(opponent)+"\'s group can no longer be captured.");} catch(BoardFormatException e){}
             return -1;
         }
-    }
+    }    
     //Sorts list by integer.
-    public void numericSort(ArrayList <Entry<Integer, Board>> m){
+    private void numericSort(ArrayList <Entry<Integer, Board>> m){
         Collections.sort(m, NUMERIC);
     }
     

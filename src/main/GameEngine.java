@@ -5,7 +5,7 @@ import ai.AI;
 import ai.Objective;
 import ai.AlphaBeta;
 import ai.AIException;
-import ai.MagicalMiniMax;
+import ai.HybridMinimax;
 
 public class GameEngine {
   //* Class to keep track of the current game of Go and make moves on the board 
@@ -88,7 +88,7 @@ public class GameEngine {
     
     //Sets AI to be the heuristics using minimax algorithm.
     public void setMagicalMiniMax(int colour, String[] heuristicNames){
-        ai = new MagicalMiniMax(objective, colour, heuristicNames);
+        ai = new HybridMinimax(objective, colour, heuristicNames);
     }
 
     // Sets the AI to be an alpha beta algorithm

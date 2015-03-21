@@ -17,7 +17,8 @@ import main.LegalMoveChecker;
 
 public abstract class HeuristicsAI extends AI{
     
-    ArrayList<Heuristic> heuristics = new ArrayList();
+    protected ArrayList<Heuristic> heuristics = new ArrayList();
+    protected boolean usingHeuristics = false;
     
     //Method for setting heuristics
     public void setHeuristics(String[] names){

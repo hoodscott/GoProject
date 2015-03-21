@@ -12,6 +12,7 @@ public abstract class AI {
     protected static int moveDepth = 5;
     protected long moveStartTime = 0;
     protected long moveFinishTime = 0;
+    protected final boolean heuristicsFirst = false;
 
     //Colour of the AI
     protected int colour;

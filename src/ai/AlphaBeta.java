@@ -16,8 +16,6 @@ public class AlphaBeta extends HeuristicsAI {
     private int globalScore = Integer.MIN_VALUE;
     private static final int MINIMUM = Integer.MIN_VALUE;
     private static final int MAXIMUM = Integer.MAX_VALUE;
-    private final boolean heuristicsFirst = false;
-    private boolean usingHeuristics = false;
 
     int opponent;
     Action abAction;

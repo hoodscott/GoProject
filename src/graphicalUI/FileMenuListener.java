@@ -34,7 +34,7 @@ public class FileMenuListener implements ActionListener {
                     + "\\src\\saveData\\boards";
             defaultDir = FileIO.pathOS(defaultDir);
         }
-        System.out.println(defaultDir);
+        //System.out.println(defaultDir);
 
         // load specified board
         if (e.getActionCommand().equals("Load Problem")) {
