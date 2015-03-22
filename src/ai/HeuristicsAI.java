@@ -19,6 +19,7 @@ public abstract class HeuristicsAI extends AI{
     
     protected ArrayList<Heuristic> heuristics = new ArrayList();
     protected boolean usingHeuristics = false;
+    protected static boolean heuristicsFirst = false;
     
     //Method for setting heuristics
     public void setHeuristics(String[] names){
@@ -53,5 +54,6 @@ public abstract class HeuristicsAI extends AI{
         return sum;
     }
     
-
+    public static boolean getHeuristicsFirst(){return heuristicsFirst;}
+    public static void setHeuristicsFirst(boolean setting){ heuristicsFirst = setting;}
 }

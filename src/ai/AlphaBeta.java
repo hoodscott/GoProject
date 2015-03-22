@@ -105,10 +105,11 @@ public class AlphaBeta extends HeuristicsAI {
         
         if(usingHeuristics){
             if(heuristicsFirst && depth == moveDepth-1){
-                if (depth == 0) return 0;
-                    int heuristicScore = getHeuristicScores(initialBoard, b,  lmc,  evaluator);
-                    if (heuristicScore > 0)
-                        return heuristicScore;
+                if (depth == 0) 
+                    return 0;
+                int heuristicScore = getHeuristicScores(initialBoard, b,  lmc,  evaluator);
+                if (heuristicScore > 0)
+                    return heuristicScore;
             }
             else if(depth == 0)
                 return getHeuristicScores(initialBoard, b,  lmc,  evaluator);
@@ -165,10 +166,11 @@ public class AlphaBeta extends HeuristicsAI {
         
         if(usingHeuristics){
             if(heuristicsFirst && depth == moveDepth-1){
-                if (depth == 0) return 0;
-                    int heuristicScore = getHeuristicScores(initialBoard, b,  lmc,  evaluator);
-                    if (heuristicScore > 0)
-                        return heuristicScore;
+                if (depth == 0) 
+                    return 0;
+                int heuristicScore = getHeuristicScores(initialBoard, b,  lmc,  evaluator);
+                if (heuristicScore > 0)
+                    return heuristicScore;
             }
             else if(depth == 0)
                 return getHeuristicScores(initialBoard, b,  lmc,  evaluator);

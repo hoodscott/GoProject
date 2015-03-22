@@ -7,9 +7,11 @@ import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import ai.AI;
+import ai.HeuristicsAI;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -27,6 +29,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
     private JPanel heuristicsChoice, finishButtons, depthPanel;
     private JLabel depthLabel;
     private JFormattedTextField depthField;
+    JCheckBox heuristicsFirst;
     NumberFormatter depthFormat;
     @SuppressWarnings("rawtypes")
     private JList hList;
@@ -80,6 +83,11 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
         depthPanel.add(depthLabel); 
         depthPanel.add(depthField);
         this.add(depthPanel);
+        
+        //Create tickbox for initial heuristic call
+        heuristicsFirst = new JCheckBox("Use heuristics on first call");
+        heuristicsFirst.setSelected(HeuristicsAI.getHeuristicsFirst());
+        this.add(heuristicsFirst);
 
         // Create panel for OK/Cancel
         finishButtons = new JPanel();
@@ -103,8 +111,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
             selectedHeuristicsIndices = hList.getSelectedIndices();
             AI.setSearchDepth((Integer)depthField.getValue());
             selectedHeuristics = new String[selectedHeuristicsIndices.length];
-            //int index = hList.getSelectedIndex();
-            //System.out.println(index);
+            HeuristicsAI.setHeuristicsFirst(heuristicsFirst.isSelected());
             for (int i = 0; i < selectedHeuristicsIndices.length; i++) {
                 selectedHeuristics[i] = heuristics[selectedHeuristicsIndices[i]];
                 //System.out.println(selectedHeuristics[i]);

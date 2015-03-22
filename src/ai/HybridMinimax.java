@@ -39,6 +39,7 @@ public class HybridMinimax extends HeuristicsAI {
         lmc = legalMoves.clone();
         Board initialState = b.clone();
         movesConsidered = 0;
+        int result;
         //Translator.printGameBoard(b);
 
         //Checks if objective for killing is already met and passes accordingly. 
@@ -55,7 +56,11 @@ public class HybridMinimax extends HeuristicsAI {
                     //try{System.out.println(Translator.translateToString(colour)+" made move "+x+" "+y);} catch(BoardFormatException e){}        
                     //Translator.printGameBoard(currentState);
                     lmc.addBoard(currentState);
-                    int result = min(initialState, currentState, false, moveDepth-1);
+                    if(heuristicsFirst){
+                        result = heuristicsMin(initialState, currentState, false);
+                    }
+                    else
+                        result = min(initialState, currentState, false, moveDepth-1);
                     lmc.removeLast();
 
                     //If success is guaranteed.
@@ -69,7 +74,7 @@ public class HybridMinimax extends HeuristicsAI {
         //If no move improves the situation (result is 0 or -1), pass.
         return new Coordinate(-1, -1);
     }
-
+    
     //Occurs after opponent move
     public int max(Board initialState, Board b, boolean passed, int depth) {
         
