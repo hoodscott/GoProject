@@ -5,66 +5,72 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-//action listener for buttons in grid on bottom left
+/*
+ * Listener for buttons within GUI's grid panel.
+ */
 public class GridListener implements ActionListener {
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        JButton button = (JButton) e.getSource();
-        if (button.getText().equals("Undo")) {
-            if (GraphicalUI.getGameEngine().undoLastMove()) {
-                if (!GraphicalUI.getCompetitive()) {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 
-                    GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
-                    GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                    GraphicalUI.updateMessage("Undone move");
-                } else {
-                    GraphicalUI.boardJP.changePlayer();
-                    GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
-                    GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                    GraphicalUI.updateMessage("Undone move");
-                }
-            } else {
-                GraphicalUI.updateMessage("No more moves to undo");
-            }
-        }
-        if (button.getText().equals("Pass")) {
-            // TODO create pass function in gameEngine
-            if (true) {
-                if (GraphicalUI.getCompetitive() && !BoardJPanel.humanVShuman) {
-                    GraphicalUI.updateMessage(BoardJPanel.getPlayer() + " passes");
-                    GraphicalUI.boardJP.changePlayer();
-                    GraphicalUI.boardJP.GUIAIMove();
-                    GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
-                    GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                    System.out.println(BoardJPanel.getPlayer());
-                } else {
-                    GraphicalUI.updateMessage(BoardJPanel.getPlayer() + " passes");
-                    GraphicalUI.boardJP.changePlayer();
-                    GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
-                    GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                    System.out.println(BoardJPanel.getPlayer());
-                }
+		JButton button = (JButton) e.getSource();
 
-            } else {
-                GraphicalUI.updateMessage(BoardJPanel.getPlayer()
-                        + " could not pass");
-            }
-        }
-        if (button.getText().equals("Reset")) {
-            if (GraphicalUI.getGameEngine().restartBoard()) {
-                BoardJPanel.listeners = true;
-                BoardJPanel.setPlayerInt(1);
-                GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
-                GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
-                GraphicalUI.updateMessage("Board has been reset");
-            } else {
-                GraphicalUI.updateMessage("Nothing to reset");
-            }
-        }
-        if (button.getText().equals("Next AI Move")) {
-            GraphicalUI.boardJP.GUIAIMove();
-            GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
-        }
-    }
+		if (button.getText().equals("Undo")) {
+			// Undo last move upon board
+			if (GraphicalUI.getGameEngine().undoLastMove()) {
+				if (!GraphicalUI.getCompetitive()) {
+					// Don't change player in competitive mode
+					GraphicalUI.player.setText(BoardJPanel.getPlayer()
+							+ " to move");
+					GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+					GraphicalUI.updateMessage("Undone move");
+				} else {
+					GraphicalUI.boardJP.changePlayer();
+					GraphicalUI.player.setText(BoardJPanel.getPlayer()
+							+ " to move");
+					GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+					GraphicalUI.updateMessage("Undone move");
+				}
+			} else {
+				GraphicalUI.updateMessage("No more moves to undo");
+			}
+		}
+		if (button.getText().equals("Pass")) {
+			// Pass current move
+			if (GraphicalUI.getCompetitive() && !BoardJPanel.humanVShuman) {
+				GraphicalUI.updateMessage(BoardJPanel.getPlayer() + " passes");
+				GraphicalUI.boardJP.changePlayer();
+				GraphicalUI.boardJP.GUIAIMove();
+				GraphicalUI.player
+						.setText(BoardJPanel.getPlayer() + " to move");
+				GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+				System.out.println(BoardJPanel.getPlayer());
+			} else {
+				GraphicalUI.updateMessage(BoardJPanel.getPlayer() + " passes");
+				GraphicalUI.boardJP.changePlayer();
+				GraphicalUI.player
+						.setText(BoardJPanel.getPlayer() + " to move");
+				GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+				System.out.println(BoardJPanel.getPlayer());
+			}
+		}
+		if (button.getText().equals("Reset")) {
+			// Reset to originally loaded board
+			if (GraphicalUI.getGameEngine().restartBoard()) {
+				BoardJPanel.listeners = true;
+				BoardJPanel.setPlayerInt(1);
+				GraphicalUI.player
+						.setText(BoardJPanel.getPlayer() + " to move");
+				GraphicalUI.boardJP.loadBoard(GraphicalUI.getGameEngine());
+				GraphicalUI.updateMessage("Board has been reset");
+			} else {
+				GraphicalUI.updateMessage("Nothing to reset");
+			}
+		}
+		if (button.getText().equals("Next AI Move")) {
+			// Let AI play against itself for AI vs. AI
+			GraphicalUI.boardJP.GUIAIMove();
+			GraphicalUI.player.setText(BoardJPanel.getPlayer() + " to move");
+		}
+	}
 }

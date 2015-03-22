@@ -1,10 +1,8 @@
 package graphicalUI;
 
 import java.awt.Frame;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
 import java.util.Arrays;
 import ai.AI;
 import ai.HeuristicsAI;
@@ -23,8 +21,13 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.NumberFormatter;
 
+/*
+ * Input box for selecting heuristics and search depth.
+ * Displays list of implemented heuristics and input text box for depth.
+ */
 public class HeuristicChooseDialog extends JDialog implements ActionListener, ListSelectionListener {
 
+	// Variables for input box creation
     private static final long serialVersionUID = 1L;
     private JPanel heuristicsChoice, finishButtons, depthPanel;
     private JLabel depthLabel;
@@ -40,7 +43,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
     private final String[] heuristics = {"EightStonesInARow","EyeCreator","Hane","LibertyCounter","LivingSpace","SixStonesInARow","ThreeLiberties","TwoPointEye","UnsettledThree"};
     private static String searchDepthMessage = "Search Depth: ";
 
-    // Constructor
+    // Constructor using GUI's frame
     @SuppressWarnings({"unchecked", "rawtypes"})
     public HeuristicChooseDialog(Frame GUIFrame) {
         super(GUIFrame, true);
@@ -107,15 +110,16 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
     // React to OK or cancel buttons
     public void actionPerformed(ActionEvent e) {
         if ("OK".equals(e.getActionCommand())) {
-            // Set heuristic choice
+            // Set heuristic choices
             selectedHeuristicsIndices = hList.getSelectedIndices();
             AI.setSearchDepth((Integer)depthField.getValue());
             selectedHeuristics = new String[selectedHeuristicsIndices.length];
             HeuristicsAI.setHeuristicsFirst(heuristicsFirst.isSelected());
             for (int i = 0; i < selectedHeuristicsIndices.length; i++) {
                 selectedHeuristics[i] = heuristics[selectedHeuristicsIndices[i]];
-                //System.out.println(selectedHeuristics[i]);
             }
+            
+            // Check user did not cancel
             cancelled = false;
             setVisible(false);
         } else {
@@ -137,6 +141,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
         }
     }
 
+    // Methods for returning set heuristics
     public String[] getSelectedHeuristics() {
         return this.selectedHeuristics;
     }

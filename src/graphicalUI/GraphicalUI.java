@@ -28,17 +28,18 @@ import javax.swing.border.EtchedBorder;
 
 import main.GameEngine;
 
+/*
+ * Creation of the graphical user interface in Swing.
+ * Displays toolbar, with menus and sub-menus, buttons and toggle buttons.
+ * Keyboard shortcuts and listeners specified also.
+ */
 public class GraphicalUI {
 
     // private static instance variables
     private static GameEngine gameEngine;
-    static String saveName;
-    static String saveLocation;
     private static ArrayList<String> messages;
-    static String[] heuristics;
-    static int[] heuristicIndices;
 
-    // private instance variables for swing
+    // instance variables for swing
     private JMenuBar menuBar;
     private JMenu fileMenu, subMenu;
     private JMenuItem menuItem;
@@ -46,18 +47,16 @@ public class GraphicalUI {
     private JButton undoButton, resetButton;
     private JToggleButton coordinatesButton;
     private JLabel objectiveLabel, playerLabel, feedbackLabel;
-
-    // private static instance variables for swing
-    private static boolean bounds, competitive; // for toggle buttons
-    private static boolean mixedStones, deleteStones; // problem creation
-    private static boolean problemSettings; // user selected objective and bounds
-    // option
-    private static boolean rowNumbers;
-
     private static JMenu competitiveFileMenu, creationFileMenu;
     public static JLabel aiLabel;
     public static JLabel aiTimeLabel;
     public static JLabel feedback;
+
+    // variables for mode options
+    private static boolean bounds, competitive; // for toggle buttons
+    private static boolean mixedStones, deleteStones; // problem creation
+    private static boolean problemSettings; // user selected objective and bounds
+    private static boolean rowNumbers;
 
     // public static instance variables for swing
     static JFrame frame;
@@ -67,10 +66,17 @@ public class GraphicalUI {
     static JButton passButton;
     static JToggleButton creationButton, competitiveButton, boundsButton;
     static JButton aiMoveButton;
+    
+    // static variables
     static String aiType;
+    static String aiType2; // for AI vs AI mode
+    static String saveName;
+    static String saveLocation;
+    static String[] heuristics;
+    static int[] heuristicIndices;
 
     /**
-     * Start the gui.
+     * Start the GUI, show frame.
      */
     public void start(final GameEngine gE) {
         EventQueue.invokeLater(new Runnable() {
@@ -85,9 +91,9 @@ public class GraphicalUI {
     }
 
     /**
-     * Create the application.
+     * Initialise GUI with GameEngine instance.
      *
-     * @param gE
+     * @param gE instance of the controller with board representation
      */
     public GraphicalUI(GameEngine gE) {
         setGameEngine(gE);
@@ -99,33 +105,33 @@ public class GraphicalUI {
      */
     private void initialise() {
 
-        // define size of window in 16:9 ratio
+        // Define size of window in 16:9 ratio
         int xInit, yInit, width, height;
         width = 1200;
         height = (width / 16) * 9;
         xInit = 100;
         yInit = 100;
 
-        // set stones to alternate as default
+        // Set stones to alternate as default
         mixedStones = true;
 
-        // initial mode as creation
+        // Initial mode as creation
         competitive = false;
 
-        // default AI as minimax
+        // Default AI as minimax
         aiType = "MiniMax";
 
-        // set inital save name
+        // Set inital save name
         saveName = "Untitled";
 
-        // initalise messages arraylist
+        // Initalise message log ArrayList
         messages = new ArrayList<>();
         messages.add("");
         messages.add("");
         messages.add("Click to place stones.");
 
         // START OF FRAME //
-        // frame to hold all elements
+        // Frame to hold all elements
         frame = new JFrame();
         Insets ins = frame.getInsets();
         Dimension frameSize = new Dimension(width + ins.left + ins.right,
@@ -134,21 +140,21 @@ public class GraphicalUI {
         frame.setSize(frameSize);
         frame.setPreferredSize(frameSize);
         frame.setMinimumSize(frameSize);
-        // inner class to make sure all processes are terminated when the
+        // Inner class to make sure all processes are terminated when the
         // program is closed
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent close) {
                 Runtime.getRuntime().halt(0);
             }
         });
-        // set window title
+        // Set window title
         setFrameTitle(saveName);
 
         // START OF MENUBAR //
-        // Create the menu bar.
+        // Create the menu bar
         menuBar = new JMenuBar();
 
-        // Build the file menu.
+        // Build the file menu
         fileMenu = new JMenu("File");
         fileMenu.setMnemonic(KeyEvent.VK_F);
         fileMenu.getAccessibleContext().setAccessibleDescription(
@@ -170,7 +176,7 @@ public class GraphicalUI {
         menuItem.addActionListener(new NewMenuListener());
         subMenu.add(menuItem);
 
-        // Menu item for new game
+        // Menu item for custom sized new game
         menuItem = new JMenuItem("Custom...", KeyEvent.VK_C);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
                 ActionEvent.CTRL_MASK));
@@ -181,7 +187,7 @@ public class GraphicalUI {
 
         fileMenu.add(subMenu);
 
-        // Menu items for saving the board
+        // Menu item for loading the board
         menuItem = new JMenuItem("Load Problem", KeyEvent.VK_L);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,
                 ActionEvent.CTRL_MASK));
@@ -209,7 +215,7 @@ public class GraphicalUI {
 
         fileMenu.addSeparator();
 
-        // menu item for exiting the program
+        // Menu item for exiting the program
         menuItem = new JMenuItem("Exit", KeyEvent.VK_E);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
                 ActionEvent.ALT_MASK));
@@ -262,7 +268,7 @@ public class GraphicalUI {
                 "Menu with options during problem creation mode");
         menuBar.add(creationFileMenu);
 
-        // Menu item for problem settings
+        // Menu items for problem settings
         menuItem = new JMenuItem("Objective & Bounds", KeyEvent.VK_O);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
                 ActionEvent.CTRL_MASK));
@@ -281,7 +287,7 @@ public class GraphicalUI {
 
         creationFileMenu.addSeparator();
 
-        // menu item for heuristic chooser
+        // Menu item for heuristic chooser
         menuItem = new JMenuItem("Choose Heuristics", KeyEvent.VK_H);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,
                 ActionEvent.ALT_MASK));
@@ -292,7 +298,7 @@ public class GraphicalUI {
 
         creationFileMenu.addSeparator();
 
-        // menu item for using black stones
+        // Menu item for using black stones
         menuItem = new JMenuItem("Use Black Stones", KeyEvent.VK_B);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B,
                 ActionEvent.CTRL_MASK));
@@ -301,7 +307,7 @@ public class GraphicalUI {
         menuItem.addActionListener(new CreationMenuListener());
         creationFileMenu.add(menuItem);
 
-        // menu item for using white stones
+        // Menu item for using white stones
         menuItem = new JMenuItem("Use White Stones", KeyEvent.VK_W);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
                 ActionEvent.CTRL_MASK));
@@ -310,7 +316,7 @@ public class GraphicalUI {
         menuItem.addActionListener(new CreationMenuListener());
         creationFileMenu.add(menuItem);
 
-        // menu item for using white/black stones
+        // Menu item for using white/black stones
         menuItem = new JMenuItem("Use Mixed Stones", KeyEvent.VK_M);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,
                 ActionEvent.CTRL_MASK));
@@ -321,7 +327,7 @@ public class GraphicalUI {
 
         creationFileMenu.addSeparator();
 
-        // menu item for removing stones
+        // Menu item for removing stones
         menuItem = new JMenuItem("Delete Stones", KeyEvent.VK_D);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
                 ActionEvent.CTRL_MASK));
@@ -330,58 +336,50 @@ public class GraphicalUI {
         menuItem.addActionListener(new CreationMenuListener());
         creationFileMenu.add(menuItem);
 
-        // Build help menu for debugging commands
+        // Build debug menu
         fileMenu = new JMenu("Debug");
         fileMenu.setMnemonic(KeyEvent.VK_D);
         fileMenu.getAccessibleContext()
                 .setAccessibleDescription(
-                        "This menu does nothing but could be used for debugging the program");
+                        "Menu used for debugging the program");
         menuBar.add(fileMenu);
 
-        // menu item for a debug command
-        menuItem = new JMenuItem("Toggle Row Numbers", KeyEvent.VK_A);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
-                ActionEvent.ALT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Toggle coordinates");
-        menuItem.addActionListener(new DebugMenuListener());
-        fileMenu.add(menuItem);
-
-        // menu item for a debug command
+        // Menu item to show the log
         menuItem = new JMenuItem("Show Log", KeyEvent.VK_A);
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "Shows the log of the program");
         menuItem.addActionListener(new DebugMenuListener());
         fileMenu.add(menuItem);
 
-        // Build help menu in the menu bar.
+        // Build help menu in the menu bar
         fileMenu = new JMenu("Help");
         fileMenu.setMnemonic(KeyEvent.VK_H);
         fileMenu.getAccessibleContext().setAccessibleDescription(
                 "There should be helpful things here.");
         menuBar.add(fileMenu);
 
-        // menu item for getting help
+        // Menu item for keyboard shortcuts
         menuItem = new JMenuItem("Show Keyboard Shortcuts", KeyEvent.VK_H);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,
                 ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
-                "Shouts for help");
+                "Display keybaord shortcuts");
         menuItem.addActionListener(new HelpMenuListener());
         fileMenu.add(menuItem);
 
-        // add entire menu bar to frame
+        // Add entire menu bar to frame
         frame.setJMenuBar(menuBar);
 
         // END OF MENUBAR //
+        
         // START OF PANE LAYOUT //
-        // border layout for frame
+        // Border layout for frame
         pane = frame.getContentPane();
         pane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         pane.setLayout(new BorderLayout());
 
         // START OF BOARD PANEL //
-        // left panel for the board
+        // Left panel for the board
         boardPanel = new JPanel();
         boardPanel.setBackground(Color.lightGray);
         boardPanel.setBorder(BorderFactory
@@ -393,151 +391,137 @@ public class GraphicalUI {
 
         pane.add(boardPanel, BorderLayout.WEST);
 
-        // END OF BOARD PANEL
+        // END OF BOARD PANEL //
+        
         // START OF BUTTON PANEL //
-        // right panel for buttons
+        // Right panel for buttons
         buttonPanel = new JPanel(new GridLayout(0, 1));
         buttonPanel.setBorder(BorderFactory
                 .createEtchedBorder(EtchedBorder.LOWERED));
 
         // START OF LABEL PANEL //
-        // top right panel for choosing player and move
+        // Top right panel for choosing player and move
         labelPanel = new JPanel(new GridLayout(0, 2));
         labelPanel.setBackground(Color.lightGray);
         labelPanel.setBorder(BorderFactory
                 .createEtchedBorder(EtchedBorder.LOWERED));
 
-        // labels for player chooser
+        // Labels for player chooser
         objectiveLabel = new JLabel("      Objective:");
         objective = new JLabel();
         objective.setText("No set objective");
 
-        // add objective labels to panel
+        // Add objective labels to panel
         labelPanel.add(objectiveLabel);
         labelPanel.add(objective);
 
-        // add padding to panel
+        // Add padding to panel
         labelPanel.add(new JPanel());
         labelPanel.add(new JPanel());
 
-        // labels to show whose turn it is
+        // Labels to show whose turn it is
         playerLabel = new JLabel("      Player: ");
         player = new JLabel("Black to move");
 
-        // add labels to panel
+        // Add labels to panel
         labelPanel.add(playerLabel);
         labelPanel.add(player);
 
-        // add padding to panel
+        // Add padding to panel
         labelPanel.add(new JPanel());
         labelPanel.add(new JPanel());
 
-        // labels to show invalid moves
+        // Labels to show invalid moves
         feedbackLabel = new JLabel("     User Message: ");
         feedback = new JLabel("Click to place stones");
 
-        // add labels to panel
+        // Add labels to panel
         labelPanel.add(feedbackLabel);
         labelPanel.add(feedback);
 
-        // add padding to panel
+        // Add padding to panel
         labelPanel.add(new JPanel());
         labelPanel.add(new JPanel());
 
-        // labels to show current AI type
+        // Labels to show current AI type
         aiLabel = new JLabel("    AI Type: ");
         aiLabel.setVisible(false);
         currentAILabel = new JLabel(aiType);
         currentAILabel.setVisible(false);
 
-        // add labels to panel
+        // Add labels to panel
         labelPanel.add(aiLabel);
         labelPanel.add(currentAILabel);
 
-        // add label panel to top of button panel
+        // Add label panel to top of button panel
         buttonPanel.add(labelPanel, BorderLayout.NORTH);
 
         // END OF LABEL PANEL //
-        // START OF LABEL PANEL //
-        // grid panel for some buttons
+        
+        // START OF GRID PANEL //
+        // Grid panel for some buttons
         gridPanel = new JPanel(new GridLayout(0, 2));
 
-        // add padding to panel
+        // Add padding to panel
         gridPanel.add(new JPanel());
         gridPanel.add(new JPanel());
 
-        // toggle button to select competitive mode
+        // Toggle button to select competitive mode
         competitiveButton = new JToggleButton("Competitive Play Mode");
         competitiveButton.setMnemonic(KeyEvent.VK_P);
         gridPanel.add(competitiveButton);
-
-        // add action listener for this button
         competitiveButton.addActionListener(new GridToggleListener());
 
-        // toggle button to select creation mode
+        // Toggle button to select creation mode
         creationButton = new JToggleButton("Problem Creation Mode");
         creationButton.setMnemonic(KeyEvent.VK_C);
         creationButton.setSelected(true);
         gridPanel.add(creationButton);
-
-        // add action listener for this button
         creationButton.addActionListener(new GridToggleListener());
 
-        // button to undo last move
+        // Button to undo last move
         undoButton = new JButton("Undo");
         undoButton.setMnemonic(KeyEvent.VK_U);
         gridPanel.add(undoButton);
-
-        // add action listener for this button
         undoButton.addActionListener(new GridListener());
 
-        // button to reset problem
+        // Button to reset problem
         resetButton = new JButton("Reset");
         resetButton.setMnemonic(KeyEvent.VK_R);
         gridPanel.add(resetButton);
-
-        // add action listener for this button
         resetButton.addActionListener(new GridListener());
 
-        // button to allow players to pass
+        // Button to allow players to pass
         passButton = new JButton("Pass");
         passButton.setMnemonic(KeyEvent.VK_A);
         passButton.setEnabled(false);
         gridPanel.add(passButton);
-
-        // add action listener for this button
         passButton.addActionListener(new GridListener());
 
-        // button to let AI move
+        // Button to let AI move
         aiMoveButton = new JButton("Next AI Move");
         aiMoveButton.setMnemonic(KeyEvent.VK_I);
         aiMoveButton.setEnabled(false);
         gridPanel.add(aiMoveButton);
-
-        // add action listener for this button
         aiMoveButton.addActionListener(new GridListener());
 
-        // button to show bounds of problem
+        // Button to show bounds of problem
         boundsButton = new JToggleButton("Show Bounds");
         boundsButton.setMnemonic(KeyEvent.VK_B);
         boundsButton.setEnabled(false);
         gridPanel.add(boundsButton);
-
-        // add action listener for this button
         boundsButton.addActionListener(new GridToggleListener());
 
-        // button to show co-ordinates of problem
+        // Toggle button to show coordinates of problem
         coordinatesButton = new JToggleButton("Show Coordinates");
         coordinatesButton.setMnemonic(KeyEvent.VK_O);
         gridPanel.add(coordinatesButton);
-
-        // add action listener for this button
         coordinatesButton.addActionListener(new GridToggleListener());
 
-        // add grid panel to button panel
+        // Add grid button panel to button panel
         buttonPanel.add(gridPanel, BorderLayout.SOUTH);
 
-        // add right hand panel to pane
+        // Add right hand panel to pane
         pane.add(buttonPanel);
 
         // END OF BUTTON PANEL //
@@ -545,7 +529,7 @@ public class GraphicalUI {
         // END OF FRAME //
     }
 
-    // game engine getter and setter for external action liFsteners
+    // Game engine getter and setter for external action listeners
     public static GameEngine getGameEngine() {
         return gameEngine;
     }
@@ -554,7 +538,7 @@ public class GraphicalUI {
         gameEngine = ge;
     }
 
-    // Getters for GUI booleans
+    // Getters for GUI booleans for modes
     public static boolean getBounds() {
         return bounds;
     }
@@ -575,7 +559,7 @@ public class GraphicalUI {
         return problemSettings;
     }
 
-    // Setters for GUI booleans
+    // Setters for GUI booleans for modes
     public static void setProblemSettings(boolean b) {
         problemSettings = b;
     }
@@ -583,29 +567,7 @@ public class GraphicalUI {
     public static void setBounds(boolean b) {
         bounds = b;
     }
-
-    // change the mode of the gui, true changes to competitive, false to creation
-    public static void changeMode(boolean competitiveMode) {
-        // set competitive mode tools
-        competitiveFileMenu.setEnabled(competitiveMode);
-        aiLabel.setVisible(competitiveMode);
-        currentAILabel.setVisible(competitiveMode);
-        passButton.setEnabled(competitiveMode);
-        // set creation mode tools
-        creationFileMenu.setEnabled(!competitiveMode);
-        // set buttons and mode
-        competitive = competitiveMode;
-        competitiveButton.setSelected(competitiveMode);
-        creationButton.setSelected(!competitiveMode);
-        // set message
-        if (competitiveMode) {
-            GraphicalUI.updateMessage("Entered Competitive Mode");
-        } else {
-            GraphicalUI.updateMessage("Entered Problem Creation Mode");
-
-        }
-    }
-
+    
     public static void setMixedStones(boolean b) {
         mixedStones = b;
     }
@@ -618,7 +580,30 @@ public class GraphicalUI {
         frame.setTitle("GoProblemSolver: " + s);
     }
 
-    // getter and setter for the row numbers
+
+    // Change the mode of the gui, true changes to competitive, false to creation
+    public static void changeMode(boolean competitiveMode) {
+        // Set competitive mode tools
+        competitiveFileMenu.setEnabled(competitiveMode);
+        aiLabel.setVisible(competitiveMode);
+        currentAILabel.setVisible(competitiveMode);
+        passButton.setEnabled(competitiveMode);
+        // Set creation mode tools
+        creationFileMenu.setEnabled(!competitiveMode);
+        // Set buttons and mode
+        competitive = competitiveMode;
+        competitiveButton.setSelected(competitiveMode);
+        creationButton.setSelected(!competitiveMode);
+        // Set user feedback message
+        if (competitiveMode) {
+            GraphicalUI.updateMessage("Entered Competitive Mode");
+        } else {
+            GraphicalUI.updateMessage("Entered Problem Creation Mode");
+
+        }
+    }
+
+    // Getter and setter for the row numbers
     public static void toggleRowNumbers() {
         rowNumbers = !rowNumbers;
     }
@@ -627,13 +612,10 @@ public class GraphicalUI {
         return rowNumbers;
     }
 
-    // user message methods
+    // User message methods
     public static void updateMessage(String s) {
         messages.add(s);
         int l = messages.size();
-        // html in a swing label...
-        // TODO find a nice way to show previous moves
-        // feedback.setText("<html>"+messages.get(l-1)+"<br>"+messages.get(l-2)+"<br>"+messages.get(l-3)+"</html>");
         feedback.setText(messages.get(l - 1));
     }
 
@@ -648,7 +630,7 @@ public class GraphicalUI {
         return messages;
     }
 
-    // method to enable/disable bounds button
+    // Method to enable/disable bounds button
     public static void updateBoundsButton(boolean b) {
         boundsButton.setEnabled(b);
         boundsButton.setText("Show Bounds");
