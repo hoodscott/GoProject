@@ -10,12 +10,15 @@ import javax.swing.JTextArea;
 
 import main.FileIO;
 
+/*
+ * Listener used by the help menu.
+ */
 public class HelpMenuListener implements ActionListener {
 
-    // TODO implement helper actions
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Show Keyboard Shortcuts")) {
+        	// Displays keyboard shortcuts in window using info file
             String filePath = FileIO.pathOS(FileIO.RELATIVEPATH + "\\info\\GUIShortcuts");
             ArrayList<String> keyboardFile = FileIO
                     .readFile(filePath);
@@ -23,12 +26,14 @@ public class HelpMenuListener implements ActionListener {
             helpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             helpFrame.setBounds(150, 150, 300, 600);
             StringBuilder sb = new StringBuilder();
+            
+            // Append shortcuts to list
             for (String t : keyboardFile) {
                 sb.append(t);
                 sb.append("\n");
             }
+            
             helpFrame.getContentPane().add(new JTextArea(sb.toString()), BorderLayout.CENTER);
-            //helpFrame.pack();
             helpFrame.setVisible(true);
             GraphicalUI.updateMessage("Displayed Keyboard Shortcuts");
         }

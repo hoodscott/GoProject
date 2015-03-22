@@ -5,15 +5,15 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-
-import main.Coordinate;
-import ai.Objective;
-
 import java.awt.*;
 import java.awt.event.*;
 
+/*
+ * Creates input box for player choice when entering competitive play mode.
+ */
 public class PlayerChooseDialog extends JDialog implements ActionListener {
 
+	// Variables for input box
     private static final long serialVersionUID = 1L;
     private JPanel playerBlackChoice, playerWhiteChoice, finishButtons;
     @SuppressWarnings("rawtypes")
@@ -21,7 +21,7 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
     private JButton OKButton, cancelButton;
     public static boolean cancelled, AIvsAI, humanVShuman;
 
-    // Constructor
+    // Constructor using GUI's frame
     @SuppressWarnings({"unchecked", "rawtypes"})
     public PlayerChooseDialog(Frame GUIFrame) {
         super(GUIFrame, true);
@@ -30,7 +30,7 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
 
         setTitle("Choose Players");
 
-        // Create components for objective selection
+        // Create components for player selection
         String[] playerOptions = {"Human", "MiniMax", "AlphaBeta", "HybridMiniMax"};
         optionsWhiteBox = new JComboBox(playerOptions);
         optionsBlackBox = new JComboBox(playerOptions);
@@ -66,11 +66,11 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
     // React to OK or cancel buttons
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("OK")) {
-            // get player choices
+            // Get player choices
             String blackPlayer = (String) optionsBlackBox.getSelectedItem();
             String whitePlayer = (String) optionsWhiteBox.getSelectedItem();
 
-            // assume human player will play first and swap accordingly
+            // Assume human player will play first and swap accordingly
             String currentPlayer = BoardJPanel.getPlayer();
             if (blackPlayer.equals("Human") && !whitePlayer.equals("Human")) {
                 if (currentPlayer.equals("White")) {
@@ -90,19 +90,20 @@ public class PlayerChooseDialog extends JDialog implements ActionListener {
                 GraphicalUI.currentAILabel.setText(blackPlayer);
             }
 
-            // else AI vs AI mode
+            // Else AI vs AI mode
             if (!blackPlayer.equals("Human") && !whitePlayer.equals("Human")) {
-                // TODO: Allow 2 separate AIs to play against each other?
                 GraphicalUI.aiType = blackPlayer;
+                GraphicalUI.aiType2 = whitePlayer;
                 GraphicalUI.updateMessage("AI type selected: " + blackPlayer);
                 GraphicalUI.currentAILabel.setText(blackPlayer);
                 AIvsAI = true;
             }
 
-            // else Human vs Human mode
+            // Else Human vs Human mode
             if ((blackPlayer.equals("Human")) && whitePlayer.equals("Human")) {
                 GraphicalUI.currentAILabel.setText(blackPlayer);
                 humanVShuman = true;
+                AIvsAI = false;
             }
 
             cancelled = false;

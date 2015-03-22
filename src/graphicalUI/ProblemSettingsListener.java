@@ -2,10 +2,12 @@ package graphicalUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-
 import javax.swing.JOptionPane;
 
+/*
+ * Listener used by problem settings options within the Problem Creation menu.
+ * Allows for setting of bounds, objective and heuristics.
+ */
 public class ProblemSettingsListener implements ActionListener {
 
     @Override
@@ -41,7 +43,7 @@ public class ProblemSettingsListener implements ActionListener {
         GraphicalUI.setBounds(true);
     }
 
-    // Method to choose the problems heuristics
+    // Method to choose the problem's heuristics
     public static void heuristicsBox() {
         HeuristicChooseDialog hcd = new HeuristicChooseDialog(
                 GraphicalUI.frame);
@@ -54,7 +56,7 @@ public class ProblemSettingsListener implements ActionListener {
                 GraphicalUI.heuristics = hcd.getSelectedHeuristics();
                 GraphicalUI.heuristicIndices = hcd.getSelectedHeuristicsIndices();
             } catch (Exception NullPointer) {
-                //
+                // If no heuristics were chosen occasional exception
             }
         } else {
             JOptionPane.showMessageDialog(GraphicalUI.frame,
