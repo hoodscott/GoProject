@@ -1,7 +1,7 @@
 package ai;
 
 //This is the abstract class for all AI heuristic types
-import ai.heuristics.general.Hane;
+import ai.heuristics.specific.Hane;
 import ai.heuristics.general.EyeCreator;
 import ai.heuristics.specific.EightStonesInARow;
 import ai.heuristics.general.LibertyCounter;

@@ -72,7 +72,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
         heuristicsChoice.add(listScroller);
         this.add(heuristicsChoice);
         
-        //Create text field for editing search depth
+        // Create text field for editing search depth
         depthFormat = new NumberFormatter();
         depthFormat.setMinimum(1);
         depthFormat.setMaximum(1000);
@@ -87,7 +87,7 @@ public class HeuristicChooseDialog extends JDialog implements ActionListener, Li
         depthPanel.add(depthField);
         this.add(depthPanel);
         
-        //Create tickbox for initial heuristic call
+        // Create tickbox for initial heuristic call
         heuristicsFirst = new JCheckBox("Use heuristics on first call");
         heuristicsFirst.setSelected(HeuristicsAI.getHeuristicsFirst());
         this.add(heuristicsFirst);
