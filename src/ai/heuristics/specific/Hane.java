@@ -1,4 +1,4 @@
-package ai.heuristics.general;
+package ai.heuristics.specific;
 
 import main.Board;
 import main.Coordinate;
