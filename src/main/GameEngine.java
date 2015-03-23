@@ -6,6 +6,7 @@ import ai.Objective;
 import ai.AlphaBeta;
 import ai.AIException;
 import ai.HybridMinimax;
+import ai.heuristics.UnconditionalLife;
 
 public class GameEngine {
   //* Class to keep track of the current game of Go and make moves on the board 

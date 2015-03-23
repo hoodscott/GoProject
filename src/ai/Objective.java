@@ -111,7 +111,7 @@ public class Objective {
     }
 
     //Gets opponent colour
-    public int getOtherColour(int colour) {
+    public static int getOtherColour(int colour) {
         if (colour == Board.BLACK) {
             return Board.WHITE;
         } else {

@@ -4,6 +4,7 @@ import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
+import ai.heuristics.UnconditionalLife;
 import java.util.AbstractMap;
 import java.util.Comparator;
 import java.util.Collections;
@@ -19,6 +20,7 @@ public class HybridMinimax extends HeuristicsAI {
     private LegalMoveChecker lmc;
 
     int opponent;
+    int terminalStates;
     Action miniAction;
     Action opponentAction;
     
@@ -114,12 +116,15 @@ public class HybridMinimax extends HeuristicsAI {
 
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
-            //try{System.out.println(Translator.translateToString(opponent)+"\'s group can no longer be captured.");} catch(BoardFormatException e){} 
-            return -1;
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+                return -1;
+            return 1;
         } //If there are no more legal moves and the AI's defended group still lives.
         else {
             //try{System.out.println(Translator.translateToString(colour)+"\'s succesfully defended.");} catch(BoardFormatException e){} 
-            return 1;
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+                return 1;
+            return -1;
         }
     }
 
@@ -165,11 +170,18 @@ public class HybridMinimax extends HeuristicsAI {
         //If the AI's stone group can no longer be captured.
         if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
             //try{System.out.println(Translator.translateToString(colour)+"\'s succesfully defended.");} catch(BoardFormatException e){} 
-            return 1;
-        } //If there are no more legal moves and the AI's defended group still lives.
-        else {
-            //try{System.out.println(Translator.translateToString(opponent)+"\'s group can no longer be captured.");} catch(BoardFormatException e){} 
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+                return 1;
+            }
             return -1;
+        }
+        //If the opponent's group still lives.
+        else {
+            //try{System.out.println(Translator.translateToString(opponent)+"\'s group can no longer be captured.");} catch(BoardFormatException e){}
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+                return -1;
+            }
+            return 1;
         }
     }
     
@@ -215,12 +227,15 @@ public class HybridMinimax extends HeuristicsAI {
 
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
-            //try{System.out.println(Translator.translateToString(opponent)+"\'s group can no longer be captured.");} catch(BoardFormatException e){} 
-            return -1;
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+                return -1;
+            return 1;
         } //If there are no more legal moves and the AI's defended group still lives.
         else {
             //try{System.out.println(Translator.translateToString(colour)+"\'s succesfully defended.");} catch(BoardFormatException e){} 
-            return 1;
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+                return 1;
+            return -1;
         }
     }
     
@@ -266,12 +281,19 @@ public class HybridMinimax extends HeuristicsAI {
 
         //If the AI's stone group can no longer be captured.
         if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
-            //try{System.out.println(Translator.translateToString(colour)+"\'s succesfully defended.");} catch(BoardFormatException e){}
-            return 1;
-        } //If there are no more legal moves and the AI's defended group still lives.
+            //try{System.out.println(Translator.translateToString(colour)+"\'s succesfully defended.");} catch(BoardFormatException e){} 
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+                return 1;
+            }
+            return -1;
+        }
+        //If the opponent's group still lives.
         else {
             //try{System.out.println(Translator.translateToString(opponent)+"\'s group can no longer be captured.");} catch(BoardFormatException e){}
-            return -1;
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+                return -1;
+            }
+            return 1;
         }
     }    
     //Sorts list by integer.

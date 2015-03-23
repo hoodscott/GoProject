@@ -6,6 +6,7 @@ import main.BoardFormatException;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
+import ai.heuristics.UnconditionalLife;
 import main.Translator;
 
 public class MiniMax extends AI {
@@ -13,8 +14,10 @@ public class MiniMax extends AI {
     private final Objective evaluator;
     private LegalMoveChecker lmc;
     int opponent;
+    long timeSpent;
     Action miniAction;
     Action opponentAction;
+    Board winner;
 
     public MiniMax(Objective objective, int c) {
         evaluator = objective;
@@ -28,6 +31,7 @@ public class MiniMax extends AI {
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) throws AIException {
         lmc = legalMoves.clone();
         movesConsidered = 0;
+        timeSpent = 0;
         //printGameBoard(b);
 
         //Checks if objective for killing is already met and passes accordingly. 
@@ -47,12 +51,13 @@ public class MiniMax extends AI {
 
                     //If success is guaranteed.
                     if (result == 1) {
+                        //Translator.printGameBoard(winner);
+                        //UnconditionalLife.printLastDetails();
                         return currentCoord;
                     }
                 }
             }
         }
-
         //If no move improves the situation (result is 0 or -1), pass.
         return new Coordinate(-1, -1);
     }
@@ -63,6 +68,7 @@ public class MiniMax extends AI {
         movesConsidered++;
         //If the defended group has been killed, return failure.
         if (opponentAction == Action.KILL && evaluator.checkSucceeded(b, opponent)) {
+            //winner = b;
             return -1;
         }
 
@@ -91,10 +97,17 @@ public class MiniMax extends AI {
 
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
-            return -1;
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+                return -1;
+            //winner = b;
+            return 1;
         } //If there are no more legal moves and the AI's defended group still lives.
         else {
-            return 1;
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+                //winner = b;
+                return 1;
+            }
+            return -1;
         }
     }
 
@@ -105,6 +118,7 @@ public class MiniMax extends AI {
         
         //If the AI has captured the opposing group
         if (miniAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
+            //winner = b;
             return 1;
         }
 
@@ -133,10 +147,17 @@ public class MiniMax extends AI {
 
         //If the AI's stone group can no longer be captured.
         if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
-            return 1;
-        } //If there are no more legal moves and the AI's defended group still lives.
-        else {
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+                //winner = b;
+                return 1;
+            }
             return -1;
+        } //If the opponent's group still lives.
+        else {
+            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+                return -1;
+            //winner = b;
+            return 1;
         }
     }
 }

@@ -9,6 +9,7 @@ import javax.swing.JFileChooser;
 import main.BoardFormatException;
 import main.FileIO;
 import ai.Objective;
+import ai.heuristics.UnconditionalLife;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -91,6 +92,7 @@ public class FileMenuListener implements ActionListener {
 				GraphicalUI
 						.updateMessage("User cancelled load board selection");
 			}
+                        UnconditionalLife.isItAlive(GraphicalUI.getGameEngine().getCurrentBoard(),GraphicalUI.getGameEngine().getObjective().getPosition());
 
 		} else if (e.getActionCommand().equals("Save Problem")) {
 			// Save current board to location if already saved or prompt user
