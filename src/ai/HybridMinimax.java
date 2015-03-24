@@ -116,15 +116,15 @@ public class HybridMinimax extends HeuristicsAI {
 
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
                 return -1;
-            return 1;
+            //return 1;
         } //If there are no more legal moves and the AI's defended group still lives.
         else {
             //try{System.out.println(Translator.translateToString(colour)+"\'s succesfully defended.");} catch(BoardFormatException e){} 
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
                 return 1;
-            return -1;
+            //return -1;
         }
     }
 
@@ -170,18 +170,18 @@ public class HybridMinimax extends HeuristicsAI {
         //If the AI's stone group can no longer be captured.
         if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
             //try{System.out.println(Translator.translateToString(colour)+"\'s succesfully defended.");} catch(BoardFormatException e){} 
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
                 return 1;
-            }
-            return -1;
+            //}
+            //return -1;
         }
         //If the opponent's group still lives.
         else {
             //try{System.out.println(Translator.translateToString(opponent)+"\'s group can no longer be captured.");} catch(BoardFormatException e){}
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
                 return -1;
-            }
-            return 1;
+            //}
+           //return 1;
         }
     }
     
@@ -227,15 +227,15 @@ public class HybridMinimax extends HeuristicsAI {
 
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
                 return -1;
-            return 1;
+            //return 1;
         } //If there are no more legal moves and the AI's defended group still lives.
         else {
             //try{System.out.println(Translator.translateToString(colour)+"\'s succesfully defended.");} catch(BoardFormatException e){} 
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
                 return 1;
-            return -1;
+            //return -1;
         }
     }
     
@@ -282,18 +282,18 @@ public class HybridMinimax extends HeuristicsAI {
         //If the AI's stone group can no longer be captured.
         if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
             //try{System.out.println(Translator.translateToString(colour)+"\'s succesfully defended.");} catch(BoardFormatException e){} 
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
                 return 1;
-            }
-            return -1;
+            //}
+            //return -1;
         }
         //If the opponent's group still lives.
         else {
             //try{System.out.println(Translator.translateToString(opponent)+"\'s group can no longer be captured.");} catch(BoardFormatException e){}
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
                 return -1;
-            }
-            return 1;
+            //}
+            //return 1;
         }
     }    
     //Sorts list by integer.

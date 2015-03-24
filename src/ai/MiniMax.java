@@ -97,17 +97,17 @@ public class MiniMax extends AI {
 
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
                 return -1;
             //winner = b;
-            return 1;
+            //return 1;
         } //If there are no more legal moves and the AI's defended group still lives.
         else {
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
                 //winner = b;
                 return 1;
-            }
-            return -1;
+            //}
+            //return -1;
         }
     }
 
@@ -147,17 +147,17 @@ public class MiniMax extends AI {
 
         //If the AI's stone group can no longer be captured.
         if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
                 //winner = b;
                 return 1;
-            }
-            return -1;
+            //}
+            //return -1;
         } //If the opponent's group still lives.
         else {
-            if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
+            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
                 return -1;
             //winner = b;
-            return 1;
+            //return 1;
         }
     }
 }
