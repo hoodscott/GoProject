@@ -24,6 +24,8 @@ public class CoordinateTest {
         coordinate = null;
     }
 
+    // tests instantiation of a new coordinate 
+    // and that it holds the intended values
     @Test
     public void testNewCoordinate() {
         Coordinate c = new Coordinate(4, 16);

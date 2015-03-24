@@ -30,7 +30,7 @@ public class Coordinate {
     }
 
     @Override
-    //Comptutes really crappy hashcode for coordinates.
+    //Computes really crappy hashcode for coordinates.
     //Will fail to be unique with all coordinate ranges >=100
     public int hashCode() {
         int hash = this.x;

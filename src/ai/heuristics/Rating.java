@@ -1,6 +1,8 @@
 package ai.heuristics;
+/*
+ * List all scores for general heuristics here. This is mostly to make editing/adjusting easier.
+ */
 
-//List all scores for general heuristics here. This is mostly to make editing/adjusting easier.
 public enum Rating {
 
     //Jamie's Heuristics   

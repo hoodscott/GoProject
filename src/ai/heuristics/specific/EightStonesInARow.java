@@ -6,7 +6,11 @@ import ai.heuristics.Rating;
 import main.Board;
 import main.LegalMoveChecker;
 
-// Determines whether a move will make 8 in a row - being a group that is always alive
+/* 
+ * Determines whether a move will make 8 in a row - 
+ * being a group that is always alive 
+ */
+
 public class EightStonesInARow implements Heuristic {
 
 	@Override

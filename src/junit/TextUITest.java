@@ -12,14 +12,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TextUITest {
-    /*
+    
      private GameEngine g;
      private TextUI ti;
 
      @Before
      public void setUp() throws Exception {
      g = new GameEngine();
-     ti = new TextUI(g);
+     ti = new TextUI();
      }
 
      @After
@@ -31,22 +31,22 @@ public class TextUITest {
      @Test
      public void New9x9() {
      String cmd[] = {"n"};
-     ti.newGame(cmd);
+     ti.startGame(cmd);
      }
 
      @Test
      public void NewCustomBoard() {
      String cmd1[] = {"n", "19", "19"};
-     ti.newGame(cmd1);
+     ti.startGame(cmd1);
      String cmd2[] = {"n","11","11"};
-     ti.newGame(cmd2);
+     ti.startGame(cmd2);
      }
 
      @Test
      public void NewGameTooManyArgs() {
      try {
      String cmd[] = {"One","Two"};
-     ti.newGame(cmd);
+     ti.startGame(cmd);
      } catch (Exception e) {
      assertTrue(e instanceof BadInputException);
      }
@@ -56,7 +56,7 @@ public class TextUITest {
      public void NewGameWrongDimensions() {
      try {
      String cmd[] = {"n","a","b"};
-     ti.newGame(cmd);
+     ti.startGame(cmd);
      } catch (Exception e) {
      assertTrue(e instanceof BadInputException);
      }
@@ -130,7 +130,7 @@ public class TextUITest {
      //input interpreted correctly
      public void SaveBoardInterpreted() {
      String cmd[] = {"sb", "testBoard"};
-     g.newGame();
+     g.startGame();
      ti.saveBoard(cmd);
      // check FileIO.writeBoard(board) is called
      assertTrue(false);
@@ -141,7 +141,7 @@ public class TextUITest {
      public void SaveBoardBadPath() {
      try {
      String cmd[] = {"sb","/badpath/testboard"};
-     g.newGame();
+     g.startGame();
      ti.saveBoard(cmd);
      } catch (Exception e) {
      assertTrue(e instanceof BadInputException);
@@ -151,7 +151,7 @@ public class TextUITest {
      public void SaveBoardTooManyArgs() {
      try {
      String cmd[] = {"sb","/badpath/testboard", "extraArg"};
-     g.newGame();
+     g.startGame();
      ti.saveBoard(cmd);
      } catch (Exception e) {
      assertTrue(e instanceof BadInputException);
@@ -195,7 +195,7 @@ public class TextUITest {
      //Testing for to few arguments in command.
      @Test
      public void TooFewArgs() {
-     try{g.newGame();
+     try{g.startGame();
      ti.move(new String[] {"m","0","0"});}
      catch(Exception e){
      assertTrue(e instanceof BadInputException);
@@ -205,7 +205,7 @@ public class TextUITest {
      //Testing for to few arguments in command.
      @Test
      public void moveTooManyArgs() {
-     try{g.newGame();
+     try{g.startGame();
      ti.move(new String[] {"m","0","0","b","bananas"});}
      catch(Exception e){
      assertTrue(e instanceof BadInputException);
@@ -215,19 +215,19 @@ public class TextUITest {
      //Testing for bad numbers in command.
      @Test
      public void moveBadNumbers() {
-     try{g.newGame();
+     try{g.startGame();
      ti.move(new String[] {"m","a","0","w"});}
      catch(Exception e){
      assertTrue(e instanceof BadInputException);
      }
 
-     try{g.newGame();
+     try{g.startGame();
      ti.move(new String[] {"m","0","b","w"});}
      catch(Exception e){
      assertTrue(e instanceof BadInputException);
      }
 
-     try{g.newGame();
+     try{g.startGame();
      ti.move(new String[] {"m","a","b","w"});}
      catch(Exception e){
      assertTrue(e instanceof BadInputException);
@@ -237,29 +237,29 @@ public class TextUITest {
      //Testing for negative numbers in command.
      @Test
      public void moveNegativeNumbers() {
-     try{g.newGame();
+     try{g.startGame();
      ti.move(new String[] {"m","-1","0","w"});}
      catch(Exception e){
      assertTrue(e instanceof BadInputException);
      }
 
-     try{g.newGame();
+     try{g.startGame();
      ti.move(new String[] {"m","0","-4","w"});}
      catch(Exception e){
      assertTrue(e instanceof BadInputException);
      }
 
-     try{g.newGame();
+     try{g.startGame();
      ti.move(new String[] {"m","-6","-100000","w"});}
      catch(Exception e){
      assertTrue(e instanceof BadInputException);
      }  
      }
-
+     /*
      //Testing for numbers outside of board command.
      @Test
      public void moveOutofBounds() {
-     try{g.newGame(new Board(20, 20));
+     try{g.startGame(new Board(20, 20));
      ti.move(new String[] {"m","20","0","w"});}
      catch(Exception e){
      assertTrue(e instanceof BadInputException);

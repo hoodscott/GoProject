@@ -6,15 +6,17 @@ import main.LegalMoveChecker;
 import ai.Objective;
 import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
-
+/* 
+ * Finds unsettled three case where opponent group is surrounding
+ * to enable stopping opponent creating 2 eyes
+ */
 public class UnsettledThree implements Heuristic {
 
     boolean unsettledThreeCheck;
     Coordinate middleCoord;
     int liberties;
 
-    // Finds unsettled three case where opponent group is surrounding
-    // to enable stopping opponent creating 2 eyes
+    
     @Override
     public int assess(Board initialBoard, Board currentBoard,
             LegalMoveChecker lmc, Objective obj, int colourAI) {
