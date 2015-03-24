@@ -8,7 +8,12 @@ import ai.Objective.Action;
 import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
 
-//Counts possible living space for defending group.
+
+/*
+ * Counts possible living space for defending group.
+ * i.e. potential space where the defending group
+ * could create an eye.
+ */
 public class LivingSpace implements Heuristic {
 
     private int livingSpaceInitial;

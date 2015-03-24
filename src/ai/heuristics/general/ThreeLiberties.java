@@ -5,11 +5,13 @@ import main.LegalMoveChecker;
 import ai.Objective;
 import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
-
+/*
+ * Returns move with at least three liberties - useful for eye making and
+ * other strong moves such as defending or attacking a rabbity six 
+ */
 public class ThreeLiberties implements Heuristic {
 
-    // Returns move with at least three liberties - useful for eye making and
-    // other strong moves such as defending or attacking a rabbity six
+     
     @Override
     public int assess(Board initialBoard, Board currentBoard,
             LegalMoveChecker lmc, Objective obj, int colourAI) {
