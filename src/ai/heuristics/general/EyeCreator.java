@@ -6,7 +6,10 @@ import main.LegalMoveChecker;
 import ai.Objective;
 import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
-
+/*
+ * Looks for almost complete one and two point eyes
+ * returns EYE_CREATOR value if found
+ */
 public class EyeCreator implements Heuristic {
 
 	@Override
