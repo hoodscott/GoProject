@@ -48,7 +48,8 @@ public class ObjectiveTest {
      */
 
     // Tests the getPosition() method to ensure
-    // 
+    // it returns the same String representation 
+    // as Coordinate does
     @Test
     public void testGetPosition() {
         Coordinate position = objective.getPosition();
@@ -56,6 +57,8 @@ public class ObjectiveTest {
         assertEquals(coord.toString(), position.toString());
     }
 
+    // tests the CheckSucceded method to ensure i returns
+    // the right value when a group has been killed and when it is alive
     @Test
     public void testCheckSucceeded() {
         Board board = new Board();
@@ -67,18 +70,23 @@ public class ObjectiveTest {
         assertEquals(false, alive);
     }
 
+    
     @Test
     public void testIsStarting() {
         boolean start = objective.isStarting(1);
         assertEquals(true, start);
     }
 
+    // tests that the correct colour is returned when
+    // the getStartingColour method is returned
     @Test
     public void testGetStartingColour() {
         int colour = objective.getStartingColour();
         assertEquals(1, colour);
     }
 
+    // tests that the correct colour is returned when
+    // the getOtherColour method is returned
     @Test
     public void testGetOtherColour() {
         int enemy = objective.getOtherColour(1);
@@ -87,6 +95,8 @@ public class ObjectiveTest {
         assertEquals(1, player);
     }
 
+    // tests the toString method to make sure the 
+    // correct string is intended string is returned
     @Test
     public void testToString() {
         String expected = ("Black to kill 2 ,4");
