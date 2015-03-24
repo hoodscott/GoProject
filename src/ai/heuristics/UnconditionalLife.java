@@ -7,7 +7,9 @@ import main.Board;
 import main.BoardFormatException;
 import main.Coordinate;
 import main.Translator;
-
+/*
+ * Determines if a Group is alive and cannot be killed
+ */
 public class UnconditionalLife {
     
     static int defendingColour;

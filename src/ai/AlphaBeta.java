@@ -7,7 +7,9 @@ import ai.Objective.Action;
 import java.util.ArrayList;
 import main.BoardFormatException;
 import main.Translator;
-
+/*
+ * 
+ */
 public class AlphaBeta extends HeuristicsAI {
 
     private Objective evaluator;
