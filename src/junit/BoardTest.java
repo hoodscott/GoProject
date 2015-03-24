@@ -22,6 +22,7 @@ public class BoardTest {
         board = null;
     }
 
+    // test default board has the intended default height and width.
     @Test
     public void defaultBoard() {
         Board b = new Board();
@@ -32,6 +33,8 @@ public class BoardTest {
         assertEquals(result, true);
     }
 
+    // test default board has the height and width that it has 
+    //been initialised with, in this case 9.
     @Test
     public void boardGivenDimensions() {
         Board b = new Board(9, 9);
@@ -42,6 +45,7 @@ public class BoardTest {
         assertEquals(result, true);
     }
 
+    
     @Test
     public void boardGivenArray() {
         byte b[][] = {{0, 0, 0, 0}, {0, 1, 1, 0}, {1, 2, 0, 1},
@@ -51,7 +55,8 @@ public class BoardTest {
 
         assertEquals(result, true);
     }
-
+    
+    // tests that our board.clone() is returning the correct board.
     @Test
     public void boardClone() {
         byte b[][] = {{0, 0, 0, 0}, {0, 1, 1, 0}, {1, 2, 0, 1},
@@ -63,6 +68,7 @@ public class BoardTest {
         assertEquals(result, true);
     }
 
+    // tests Board equality
     @Test
     public void boardEquals() {
         Board a = new Board(2, 2);
@@ -79,6 +85,9 @@ public class BoardTest {
         assertFalse(b.equals(c));
     }
 
+    // tests the board.set() method to make sure
+    // i sets the correct value in the correct 
+    // position.
     @Test
     public void settingBoardPositions() {
         board = new Board();

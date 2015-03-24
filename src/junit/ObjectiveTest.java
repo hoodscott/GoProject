@@ -23,12 +23,14 @@ public class ObjectiveTest {
         objective = null;
     }
 
+    // Tests instantiation of a new Objective 
     @Test
     public void testNewObjective() {
         Objective objTest = new Objective("defend", 2, new Coordinate(1, 5));
         assertTrue(objTest instanceof Objective);
     }
 
+    
     @Test
     public void testGetOriginalAction() {
         String original = objective.getOriginalAction();
@@ -45,6 +47,8 @@ public class ObjectiveTest {
      }
      */
 
+    // Tests the getPosition() method to ensure
+    // 
     @Test
     public void testGetPosition() {
         Coordinate position = objective.getPosition();

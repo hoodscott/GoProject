@@ -12,7 +12,10 @@ import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 
-// heuristic to detect 2 point eyes instead of just 1 point
+/*
+ * Looks for almost complete two point eyes
+ * returns TWO_POINT_EYE value if found
+ */
 public class TwoPointEye implements Heuristic {
 	@Override
 	public int assess(Board initialBoard, Board currentBoard,

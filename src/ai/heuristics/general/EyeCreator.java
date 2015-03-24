@@ -7,7 +7,7 @@ import ai.Objective;
 import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
 /*
- * Looks for almost complete one and two point eyes
+ * Looks for almost complete one point eyes
  * returns EYE_CREATOR value if found
  */
 public class EyeCreator implements Heuristic {
