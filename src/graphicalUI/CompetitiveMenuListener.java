@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-/*
+/**
  * Listener used by the Competive Play menu within the GUI.
  * Reacts to user selection of options.
  */

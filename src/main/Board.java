@@ -2,7 +2,10 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+/**
+ * Class used to create Boards
+ * and check equality.
+ */
 public class Board {
 
     private final byte[][] boardRep;

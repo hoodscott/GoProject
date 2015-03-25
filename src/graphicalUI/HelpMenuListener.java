@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 
 import main.FileIO;
 
-/*
+/**
  * Listener used by the help menu.
  */
 public class HelpMenuListener implements ActionListener {

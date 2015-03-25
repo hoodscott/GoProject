@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-/*
+/**
  * Listener for buttons within GUI's grid panel.
  */
 public class GridListener implements ActionListener {

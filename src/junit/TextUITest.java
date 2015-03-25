@@ -10,7 +10,10 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class for TextUI,
+ * test textUI operations
+ */
 public class TextUITest {
     
      private GameEngine g;
@@ -30,15 +33,15 @@ public class TextUITest {
 
      @Test
      public void New9x9() {
-     String cmd[] = {"n"};
+     String cmd[] = {"sg"};
      ti.startGame(cmd);
      }
 
      @Test
      public void NewCustomBoard() {
-     String cmd1[] = {"n", "19", "19"};
+     String cmd1[] = {"sg", "19", "19"};
      ti.startGame(cmd1);
-     String cmd2[] = {"n","11","11"};
+     String cmd2[] = {"sg","11","11"};
      ti.startGame(cmd2);
      }
 
@@ -55,7 +58,7 @@ public class TextUITest {
      @Test
      public void NewGameWrongDimensions() {
      try {
-     String cmd[] = {"n","a","b"};
+     String cmd[] = {"sq","a","b"};
      ti.startGame(cmd);
      } catch (Exception e) {
      assertTrue(e instanceof BadInputException);

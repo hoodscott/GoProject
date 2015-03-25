@@ -12,7 +12,7 @@ import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 
-/*
+/**
  * Looks for almost complete two point eyes
  * returns TWO_POINT_EYE value if found
  */

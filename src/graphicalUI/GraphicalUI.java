@@ -28,7 +28,7 @@ import javax.swing.border.EtchedBorder;
 
 import main.GameEngine;
 
-/*
+/**
  * Creation of the graphical user interface in Swing.
  * Displays toolbar, with menus and sub-menus, buttons and toggle buttons.
  * Keyboard shortcuts and listeners specified also.

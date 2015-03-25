@@ -7,7 +7,11 @@ import main.BadInputException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class for BadinputException,
+ * verify apporpriate message is output 
+ * when exception is thrown
+ */
 public class BadInputExceptionTest {
 
     private BadInputException bie;

@@ -11,7 +11,11 @@ import main.LegalMoveChecker;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class forLegalMoveChecker,
+ * checks legal moves, captures, if a stone
+ * is occupied and the superKo rule.
+ */
 public class LegalMoveCheckerTest {
     
      private LegalMoveChecker moveChecker;

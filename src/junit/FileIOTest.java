@@ -13,7 +13,12 @@ import
 org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class for FileIO,
+ * tests loading and saving of boards to files
+ * and exceptions are thrown when appropriate
+ * 
+ */
 public
 class FileIOTest {
 	

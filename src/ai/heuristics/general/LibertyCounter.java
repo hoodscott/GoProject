@@ -8,7 +8,7 @@ import ai.Objective.Action;
 import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
 
-/*
+/**
  * Counts number of liberties of the objective specified group
  * then compares that number to the initial board
  */

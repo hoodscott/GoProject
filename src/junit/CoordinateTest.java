@@ -9,7 +9,11 @@ import main.Coordinate;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class for Coordinate,
+ * tests instantiation of Coordinates 
+ * and setting of vlaues for them.
+ */
 public class CoordinateTest {
 
     private Coordinate coordinate;

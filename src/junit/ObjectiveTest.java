@@ -8,7 +8,11 @@ import ai.Objective;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class for Objective,
+ * tests new Objectives and whether or not
+ * the objective has been completed.
+ */
 public class ObjectiveTest {
 
     private Objective objective;

@@ -15,7 +15,10 @@ import main.Translator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * Tests translation of boards, objectives
+ * and game instructions.
+ */
 public class TranslatorTest {
     
      private Translator translator;

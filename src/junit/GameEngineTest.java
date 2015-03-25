@@ -13,7 +13,12 @@ import ai.Objective;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class for GameEngine,
+ *  checks objective, undo and reset functions of 
+ *  the board and if moves are made successfully
+ * 
+ */
 public class GameEngineTest {
     
 

@@ -1,6 +1,6 @@
 package ai;
 
-/*
+/**
  * Holds objective for a player and assesses whether it is met or not.
  */
 import main.Board;

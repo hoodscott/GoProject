@@ -6,7 +6,13 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.util.GregorianCalendar;
-
+/**
+ * Class that implements the TextUI
+ * uses the commands 
+ * "help", "exit", "saveBoard (sb)", "saveLog (sl)", "view (v)", 
+ * "move (m)", "pass (p)", "checkLegal (cl)", "startGame (sg)",
+ * "loadBoard (lb)", "undo (u)".
+ */
 public class TextUI {
 
     //Instance variables

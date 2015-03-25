@@ -7,7 +7,11 @@ import main.BoardFormatException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class for BadFormatException,
+ * verify apporpriate message is output 
+ * when exception is thrown
+ */
 public class BoardFormatExceptionTest {
 
     private BoardFormatException bfe;

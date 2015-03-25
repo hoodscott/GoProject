@@ -1,5 +1,5 @@
 package ai.heuristics;
-/*
+/**
  * List all scores for general heuristics here. This is mostly to make editing/adjusting easier.
  */
 

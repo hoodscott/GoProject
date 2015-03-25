@@ -1,6 +1,6 @@
 package ai;
 
-/*
+/**
  * This is the abstract class for all AI heuristic types
  */
 import ai.heuristics.specific.Hane;

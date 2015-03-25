@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import main.Board;
 import main.GameEngine;
 
-/*
+/**
  * Listener used by New Problem sub-menu within the File menu 
  * for the loading of new, empty boards.
  */

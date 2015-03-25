@@ -8,7 +8,7 @@ import main.LegalMoveChecker;
 import ai.Objective.Action;
 import ai.heuristics.UnconditionalLife;
 import main.Translator;
-/*
+/**
  * 
  */
 public class MiniMax extends AI {

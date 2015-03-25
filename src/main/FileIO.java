@@ -2,7 +2,11 @@ package main;
 
 import java.io.*;
 import java.util.ArrayList;
-
+/**
+ * Class used for file input and output,
+ * loading and saving boards to file.
+ *
+ */
 public final class FileIO {
 
     //Default paths

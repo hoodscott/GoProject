@@ -1,5 +1,7 @@
 package main;
-
+/**
+ * Class used to instantiate new coordinates
+ */
 public class Coordinate {
 
     public int x;

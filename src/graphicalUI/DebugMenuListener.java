@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-/*
+/**
  * Listener used by Debug menu.
  */
 public class DebugMenuListener implements ActionListener {

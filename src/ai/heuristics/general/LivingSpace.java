@@ -9,7 +9,7 @@ import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
 
 
-/*
+/**
  * Counts possible living space for defending group.
  * i.e. potential space where the defending group
  * could create an eye.
