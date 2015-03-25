@@ -4,11 +4,9 @@ import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
-import java.util.ArrayList;
-import main.BoardFormatException;
 import main.Translator;
-/*
- * 
+/**
+ * Alpha-Beta tree search class which includes recursive pruning on future moves.
  */
 public class AlphaBeta extends HeuristicsAI {
 
@@ -25,7 +23,8 @@ public class AlphaBeta extends HeuristicsAI {
     Board initialBoard;
     
     // constructor
-    public AlphaBeta(Objective objective, int c, String[] heuristics) {
+    @SuppressWarnings("static-access")
+	public AlphaBeta(Objective objective, int c, String[] heuristics) {
         evaluator = objective;
         colour = c;
         opponent = evaluator.getOtherColour(colour);
@@ -219,131 +218,4 @@ public class AlphaBeta extends HeuristicsAI {
             return MINIMUM;
         }
     }
-/*
-    // recursive alphaBeta pruning  
-    private int alphaBeta(Board currentBoard, int alpha, int beta, int player, int depth) {
-    	///////////////////////////////////////////////////////////////////////////
-        // check for terminal position
-        // if killing objective is completed at this stage
-        //Translator.printGameBoard(currentBoard);
-        if (abAction == Action.KILL && evaluator.checkSucceeded(currentBoard, colour)) {
-            //System.out.println("Successfully captured target.");            
-            return MAXIMUM;
-        }
-        // if AI failed to defend 
-        if (opponentAction == Action.KILL && evaluator.checkSucceeded(currentBoard, opponent)) {
-            //System.out.println("Lost target.");
-            return MINIMUM;
-        }
-
-        // if no more valid moves evaluate the board
-        if (noMoreLegalMoves(currentBoard, player)) {
-            if (player == colour) {
-                if (evaluator.checkSucceeded(currentBoard, colour)) {
-                    System.out.println("Successfully defended.");
-                    return MAXIMUM;
-                }
-                
-                else {
-                    System.out.println("Test A");
-                    return MINIMUM;
-                }
-                
-            } else {
-                if (evaluator.checkSucceeded(currentBoard, opponent)) {
-                    System.out.println("Opponent successfully defended.");
-                    return MINIMUM;
-                }
-                
-                else {
-                    System.out.println("Test B");
-                    return MAXIMUM;
-                }
-                
-            }
-        }
-        
-        ///////////////////////////////////////////////////////////////////////////
-        // heuristic call
-        // only call heuristics on first move being evaluated and don't return if less than 0
-        
-        
-        
-        if (heuristicsFirst && depth == moveDepth -1) {
-            if (depth == 0) return 0;
-            int heuristicScore = getHeuristicScores(currentBoard);
-            if (heuristicScore > 0) {
-            	return heuristicScore;
-            }
-        }
-        else
-            if(depth == 0){
-                System.out.println("Heuristics called.");
-                return getHeuristicScores(currentBoard);
-            }
-        //////////////////////////////////////////////////////////////////////////
-        
-        // if none of the conditions above is met then:
-        // if maximizing player`s turn 
-        if (player == colour) {
-            int score = MINIMUM;
-            for (int x = 0; x < currentBoard.getWidth(); x++) {
-                for (int y = 0; y < currentBoard.getHeight(); y++) {
-                    Coordinate currentCoord = new Coordinate(x, y);
-                    if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, colour, true)) {
-                        Board currentState = lmc.getLastLegal();
-                        lmc.addBoard(currentState);
-                        
-                        movesConsidered++;
-                        
-                        // get response to current move from other player
-                        score = Math.max(score, alphaBeta(currentState, alpha, beta, opponent, depth-1));
-                        lmc.removeLast();
-                        alpha = Math.max(alpha, score);
-                        if (beta <= alpha) {
-                            break;          // beta cut-off
-                        }
-                    }
-                }
-            }
-            return score;
-        } // if minimizing player`s turn
-        else {
-            int score = MAXIMUM;
-            for (int x = 0; x < currentBoard.getWidth(); x++) {
-                for (int y = 0; y < currentBoard.getHeight(); y++) {
-                    Coordinate currentCoord = new Coordinate(x, y);
-                    if (currentBoard.get(x, y) == Board.EMPTY_AI && lmc.checkMove(currentBoard, currentCoord, opponent, true)) {
-                        Board currentState = lmc.getLastLegal();
-                        lmc.addBoard(currentState);
-                        
-                        movesConsidered++;
-                        
-                        // get response to current move from other player
-                        score = Math.min(score, alphaBeta(currentState, alpha, beta, colour, depth-1));
-                        lmc.removeLast();
-                        beta = Math.min(beta, score);
-                        if (beta <= alpha) {
-                            break;          // alpha cut-off
-                        }
-                    }
-                }
-            }
-            return score;
-        }
-    }
-
-    // checks if there are not legal moves
-    public boolean noMoreLegalMoves(Board b, int colour) {
-        for (int i = 0; i < b.getWidth(); i++) {
-            for (int j = 0; j < b.getHeight(); j++) {
-                Coordinate c = new Coordinate(i, j);
-                if (lmc.checkMove(b, c, colour, true)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-*/    
 }

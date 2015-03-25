@@ -12,7 +12,7 @@ import ai.Objective;
 import java.awt.*;
 import java.awt.event.*;
 
-/*
+/**
  * Input box displayed for user to enable selection of objective through drop down boxes.
  * Immediately followed after is bounds selection mode.
  */

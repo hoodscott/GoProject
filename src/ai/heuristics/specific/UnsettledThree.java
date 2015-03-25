@@ -6,7 +6,7 @@ import main.LegalMoveChecker;
 import ai.Objective;
 import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
-/* 
+/**
  * Finds unsettled three case where opponent group is surrounding
  * to enable stopping opponent creating 2 eyes
  */

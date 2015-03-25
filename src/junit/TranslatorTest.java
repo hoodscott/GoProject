@@ -15,10 +15,14 @@ import main.Translator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * Tests translation of boards, objectives
+ * and game instructions.
+ */
 public class TranslatorTest {
-    /*
-     private Translator translator;
+    
+     @SuppressWarnings("unused")
+	private Translator translator;
 
      @Before
      public void setUp() throws Exception {
@@ -50,9 +54,10 @@ public class TranslatorTest {
      testInstructions.add(s);
      }
      // create board same as input game instructions for comparison
-     GameEngine ge = new GameEngine(new Board(9, 9), new Objective("defend", 1, new Coordinate(1, 4)), new int[]{0, 0, 3, 9});
-     ge.getCurrentBoard().set(3, 0, 1);
-     ge.getCurrentBoard().set(6, 0, 1);
+     GameEngine ge = new GameEngine(new Board(9, 9), new Objective("defend", 1, new Coordinate(1, 4)));
+     byte one = 1;
+     ge.getCurrentBoard().set(3, 0, one);
+     ge.getCurrentBoard().set(6, 0, one);
      GameEngine ge2 = new GameEngine();
 
      try {
@@ -65,7 +70,7 @@ public class TranslatorTest {
 
      assertTrue(ge.getCurrentBoard().equals(ge2.getCurrentBoard()));
      assertEquals(ge.getObjective().toString(), ge2.getObjective().toString());
-     assertTrue(Arrays.equals(ge.getAISearchValues(), ge2.getAISearchValues()));
+     
      }
 
      @Test
@@ -115,11 +120,12 @@ public class TranslatorTest {
      + "\n........."
      + "\n........."
      + "\n........."
-     + "\nblack defend 1 4"
-     + "\n0 0 3 9";
-     GameEngine ge = new GameEngine(new Board(9, 9), new Objective("defend", 1, new Coordinate(1, 4)), new int[]{0, 0, 3, 9});
-     ge.getCurrentBoard().set(3, 0, 1);
-     ge.getCurrentBoard().set(6, 0, 1);
+     + "\nblack defend 1 4\n";
+     
+     GameEngine ge = new GameEngine(new Board(9, 9), new Objective("defend", 1, new Coordinate(1, 4)));
+     byte one = 1;
+     ge.getCurrentBoard().set(3, 0, one);
+     ge.getCurrentBoard().set(6, 0, one);
 
      try {
      file = Translator.translateToFile(ge);
@@ -144,9 +150,10 @@ public class TranslatorTest {
      + "\n........."
      + "\n";
      String board = "";
-     GameEngine ge = new GameEngine(new Board(9, 9), new Objective("defend", 1, new Coordinate(1, 4)), new int[]{0, 0, 3, 9});
-     ge.getCurrentBoard().set(3, 0, 1);
-     ge.getCurrentBoard().set(6, 0, 1);
+     GameEngine ge = new GameEngine(new Board(9, 9), new Objective("defend", 1, new Coordinate(1, 4)));
+     byte one = 1;
+     ge.getCurrentBoard().set(3, 0, one);
+     ge.getCurrentBoard().set(6, 0, one);
 
      try {
      board = Translator.translateToBoardInstruction(ge.getCurrentBoard());
@@ -171,6 +178,8 @@ public class TranslatorTest {
      assertEquals(s, "white kill 3 3\n");
      }
 
+     // No TranslateToSearchSpaceInstruction() anymore
+     /*
      @Test
      public void testTranslateToSearchSpaceInstruction() {
      int[] ss = {0, 0, 5, 6};
@@ -184,7 +193,7 @@ public class TranslatorTest {
 
      assertEquals(result, "0 0 5 6");
      }
-
+	*/
      @Test
      public void testTranslateToInt() {
      try {
@@ -217,5 +226,5 @@ public class TranslatorTest {
      e.printStackTrace();
      }
      }
-     */
+     
 }

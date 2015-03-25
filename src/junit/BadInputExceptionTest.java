@@ -1,16 +1,20 @@
 package junit;
 
 import static org.junit.Assert.*;
-
 import main.BadInputException;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class for BadinputException,
+ * verify appropriate message is output 
+ * when exception is thrown
+ */
 public class BadInputExceptionTest {
 
-    private BadInputException bie;
+    @SuppressWarnings("unused")
+	private BadInputException bie;
 
     @Before
     public void setUp() throws Exception {

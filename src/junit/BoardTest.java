@@ -7,7 +7,12 @@ import main.Board;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class for Board,
+ * tests insantiation of Boards 
+ * and setting of coordinates on the
+ * board.
+ */
 public class BoardTest {
 
     private Board board;

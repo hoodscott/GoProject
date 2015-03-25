@@ -3,7 +3,9 @@ package main;
 import ai.Objective;
 import java.util.ArrayList;
 
-//A static class containing translation operations for the FileIO and TextUI.
+/**
+ * A static class containing translation operations for the FileIO and TextUI.
+ */
 public class Translator {
 
     //Translates raw lines into GameEngine Object components.

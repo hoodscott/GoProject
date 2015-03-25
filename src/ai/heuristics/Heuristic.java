@@ -3,7 +3,7 @@ package ai.heuristics;
 import ai.Objective;
 import main.Board;
 import main.LegalMoveChecker;
-/*
+/**
  *  General heuristic method to implement and use by alpha-beta.
  */
 public interface Heuristic {

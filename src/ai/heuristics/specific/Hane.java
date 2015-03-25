@@ -6,7 +6,7 @@ import main.LegalMoveChecker;
 import ai.Objective;
 import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
-/*
+/**
  * Checks current board for hane move
  * (wrapping round an opponents stones)
  */

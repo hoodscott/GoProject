@@ -21,7 +21,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.NumberFormatter;
 
-/*
+/**
  * Input box for selecting heuristics and search depth.
  * Displays list of implemented heuristics and input text box for depth.
  */

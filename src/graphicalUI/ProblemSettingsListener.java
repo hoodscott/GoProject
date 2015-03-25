@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
-/*
+/**
  * Listener used by problem settings options within the Problem Creation menu.
  * Allows for setting of bounds, objective and heuristics.
  */

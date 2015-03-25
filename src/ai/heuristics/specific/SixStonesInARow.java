@@ -6,7 +6,7 @@ import ai.Objective;
 import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
 
-/* 
+/**
  * Determines whether a move will give six stones in a row in the corners 
  * useful for capturing
  */

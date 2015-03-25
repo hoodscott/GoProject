@@ -1,5 +1,7 @@
 package main;
-
+/**
+ * Class used to instantiate new coordinates
+ */
 public class Coordinate {
 
     public int x;
@@ -30,7 +32,7 @@ public class Coordinate {
     }
 
     @Override
-    //Computes really crappy hashcode for coordinates.
+    //Computes hashcode for coordinates.
     //Will fail to be unique with all coordinate ranges >=100
     public int hashCode() {
         int hash = this.x;
