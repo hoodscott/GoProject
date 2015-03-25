@@ -99,7 +99,7 @@ public class ObjectiveTest {
     // correct string is intended string is returned
     @Test
     public void testToString() {
-        String expected = ("Black to kill 2 ,4");
+        String expected = ("Black to kill 2, 4");
         System.out.println(objective.toString());
         assertEquals(objective.toString(), expected);
     }
