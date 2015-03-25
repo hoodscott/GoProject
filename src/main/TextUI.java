@@ -23,8 +23,6 @@ public class TextUI {
     private boolean exit;
     private boolean boardSaved;
     private boolean logSaved;
-    private boolean playerPassed;
-    private boolean aiPassed;
     private int playerColour;
 
     //Constructor
@@ -116,6 +114,7 @@ public class TextUI {
                 }
             }
         }
+        sc.close();
     }
 
     //Prints help info
@@ -149,6 +148,7 @@ public class TextUI {
                 String a = temp.nextLine();
                 if (a.equalsIgnoreCase("Y")) {
                     System.out.println("> Then go save it.");
+                    temp.close();
                     return;
                 } else if (a.equalsIgnoreCase("N")) {
                     answer = true;
@@ -157,6 +157,7 @@ public class TextUI {
         }
         exit = true;
         System.out.println("> Exiting UI...");
+        temp.close();
     }
 
     //Starts game with an AI

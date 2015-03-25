@@ -21,7 +21,8 @@ import org.junit.Test;
  */
 public class TranslatorTest {
     
-     private Translator translator;
+     @SuppressWarnings("unused")
+	private Translator translator;
 
      @Before
      public void setUp() throws Exception {

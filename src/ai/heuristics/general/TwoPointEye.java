@@ -1,12 +1,8 @@
 package ai.heuristics.general;
 
 import ai.Objective;
-import ai.Objective.Action;
 import ai.heuristics.Heuristic;
 import ai.heuristics.Rating;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import main.Board;
 import main.Coordinate;

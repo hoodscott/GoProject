@@ -4,17 +4,14 @@ import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
-import ai.heuristics.UnconditionalLife;
 import java.util.AbstractMap;
 import java.util.Comparator;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.ArrayList;
-import main.BoardFormatException;
-import main.Translator;
 /**
- * 
+ * fill this
  */
 public class HybridMinimax extends HeuristicsAI {
 
@@ -27,7 +24,8 @@ public class HybridMinimax extends HeuristicsAI {
     Action opponentAction;
     
     // constructor
-    public HybridMinimax(Objective objective, int c, String[] heuristics) {
+    @SuppressWarnings("static-access")
+	public HybridMinimax(Objective objective, int c, String[] heuristics) {
         evaluator = objective;
         colour = c;
         opponent = evaluator.getOtherColour(colour);

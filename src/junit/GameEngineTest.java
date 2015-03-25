@@ -13,166 +13,171 @@ import ai.Objective;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-/** 
- * Test class for GameEngine,
- *  checks objective, undo and reset functions of 
- *  the board and if moves are made successfully
+
+/**
+ * Test class for GameEngine, checks objective, undo and reset functions of the
+ * board and if moves are made successfully
  * 
  */
 public class GameEngineTest {
-    
 
-     private GameEngine gameEngine;
+	private GameEngine gameEngine;
 
-     @Before
-     public void setUp() throws Exception {
-     gameEngine = new GameEngine();
-     }
+	@Before
+	public void setUp() throws Exception {
+		gameEngine = new GameEngine();
+	}
 
-     @After
-     public void tearDown() throws Exception {
-     gameEngine = null;
-     }
+	@After
+	public void tearDown() throws Exception {
+		gameEngine = null;
+	}
 
-     @Test
-     public void newGame() {
-     gameEngine = new GameEngine();
-     Board b = new Board();
-     assertTrue(b.equals(gameEngine.getCurrentBoard()));
-     }
+	@Test
+	public void newGame() {
+		gameEngine = new GameEngine();
+		Board b = new Board();
+		assertTrue(b.equals(gameEngine.getCurrentBoard()));
+	}
 
-     @Test
-     public void newGameGivenBoard() {
-     gameEngine = new GameEngine((new Board(2, 2)));
-     Board b = new Board(2, 2);
-     assertTrue(b.equals(gameEngine.getCurrentBoard()));
-     }
+	@Test
+	public void newGameGivenBoard() {
+		gameEngine = new GameEngine((new Board(2, 2)));
+		Board b = new Board(2, 2);
+		assertTrue(b.equals(gameEngine.getCurrentBoard()));
+	}
 
-     @Test
-     public void newGameObjective() {
-     gameEngine = new GameEngine(new Board(2, 2), new Objective("kill", 1, new Coordinate(2, 2)));
-     Board b = new Board(2, 2);
-     Objective o = new Objective("kill", 1, new Coordinate(2, 2));
-     assertTrue(b.equals(gameEngine.getCurrentBoard()));
-     assertEquals(o.toString(), gameEngine.getObjective().toString());
-     }
+	@Test
+	public void newGameObjective() {
+		gameEngine = new GameEngine(new Board(2, 2), new Objective("kill", 1,
+				new Coordinate(2, 2)));
+		Board b = new Board(2, 2);
+		Objective o = new Objective("kill", 1, new Coordinate(2, 2));
+		assertTrue(b.equals(gameEngine.getCurrentBoard()));
+		assertEquals(o.toString(), gameEngine.getObjective().toString());
+	}
 
-     @Test
-     public void newGameObjectiveSearchSpaces() {
-     gameEngine = new GameEngine(new Board(2, 2), new Objective("kill", 1, new Coordinate(2, 2)));
-     Board b = new Board(2, 2);
-     Objective o = new Objective("kill", 1, new Coordinate(2, 2));
-     int[] ss = {0, 0, 1, 1};
-     System.out.println(o.toString());
-     System.out.println(gameEngine.getObjective().toString());
-     assertTrue(b.equals(gameEngine.getCurrentBoard()));
-     assertEquals(o.toString(), gameEngine.getObjective().toString());
-     
-     }
+	@SuppressWarnings("unused")
+	@Test
+	public void newGameObjectiveSearchSpaces() {
+		gameEngine = new GameEngine(new Board(2, 2), new Objective("kill", 1,
+				new Coordinate(2, 2)));
+		Board b = new Board(2, 2);
+		Objective o = new Objective("kill", 1, new Coordinate(2, 2));
+		int[] ss = { 0, 0, 1, 1 };
+		System.out.println(o.toString());
+		System.out.println(gameEngine.getObjective().toString());
+		assertTrue(b.equals(gameEngine.getCurrentBoard()));
+		assertEquals(o.toString(), gameEngine.getObjective().toString());
 
-     // Checks whether legal move is successfully made on board.
-     @Test
-     public void makeMoveSuccess() {
-     gameEngine = new GameEngine((new Board(2, 2)));
-     Board moved = new Board(new byte[][]{{0, 0}, {0, 1}});
+	}
 
-     // Checks whether move was made successfully
-     assertTrue(gameEngine.makeMove(new Coordinate(1, 1), 1, false));
-     // Checks if the resulting boards are equal.
-     assertTrue(Arrays.deepEquals(moved.getRaw(), gameEngine
-     .getCurrentBoard().getRaw()));
-     }
+	// Checks whether legal move is successfully made on board.
+	@Test
+	public void makeMoveSuccess() {
+		gameEngine = new GameEngine((new Board(2, 2)));
+		Board moved = new Board(new byte[][] { { 0, 0 }, { 0, 1 } });
 
-     // Checks whether an illegal move is rejected.
-     @Test
-     public void makeMoveFailure() {
-     gameEngine = new GameEngine(new Board(new byte[][]{{1, 0}, {0, 1}}));
+		// Checks whether move was made successfully
+		assertTrue(gameEngine.makeMove(new Coordinate(1, 1), 1, false));
+		// Checks if the resulting boards are equal.
+		assertTrue(Arrays.deepEquals(moved.getRaw(), gameEngine
+				.getCurrentBoard().getRaw()));
+	}
 
-     Board previous = gameEngine.getCurrentBoard().clone();
+	// Checks whether an illegal move is rejected.
+	@Test
+	public void makeMoveFailure() {
+		gameEngine = new GameEngine(new Board(
+				new byte[][] { { 1, 0 }, { 0, 1 } }));
 
-     // Checks whether move was made unsuccessfully
-     assertFalse(gameEngine.makeMove(new Coordinate(1, 1), 1, false ));
-     // Verify the board has not changed.
-     assertTrue(Arrays.deepEquals(previous.getRaw(), gameEngine
-     .getCurrentBoard().getRaw()));
-     }
+		Board previous = gameEngine.getCurrentBoard().clone();
 
-     // Checks whether undoing moves on a non-changed board is rejected.
-     @Test
-     public void undoLastMoveEmptyBoard() {
-     gameEngine = new GameEngine(new Board(new byte[][]{{1, 0}, {0, 1}}));
+		// Checks whether move was made unsuccessfully
+		assertFalse(gameEngine.makeMove(new Coordinate(1, 1), 1, false));
+		// Verify the board has not changed.
+		assertTrue(Arrays.deepEquals(previous.getRaw(), gameEngine
+				.getCurrentBoard().getRaw()));
+	}
 
-     // Checks whether an undo was made unsuccessfully
-     assertFalse(gameEngine.undoLastMove());
-     }
+	// Checks whether undoing moves on a non-changed board is rejected.
+	@Test
+	public void undoLastMoveEmptyBoard() {
+		gameEngine = new GameEngine(new Board(
+				new byte[][] { { 1, 0 }, { 0, 1 } }));
 
-     // Checks undoing a move on a board with moves
-     @Test
-     public void undoLastMovePopulatedBoard() {
-     gameEngine = new GameEngine((new Board(
-     new byte[][]{{0, 0}, {0, 0}})));
-     Board stateA = gameEngine.getCurrentBoard().clone();
-     gameEngine.makeMove(new Coordinate(0, 0), 1, false);
-     Board stateB = gameEngine.getCurrentBoard().clone();
-     gameEngine.makeMove(new Coordinate(1, 0), 1, false);
-     Board stateC = gameEngine.getCurrentBoard().clone();
-     gameEngine.makeMove(new Coordinate(1, 1), 2, false);
+		// Checks whether an undo was made unsuccessfully
+		assertFalse(gameEngine.undoLastMove());
+	}
 
-     // Checks whether an undo was made successfully
-     assertTrue(gameEngine.undoLastMove());
-     assertTrue(gameEngine.getCurrentBoard().equals(stateC));
-     assertTrue(gameEngine.undoLastMove());
-     assertTrue(gameEngine.getCurrentBoard().equals(stateB));
-     assertTrue(gameEngine.undoLastMove());
-     assertTrue(gameEngine.getCurrentBoard().equals(stateA));
-     // Checks whether an undo was made unsuccessfully
-     assertFalse(gameEngine.undoLastMove());
-     }
+	// Checks undoing a move on a board with moves
+	@Test
+	public void undoLastMovePopulatedBoard() {
+		gameEngine = new GameEngine((new Board(new byte[][] { { 0, 0 },
+				{ 0, 0 } })));
+		Board stateA = gameEngine.getCurrentBoard().clone();
+		gameEngine.makeMove(new Coordinate(0, 0), 1, false);
+		Board stateB = gameEngine.getCurrentBoard().clone();
+		gameEngine.makeMove(new Coordinate(1, 0), 1, false);
+		Board stateC = gameEngine.getCurrentBoard().clone();
+		gameEngine.makeMove(new Coordinate(1, 1), 2, false);
 
-     @Test
-     public void GEgetLegalMovesb() {
-     byte b[][] = {{0, 0, 0, 0}, {0, 1, 1, 0}, {1, 2, 0, 1},
-     {0, 1, 1, 0}};
-     boolean b1[][] = {{true, true, true, true,},
-     {true, false, false, true}, {false, false, true, false},
-     {true, false, false, true}};
-     Board board = new Board(b);
-     gameEngine = new GameEngine((board));
-     boolean b2[][] = gameEngine.getLegalMoves(1);
-     boolean result = Arrays.deepEquals(b1, b2);
-     assertEquals(result, true);
-     }
+		// Checks whether an undo was made successfully
+		assertTrue(gameEngine.undoLastMove());
+		assertTrue(gameEngine.getCurrentBoard().equals(stateC));
+		assertTrue(gameEngine.undoLastMove());
+		assertTrue(gameEngine.getCurrentBoard().equals(stateB));
+		assertTrue(gameEngine.undoLastMove());
+		assertTrue(gameEngine.getCurrentBoard().equals(stateA));
+		// Checks whether an undo was made unsuccessfully
+		assertFalse(gameEngine.undoLastMove());
+	}
 
-     @Test
-     public void GEgetLegalMovesw() {
-     byte b[][] = {{0, 0, 0, 0}, {0, 1, 1, 0}, {1, 2, 0, 1},
-     {0, 1, 1, 0}};
-     boolean b1[][] = {{true, true, true, true,},
-     {true, false, false, true}, {false, false, false, false},
-     {false, false, false, false}};
-     Board board = new Board(b);
-     gameEngine = new GameEngine((board));
-     boolean b2[][] = gameEngine.getLegalMoves(2);
-     boolean result = Arrays.deepEquals(b1, b2);
-     assertEquals(result, true);
-     }
+	@Test
+	public void GEgetLegalMovesb() {
+		byte b[][] = { { 0, 0, 0, 0 }, { 0, 1, 1, 0 }, { 1, 2, 0, 1 },
+				{ 0, 1, 1, 0 } };
+		boolean b1[][] = { { true, true, true, true, },
+				{ true, false, false, true }, { false, false, true, false },
+				{ true, false, false, true } };
+		Board board = new Board(b);
+		gameEngine = new GameEngine((board));
+		boolean b2[][] = gameEngine.getLegalMoves(1);
+		boolean result = Arrays.deepEquals(b1, b2);
+		assertEquals(result, true);
+	}
 
-     @Test
-     public void testBoardRestart() {
-     gameEngine = new GameEngine();
-     gameEngine.makeMove(new Coordinate(0, 0), 1, false);
-     assertTrue(gameEngine.restartBoard());
+	@Test
+	public void GEgetLegalMovesw() {
+		byte b[][] = { { 0, 0, 0, 0 }, { 0, 1, 1, 0 }, { 1, 2, 0, 1 },
+				{ 0, 1, 1, 0 } };
+		boolean b1[][] = { { true, true, true, true, },
+				{ true, false, false, true }, { false, false, false, false },
+				{ false, false, false, false } };
+		Board board = new Board(b);
+		gameEngine = new GameEngine((board));
+		boolean b2[][] = gameEngine.getLegalMoves(2);
+		boolean result = Arrays.deepEquals(b1, b2);
+		assertEquals(result, true);
+	}
 
-     Board empty = new Board();
-     assertTrue(gameEngine.getCurrentBoard().equals(empty));
-     }
+	@Test
+	public void testBoardRestart() {
+		gameEngine = new GameEngine();
+		gameEngine.makeMove(new Coordinate(0, 0), 1, false);
+		assertTrue(gameEngine.restartBoard());
 
-     @Test
-     public void testAI() {
-     gameEngine = new GameEngine(new Board(2, 2), new Objective("kill", 1, new Coordinate(2, 2)));
-     gameEngine.setMiniMax(1);
-     AI ai = gameEngine.getAI();
-     assertEquals(ai.getColour(), 1);
-     }
-     
+		Board empty = new Board();
+		assertTrue(gameEngine.getCurrentBoard().equals(empty));
+	}
+
+	@Test
+	public void testAI() {
+		gameEngine = new GameEngine(new Board(2, 2), new Objective("kill", 1,
+				new Coordinate(2, 2)));
+		gameEngine.setMiniMax(1);
+		AI ai = gameEngine.getAI();
+		assertEquals(ai.getColour(), 1);
+	}
+
 }

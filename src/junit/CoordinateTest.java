@@ -1,9 +1,6 @@
 package junit;
 
 import static org.junit.Assert.*;
-
-import java.util.Arrays;
-
 import main.Coordinate;
 
 import org.junit.After;
@@ -16,7 +13,8 @@ import org.junit.Test;
  */
 public class CoordinateTest {
 
-    private Coordinate coordinate;
+    @SuppressWarnings("unused")
+	private Coordinate coordinate;
 
     @Before
     public void setUp() throws Exception {

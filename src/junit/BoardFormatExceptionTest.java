@@ -1,7 +1,6 @@
 package junit;
 
 import static org.junit.Assert.*;
-
 import main.BoardFormatException;
 
 import org.junit.After;
@@ -14,7 +13,8 @@ import org.junit.Test;
  */
 public class BoardFormatExceptionTest {
 
-    private BoardFormatException bfe;
+    @SuppressWarnings("unused")
+	private BoardFormatException bfe;
 
     @Before
     public void setUp() throws Exception {

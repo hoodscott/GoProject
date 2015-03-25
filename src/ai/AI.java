@@ -1,11 +1,11 @@
 package ai;
-/**
-This is the abstract class for all AI types to extend.
-*/
 import main.Board;
 import main.Coordinate;
 import main.LegalMoveChecker;
 
+/**
+ * Abstract class extended by all AIs with shared methods.
+ */
 public abstract class AI {
 
     protected String thoughts;

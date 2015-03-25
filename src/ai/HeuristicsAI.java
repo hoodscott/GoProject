@@ -13,19 +13,21 @@ import ai.heuristics.general.ThreeLiberties;
 import ai.heuristics.specific.SixStonesInARow;
 import ai.heuristics.specific.UnsettledThree;
 import ai.heuristics.*;
+
 import java.util.ArrayList;
+
 import main.Board;
 import main.LegalMoveChecker;
 
 public abstract class HeuristicsAI extends AI{
     
-    protected ArrayList<Heuristic> heuristics = new ArrayList();
+    protected ArrayList<Heuristic> heuristics;
     protected boolean usingHeuristics = false;
     protected static boolean heuristicsFirst = false;
     
     //Method for setting heuristics
     public void setHeuristics(String[] names){
-        heuristics = new ArrayList();
+        heuristics = new ArrayList<Heuristic>();
         for(String name : names)
             addHeuristic(name);
     }

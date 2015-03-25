@@ -1,15 +1,11 @@
 package ai;
 
-import java.util.ArrayList;
 import main.Board;
-import main.BoardFormatException;
 import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
-import ai.heuristics.UnconditionalLife;
-import main.Translator;
 /**
- * 
+ * fill this
  */
 public class MiniMax extends AI {
 
@@ -21,7 +17,8 @@ public class MiniMax extends AI {
     Action opponentAction;
     Board winner;
 
-    public MiniMax(Objective objective, int c) {
+    @SuppressWarnings("static-access")
+	public MiniMax(Objective objective, int c) {
         evaluator = objective;
         colour = c;
         opponent = evaluator.getOtherColour(colour);

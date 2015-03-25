@@ -1,7 +1,6 @@
 package junit;
 
 import static org.junit.Assert.*;
-
 import main.BadInputException;
 
 import org.junit.After;
@@ -14,7 +13,8 @@ import org.junit.Test;
  */
 public class BadInputExceptionTest {
 
-    private BadInputException bie;
+    @SuppressWarnings("unused")
+	private BadInputException bie;
 
     @Before
     public void setUp() throws Exception {
