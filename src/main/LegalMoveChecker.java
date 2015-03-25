@@ -2,7 +2,9 @@ package main;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+/**
+ * Class responsible for checking legal moves.
+ */
 public class LegalMoveChecker implements Cloneable {
 
     private final ArrayList<Board> moveHistory; //= new ArrayList<int[][]>();

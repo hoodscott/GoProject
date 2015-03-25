@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.*;
 
-/*
+/**
  * Creates input box for player choice when entering competitive play mode.
  */
 public class PlayerChooseDialog extends JDialog implements ActionListener {

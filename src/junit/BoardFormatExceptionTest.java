@@ -1,16 +1,20 @@
 package junit;
 
 import static org.junit.Assert.*;
-
 import main.BoardFormatException;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/** 
+ * Test class for BadFormatException,
+ * verify apporpriate message is output 
+ * when exception is thrown
+ */
 public class BoardFormatExceptionTest {
 
-    private BoardFormatException bfe;
+    @SuppressWarnings("unused")
+	private BoardFormatException bfe;
 
     @Before
     public void setUp() throws Exception {

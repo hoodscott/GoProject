@@ -1,9 +1,12 @@
 package main;
 
-//This exception is to be thrown by TextUI.java when incorrect inputs are made.
 public class BadInputException extends Exception {
 
-    private String message;
+    /**
+	 * This exception is to be thrown by TextUI.java when incorrect inputs are made.
+	 */
+	private static final long serialVersionUID = 1171492964935101610L;
+	private String message;
 
     public BadInputException() {
     }

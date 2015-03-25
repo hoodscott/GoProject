@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
-/*
+/**
  * Listener for toggle buttons within the GUI's button grid.
  * Enables for the swapping between competitive play mode/problem creation mode.
  */

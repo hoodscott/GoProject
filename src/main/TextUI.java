@@ -6,7 +6,13 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.util.GregorianCalendar;
-
+/**
+ * Class that implements the TextUI
+ * uses the commands 
+ * "help", "exit", "saveBoard (sb)", "saveLog (sl)", "view (v)", 
+ * "move (m)", "pass (p)", "checkLegal (cl)", "startGame (sg)",
+ * "loadBoard (lb)", "undo (u)".
+ */
 public class TextUI {
 
     //Instance variables
@@ -17,8 +23,6 @@ public class TextUI {
     private boolean exit;
     private boolean boardSaved;
     private boolean logSaved;
-    private boolean playerPassed;
-    private boolean aiPassed;
     private int playerColour;
 
     //Constructor
@@ -110,6 +114,7 @@ public class TextUI {
                 }
             }
         }
+        sc.close();
     }
 
     //Prints help info
@@ -143,6 +148,7 @@ public class TextUI {
                 String a = temp.nextLine();
                 if (a.equalsIgnoreCase("Y")) {
                     System.out.println("> Then go save it.");
+                    temp.close();
                     return;
                 } else if (a.equalsIgnoreCase("N")) {
                     answer = true;
@@ -151,6 +157,7 @@ public class TextUI {
         }
         exit = true;
         System.out.println("> Exiting UI...");
+        temp.close();
     }
 
     //Starts game with an AI

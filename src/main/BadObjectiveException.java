@@ -1,9 +1,11 @@
 package main;
-
-//This exception is for AI instances and is to be thrown when an AI no longer makes a move.
 public class BadObjectiveException extends Exception {
 
-    private String message;
+    /**
+	 * This exception is for AI instances and is to be thrown when an AI no longer makes a move.
+	 */
+	private static final long serialVersionUID = 2148680020600207295L;
+	private String message;
 
     public BadObjectiveException() {
     }
