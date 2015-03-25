@@ -21,7 +21,9 @@
     <property name="depr.dir" 		value="deprecated"/>
     <property name="notintr.dir" 		value="notIntegrated"/>
     <property name="info.dir" 		value="info"/>
-    <property name="saves.dir" 		value="saveData"/>	
+    <property name="saves.dir" 		value="saveData"/>
+    
+
 	
     <!-- Setting paths -->
 	
@@ -47,6 +49,8 @@
         id="application"
         location="${jar.dir}/${ant.project.name}.jar"
     />
+    
+    
     	
     <!-- Initialising and generating class files -->
 	
