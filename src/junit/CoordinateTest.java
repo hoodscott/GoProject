@@ -12,7 +12,7 @@ import org.junit.Test;
 /** 
  * Test class for Coordinate,
  * tests instantiation of Coordinates 
- * and setting of vlaues for them.
+ * and setting of values for them.
  */
 public class CoordinateTest {
 
