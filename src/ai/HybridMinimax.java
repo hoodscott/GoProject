@@ -204,7 +204,7 @@ public class HybridMinimax extends HeuristicsAI {
             }
         }
         //Sorts by descending heuristic score.
-        numericSort(boards);
+        descendingSort(boards);
         //System.out.println(boards.size()+" possible moves");
         Iterator<Entry<Integer,Board>> it = boards.iterator();
         //Iterates over each board.
@@ -257,7 +257,7 @@ public class HybridMinimax extends HeuristicsAI {
             }
         }
         //Sorts by descending heuristic score.
-        numericSort(boards);
+        descendingSort(boards);
         //System.out.println(boards.size()+" possible moves");
         Iterator<Entry<Integer,Board>> it = boards.iterator();
         //Iterates over each board.
@@ -299,14 +299,13 @@ public class HybridMinimax extends HeuristicsAI {
         }
     }    
     //Sorts list by integer.
-    private void numericSort(ArrayList <Entry<Integer, Board>> m){
-        Collections.sort(m, NUMERIC);
+    private void descendingSort(ArrayList <Entry<Integer, Board>> m){
+        Collections.sort(m, DESCENDING);
     }
     
     //Comparator to use by collections.sort
     //Sorts into descending order
-    private static final Comparator<Entry<Integer,Board>> NUMERIC = new Comparator<Entry<Integer,Board>>(){
-        
+    private static final Comparator<Entry<Integer,Board>> DESCENDING = new Comparator<Entry<Integer,Board>>(){       
         @Override
         public int compare(Entry<Integer, Board> e1, Entry<Integer, Board> e2){
             return e2.getKey().compareTo(e1.getKey());
