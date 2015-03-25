@@ -228,14 +228,13 @@ FileIO.adjustPath(s);
      public void readBoardDefault(){
      GameEngine b = null;
  
-Board expected = new Board();
+     Board expected = new Board();
      try{
-     b =
-FileIO.readBoard("saveDdata/logs/log");
+     b = FileIO.readBoard("saveData/logs/log");
      } catch (Exception e) {
      }
  
-   assertTrue(expected.equals(b));
+     	assertTrue(expected.equals(b));
      }
         
      

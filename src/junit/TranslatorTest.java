@@ -116,8 +116,8 @@ public class TranslatorTest {
      + "\n........."
      + "\n........."
      + "\n........."
-     + "\nblack defend 1 4"
-     + "\n0 0 3 9";
+     + "\nblack defend 1 4\n";
+     
      GameEngine ge = new GameEngine(new Board(9, 9), new Objective("defend", 1, new Coordinate(1, 4)));
      byte one = 1;
      ge.getCurrentBoard().set(3, 0, one);
