@@ -1,18 +1,11 @@
 package ai;
 
 /**
- * This is the abstract class for all AI heuristic types
+ * This is the abstract class for all AIs that use heuristics.
  */
-import ai.heuristics.specific.Hane;
-import ai.heuristics.general.EyeCreator;
-import ai.heuristics.specific.EightStonesInARow;
-import ai.heuristics.general.LibertyCounter;
-import ai.heuristics.general.LivingSpace;
-import ai.heuristics.general.TwoPointEye;
-import ai.heuristics.general.ThreeLiberties;
-import ai.heuristics.specific.SixStonesInARow;
-import ai.heuristics.specific.UnsettledThree;
 import ai.heuristics.*;
+import ai.heuristics.general.*;
+import ai.heuristics.specific.*;
 
 import java.util.ArrayList;
 
@@ -27,15 +20,15 @@ public abstract class HeuristicsAI extends AI{
     
     //Method for setting heuristics
     public void setHeuristics(String[] names){
-        heuristics = new ArrayList<Heuristic>();
+        heuristics = new ArrayList();
         for(String name : names)
             addHeuristic(name);
     }
     
+    //Adds heuristics to list. Called by HeuristicsChoose in GUI.
     public void addHeuristic(String heuristicName){
         switch(heuristicName){
             case "Hane": heuristics.add(new Hane()); break;
-            // case "HasAnEye": heuristics.add(new HasAnEye()); break;
             case "EightStonesInARow": heuristics.add(new EightStonesInARow()); break;
             case "TwoPointEye": heuristics.add(new TwoPointEye()); break;
             case "UnsettledThree": heuristics.add(new UnsettledThree()); break;
@@ -49,7 +42,7 @@ public abstract class HeuristicsAI extends AI{
         System.out.println("Added heuristic: "+heuristicName);
     }
     
-    //calculates score from heuristic
+    //Sums scores from heuristic
     protected int getHeuristicScores(Board initialBoard, Board currentBoard, LegalMoveChecker lmc, Objective evaluator){
         int sum = 0;
         for(Heuristic h : heuristics)
@@ -57,7 +50,7 @@ public abstract class HeuristicsAI extends AI{
         
         return sum;
     }
-    
+    //Settings to determine if the heuristics should be called at the very start of the tree-search.
     public static boolean getHeuristicsFirst(){return heuristicsFirst;}
     public static void setHeuristicsFirst(boolean setting){ heuristicsFirst = setting;}
 }

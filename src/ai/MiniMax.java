@@ -5,7 +5,7 @@ import main.Coordinate;
 import main.LegalMoveChecker;
 import ai.Objective.Action;
 /**
- * fill this
+ * Minimax algorithm. Performs exhaustive tree search and prunes upwards once a solution is found.
  */
 public class MiniMax extends AI {
 
@@ -17,8 +17,8 @@ public class MiniMax extends AI {
     Action opponentAction;
     Board winner;
 
-    @SuppressWarnings("static-access")
-	public MiniMax(Objective objective, int c) {
+
+    public MiniMax(Objective objective, int c) {
         evaluator = objective;
         colour = c;
         opponent = evaluator.getOtherColour(colour);
@@ -26,12 +26,12 @@ public class MiniMax extends AI {
         opponentAction = evaluator.getAction(opponent);
     }
 
+    //nextMove method defined by AI Interface. Calls minimax.
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) throws AIException {
         lmc = legalMoves.clone();
         movesConsidered = 0;
         timeSpent = 0;
-        //printGameBoard(b);
 
         //Checks if objective for killing is already met and passes accordingly. 
         //For defending, all possible substates need to be checked.
@@ -48,10 +48,8 @@ public class MiniMax extends AI {
                     int result = min(currentState, false);
                     lmc.removeLast();
 
-                    //If success is guaranteed.
+                    //If success is guaranteed. Prunes.
                     if (result == 1) {
-                        //Translator.printGameBoard(winner);
-                        //UnconditionalLife.printLastDetails();
                         return currentCoord;
                     }
                 }
@@ -81,7 +79,7 @@ public class MiniMax extends AI {
                     int result = min(currentState, false);
                     lmc.removeLast();
 
-                    //If success is guaranteed.
+                    //If success is guaranteed. Prunes.
                     if (result == 1) {
                         return result;
                     }
@@ -90,23 +88,15 @@ public class MiniMax extends AI {
         }
 
         if (!passed) {
-            //System.out.println("AI passed.");
             return min(b, true);
         }
 
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
-            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
                 return -1;
-            //winner = b;
-            //return 1;
         } //If there are no more legal moves and the AI's defended group still lives.
         else {
-            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
-                //winner = b;
                 return 1;
-            //}
-            //return -1;
         }
     }
 
@@ -131,7 +121,7 @@ public class MiniMax extends AI {
                     int result = max(currentState, false);
                     lmc.removeLast();
 
-                    //If failure is guaranteed.
+                    //If failure is guaranteed. Prunes.
                     if (result == -1) {
                         return result;
                     }
@@ -146,17 +136,10 @@ public class MiniMax extends AI {
 
         //If the AI's stone group can no longer be captured.
         if (miniAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
-            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition())){
-                //winner = b;
                 return 1;
-            //}
-            //return -1;
         } //If the opponent's group still lives.
         else {
-            //if(UnconditionalLife.isItAlive(b, evaluator.getPosition()))
                 return -1;
-            //winner = b;
-            //return 1;
         }
     }
 }

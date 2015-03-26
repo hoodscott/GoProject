@@ -4,7 +4,7 @@ import main.Coordinate;
 import main.LegalMoveChecker;
 
 /**
- * Abstract class extended by all AIs with shared methods.
+ * Abstract class implemented by all AIs.
  */
 public abstract class AI {
 
@@ -39,6 +39,7 @@ public abstract class AI {
         return movesConsidered;
     }
     
+    //Computes time taken for GUI usage.
     public String getTimeTaken(){
         long time = moveFinishTime - moveStartTime;
         if(time < 10000)

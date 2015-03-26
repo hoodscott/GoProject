@@ -9,7 +9,6 @@ import main.Coordinate;
 public class Objective {
 
     public enum Action {
-
         KILL, DEFEND
     }
 

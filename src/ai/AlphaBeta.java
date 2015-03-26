@@ -6,7 +6,9 @@ import main.LegalMoveChecker;
 import ai.Objective.Action;
 import main.Translator;
 /**
- * Alpha-Beta tree search class which includes recursive pruning on future moves.
+ * Alpha-Beta tree search which works by either performing a brute force search or
+ * By performing a depth-first search to a given depth and calling the heuristics.
+ * In both cases, the alpha and beta values are passed back up and used for pruning.
  */
 public class AlphaBeta extends HeuristicsAI {
 
@@ -23,8 +25,7 @@ public class AlphaBeta extends HeuristicsAI {
     Board initialBoard;
     
     // constructor
-    @SuppressWarnings("static-access")
-	public AlphaBeta(Objective objective, int c, String[] heuristics) {
+    public AlphaBeta(Objective objective, int c, String[] heuristics) {
         evaluator = objective;
         colour = c;
         opponent = evaluator.getOtherColour(colour);
@@ -37,7 +38,7 @@ public class AlphaBeta extends HeuristicsAI {
     }
     
 
-    
+    //Main call to the AI. Initialises as maximiser
     @Override
     public Coordinate nextMove(Board b, LegalMoveChecker legalMoves) {
         // reset the number of moves considered  
@@ -67,11 +68,8 @@ public class AlphaBeta extends HeuristicsAI {
                 Coordinate currentCoord = new Coordinate(x, y);
                 if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
                     Board currentState = lmc.getLastLegal();
-                    //try{System.out.println(Translator.translateToString(colour)+" made move "+x+" "+y);} catch(BoardFormatException e){}        
-                    //Translator.printGameBoard(currentState);
                     lmc.addBoard(currentState);
                     // continue to opponent`s best reaction to this particular move
-                    //score = alphaBeta(currentState, MINIMUM, MAXIMUM, opponent,moveDepth-1);
                     score = beta(currentState, MINIMUM, MAXIMUM, moveDepth-1, false);
                     lmc.removeLast();
 
@@ -79,15 +77,12 @@ public class AlphaBeta extends HeuristicsAI {
                     if(score == MAXIMUM)
                         return currentCoord;
                     if (score > globalScore && score > 0) {
-                        System.out.println("score: " + score);
                     	globalScore = score;
                         bestMove = currentCoord;
                     }
                 }
             }
         }
-        
-        System.out.println("Score: "+globalScore);
 
         // pass if no move will improve the situation 
         if (bestMove == null) {
@@ -100,7 +95,6 @@ public class AlphaBeta extends HeuristicsAI {
         movesConsidered++;
         // If the opponent managed to capture the group.
         if (opponentAction == Action.KILL && evaluator.checkSucceeded(b, opponent)) {
-            //System.out.println("Lost target.");
             return MINIMUM;
         }
         
@@ -123,10 +117,7 @@ public class AlphaBeta extends HeuristicsAI {
                     Coordinate currentCoord = new Coordinate(x, y);
                     if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, colour, true)) {
                         
-                        //try{System.out.println(Translator.translateToString(colour)+" made move "+x+" "+y);} catch(BoardFormatException e){}
-                        
                         Board currentState = lmc.getLastLegal();
-                        //Translator.printGameBoard(currentState);
                         lmc.addBoard(currentState);
                         
                         // get response to current move from other player
@@ -140,28 +131,21 @@ public class AlphaBeta extends HeuristicsAI {
                 }
             }
         if (!passed) {
-            //try{System.out.println(Translator.translateToString(colour)+" passed.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
             return beta(b, alpha, beta, depth-1, true);
         }
 
         //If the AI can no longer kill the opponent
         if (opponentAction == Action.DEFEND && evaluator.checkSucceeded(b, opponent)) {
-            //try{System.out.println(Translator.translateToString(opponent)+" successfully defended.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
             return MINIMUM;
         } //If there are no more legal moves and the AI's defended group still lives.
         else {
-            //try{System.out.println(Translator.translateToString(colour)+" successfully defended.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
             return MAXIMUM;
         }
     }
     private int beta(Board b, int alpha, int beta, int depth, boolean passed){
         movesConsidered++;
         // If the AI managed to capture the group.
-        if (abAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {
-            //System.out.println("Successfully captured target.");            
+        if (abAction == Action.KILL && evaluator.checkSucceeded(b, colour)) {         
             return MAXIMUM;
         }
         
@@ -185,9 +169,7 @@ public class AlphaBeta extends HeuristicsAI {
                     Coordinate currentCoord = new Coordinate(x, y);
                     if (b.get(x, y) == Board.EMPTY_AI && lmc.checkMove(b, currentCoord, opponent, true)) {          
                         Board currentState = lmc.getLastLegal();
-                        lmc.addBoard(currentState);
-                        //try{System.out.println(Translator.translateToString(opponent)+" made move "+x+" "+y);} catch(BoardFormatException e){}
-                        //Translator.printGameBoard(currentState);                        
+                        lmc.addBoard(currentState);              
                         
                         // get response to current move from other player
                         score = Math.min(score, alpha(currentState, alpha, beta, depth-1, false));
@@ -201,20 +183,14 @@ public class AlphaBeta extends HeuristicsAI {
             }
             
         if (!passed) {
-            //try{System.out.println(Translator.translateToString(opponent)+" passed.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
             return alpha(b, alpha, beta, depth-1, true);
         }
 
         //If the AI's stone group can no longer be captured.
         if (abAction == Action.DEFEND && evaluator.checkSucceeded(b, colour)) {
-            //try{System.out.println(Translator.translateToString(colour)+" successfully defended.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
             return MAXIMUM;
         } //If there are no more legal moves and the opponent's defended group still lives.
         else {
-            //try{System.out.println(Translator.translateToString(opponent)+" successfully defended.");} catch(BoardFormatException e){}
-            //Translator.printGameBoard(b);
             return MINIMUM;
         }
     }

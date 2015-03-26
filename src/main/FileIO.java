@@ -34,7 +34,6 @@ public final class FileIO {
     //Board reading method for a given path
     public static GameEngine readBoard(String path) throws BoardFormatException, NumberFormatException {
         ArrayList<String> lines = readFile(path);
-        System.out.println(lines);
         return Translator.translateGameInstructions(lines);
     }
 
@@ -50,7 +49,6 @@ public final class FileIO {
 
     //Reads in help information on request
     public static String readHelp(String path) {
-        //System.out.println(path);
         if (!(new File(path).exists())) {
             return " does not exist";
         }
