@@ -2,7 +2,7 @@ package main;
 
 /**
  * Class used to create Boards
- * and check equality.
+ * and check equality and create copies of itself.
  */
 public class Board {
 

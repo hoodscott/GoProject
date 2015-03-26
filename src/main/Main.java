@@ -1,10 +1,11 @@
 package main;
 
 import graphicalUI.GraphicalUI;
-
+/**
+ * Runner for either the TextUI or GUI
+ */
 public class Main {
 
-    //Use this class to test your stuff. Just comment out or delete your code before you commit it.
     public static void main(String[] args) {
         boolean gooey = true;
         GameEngine gE = new GameEngine();

@@ -229,7 +229,7 @@ public class BoardJPanel extends JPanel {
 				gameE.setAlphaBeta(colour, GraphicalUI.heuristics);
 				break;
 			case "HybridMiniMax":
-				gameE.setMagicalMiniMax(colour, GraphicalUI.heuristics);
+				gameE.setHybridMinimax(colour, GraphicalUI.heuristics);
 				break;
 			default:
 				System.out

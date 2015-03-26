@@ -3,8 +3,8 @@ package main;
 public class BadInputException extends Exception {
 
     /**
-	 * This exception is to be thrown by TextUI.java when incorrect inputs are made.
-	 */
+    * This exception is to be thrown by TextUI.java when incorrect inputs are made.
+    */
 	private static final long serialVersionUID = 1171492964935101610L;
 	private String message;
 

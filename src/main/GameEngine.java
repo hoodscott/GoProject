@@ -9,11 +9,10 @@ import ai.HybridMinimax;
 /**
  * Class used for the basic playing
  * functions(making moves, gets legal moves form 
- * Legal move checker)
+ * Legal move checker). Also holds state of current game.
  *
  */
 public class GameEngine {
-  //* Class to keep track of the current game of Go and make moves on the board 
 
     // Instance of LegalMoveChecker, used in functions to check the legality of moves 
     private LegalMoveChecker moveChecker;
@@ -92,7 +91,7 @@ public class GameEngine {
     }
     
     //Sets AI to be the heuristics using minimax algorithm.
-    public void setMagicalMiniMax(int colour, String[] heuristicNames){
+    public void setHybridMinimax(int colour, String[] heuristicNames){
         ai = new HybridMinimax(objective, colour, heuristicNames);
     }
 

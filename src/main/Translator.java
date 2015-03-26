@@ -4,7 +4,7 @@ import ai.Objective;
 import java.util.ArrayList;
 
 /**
- * A static class containing translation operations for the FileIO and TextUI.
+ * A static class containing translation operations for the FileIO, TextUI and Objective.
  */
 public class Translator {
 
@@ -185,18 +185,6 @@ public class Translator {
                 + objective.getPosition().x + ' ' + objective.getPosition().y + '\n';
     }
 
-    //Converts search space coordinates into a printable String -OLD
-    /*
-     public static String translateToSearchSpaceInstruction(int[] searchValues)throws BoardFormatException{
-     String s = "";
-     for(int i = 0; i < searchValues.length - 1; i++)
-     s += searchValues[i]+" ";
-
-     s += searchValues[searchValues.length - 1];
-        
-     return s;
-     }
-     */
     // Method for translation of char positions to int values
     public static byte translateToInt(char value) throws BoardFormatException {
         switch (value) {

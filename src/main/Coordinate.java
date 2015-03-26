@@ -1,6 +1,7 @@
 package main;
 /**
- * Class used to instantiate new coordinates
+ * Class used to instantiate new coordinates.
+ * These are primarily used to denote selected stones and/or groups.
  */
 public class Coordinate {
 
@@ -34,6 +35,7 @@ public class Coordinate {
     @Override
     //Computes hashcode for coordinates.
     //Will fail to be unique with all coordinate ranges >=100
+    //As Go boards are designed to be limited to 19x19 length, this not an issue.
     public int hashCode() {
         int hash = this.x;
         hash += this.y * 100;
